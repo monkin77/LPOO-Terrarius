@@ -25,6 +25,7 @@ public class Level {
         return numLevel;
     }
 
+    // Consider using Observer Pattern
     boolean increaseXP(int xp) {
         this.currentXP += xp;
         return this.currentXP > maxXP;
