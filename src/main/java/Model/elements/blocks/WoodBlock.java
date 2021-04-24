@@ -3,7 +3,7 @@ package Model.elements.blocks;
 import Model.Position;
 
 public class WoodBlock extends Block {
-    private static final int WOOD_BLOCK_HARDNESS = 2;
+    protected static final int WOOD_BLOCK_HARDNESS = 2;
 
     public WoodBlock(Position position) {
         super(position);
