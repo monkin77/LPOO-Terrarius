@@ -1,7 +1,7 @@
 package Model;
 
 public class Level {
-    private static final int XP_MULTIPLIER = 1000;
+    protected static final int XP_MULTIPLIER = 1000;
 
     private long currentXP;
     private final long maxXP;
