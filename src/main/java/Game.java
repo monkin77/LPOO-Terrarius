@@ -1,9 +1,7 @@
 import GUI.GUI;
 import GUI.LanternaGui;
-import Model.Position;
 import Model.arena.Arena;
 import Model.arena.DefaultArenaBuilder;
-import Model.elements.Hero;
 
 import java.awt.*;
 import java.io.IOException;
