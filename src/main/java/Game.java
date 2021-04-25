@@ -1,5 +1,6 @@
 import GUI.GUI;
 import GUI.LanternaGui;
+import Model.arena.ArenaBuilder;
 import Viewer.ArenaViewer;
 import Model.arena.Arena;
 import Model.arena.DefaultArenaBuilder;
@@ -14,12 +15,14 @@ public class Game {
     private final Arena arena;
 
     public static void main(String[] args) throws FontFormatException, IOException, URISyntaxException {
-        LanternaGui gui = new LanternaGui(75, 75);
+        LanternaGui gui = new LanternaGui(128, 64);
         ArenaViewer arenaViewer = new ArenaViewer(gui);
+        ArenaBuilder arenaBuilder = new DefaultArenaBuilder(128, 64);
+        Arena arena = arenaBuilder.createArena();
 
         for (int i = 0; i < 100; i++){
             gui.clear();
-            arenaViewer.draw();
+            arenaViewer.draw(arena);
             gui.refresh();
             try {
                 Thread.sleep(100);
@@ -30,7 +33,7 @@ public class Game {
 
         System.out.println("Here we go");
 
-        Game game = new Game(150, 100);
+        //Game game = new Game(150, 100);
     }
 
     public Game(int width, int height) throws FontFormatException, IOException, URISyntaxException {

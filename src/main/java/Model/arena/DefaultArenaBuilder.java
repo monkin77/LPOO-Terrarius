@@ -4,6 +4,7 @@ import Model.Position;
 import Model.elements.Hero;
 import Model.elements.blocks.Block;
 import Model.elements.blocks.StoneBlock;
+import Model.elements.blocks.WoodBlock;
 import Model.elements.enemies.Enemy;
 
 import java.util.ArrayList;
@@ -32,14 +33,18 @@ public class DefaultArenaBuilder extends ArenaBuilder{
     protected List<Block> createBlocks() {
         List<Block> blocks = new ArrayList<>();
 
-        for(int x = 0; x < this.width; x++){
-            blocks.add( new StoneBlock( new Position(x, 0) ) );
-            blocks.add( new StoneBlock( new Position(x, this.height - 1) ) );
+        for(int x = 0; x < this.width/4; x++){
+            blocks.add( new StoneBlock( new Position(x * 4, 0) ) );
+            blocks.add( new StoneBlock( new Position(x * 4, this.height - 4) ) );
         }
 
-        for(int y = 1; y < height - 1; y++){
-            blocks.add( new StoneBlock( new Position(0, y) ) );
-            blocks.add( new StoneBlock( new Position(this.width - 1, y) ) );
+        for(int y = 1; y < height/4; y++){
+            blocks.add( new StoneBlock( new Position(0, y * 4) ) );
+            blocks.add( new StoneBlock( new Position(this.width - 4, y * 4) ) );
+        }
+
+        for (int y = height/4 - 2; y >= height/4 - 4; y--){
+            blocks.add(new WoodBlock( new Position(16, y*4)));
         }
 
         return blocks;
