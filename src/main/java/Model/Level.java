@@ -28,4 +28,14 @@ public class Level {
     void increaseXP(int xp) {
         this.currentXP += xp;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Level level = (Level) obj;
+        return level.getNumLevel() == this.getNumLevel() &&
+                level.getCurrentXP() == this.getCurrentXP();
+    }
 }
