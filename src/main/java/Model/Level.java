@@ -21,7 +21,7 @@ public class Level {
         return maxXP;
     }
 
-    public int getLevel() {
+    public int getNumLevel() {
         return numLevel;
     }
 
