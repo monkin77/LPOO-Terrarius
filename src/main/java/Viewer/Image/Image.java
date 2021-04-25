@@ -3,12 +3,14 @@ package Viewer.Image;
 import GUI.GUI;
 import Model.Position;
 import Model.elements.Element;
-import Model.elements.Hero;
 import Model.elements.enemies.Enemy;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.Reader;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Scanner;
 
 public class Image {
@@ -17,20 +19,12 @@ public class Image {
     private int width;
     private char[][] aspect;
 
-    public Image(Element element){
+    public void load(String fname){
 
-        if (Hero.class.equals(element.getClass())) {
-
-            //TODO find a way to not hardcode this
-            loadFile("D:\\Faculdade\\2ano\\2semestre\\LPOO\\lpoo-2021-g34\\src\\main\\resources\\Images\\Hero.txt");
-        }
-        //TODO conditions other elements
-    }
-
-    private void loadFile(String path){
+        URL resource = getClass().getClassLoader().getResource(fname);
 
         try {
-            File imageFile = new File(path);
+            File imageFile = new File(resource.toURI());
 
             Scanner imageScanner = new Scanner(imageFile);
 
@@ -49,20 +43,16 @@ public class Image {
                     int k = data.length();
                     aspect[i][j] = j >= data.length() ? ' ' : data.charAt(j);
                 }
-
-
             }
-
-
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | URISyntaxException e) {
             //TODO what to do with th exception
         }
     }
 
-    public void draw(Position position, GUI gui){
+    public void draw(Element element, GUI gui){
         for(int i = 0; i < height; i++){
             for (int j = 0; j < width; j++){
-                gui.drawCharacter(position.getX()+j, position.getY()+i, aspect[i][j]);
+                gui.drawCharacter(element.getPosition().getX()+j, element.getPosition().getY()+i, aspect[i][j]);
             }
         }
     }
