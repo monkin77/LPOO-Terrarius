@@ -10,6 +10,6 @@ public class Shovel extends Tool {
     @Override
     public void updateStats(Hero hero) {
         int heroLevel = hero.getLevel().getNumLevel();
-        this.setStats(new ToolStats(1, 10, 1));
+        this.setStats(new ToolStats(1 + heroLevel / 20, 10, 1));
     }
 }
