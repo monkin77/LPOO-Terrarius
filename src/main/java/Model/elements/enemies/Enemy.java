@@ -12,6 +12,10 @@ public abstract class Enemy extends Element {
         this.stats = new EnemyStats(calculateHP(level), calculatePower(level), level);
     }
 
+    public EnemyStats getStats() {
+        return stats;
+    }
+
     // In the future, it might be calculateStats with an extra class
     abstract int calculateHP(Level level);
     abstract int calculatePower(Level level);
