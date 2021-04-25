@@ -2,7 +2,7 @@ package Model.elements;
 
 import Model.Position;
 
-public abstract class Element {
+public class Element {
     private Position position;
 
     public Element(Position position) {
