@@ -14,7 +14,7 @@ public class ElementTest {
     public void createElement() {
         position = Mockito.mock(Position.class);
         Mockito.when(position.getX()).thenReturn(10);
-        Mockito.when(position.getX()).thenReturn(15);
+        Mockito.when(position.getY()).thenReturn(15);
         element = new Element(position);
     }
 
@@ -29,7 +29,7 @@ public class ElementTest {
     public void setters() {
         Position newPosition = Mockito.mock(Position.class);
         Mockito.when(position.getX()).thenReturn(20);
-        Mockito.when(position.getX()).thenReturn(25);
+        Mockito.when(position.getY()).thenReturn(25);
 
         element.setPosition(newPosition);
         Position elementPos = element.getPosition();
