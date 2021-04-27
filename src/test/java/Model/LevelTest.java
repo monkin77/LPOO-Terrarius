@@ -14,7 +14,7 @@ public class LevelTest {
 
     @Test
     public void construction() {
-        Assertions.assertEquals(3, level.getLevel());
+        Assertions.assertEquals(3, level.getNumLevel());
         Assertions.assertEquals(0, level.getCurrentXP());
         Assertions.assertEquals(3 * Level.XP_MULTIPLIER, level.getMaxXP());
     }
