@@ -7,5 +7,6 @@ import Viewer.Image.StillImage;
 
 public abstract class ElementViewer {
     protected Image image;
+    public abstract void update();
     public abstract void draw(Element element, GUI gui);
 }

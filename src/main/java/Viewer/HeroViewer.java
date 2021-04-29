@@ -17,6 +17,11 @@ public class HeroViewer extends ElementViewer{
 
     }
 
+    @Override
+    public void update() {
+        image.update();
+    }
+
     public void draw(Element element, GUI gui){
         image.draw(element, gui);
     }

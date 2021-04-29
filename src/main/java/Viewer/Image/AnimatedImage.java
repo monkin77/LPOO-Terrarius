@@ -45,13 +45,16 @@ public class AnimatedImage extends Image {
         }
     }
 
-    public void draw(Element element, GUI gui){
-
+    @Override
+    public void update() {
         currentSpeed = (currentSpeed+1) % totalSpeed;
 
         if (currentSpeed == 0){
             currentFrame = (currentFrame+1) % totalFrames;
         }
+    }
+
+    public void draw(Element element, GUI gui){
 
         images.get(currentFrame).draw(element, gui);
 

@@ -27,6 +27,11 @@ public class BlockViewer extends ElementViewer{
     }
 
     @Override
+    public void update() {
+        image.update();
+    }
+
+    @Override
     public void draw(Element element, GUI gui) {
         this.image.draw(element, gui);
     }

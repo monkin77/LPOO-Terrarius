@@ -23,6 +23,16 @@ public class ArenaViewer {
 
         //Do enemy too
 
+        for (ElementViewer elementViewer : blockCache.values()){
+            elementViewer.update();
+        }
+
+        for (ElementViewer elementViewer : enemyCache.values()){
+            elementViewer.update();
+        }
+
+        heroViewer.update();
+
         for(Block block : arena.getBlocks()){
             if (!blockCache.containsKey(blockCache)){
                 blockCache.put(block.getClass(), new BlockViewer(block));
