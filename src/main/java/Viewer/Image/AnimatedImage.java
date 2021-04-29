@@ -54,6 +54,12 @@ public class AnimatedImage extends Image {
         }
     }
 
+    @Override
+    public void reset() {
+        currentFrame = 0;
+        currentSpeed = 0;
+    }
+
     public void draw(Element element, GUI gui){
 
         images.get(currentFrame).draw(element, gui);

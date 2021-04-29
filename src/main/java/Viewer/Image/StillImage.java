@@ -54,6 +54,11 @@ public class StillImage extends Image{
         //Not doing anything for now
     }
 
+    @Override
+    public void reset() {
+        //Not doing anything for now
+    }
+
     public void draw(Element element, GUI gui){
         for(int i = 0; i < height; i++){
             for (int j = 0; j < width; j++){
