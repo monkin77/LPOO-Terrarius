@@ -7,12 +7,13 @@ import Model.elements.blocks.DirtBlock;
 import Model.elements.blocks.StoneBlock;
 import Model.elements.blocks.WoodBlock;
 import Viewer.Image.Image;
+import Viewer.Image.StillImage;
 
 public class BlockViewer extends ElementViewer{
 
     public BlockViewer(Block block){
 
-        image = new Image();
+        image = new StillImage();
 
         if(block.getClass().equals(DirtBlock.class)){
             image.load("Images/Dirt.txt");

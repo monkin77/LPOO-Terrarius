@@ -12,12 +12,8 @@ public class HeroViewer extends ElementViewer{
 
     public HeroViewer(){
 
-        AnimatedImage animatedImage = new AnimatedImage();
-        List <String> fnames = new ArrayList<>();
-        fnames.add("Images/Hero1.txt");
-        fnames.add("Images/Hero2.txt");
-        animatedImage.load(fnames, 5);
-        image = animatedImage;
+        image = new AnimatedImage();
+        image.load("Images/Hero.txt");
 
     }
 

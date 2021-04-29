@@ -1,17 +1,10 @@
 package Viewer;
 
 import GUI.GUI;
-import Model.Position;
 import Model.arena.Arena;
-import Model.elements.Element;
-import Model.elements.Hero;
 import Model.elements.blocks.Block;
-import Model.elements.enemies.Enemy;
-import Viewer.Image.Image;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ArenaViewer {
