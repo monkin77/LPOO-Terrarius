@@ -58,7 +58,7 @@ information
 #### Implementation
 This is an implementation of the *Replace Type Code with Class* refactoring
 
-Below, there's a diagram showing how this was done in the Zombie class
+Below, there's a diagram showing how this was done in the Enemy class
 
 ![StatsUML](uml/stats.png)
 
