@@ -15,10 +15,13 @@ public class Game {
     private final Arena arena;
 
     public static void main(String[] args) throws FontFormatException, IOException, URISyntaxException {
-        LanternaGui gui = new LanternaGui(128, 64);
+        Game game = new Game(128, 64);
+    }
+
+    public Game(int width, int height) throws FontFormatException, IOException, URISyntaxException {
+        this.gui = new LanternaGui(width, height);
+        this.arena = new DefaultArenaBuilder(width, height).createArena();
         ArenaViewer arenaViewer = new ArenaViewer(gui);
-        ArenaBuilder arenaBuilder = new DefaultArenaBuilder(128, 64);
-        Arena arena = arenaBuilder.createArena();
 
         for (int i = 0; i < 10000; i++){
             gui.clear();
@@ -30,16 +33,5 @@ public class Game {
                 e.printStackTrace();
             }
         }
-
-        System.out.println("Here we go");
-
-        //Game game = new Game(150, 100);
-    }
-
-    public Game(int width, int height) throws FontFormatException, IOException, URISyntaxException {
-        this.gui = new LanternaGui(width, height);
-        System.out.println("Here we go");
-
-        this.arena = new DefaultArenaBuilder(width, height).createArena();
     }
 }
