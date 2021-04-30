@@ -14,6 +14,31 @@ image, represented by characters and saved in text files
 ##Design
 [WRITE THERE EACH TIME YOU HAVE TO SOLVE A PROBLEM]
 
+###Model-View-Controller
+####Problem in context
+We needed a way to represent the data, actions, input and interface of the game,
+in an organized way that separates those responsibilities.
+
+####The Pattern
+For this problem, we used the **Model-View-Controller** pattern. This way,
+we stored the game data in the Model, the logic/rules of the game in the Controller and
+the interface in the Viewer. Additionally, we also created a package for the GUI
+since it had a different responsibility from the Viewer
+
+####Implementation
+To implement this pattern, we created four packages: Model, View, Controller
+and GUI. The way they interact can be analyzed in the following diagram:
+
+
+The respective packages can be found [here](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java)
+
+####Consequences
+Using this pattern, we can separate the logic behind the input, processing and
+interface of the game, allowing to clearly implement those modules and
+making it significantly easier to make changes on them, without having to change
+the others
+
+
 ###Elements Stats
 
 ####Problem in context
