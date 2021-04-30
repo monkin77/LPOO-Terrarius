@@ -2,6 +2,9 @@ package GUI;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.DoublePrintingTextGraphics;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
@@ -15,11 +18,13 @@ import java.net.URL;
 
 public class LanternaGui implements GUI {
     private final TerminalScreen screen;
+    private TextGraphics graphics;
 
     public LanternaGui(int width, int height) throws IOException, FontFormatException, URISyntaxException {
         AWTTerminalFontConfiguration fontConfig = loadSquareFont();
         Terminal terminal = createTerminal(width, height, fontConfig);
         screen = createScreen(terminal);
+        graphics = screen.newTextGraphics();
     }
 
     private TerminalScreen createScreen(Terminal terminal) throws IOException {
@@ -56,8 +61,18 @@ public class LanternaGui implements GUI {
     }
 
     @Override
+    public void drawCharacter(int x, int y, char c, String color) {
+
+        graphics.setForegroundColor(TextColor.Factory.fromString(color));
+        graphics.setCharacter(x, y, c);
+
+        //screen.setCharacter(x, y, TextCharacter.fromCharacter(c)[0]);
+    }
+
+    @Override
     public void drawCharacter(int x, int y, char c) {
-        screen.setCharacter(x, y, TextCharacter.fromCharacter(c)[0]);
+        graphics.setForegroundColor(TextColor.Factory.fromString("#DDDDDD")); //TODO make #DDDDDD a global constant for default color value
+        graphics.setCharacter(x, y, c);
     }
 
     @Override
