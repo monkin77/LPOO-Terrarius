@@ -45,6 +45,14 @@ public class Arena {
         this.blocks = blocks;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
     public boolean isEmpty(Position position){
         for(Block block : this.blocks){
             if(block.getPosition().equals(position))
