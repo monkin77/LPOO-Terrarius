@@ -14,6 +14,56 @@ image, represented by characters and saved in text files
 ##Design
 [WRITE THERE EACH TIME YOU HAVE TO SOLVE A PROBLEM]
 
+### Elements Stats
+
+####Problem in context
+
+There were some classes (namely, items and enemies) who had
+a lot of primitives all related to its stats. This is a smell
+called **primitive obsession**
+
+####The Pattern
+To solve this problem, for each class falling in these circumstances,
+we created a Stats class which stores all the primitives for the relevant
+information
+
+####Implementation
+This is an implementation of the *Replace Type Code with Class* refactoring
+
+Below, there's a diagram showing how this was done in the code
+
+
+The relevant classes for this pattern can be found in the following files:
+
+- [Enemy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/elements/enemies/Enemy.java)
+
+- [EnemyStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/elements/enemies/EnemyStats.java)
+
+- [Tool](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/items/tools/Tool.java)
+
+- [ToolStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/items/tools/ToolStats.java)
+
+- [Food](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/items/food/Food.java)
+
+- [FoodStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/items/food/FoodStats.java)
+
+####Consequences
+The use of this pattern allows for:
+- The model classes don't become overflowed by primitives, becoming more
+readable and smaller
+  
+- By grouping all the stats to one class we can have all the stat generation
+together, making it easier to change, for example, how much health a zombie 
+has, according to its level
+  
+- We have one more class per type of game element, but that's reasonable when
+taking into consideration the quantity of their subclasses, saving us a lot of lines
+
+However, this also adds another code smell, **Data class**, since all
+these Stats classes are mainly or only composed by primitives and their
+getters/setters. Even with this problem, we believe it's worth it to use
+the pattern.
+
 ##Known Code Smells and Refactoring Suggestions
 [DO IT IN THE END]
 
