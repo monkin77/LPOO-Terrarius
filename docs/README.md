@@ -100,13 +100,13 @@ the pattern.
 We had some abstract classes with attributes which are only defined
 by their subclasses. Having that attribute in all the subclasses would
 inflict against **The Release Reuse Equivalency Principle**, since we
-would be writing almost identical in each subclass
+would be writing almost identical code in each subclass
 
 #### The Pattern
 To solve this problem, we used the **Form Template Method** refactoring
-to each class falling under this circumstances. This way, we only have the
+to each class falling under these circumstances. This way, we only have the
 relevant attributes in the abstract class and use abstract methods (which will
-be overridden in the subclasses) to initialize/calculate those
+be overridden by the subclasses) to initialize/calculate them
 
 #### Implementation
 The following image shows how this pattern can be implemented in each class:
