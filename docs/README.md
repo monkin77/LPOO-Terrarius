@@ -12,7 +12,7 @@ image, represented by characters and saved in text files
 [WRITE HERE WHAT WE WILL DO AFTER THE FIRST DELIVERY]
 
 ## Design
-[WRITE THERE EACH TIME YOU HAVE TO SOLVE A PROBLEM]
+[WRITE HERE EACH TIME YOU HAVE TO SOLVE A PROBLEM]
 
 ### Model-View-Controller
 #### Problem in context
