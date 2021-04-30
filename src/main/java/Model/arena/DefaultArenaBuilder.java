@@ -58,6 +58,8 @@ public class DefaultArenaBuilder extends ArenaBuilder{
 
         enemies.add(new Zombie(new Position(this.width/4, this.height/4), new Level(1, 10)));
         enemies.add(new Zombie(new Position(this.width/4 + 8, this.height/4 + 4), new Level(1, 10)));
+        enemies.add(new Zombie(new Position(0, 0), new Level(1, 0)));
+        enemies.add(new Zombie(new Position(this.width - 1, this.height - 1), new Level(5, 10)));
 
         return enemies;
     }
