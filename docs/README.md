@@ -14,7 +14,7 @@ image, represented by characters and saved in text files
 ##Design
 [WRITE THERE EACH TIME YOU HAVE TO SOLVE A PROBLEM]
 
-### Elements Stats
+###Elements Stats
 
 ####Problem in context
 
@@ -64,7 +64,32 @@ these Stats classes are mainly or only composed by primitives and their
 getters/setters. Even with this problem, we believe it's worth it to use
 the pattern.
 
-##Known Code Smells and Refactoring Suggestions
+
+###Constructors with Template Methods
+
+####Problem in Context
+We had some abstract classes with attributes which are only defined
+by their subclasses. Having that attribute in all the subclasses would
+inflict against **The Release Reuse Equivalency Principle**, since we
+would be writing almost identical in each subclass
+
+####The Pattern
+To solve this problem, we used the **Form Template Method** refactoring
+to each class falling under this circumstances. This way, we only have the
+relevant attributes in the abstract class and use abstract methods (which will
+be overridden in the subclasses) to initialize/calculate those
+
+####Implementation
+The following image shows how this pattern can be implemented in each class:
+
+
+Below, we're linking the classes where this was applied:
+
+- [Enemy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/elements/enemies/Enemy.java)
+- [Block](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/elements/blocks/Block.java)
+- [Item](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/items/Item.java)
+
+###Known Code Smells and Refactoring Suggestions
 [DO IT IN THE END]
 
 ##Testing
