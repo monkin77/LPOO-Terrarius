@@ -30,7 +30,7 @@ public class ArenaTest {
     public void heroSetup() {
         Hero hero = new Hero(new Position(5, 5));
         this.arena.setHero(hero);
-        Assertions.assertEquals(this.arena.getHero(), hero);
+        Assertions.assertEquals(hero, this.arena.getHero());
     }
 
 
@@ -44,7 +44,7 @@ public class ArenaTest {
 
         this.arena.setEnemies(enemies);
 
-        Assertions.assertEquals(this.arena.getEnemies(), enemies);
+        Assertions.assertEquals(enemies, this.arena.getEnemies());
     }
 
     @Test
@@ -57,7 +57,7 @@ public class ArenaTest {
 
         this.arena.setBlocks(blocks);
 
-        Assertions.assertEquals(this.arena.getBlocks(), blocks);
+        Assertions.assertEquals(blocks, this.arena.getBlocks());
     }
 
     @Test
@@ -75,8 +75,8 @@ public class ArenaTest {
 
         this.arena.setBlocks(blocks);
 
-        Assertions.assertEquals(this.arena.isEmpty(new Position(0, 0)), true);
+        Assertions.assertEquals(true, this.arena.isEmpty(new Position(0, 0)));
 
-        Assertions.assertEquals(this.arena.isEmpty(new Position(5, 5)), false);
+        Assertions.assertEquals(false, this.arena.isEmpty(new Position(5, 5)));
     }
 }

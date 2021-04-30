@@ -26,8 +26,8 @@ class DefaultArenaBuilderTest {
 
     @Test
     public void getters() {
-        Assertions.assertEquals(this.defaultArenaBuilder.getHeight(), 20);
-        Assertions.assertEquals(this.defaultArenaBuilder.getWidth(), 20);
+        Assertions.assertEquals(20, this.defaultArenaBuilder.getHeight());
+        Assertions.assertEquals(20, this.defaultArenaBuilder.getWidth());
     }
 
     @Test
@@ -36,7 +36,7 @@ class DefaultArenaBuilderTest {
 
         Hero hero = new Hero(new Position(this.defaultArenaBuilder.getWidth()/2, this.defaultArenaBuilder.getHeight()/2));
 
-        Assertions.assertEquals(arena.getHero().getPosition(), hero.getPosition());
+        Assertions.assertEquals(hero.getPosition(), arena.getHero().getPosition());
 
         List<Enemy> enemies = new ArrayList<>();
 
@@ -44,7 +44,7 @@ class DefaultArenaBuilderTest {
         enemies.add(new Zombie(new Position(this.defaultArenaBuilder.getWidth() /2, this.defaultArenaBuilder.getHeight()/2), new Level(3, 0)));
         enemies.add(new Zombie(new Position(this.defaultArenaBuilder.getWidth() - 1, this.defaultArenaBuilder.getHeight() - 1), new Level(5, 10)));
 
-        Assertions.assertEquals(arena.getEnemies().size(), enemies.size());
+        Assertions.assertEquals(enemies.size(), arena.getEnemies().size());
 
         List<Block> blocks = new ArrayList<>();
 
@@ -58,6 +58,6 @@ class DefaultArenaBuilderTest {
             blocks.add( new StoneBlock( new Position(this.defaultArenaBuilder.getWidth() - 1, y) ) );
         }
 
-        Assertions.assertEquals(arena.getBlocks().size(), blocks.size());
+        Assertions.assertEquals(blocks.size(), arena.getBlocks().size());
     }
 }
