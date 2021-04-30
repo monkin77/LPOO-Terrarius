@@ -154,6 +154,22 @@ These classes can be found in the following files:
 ## Known Code Smells and Refactoring Suggestions
 [DO IT IN THE END]
 
+### Data Classes
+Like said above, the classes made for Element Stats are Data Classes. This could be
+a problem since they can't independently interact with their data and don't add 
+operation power.
+
+However, this smell could be justified since its functionality prevents us from having
+duplicate code and decreases significantly the size of their respective classes.
+
+Nevertheless, a way to eliminate this code smell would be to create methods so the classes
+can operate on their data independently. For example, instead of updating the stats in
+the Item class and creating a new Item Stats instance, we could use the Item Stats classes
+to update its primitives. This, however, would decrease the importance of the Item class,
+making it almost obsolete and falling in another code smell: **Lazy Class**
+
+### Switch Statement
+[WRITE ABOUT ACTION SWITCHES AFTER IT'S DONE]
 
 ## Testing
 [PUT SCREENSHOTS OF THE TESTS IN THE END]
