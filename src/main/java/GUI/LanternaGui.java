@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+import static Viewer.ViewerConstants.DEFAULT_FOREGROUND_COLOR;
+
 public class LanternaGui implements GUI {
     private final TerminalScreen screen;
     private TextGraphics graphics;
@@ -65,13 +67,11 @@ public class LanternaGui implements GUI {
 
         graphics.setForegroundColor(TextColor.Factory.fromString(color));
         graphics.setCharacter(x, y, c);
-
-        //screen.setCharacter(x, y, TextCharacter.fromCharacter(c)[0]);
     }
 
     @Override
     public void drawCharacter(int x, int y, char c) {
-        graphics.setForegroundColor(TextColor.Factory.fromString("#DDDDDD")); //TODO make #DDDDDD a global constant for default color value
+        graphics.setForegroundColor(TextColor.Factory.fromString(DEFAULT_FOREGROUND_COLOR));
         graphics.setCharacter(x, y, c);
     }
 
