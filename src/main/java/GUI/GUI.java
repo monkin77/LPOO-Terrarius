@@ -8,4 +8,6 @@ public interface GUI {
     void clear();
     void refresh() throws IOException;
     void close() throws IOException;
+    ACTION getNextAction() throws IOException;
+    enum ACTION {UP, DOWN, RIGHT, LEFT, CLICK, NONE, QUIT}
 }
