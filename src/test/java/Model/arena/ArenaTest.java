@@ -1,0 +1,82 @@
+package Model.arena;
+
+import Model.Level;
+import Model.Position;
+import Model.elements.Hero;
+import Model.elements.blocks.Block;
+import Model.elements.blocks.DirtBlock;
+import Model.elements.blocks.StoneBlock;
+import Model.elements.blocks.WoodBlock;
+import Model.elements.enemies.Enemy;
+import Model.elements.enemies.Zombie;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class ArenaTest {
+    Arena arena;
+
+    @BeforeEach
+    public void setUp() {
+        this.arena = new Arena(10, 10);
+    }
+
+    @Test
+    public void heroSetup() {
+        Hero hero = new Hero(new Position(5, 5));
+        this.arena.setHero(hero);
+        Assertions.assertEquals(hero, this.arena.getHero());
+    }
+
+
+    @Test
+    public void enemiesSetup() {
+        List<Enemy> enemies = new ArrayList<>();
+
+        enemies.add(new Zombie(new Position(0, 0), new Level(1, 0)));
+        enemies.add(new Zombie(new Position(5, 5), new Level(3, 0)));
+        enemies.add(new Zombie(new Position(7, 7), new Level(5, 10)));
+
+        this.arena.setEnemies(enemies);
+
+        Assertions.assertEquals(enemies, this.arena.getEnemies());
+    }
+
+    @Test
+    public void blocksSetup() {
+        List<Block> blocks = new ArrayList<>();
+
+        blocks.add(new StoneBlock(new Position(0, 0)));
+        blocks.add(new DirtBlock(new Position(0, 0)));
+        blocks.add(new WoodBlock(new Position(0, 0)));
+
+        this.arena.setBlocks(blocks);
+
+        Assertions.assertEquals(blocks, this.arena.getBlocks());
+    }
+
+    @Test
+    public void isEmpty() {
+        List<Block> blocks = new ArrayList<>();
+
+        StoneBlock block1 = Mockito.mock(StoneBlock.class);
+        Mockito.when(block1.getPosition()).thenReturn(new Position(5, 5));
+
+        DirtBlock block2 = Mockito.mock(DirtBlock.class);
+        Mockito.when(block2.getPosition()).thenReturn(new Position(10, 10));
+
+        blocks.add(block1);
+        blocks.add(block2);
+
+        this.arena.setBlocks(blocks);
+
+        Assertions.assertEquals(true, this.arena.isEmpty(new Position(0, 0)));
+
+        Assertions.assertEquals(false, this.arena.isEmpty(new Position(5, 5)));
+    }
+}
