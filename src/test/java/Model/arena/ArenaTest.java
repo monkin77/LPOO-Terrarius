@@ -1,5 +1,6 @@
 package Model.arena;
 
+import Model.Level;
 import Model.Position;
 import Model.elements.Hero;
 import Model.elements.blocks.Block;
@@ -7,6 +8,7 @@ import Model.elements.blocks.DirtBlock;
 import Model.elements.blocks.StoneBlock;
 import Model.elements.blocks.WoodBlock;
 import Model.elements.enemies.Enemy;
+import Model.elements.enemies.Zombie;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,12 +33,19 @@ public class ArenaTest {
         Assertions.assertEquals(this.arena.getHero(), hero);
     }
 
-    /*
+
     @Test
     public void enemiesSetup() {
         List<Enemy> enemies = new ArrayList<>();
-        // Implement this test after the enemies creation
-    }   */
+
+        enemies.add(new Zombie(new Position(0, 0), new Level(1, 0)));
+        enemies.add(new Zombie(new Position(5, 5), new Level(3, 0)));
+        enemies.add(new Zombie(new Position(7, 7), new Level(5, 10)));
+
+        this.arena.setEnemies(enemies);
+
+        Assertions.assertEquals(this.arena.getEnemies(), enemies);
+    }
 
     @Test
     public void blocksSetup() {
