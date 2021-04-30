@@ -1,31 +1,31 @@
-#LPOO_34 - Terraria
+# LPOO_34 - Terraria
 
 [PROJECT DESCRIPTION]
 
-##Implemented Features
+## Implemented Features
 [WRITE HERE WHAT YOU IMPLEMENT IN CONTROLLER/VIEWERS]
 
 **Element drawing** - Each element of the game is drawn with its own
 image, represented by characters and saved in text files
 
-##Planned Features
+## Planned Features
 [WRITE HERE WHAT WE WILL DO AFTER THE FIRST DELIVERY]
 
-##Design
+## Design
 [WRITE THERE EACH TIME YOU HAVE TO SOLVE A PROBLEM]
 
-###Model-View-Controller
-####Problem in context
+### Model-View-Controller
+#### Problem in context
 We needed a way to represent the data, actions, input and interface of the game,
 in an organized way that separates those responsibilities.
 
-####The Pattern
+#### The Pattern
 For this problem, we used the **Model-View-Controller** pattern. This way,
 we stored the game data in the Model, the logic/rules of the game in the Controller and
 the interface in the Viewer. Additionally, we also created a package for the GUI
 since it had a different responsibility from the Viewer
 
-####Implementation
+#### Implementation
 To implement this pattern, we created four packages: Model, View, Controller
 and GUI. The implemented GUI uses Lanterna
 
@@ -35,27 +35,27 @@ The way they interact can be analyzed in the following diagram:
 
 The respective packages can be found [here](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java)
 
-####Consequences
+#### Consequences
 Using this pattern, we can separate the logic behind the input, processing and
 interface of the game, allowing to clearly implement those modules and
 making it significantly easier to make changes on them, without having to change
 the others
 
 
-###Elements Stats
+### Elements Stats
 
-####Problem in context
+#### Problem in context
 
 There were some classes (namely, items and enemies) who had
 a lot of primitives all related to its stats. This is a smell
 called **primitive obsession**
 
-####The Pattern
+#### The Pattern
 To solve this problem, for each class falling in these circumstances,
 we created a Stats class which stores all the primitives for the relevant
 information
 
-####Implementation
+#### Implementation
 This is an implementation of the *Replace Type Code with Class* refactoring
 
 Below, there's a diagram showing how this was done in the Zombie class
@@ -76,7 +76,7 @@ The relevant classes for this pattern can be found in the following files:
 
 - [FoodStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/items/food/FoodStats.java)
 
-####Consequences
+#### Consequences
 The use of this pattern allows for:
 - The model classes don't become overflowed by primitives, becoming more
 readable and smaller
@@ -94,21 +94,21 @@ getters/setters. Even with this problem, we believe it's worth it to use
 the pattern.
 
 
-###Constructors with Template Methods
+### Constructors with Template Methods
 
-####Problem in Context
+#### Problem in Context
 We had some abstract classes with attributes which are only defined
 by their subclasses. Having that attribute in all the subclasses would
 inflict against **The Release Reuse Equivalency Principle**, since we
 would be writing almost identical in each subclass
 
-####The Pattern
+#### The Pattern
 To solve this problem, we used the **Form Template Method** refactoring
 to each class falling under this circumstances. This way, we only have the
 relevant attributes in the abstract class and use abstract methods (which will
 be overridden in the subclasses) to initialize/calculate those
 
-####Implementation
+#### Implementation
 The following image shows how this pattern can be implemented in each class:
 
 ![TemplateUML](uml/template.png)
@@ -119,37 +119,18 @@ Below, we're linking the classes where this was applied:
 - [Block](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/elements/blocks/Block.java)
 - [Item](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/items/Item.java)
 
-####Consequences
+#### Consequences
 The use of this pattern prevents duplicate code and allows us to easily
 change how the class attributes are calculates, when they depend on subclass
 implementations
 
-##Known Code Smells and Refactoring Suggestions
+## Known Code Smells and Refactoring Suggestions
 [DO IT IN THE END]
 
-##Testing
+## Testing
 [PUT SCREENSHOTS OF THE TESTS IN THE END]
 
-##Self-Evaluation
+## Self-Evaluation
 Bruno Rosendo: 1/3
 Francisco Colino: 1/3
 João Mesquita: 1/3
-
-**Design Patterns**
-
-1. Model-View-Controller
-    * MVC is a software design pattern commonly used to develop user interfaces that divides the related program logic into three interconnected elements (Model, View, Controller).
- 
-2. Factory Method
-   * Factory Method is a creational design pattern that provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created.
-
-
-**Code Smells**
-
-1. Primitive Obsession
-   * Signs: Use of primitives instead of small objects for simple tasks.
-   * Refactor: Replace Data Value with Object.
-
-2. Duplicate Code
-   * Signs: Two code fragments look almost identical.
-   * Refactor: Form Template Method.
