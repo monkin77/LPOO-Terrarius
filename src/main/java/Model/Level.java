@@ -1,7 +1,7 @@
 package Model;
 
 public class Level {
-    private static final int XP_MULTIPLIER = 1000;
+    protected static final int XP_MULTIPLIER = 1000;
 
     private long currentXP;
     private final long maxXP;
@@ -21,11 +21,21 @@ public class Level {
         return maxXP;
     }
 
-    public int getLevel() {
+    public int getNumLevel() {
         return numLevel;
     }
 
     void increaseXP(int xp) {
         this.currentXP += xp;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Level level = (Level) obj;
+        return level.getNumLevel() == this.getNumLevel() &&
+                level.getCurrentXP() == this.getCurrentXP();
     }
 }
