@@ -89,7 +89,12 @@ Below, we're linking the classes where this was applied:
 - [Block](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/elements/blocks/Block.java)
 - [Item](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/items/Item.java)
 
-###Known Code Smells and Refactoring Suggestions
+####Consequences
+The use of this pattern prevents duplicate code and allows us to easily
+change how the class attributes are calculates, when they depend on subclass
+implementations
+
+##Known Code Smells and Refactoring Suggestions
 [DO IT IN THE END]
 
 ##Testing
