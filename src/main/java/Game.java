@@ -20,7 +20,7 @@ public class Game {
         ArenaBuilder arenaBuilder = new DefaultArenaBuilder(128, 64);
         Arena arena = arenaBuilder.createArena();
 
-        for (int i = 0; i < 100; i++){
+        for (int i = 0; i < 10000; i++){
             gui.clear();
             arenaViewer.draw(arena);
             gui.refresh();

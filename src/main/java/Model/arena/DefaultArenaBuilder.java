@@ -1,11 +1,13 @@
 package Model.arena;
 
+import Model.Level;
 import Model.Position;
 import Model.elements.Hero;
 import Model.elements.blocks.Block;
 import Model.elements.blocks.StoneBlock;
 import Model.elements.blocks.WoodBlock;
 import Model.elements.enemies.Enemy;
+import Model.elements.enemies.Zombie;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +56,8 @@ public class DefaultArenaBuilder extends ArenaBuilder{
     protected List<Enemy> createEnemies() {
         List<Enemy> enemies = new ArrayList<>();
 
-        // Create enemies array
+        enemies.add(new Zombie(new Position(this.width/4, this.height/4), new Level(1, 10)));
+        enemies.add(new Zombie(new Position(this.width/4 + 8, this.height/4 + 4), new Level(1, 10)));
 
         return enemies;
     }
