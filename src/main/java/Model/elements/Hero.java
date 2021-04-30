@@ -28,4 +28,6 @@ public class Hero extends Element {
     public void setHealth(int health) {
         this.health = health;
     }
+
+    // TO DO: ITEMS LOGIC (maybe limit to X items)
 }

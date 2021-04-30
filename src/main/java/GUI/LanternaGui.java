@@ -40,7 +40,9 @@ public class LanternaGui implements GUI {
         ((AWTTerminalFrame) terminal).getComponent(0).addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // If needed, use e.getX() and e.getY() to get the position of the click
+                /* If mouse position is needed, use e.getX() and e.getY()
+                   and remove setCursorPosition(null) below
+                 */
                 mouseClicked = true;
             }
         });

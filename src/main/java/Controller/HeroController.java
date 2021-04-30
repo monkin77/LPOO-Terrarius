@@ -54,4 +54,8 @@ public class HeroController {
                 break;
         }
     }
+
+    public boolean isHeroAlive() {
+        return arena.getHero().getHealth() > 0;
+    }
 }
