@@ -2,6 +2,7 @@ package Viewer.Image;
 
 import GUI.GUI;
 import Model.elements.Element;
+import Viewer.FrameSpeed;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,10 +14,8 @@ import java.util.Scanner;
 
 public class AnimatedImage extends Image {
 
-    private int currentFrame = 0;
-    private int totalFrames;
-    private int currentSpeed = 0;
-    private int totalSpeed;
+    private FrameSpeed frameSpeed = new FrameSpeed();
+
     private final List<StillImage> images = new ArrayList<>();
 
     public void load(String fname){
@@ -28,8 +27,11 @@ public class AnimatedImage extends Image {
 
             Scanner imageScanner = new Scanner(imageFile);
 
-            this.totalFrames = imageScanner.nextInt();
-            this.totalSpeed = imageScanner.nextInt();
+            int totalFrames = imageScanner.nextInt();
+            int totalSpeed = imageScanner.nextInt();
+
+            this.frameSpeed.setTotalSpeed(totalSpeed);
+            this.frameSpeed.setTotalFrames(totalFrames);
 
             imageScanner.nextLine(); //clears the /n
 
@@ -47,23 +49,25 @@ public class AnimatedImage extends Image {
 
     @Override
     public void update() {
-        currentSpeed = (currentSpeed+1) % totalSpeed;
-
-        if (currentSpeed == 0){
-            currentFrame = (currentFrame+1) % totalFrames;
-        }
+        frameSpeed.update();
     }
 
     @Override
     public void reset() {
-        currentFrame = 0;
-        currentSpeed = 0;
+        frameSpeed.reset();
     }
 
     public void draw(Element element, GUI gui){
 
-        images.get(currentFrame).draw(element, gui);
+        images.get(frameSpeed.getCurrentFrame()).draw(element, gui);
 
     }
 
+    public FrameSpeed getFrameSpeed() {
+        return frameSpeed;
+    }
+
+    public void setFrameSpeed(FrameSpeed frameSpeed) {
+        this.frameSpeed = frameSpeed;
+    }
 }

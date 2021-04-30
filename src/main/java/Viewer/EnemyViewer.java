@@ -21,15 +21,43 @@ public class EnemyViewer extends ElementViewer{
         if(enemy.getClass().equals(Zombie.class)){
             image.load("Images/Zombie.txt");
         }
+
+        FrameSpeed frameSpeed = ((AnimatedImage)image).getFrameSpeed();
+
+        this.elementFrameSpeedMap.put(enemy, new FrameSpeed(
+                (int) (Math.random() * frameSpeed.getCurrentFrame()),
+                frameSpeed.getTotalFrames(),
+                (int) (Math.random() * frameSpeed.getCurrentSpeed()),
+                frameSpeed.getTotalSpeed()));
     }
 
     @Override
     public void update() {
-        image.update();
+        for (FrameSpeed frameSpeed : this.elementFrameSpeedMap.values()){
+            frameSpeed.update();
+        }
     }
 
     @Override
     public void draw(Element element, GUI gui) {
+
+        if (!elementFrameSpeedMap.containsKey(element)){
+
+            FrameSpeed frameSpeed = ((AnimatedImage)image).getFrameSpeed();
+
+            elementFrameSpeedMap.put(element, new FrameSpeed(
+                    (int) (Math.random() * frameSpeed.getTotalFrames()),
+                    frameSpeed.getTotalFrames(),
+                    (int) (Math.random() * frameSpeed.getTotalSpeed()),
+                    frameSpeed.getTotalSpeed()));
+        }
+
+        FrameSpeed frameSpeed = elementFrameSpeedMap.get(element);
+
+        AnimatedImage animatedImage =  (AnimatedImage)image;
+
+        animatedImage.setFrameSpeed(frameSpeed);
+
         this.image.draw(element, gui);
     }
 }
