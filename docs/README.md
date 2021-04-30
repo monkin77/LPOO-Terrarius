@@ -27,8 +27,11 @@ since it had a different responsibility from the Viewer
 
 ####Implementation
 To implement this pattern, we created four packages: Model, View, Controller
-and GUI. The way they interact can be analyzed in the following diagram:
+and GUI. The implemented GUI uses Lanterna
 
+The way they interact can be analyzed in the following diagram:
+
+![MVCUML](uml/mvc.png)
 
 The respective packages can be found [here](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java)
 
@@ -55,8 +58,9 @@ information
 ####Implementation
 This is an implementation of the *Replace Type Code with Class* refactoring
 
-Below, there's a diagram showing how this was done in the code
+Below, there's a diagram showing how this was done in the Zombie class
 
+![StatsUML](uml/stats.png)
 
 The relevant classes for this pattern can be found in the following files:
 
@@ -107,6 +111,7 @@ be overridden in the subclasses) to initialize/calculate those
 ####Implementation
 The following image shows how this pattern can be implemented in each class:
 
+![TemplateUML](uml/template.png)
 
 Below, we're linking the classes where this was applied:
 
