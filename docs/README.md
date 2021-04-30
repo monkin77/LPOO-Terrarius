@@ -14,6 +14,17 @@ image, represented by characters and saved in text files
 ##Design
 [WRITE THERE EACH TIME YOU HAVE TO SOLVE A PROBLEM]
 
+###There should be multiple ways of creating arenas
+
+**Problem in Context:** We want to have the possibility of creating different arenas, which could be associated with a specific level / region. Additionally, we also want to introduce more flexibility so that in the future we can create the arena through different methods, for example, reading a file.
+
+**The Pattern:**  We have applied the Builder pattern. This is a creational design pattern that lets you construct complex objects step by step. The pattern allows you to produce different types and representations of an object using the same construction code.
+(Alternative: Fluent Builder pattern)
+
+**Implementation:** This pattern suggests that we extract the object construction out of its own class and move it to separate objects called builders.
+
+**Consequences:** 
+
 ##Known Code Smells and Refactoring Suggestions
 [DO IT IN THE END]
 
@@ -22,7 +33,9 @@ image, represented by characters and saved in text files
 
 ##Self-Evaluation
 Bruno Rosendo: 1/3
+
 Francisco Colino: 1/3
+
 João Mesquita: 1/3
 
 **Design Patterns**
