@@ -11,17 +11,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class ColoredImage extends Image{
+public class ColoredImage extends StillImage{
 
-    private int height;
-    private int width;
-    private char[][] aspect;
     private int no_colors;
     private Map<Character, String> colorMap = new HashMap<>();
     private char[][] colors;
 
     @Override
     public void load(String fname) {
+
         URL resource = getClass().getClassLoader().getResource(fname);
 
         try {

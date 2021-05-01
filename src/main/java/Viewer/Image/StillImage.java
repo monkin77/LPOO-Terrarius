@@ -15,9 +15,9 @@ import java.util.Scanner;
 
 public class StillImage extends Image{
 
-    private int height;
-    private int width;
-    private char[][] aspect;
+    protected int height;
+    protected int width;
+    protected char[][] aspect;
 
     public void load(String fname){
 
