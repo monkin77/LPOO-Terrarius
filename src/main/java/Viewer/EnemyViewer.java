@@ -2,15 +2,9 @@ package Viewer;
 
 import GUI.GUI;
 import Model.elements.Element;
-import Model.elements.blocks.Block;
-import Model.elements.blocks.DirtBlock;
-import Model.elements.blocks.StoneBlock;
-import Model.elements.blocks.WoodBlock;
 import Model.elements.enemies.Enemy;
 import Model.elements.enemies.Zombie;
 import Viewer.Image.AnimatedImage;
-import Viewer.Image.Image;
-import Viewer.Image.StillImage;
 
 public class EnemyViewer extends ElementViewer{
 
@@ -22,19 +16,19 @@ public class EnemyViewer extends ElementViewer{
             image.load("Images/Zombie.txt");
         }
 
-        FrameSpeed frameSpeed = ((AnimatedImage)image).getFrameSpeed();
+        FrameHandler frameHandler = ((AnimatedImage)image).getFrameSpeed();
 
-        this.elementFrameSpeedMap.put(enemy, new FrameSpeed(
-                (int) (Math.random() * frameSpeed.getCurrentFrame()),
-                frameSpeed.getTotalFrames(),
-                (int) (Math.random() * frameSpeed.getCurrentSpeed()),
-                frameSpeed.getTotalSpeed()));
+        this.elementFrameSpeedMap.put(enemy, new FrameHandler(
+                (int) (Math.random() * frameHandler.getCurrentImage()),
+                frameHandler.getTotalImages(),
+                (int) (Math.random() * frameHandler.getCurrentFPI()),
+                frameHandler.getTotalFPI()));
     }
 
     @Override
     public void update() {
-        for (FrameSpeed frameSpeed : this.elementFrameSpeedMap.values()){
-            frameSpeed.update();
+        for (FrameHandler frameHandler : this.elementFrameSpeedMap.values()){
+            frameHandler.update();
         }
     }
 
@@ -43,20 +37,20 @@ public class EnemyViewer extends ElementViewer{
 
         if (!elementFrameSpeedMap.containsKey(element)){
 
-            FrameSpeed frameSpeed = ((AnimatedImage)image).getFrameSpeed();
+            FrameHandler frameHandler = ((AnimatedImage)image).getFrameSpeed();
 
-            elementFrameSpeedMap.put(element, new FrameSpeed(
-                    (int) (Math.random() * frameSpeed.getTotalFrames()),
-                    frameSpeed.getTotalFrames(),
-                    (int) (Math.random() * frameSpeed.getTotalSpeed()),
-                    frameSpeed.getTotalSpeed()));
+            elementFrameSpeedMap.put(element, new FrameHandler(
+                    (int) (Math.random() * frameHandler.getTotalImages()),
+                    frameHandler.getTotalImages(),
+                    (int) (Math.random() * frameHandler.getTotalFPI()),
+                    frameHandler.getTotalFPI()));
         }
 
-        FrameSpeed frameSpeed = elementFrameSpeedMap.get(element);
+        FrameHandler frameHandler = elementFrameSpeedMap.get(element);
 
         AnimatedImage animatedImage =  (AnimatedImage)image;
 
-        animatedImage.setFrameSpeed(frameSpeed);
+        animatedImage.setFrameSpeed(frameHandler);
 
         this.image.draw(element, gui);
     }

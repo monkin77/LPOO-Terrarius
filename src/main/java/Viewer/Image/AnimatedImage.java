@@ -2,7 +2,7 @@ package Viewer.Image;
 
 import GUI.GUI;
 import Model.elements.Element;
-import Viewer.FrameSpeed;
+import Viewer.FrameHandler;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class AnimatedImage extends Image {
 
-    private FrameSpeed frameSpeed = new FrameSpeed();
+    private FrameHandler frameHandler = new FrameHandler();
 
     private final List<StillImage> images = new ArrayList<>();
 
@@ -30,8 +30,8 @@ public class AnimatedImage extends Image {
             int totalFrames = imageScanner.nextInt();
             int totalSpeed = imageScanner.nextInt();
 
-            this.frameSpeed.setTotalSpeed(totalSpeed);
-            this.frameSpeed.setTotalFrames(totalFrames);
+            this.frameHandler.setTotalFPI(totalSpeed);
+            this.frameHandler.setTotalImages(totalFrames);
 
             imageScanner.nextLine(); //clears the /n
 
@@ -49,25 +49,25 @@ public class AnimatedImage extends Image {
 
     @Override
     public void update() {
-        frameSpeed.update();
+        frameHandler.update();
     }
 
     @Override
     public void reset() {
-        frameSpeed.reset();
+        frameHandler.reset();
     }
 
     public void draw(Element element, GUI gui){
 
-        images.get(frameSpeed.getCurrentFrame()).draw(element, gui);
+        images.get(frameHandler.getCurrentImage()).draw(element, gui);
 
     }
 
-    public FrameSpeed getFrameSpeed() {
-        return frameSpeed;
+    public FrameHandler getFrameSpeed() {
+        return frameHandler;
     }
 
-    public void setFrameSpeed(FrameSpeed frameSpeed) {
-        this.frameSpeed = frameSpeed;
+    public void setFrameSpeed(FrameHandler frameHandler) {
+        this.frameHandler = frameHandler;
     }
 }
