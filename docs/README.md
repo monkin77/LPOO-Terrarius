@@ -92,7 +92,15 @@ seeing that no in-game time has passed, loosing smoothness in the end
 a lot of smoothness to the motion. However, in some cases, this strategy can fail,
 resulting in objects being rendered out of place (for example, if the object is blocked
 by an obstacle). This happens because we're pretty much guessing where the object will be
-in X milliseconds from now.
+in X milliseconds from now
+- The extrapolation method turned out difficult to implement with the Lanterna GUI, since,
+almost always, the elements only move one unit per X updates, meaning that we can't divide
+their movements any further.
+  
+Even with these problems, the pattern is still useful in our implementation.
+On one hand, the high-end users might not get too much advantage, but they still
+get the best experience. On the other hand, we assure that the low-end users don't lose
+any updates on their game
   
 
 ### Elements Stats
