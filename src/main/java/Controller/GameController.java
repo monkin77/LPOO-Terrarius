@@ -14,17 +14,16 @@ GameController will manage the whole map, which contains multiple arenas changin
 the player explores the game. This means that the arenaController will change!
  */
 public class GameController {
-    private static final int MS_PER_UPDATE = 128;
+    private static final int MS_PER_UPDATE = 16;
 
     private ArenaController arenaController;
     private ArenaViewer arenaViewer;
     private Arena arena;
     private GUI gui;
 
-    // TO DO: ADD VIEWERS
     public GameController(Arena arena, GUI gui) {
         this.arena = arena;
-        this.arenaController = new ArenaController(this.arena);
+        this.arenaController = new ArenaController(this.arena, MS_PER_UPDATE);
         this.arenaViewer = new ArenaViewer(gui);
         this.gui = gui;
 
@@ -54,12 +53,11 @@ public class GameController {
 
             while (lag >= MS_PER_UPDATE) {
                 arenaController.timedActions();
+                arenaViewer.update();
                 lag -= MS_PER_UPDATE;
             }
 
-            // TO DO: CHECK THE STUCK IN THE MIDDLE SECTION
-            // [FIX] Animations are dependent on frames instead of time
-            this.arenaViewer.draw(this.arena);
+            arenaViewer.draw(this.arena);
         }
     }
 }
