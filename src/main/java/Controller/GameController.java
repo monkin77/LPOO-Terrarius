@@ -58,6 +58,7 @@ public class GameController {
             }
 
             // TO DO: CHECK THE STUCK IN THE MIDDLE SECTION
+            // [FIX] Animations are dependent on frames instead of time
             this.arenaViewer.draw(this.arena);
         }
     }

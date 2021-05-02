@@ -86,8 +86,8 @@ However, this method also has disadvantages, since the game will update at a fix
 time step, but will render arbitrarily:
 
 - Since the render methods will not be in sync with the update methods, faster
-machines might often render identical images, seeing that no in-game time has passed,
-loosing smoothness in the end
+machines might often render moving objects at the same position they were in the last frame,
+seeing that no in-game time has passed, loosing smoothness in the end
 - The problem above can be atoned with an extrapolation method, which will add
 a lot of smoothness to the motion. However, in some cases, this strategy can fail,
 resulting in objects being rendered out of place (for example, if the object is blocked
