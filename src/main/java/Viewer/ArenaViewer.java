@@ -5,6 +5,7 @@ import Model.arena.Arena;
 import Model.elements.blocks.Block;
 import Model.elements.enemies.Enemy;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,9 +21,9 @@ public class ArenaViewer {
         this.gui = gui;
     }
 
-    public void draw(Arena arena){ //Arena argument
+    public void draw(Arena arena) throws IOException { //Arena argument
 
-        //Do enemy too
+        this.gui.clear();
 
         for (ElementViewer elementViewer : blockCache.values()){
             elementViewer.update();
@@ -51,6 +52,8 @@ public class ArenaViewer {
         }
 
         heroViewer.draw(arena.getHero(), gui);
+
+        this.gui.refresh();
 
     }
 
