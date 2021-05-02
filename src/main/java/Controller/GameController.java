@@ -2,6 +2,7 @@ package Controller;
 
 import GUI.GUI;
 import Model.arena.Arena;
+import Viewer.ArenaViewer;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -12,14 +13,18 @@ GameController will manage the whole map, which contains multiple arenas changin
 the player explores the game. This means that the arenaController will change!
  */
 public class GameController {
-    private static final int MS_PER_UPDATE = 16;
+    private static final int MS_PER_UPDATE = 128;
 
     private ArenaController arenaController;
+    private ArenaViewer arenaViewer;
+    private Arena arena;
     private GUI gui;
 
     // TO DO: ADD VIEWERS
     public GameController(Arena arena, GUI gui) {
-        this.arenaController = new ArenaController(arena);
+        this.arena = arena;
+        this.arenaController = new ArenaController(this.arena);
+        this.arenaViewer = new ArenaViewer(gui);
         this.gui = gui;
     }
 
@@ -36,18 +41,18 @@ public class GameController {
             previous = current;
             lag += elapsed;
 
-            GUI.ACTION action = gui.getNextAction();
-            if (action == GUI.ACTION.QUIT) break;
+            //GUI.ACTION action = gui.getNextAction();
+            //if (action == GUI.ACTION.QUIT) break;
 
-            arenaController.doAction(action);
-            if (arenaController.checkEnd()) break;
+            //arenaController.doAction(action);
+            //if (arenaController.checkEnd()) break;
 
             while (lag >= MS_PER_UPDATE) {
                 arenaController.timedActions();
                 lag -= MS_PER_UPDATE;
             }
 
-            // TO DO: DRAW
+            this.arenaViewer.draw(this.arena);
         }
     }
 }
