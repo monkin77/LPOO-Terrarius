@@ -57,6 +57,7 @@ public class GameController {
                 lag -= MS_PER_UPDATE;
             }
 
+            // TO DO: CHECK THE STUCK IN THE MIDDLE SECTION
             this.arenaViewer.draw(this.arena);
         }
     }

@@ -42,9 +42,62 @@ making it significantly easier to make changes on them, without having to change
 the others
 
 
+### Game Loop Pattern
+
+#### Problem in Context
+We needed a way to faithfully process input and actions without depending on the CPU's clock
+while also rendering the game as fast as possible, so the player gets an experience as smooth
+as his computer allows him
+
+### The Pattern
+The pattern (and further explanation) used for this pattern can be found in the following website,
+in the *Play Catch up* and *Stuck in the Middle* sections:
+
+https://gameprogrammingpatterns.com/game-loop.html
+
+With this strategy, we have a *lag* variable counting the time passing in
+each iteration and, if that variable is greater than the amount of time defined
+to pass between updates (currently, 16ms), we update the actions that depend on time.
+The rendering methods, on the other hand, are always called as fast as the CPU
+lets them.
+
+This way, we can have a smoother gameplay in a faster computer without
+compromising the speed of the game
+
+### Implementation
+The pattern was implemented exactly like explained above and can be found
+in the following class:
+
+- [GameController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java/Controller/GameController)
+
+### Consequences
+The use of this pattern has a lot of advantages, like:
+
+- We can have the framerate depend almost solely on the speed of the computer. This way,
+a fast computer might have 60 fps while a slow computer has 30 fps
+- The speed of the game is independent of the speed of the computer. By updating
+the logic of the game based on the current time, fast and slow computers will
+update their games at the same time, even with different framerates
+- The game won't break even if a game cycle takes more time than the theoretical
+time between updates, which could happen if we simply waited for the remaining time
+until the next frame (with fixed framerate)
+  
+However, this method also has disadvantages, since the game will update at a fixed
+time step, but will render arbitrarily:
+
+- Since the render methods will not be in sync with the update methods, faster
+machines might often render identical images, seeing that no in-game time has passed,
+loosing smoothness in the end
+- The problem above can be atoned with an extrapolation method, which will add
+a lot of smoothness to the motion. However, in some cases, this strategy can fail,
+resulting in objects being rendered out of place (for example, if the object is blocked
+by an obstacle). This happens because we're pretty much guessing where the object will be
+in X milliseconds from now.
+  
+
 ### Elements Stats
 
-#### Problem in context
+#### Problem in Context
 
 There were some classes (namely, items and enemies) who had
 a lot of primitives all related to its stats. This is a smell
