@@ -49,8 +49,9 @@ public class GameController {
 
             for(GUI.ACTION action : actions){
                 arenaController.doAction(action);
-                if (arenaController.checkEnd()) break;
             }
+
+            //if (arenaController.checkEnd()) break;
 
             while (lag >= MS_PER_UPDATE) {
                 arenaController.timedActions();
