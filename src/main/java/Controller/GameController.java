@@ -7,6 +7,7 @@ import Viewer.ArenaViewer;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.List;
 
 /*
 GameController will manage the whole map, which contains multiple arenas changing and being generated while
@@ -19,6 +20,7 @@ public class GameController {
     private ArenaViewer arenaViewer;
     private Arena arena;
     private GUI gui;
+    private boolean w_key = false;
 
     // TO DO: ADD VIEWERS
     public GameController(Arena arena, GUI gui) {
@@ -26,6 +28,7 @@ public class GameController {
         this.arenaController = new ArenaController(this.arena);
         this.arenaViewer = new ArenaViewer(gui);
         this.gui = gui;
+
     }
 
     /*
@@ -41,11 +44,13 @@ public class GameController {
             previous = current;
             lag += elapsed;
 
-            //GUI.ACTION action = gui.getNextAction();
-            //if (action == GUI.ACTION.QUIT) break;
+            List<GUI.ACTION> actions = gui.getNextActions();
+            if (actions.contains(GUI.ACTION.QUIT)) break;
 
-            //arenaController.doAction(action);
-            //if (arenaController.checkEnd()) break;
+            for(GUI.ACTION action : actions){
+                arenaController.doAction(action);
+                if (arenaController.checkEnd()) break;
+            }
 
             while (lag >= MS_PER_UPDATE) {
                 arenaController.timedActions();
