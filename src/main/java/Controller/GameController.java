@@ -20,7 +20,6 @@ public class GameController {
     private ArenaViewer arenaViewer;
     private Arena arena;
     private GUI gui;
-    private boolean w_key = false;
 
     // TO DO: ADD VIEWERS
     public GameController(Arena arena, GUI gui) {
