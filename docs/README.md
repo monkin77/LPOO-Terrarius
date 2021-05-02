@@ -79,14 +79,14 @@ The relevant classes for this pattern can be found in the following files:
 #### Consequences
 The use of this pattern allows for:
 - The model classes don't become overflowed by primitives, becoming more
-readable and smaller
-  
+  readable and smaller
+
 - By grouping all the stats to one class we can have all the stat generation
-together, making it easier to change, for example, how much health a zombie 
-has, according to its level
-  
+  together, making it easier to change, for example, how much health a zombie
+  has, according to its level
+
 - We have one more class per type of game element, but that's reasonable when
-taking into consideration the quantity of their subclasses, saving us a lot of lines
+  taking into consideration the quantity of their subclasses, saving us a lot of lines
 
 However, this also adds another code smell, **Data class**, since all
 these Stats classes are mainly or only composed by primitives and their
@@ -124,13 +124,43 @@ The use of this pattern prevents duplicate code and allows us to easily
 change how the class attributes are calculates, when they depend on subclass
 implementations
 
+
+### There should be multiple ways of creating arenas
+
+**Problem in Context:** We want to have the possibility of creating different arenas, which could be associated with a specific level / region. Additionally, we also want to introduce more flexibility so that in the future we can create the arena through different methods, for example, reading a file.
+
+**The Pattern:**  We have applied the Builder pattern. This is a creational design pattern that lets you construct complex objects step by step. The pattern allows you to produce different types and representations of an object using the same construction code.
+(Alternative: Fluent Builder pattern)
+
+**Implementation:** This pattern suggests that we extract the object construction out of its own class and move it to separate objects called builders.
+
+![alt text](uml/builderMethod_arena.png "Builder Method UML")
+
+As we can see, we have an *ArenaBuilder* that knows how to create an arena (createArena method), but the way each part of the arena is built is specified in its subclasses.  
+
+These classes can be found in the following files: 
+
+* [ArenaBuilder](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/arena/ArenaBuilder.java).
+* [DefaultArenaBuilder](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/arena/DefaultArenaBuilder.java).
+* [Arena](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/arena/Arena.java)
+* [Game](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Game.java)
+
+**Consequences:** The use of the Builder Pattern allows the following benefits:
+* Construct objects step-by-step
+* Reuse the same construction code
+* Single Responsability Principle. Isolate complex construction code from the logic of the Arena.
+
+
 ## Known Code Smells and Refactoring Suggestions
 [DO IT IN THE END]
+
 
 ## Testing
 [PUT SCREENSHOTS OF THE TESTS IN THE END]
 
 ## Self-Evaluation
 Bruno Rosendo: 1/3
+
 Francisco Colino: 1/3
+
 João Mesquita: 1/3
