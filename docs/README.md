@@ -31,7 +31,7 @@ and GUI. The implemented GUI uses Lanterna
 
 The way they interact can be analyzed in the following diagram:
 
-![MVCUML](uml/mvc.png)
+![MVCUML](img/mvc.png)
 
 The respective packages can be found [here](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java)
 
@@ -45,13 +45,13 @@ the others
 ### Game Loop Pattern
 
 #### Problem in Context
-We needed a way to faithfully process input and actions without depending on the CPU's clock
-while also rendering the game as fast as possible, so the player gets an experience as smooth
+We needed a way to faithfully update the game without depending on the CPU's clock
+while also rendering images as fast as possible, so the player gets an experience as smooth
 as his computer allows him
 
 ### The Pattern
-The pattern (and further explanation) used for this pattern can be found in the following website,
-in the *Play Catch up* and *Stuck in the Middle* sections:
+The pattern (and further explanation) used can be found in the following website,
+in the *Play Catch up* section:
 
 https://gameprogrammingpatterns.com/game-loop.html
 
@@ -65,7 +65,11 @@ This way, we can have a smoother gameplay in a faster computer without
 compromising the speed of the game
 
 ### Implementation
-The pattern was implemented exactly like explained above and can be found
+Below, we can find a flowchart which can help visualize this:
+
+![Loop](img/loop.png)
+
+The pattern was implemented exactly like above and can be found
 in the following class:
 
 - [GameController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java/Controller/GameController)
@@ -121,7 +125,7 @@ This is an implementation of the *Replace Type Code with Class* refactoring
 
 Below, there's a diagram showing how this was done in the Enemy class
 
-![StatsUML](uml/stats.png)
+![StatsUML](img/stats.png)
 
 The relevant classes for this pattern can be found in the following files:
 
@@ -172,7 +176,7 @@ be overridden by the subclasses) to initialize/calculate them
 #### Implementation
 The following image shows how this pattern can be implemented in each class:
 
-![TemplateUML](uml/template.png)
+![TemplateUML](img/template.png)
 
 Below, we're linking the classes where this was applied:
 
@@ -195,7 +199,7 @@ implementations
 
 **Implementation:** This pattern suggests that we extract the object construction out of its own class and move it to separate objects called builders.
 
-![alt text](uml/builderMethod_arena.png "Builder Method UML")
+![alt text](img/builderMethod_arena.png "Builder Method UML")
 
 As we can see, we have an *ArenaBuilder* that knows how to create an arena (createArena method), but the way each part of the arena is built is specified in its subclasses.  
 
