@@ -24,6 +24,7 @@ test {
 
 pitest {
     junit5PluginVersion = '0.12'
+    targetClasses = ['Model.*', 'Controller.*', 'GUI.*', 'Viewer.*']
 }
 
 application {
