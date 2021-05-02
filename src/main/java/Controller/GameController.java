@@ -12,34 +12,29 @@ GameController will manage the whole map, which contains multiple arenas changin
 the player explores the game. This means that the arenaController will change!
  */
 public class GameController {
-    private static final int MS_PER_FRAME = 16;
-    private static final int MS_PER_ACTION = 64;
+    private static final int MS_PER_UPDATE = 16;
 
     private ArenaController arenaController;
     private GUI gui;
-    private int frameCounter;
 
     // TO DO: ADD VIEWERS
     public GameController(Arena arena, GUI gui) {
         this.arenaController = new ArenaController(arena);
         this.gui = gui;
-        this.frameCounter = 0;
     }
 
     /*
-    Check this out better:
+    Check this pattern at:
     https://gameprogrammingpatterns.com/game-loop.html
      */
-    public void start() throws InterruptedException, IOException {
-        final int framesPerAction = MS_PER_ACTION / MS_PER_FRAME;
+    long previous = System.currentTimeMillis();
+    long lag = 0;
+    public void start() throws IOException {
         while (true) {
-            Instant start = Instant.now();
-            frameCounter++;
-
-            if (frameCounter % framesPerAction == 0) {
-                arenaController.timedActions();
-                frameCounter = 0;
-            }
+            long current = System.currentTimeMillis();
+            long elapsed = current - previous;
+            previous = current;
+            lag += elapsed;
 
             GUI.ACTION action = gui.getNextAction();
             if (action == GUI.ACTION.QUIT) break;
@@ -47,10 +42,12 @@ public class GameController {
             arenaController.doAction(action);
             if (arenaController.checkEnd()) break;
 
-            // TO DO: DRAW
+            while (lag >= MS_PER_UPDATE) {
+                arenaController.timedActions();
+                lag -= MS_PER_UPDATE;
+            }
 
-            Duration timeElapsed = Duration.between(start, Instant.now());
-            Thread.sleep(MS_PER_FRAME - timeElapsed.toMillis());
+            // TO DO: DRAW
         }
     }
 }
