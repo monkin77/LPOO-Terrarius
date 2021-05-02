@@ -5,6 +5,7 @@ import Model.Position;
 import Model.elements.Hero;
 import Model.elements.blocks.Block;
 import Model.elements.blocks.StoneBlock;
+import Model.elements.blocks.WoodBlock;
 import Model.elements.enemies.Enemy;
 import Model.elements.enemies.Zombie;
 
@@ -34,14 +35,18 @@ public class DefaultArenaBuilder extends ArenaBuilder{
     protected List<Block> createBlocks() {
         List<Block> blocks = new ArrayList<>();
 
-        for(int x = 0; x < this.width; x++){
-            blocks.add( new StoneBlock( new Position(x, 0) ) );
-            blocks.add( new StoneBlock( new Position(x, this.height - 1) ) );
+        for(int x = 0; x < this.width/4; x++){
+            blocks.add( new StoneBlock( new Position(x * 4, 0) ) );
+            blocks.add( new StoneBlock( new Position(x * 4, this.height - 4) ) );
         }
 
-        for(int y = 1; y < height - 1; y++){
-            blocks.add( new StoneBlock( new Position(0, y) ) );
-            blocks.add( new StoneBlock( new Position(this.width - 1, y) ) );
+        for(int y = 1; y < height/4; y++){
+            blocks.add( new StoneBlock( new Position(0, y * 4) ) );
+            blocks.add( new StoneBlock( new Position(this.width - 4, y * 4) ) );
+        }
+
+        for (int y = height/4 - 2; y >= height/4 - 4; y--){
+            blocks.add(new WoodBlock( new Position(16, y*4)));
         }
 
         return blocks;
@@ -51,9 +56,10 @@ public class DefaultArenaBuilder extends ArenaBuilder{
     protected List<Enemy> createEnemies() {
         List<Enemy> enemies = new ArrayList<>();
 
-        enemies.add(new Zombie(new Position(0, 0), new Level(1, 0)));
-        enemies.add(new Zombie(new Position(this.width /2, this.height/2), new Level(3, 0)));
-        enemies.add(new Zombie(new Position(this.width - 1, this.height - 1), new Level(5, 10)));
+        enemies.add(new Zombie(new Position(this.width/4, this.height/4), new Level(1, 10)));
+        enemies.add(new Zombie(new Position(this.width/4 + 8, this.height/4 + 4), new Level(1, 10)));
+        enemies.add(new Zombie(new Position(4, 4), new Level(1, 0)));
+        enemies.add(new Zombie(new Position(this.width - 8, this.height - 12), new Level(5, 10)));
 
         return enemies;
     }

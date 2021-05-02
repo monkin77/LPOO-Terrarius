@@ -2,6 +2,9 @@ package GUI;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.DoublePrintingTextGraphics;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
@@ -13,13 +16,17 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+import static Viewer.ViewerConstants.DEFAULT_FOREGROUND_COLOR;
+
 public class LanternaGui implements GUI {
     private final TerminalScreen screen;
+    private TextGraphics graphics;
 
     public LanternaGui(int width, int height) throws IOException, FontFormatException, URISyntaxException {
         AWTTerminalFontConfiguration fontConfig = loadSquareFont();
         Terminal terminal = createTerminal(width, height, fontConfig);
         screen = createScreen(terminal);
+        graphics = screen.newTextGraphics();
     }
 
     private TerminalScreen createScreen(Terminal terminal) throws IOException {
@@ -50,14 +57,22 @@ public class LanternaGui implements GUI {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
-        Font loadedFont = font.deriveFont(Font.PLAIN, 15);
+        Font loadedFont = font.deriveFont(Font.PLAIN, 10);
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         return fontConfig;
     }
 
     @Override
+    public void drawCharacter(int x, int y, char c, String color) {
+
+        graphics.setForegroundColor(TextColor.Factory.fromString(color));
+        graphics.setCharacter(x, y, c);
+    }
+
+    @Override
     public void drawCharacter(int x, int y, char c) {
-        screen.setCharacter(x, y, TextCharacter.fromCharacter(c)[0]);
+        graphics.setForegroundColor(TextColor.Factory.fromString(DEFAULT_FOREGROUND_COLOR));
+        graphics.setCharacter(x, y, c);
     }
 
     @Override
