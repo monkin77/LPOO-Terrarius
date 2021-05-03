@@ -1,5 +1,6 @@
 package Model.elements;
 
+import Model.Dimensions;
 import Model.Position;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +16,7 @@ public class ElementTest {
         position = Mockito.mock(Position.class);
         Mockito.when(position.getX()).thenReturn(10);
         Mockito.when(position.getY()).thenReturn(15);
-        element = new Element(position);
+        element = new Element(position, new Dimensions(1, 1));
     }
 
     @Test

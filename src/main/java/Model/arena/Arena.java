@@ -1,6 +1,8 @@
 package Model.arena;
 
+import Model.Dimensions;
 import Model.Position;
+import Model.elements.Element;
 import Model.elements.Hero;
 import Model.elements.blocks.Block;
 import Model.elements.enemies.Enemy;
@@ -59,5 +61,34 @@ public class Arena {
                 return false;
         }
         return true;
+    }
+
+    public boolean collides(Position position, Dimensions dimensions){
+
+        for (Block block : this.blocks){
+
+            boolean left_collision =
+                    position.getX() >= block.getPosition().getX() &&
+                    position.getX() <= block.getPosition().getX() + block.getDimensions().getWidth() - 1;
+
+            boolean right_collision =
+                    position.getX() + dimensions.getWidth() - 1 >= block.getPosition().getX() &&
+                    position.getX() + dimensions.getWidth() - 1 <= block.getPosition().getX() + block.getDimensions().getWidth() - 1;
+
+            if (!left_collision && !right_collision) continue;
+
+            boolean top_collision =
+                    position.getY() >= block.getPosition().getY() &&
+                    position.getY() <= block.getPosition().getY() + block.getDimensions().getHeight() - 1;
+
+            boolean bottom_collision =
+                    position.getY() + dimensions.getHeight() - 1 >= block.getPosition().getY() &&
+                    position.getY() + dimensions.getHeight() - 1 <= block.getPosition().getY() + block.getDimensions().getHeight() - 1;
+
+            if (top_collision || bottom_collision) return true;
+
+        }
+
+        return false;
     }
 }

@@ -1,5 +1,6 @@
 package Model.elements;
 
+import Model.Dimensions;
 import Model.Level;
 import Model.Position;
 
@@ -8,7 +9,7 @@ public class Hero extends Element {
     private int health;
 
     public Hero(Position position) {
-        super(position);
+        super(position, new Dimensions(8, 4));
         this.level = new Level(1, 0);
         this.health = 100;
     }
