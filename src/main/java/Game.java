@@ -1,8 +1,6 @@
 import Controller.GameController;
 import GUI.GUI;
 import GUI.LanternaGui;
-import Model.arena.ArenaBuilder;
-import Viewer.ArenaViewer;
 import Model.arena.Arena;
 import Model.arena.DefaultArenaBuilder;
 

@@ -31,7 +31,7 @@ and GUI. The implemented GUI uses Lanterna
 
 The way they interact can be analyzed in the following diagram:
 
-![MVCUML](uml/mvc.png)
+![MVCUML](img/mvc.png)
 
 The respective packages can be found [here](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java)
 
@@ -42,9 +42,74 @@ making it significantly easier to make changes on them, without having to change
 the others
 
 
+### Game Loop Pattern
+
+#### Problem in Context
+We needed a way to faithfully update the game without depending on the CPU's clock
+while also rendering images as fast as possible, so the player gets an experience as smooth
+as his computer allows him
+
+### The Pattern
+The pattern (and further explanation) used can be found in the following website,
+in the *Play Catch up* section:
+
+https://gameprogrammingpatterns.com/game-loop.html
+
+With this strategy, we have a *lag* variable counting the time passing in
+each iteration and, if that variable is greater than the amount of time defined
+to pass between updates (currently, 16ms), we update the actions that depend on time.
+The rendering methods, on the other hand, are always called as fast as the CPU
+lets them.
+
+This way, we can have a smoother gameplay in a faster computer without
+compromising the speed of the game
+
+### Implementation
+Below, we can find a flowchart which can help visualize this:
+
+![Loop](img/loop.png)
+
+The pattern was implemented exactly like above and can be found
+in the following class:
+
+- [GameController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java/Controller/GameController)
+
+### Consequences
+The use of this pattern has a lot of advantages, like:
+
+- We can have the framerate depend almost solely on the speed of the computer. This way,
+a fast computer might have 60 fps while a slow computer has 30 fps
+- The speed of the game is independent of the speed of the computer. By updating
+the logic of the game based on the current time, fast and slow computers will
+update their games at the same time, even with different framerates
+- The game won't break even if a game cycle takes more time than the theoretical
+time between updates, which could happen if we simply waited for the remaining time
+until the next frame (with fixed framerate)
+  
+However, this method also has disadvantages, since the game will update at a fixed
+time step, but will render arbitrarily:
+
+- Since the render methods will not be in sync with the update methods, faster
+machines might often render moving objects at the same position they were in the last frame,
+seeing that no in-game time has passed, loosing smoothness in the end
+- The problem above can be atoned with an extrapolation method, which will add
+a lot of smoothness to the motion. However, in some cases, this strategy can fail,
+resulting in objects being rendered out of place (for example, if the object is blocked
+by an obstacle). This happens because we're pretty much guessing where the object will be
+in X milliseconds from now
+- The extrapolation method turned out difficult to implement with the Lanterna GUI, since,
+almost always, the elements only move one unit per X updates, meaning that we can't divide
+their movements any further.
+  
+Even with these problems, the pattern is still useful in our implementation.
+On one hand, the high-end users might not get too much advantage, but they still
+get the best experience. On the other hand, we assure that the low-end users don't lose
+any updates on their game
+  
+
 ### Elements Stats
 
-#### Problem in context
+#### Problem in Context
 
 There were some classes (namely, items and enemies) who had
 a lot of primitives all related to its stats. This is a smell
@@ -60,7 +125,7 @@ This is an implementation of the *Replace Type Code with Class* refactoring
 
 Below, there's a diagram showing how this was done in the Enemy class
 
-![StatsUML](uml/stats.png)
+![StatsUML](img/stats.png)
 
 The relevant classes for this pattern can be found in the following files:
 
@@ -111,7 +176,7 @@ be overridden by the subclasses) to initialize/calculate them
 #### Implementation
 The following image shows how this pattern can be implemented in each class:
 
-![TemplateUML](uml/template.png)
+![TemplateUML](img/template.png)
 
 Below, we're linking the classes where this was applied:
 
@@ -134,7 +199,7 @@ implementations
 
 **Implementation:** This pattern suggests that we extract the object construction out of its own class and move it to separate objects called builders.
 
-![alt text](uml/builderMethod_arena.png "Builder Method UML")
+![alt text](img/builderMethod_arena.png "Builder Method UML")
 
 As we can see, we have an *ArenaBuilder* that knows how to create an arena (createArena method), but the way each part of the arena is built is specified in its subclasses.  
 

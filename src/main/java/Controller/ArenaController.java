@@ -6,19 +6,26 @@ import Model.arena.Arena;
 public class ArenaController {
     private final HeroController heroController;
     private final EnemyController enemyController;
+    private final int updatesPerAction;
+    private int updateCounter;
 
-    public ArenaController(Arena arena) {
+    public ArenaController(Arena arena, int timePerUpdate) {
         this.heroController = new HeroController(arena);
         this.enemyController = new EnemyController(arena);
+        this.updatesPerAction = Math.max(128 / timePerUpdate, 1);
+        this.updateCounter = 0;
     }
 
-    // All these methods into Middleman smell. Change if it doesn't get more useful?
     public void doAction(GUI.ACTION action) {
         heroController.doAction(action);
     }
 
     public void timedActions() {
-        enemyController.moveEnemies();
+        updateCounter++;
+        if (updateCounter % updatesPerAction == 0) {
+            enemyController.moveEnemies();
+            updateCounter = 0;
+        }
     }
 
     public boolean checkEnd() {

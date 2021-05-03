@@ -7,7 +7,6 @@ import Model.elements.blocks.DirtBlock;
 import Model.elements.blocks.StoneBlock;
 import Model.elements.blocks.WoodBlock;
 import Viewer.Image.ColoredImage;
-import Viewer.Image.Image;
 import Viewer.Image.StillImage;
 
 public class BlockViewer extends ElementViewer{
