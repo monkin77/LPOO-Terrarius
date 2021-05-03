@@ -59,10 +59,10 @@ public class StillImage extends Image{
         //Not doing anything for now
     }
 
-    public void draw(Element element, GUI gui){
+    public void draw(Position position, GUI gui){
         for(int i = 0; i < height; i++){
             for (int j = 0; j < width; j++){
-                gui.drawCharacter(element.getPosition().getX()+j, element.getPosition().getY()+i, aspect[i][j]);
+                gui.drawCharacter(position.getX()+j, position.getY()+i, aspect[i][j]);
             }
         }
     }

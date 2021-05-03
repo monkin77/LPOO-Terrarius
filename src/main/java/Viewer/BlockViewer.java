@@ -34,6 +34,6 @@ public class BlockViewer extends ElementViewer{
 
     @Override
     public void draw(Element element, GUI gui) {
-        this.image.draw(element, gui);
+        this.image.draw(element.getPosition(), gui);
     }
 }

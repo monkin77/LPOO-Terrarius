@@ -8,8 +8,8 @@ public class Banana extends Food {
     }
 
     @Override
-    public void updateStats(Hero hero) {
-        int heroLevel = hero.getLevel().getNumLevel();
+    public void updateStats() {
+        int heroLevel = this.hero.getLevel().getNumLevel();
         int duration = Math.max(20 - heroLevel / 10, 3);
         this.setStats(new FoodStats(30, duration));
     }

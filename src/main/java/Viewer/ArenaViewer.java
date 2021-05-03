@@ -4,6 +4,7 @@ import GUI.GUI;
 import Model.arena.Arena;
 import Model.elements.blocks.Block;
 import Model.elements.enemies.Enemy;
+import Model.items.Item;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -13,6 +14,7 @@ public class ArenaViewer {
 
     private final Map<Class, ElementViewer> enemyCache = new HashMap<>();
     private final Map<Class, ElementViewer> blockCache = new HashMap<>();
+    private final Map<Class, ItemViewer> itemCache = new HashMap<>();
     private HeroViewer heroViewer = new HeroViewer();
 
     private final GUI gui;
@@ -51,6 +53,15 @@ public class ArenaViewer {
             }
             ElementViewer viewer = enemyCache.get(enemy.getClass());
             viewer.draw(enemy, gui);
+        }
+
+        for(Item item : arena.getHero().getToolBar().values()) {
+            if (!itemCache.containsKey(item.getClass())){
+                itemCache.put(item.getClass(), new ItemViewer(item));
+            }
+            ItemViewer viewer = itemCache.get(item.getClass());
+            System.out.println("Drawing item...");
+            viewer.draw(item, gui);
         }
 
         heroViewer.draw(arena.getHero(), gui);

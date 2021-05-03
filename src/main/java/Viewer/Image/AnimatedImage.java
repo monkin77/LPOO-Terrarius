@@ -1,6 +1,7 @@
 package Viewer.Image;
 
 import GUI.GUI;
+import Model.Position;
 import Model.elements.Element;
 import Viewer.FrameHandler;
 
@@ -57,9 +58,9 @@ public class AnimatedImage extends Image {
         frameHandler.reset();
     }
 
-    public void draw(Element element, GUI gui){
+    public void draw(Position position, GUI gui){
 
-        images.get(frameHandler.getCurrentImage()).draw(element, gui);
+        images.get(frameHandler.getCurrentImage()).draw(position, gui);
 
     }
 

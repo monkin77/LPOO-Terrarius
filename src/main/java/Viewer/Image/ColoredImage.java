@@ -1,6 +1,7 @@
 package Viewer.Image;
 
 import GUI.GUI;
+import Model.Position;
 import Model.elements.Element;
 
 import java.io.File;
@@ -88,11 +89,11 @@ public class ColoredImage extends StillImage{
     }
 
     @Override
-    public void draw(Element element, GUI gui) {
+    public void draw(Position position, GUI gui) {
         for(int i = 0; i < height; i++){
             for (int j = 0; j < width; j++){
                 gui.drawCharacter(
-                        element.getPosition().getX()+j, element.getPosition().getY()+i,
+                        position.getX()+j, position.getY()+i,
                         aspect[i][j], colorMap.get(colors[i][j]));
             }
         }
