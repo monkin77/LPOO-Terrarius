@@ -68,6 +68,4 @@ public class DefaultArenaBuilder extends ArenaBuilder{
     protected Hero createHero() {
         return new Hero(new Position(this.width/2, this.height/2));
     }
-
-
 }

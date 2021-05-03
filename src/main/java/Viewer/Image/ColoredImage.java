@@ -28,8 +28,9 @@ public class ColoredImage extends StillImage{
 
             Scanner imageScanner = new Scanner(imageFile);
 
-            height = imageScanner.nextInt();
-            width = imageScanner.nextInt();
+            int height = imageScanner.nextInt();
+            int width = imageScanner.nextInt();
+            this.dimensions = new ImageDimensions(width, height);
 
             aspect = new char[height][width];
             colors = new char[height][width];
@@ -90,8 +91,8 @@ public class ColoredImage extends StillImage{
 
     @Override
     public void draw(Position position, GUI gui) {
-        for(int i = 0; i < height; i++){
-            for (int j = 0; j < width; j++){
+        for(int i = 0; i < this.dimensions.getHeight(); i++){
+            for (int j = 0; j < this.dimensions.getWidth(); j++){
                 gui.drawCharacter(
                         position.getX()+j, position.getY()+i,
                         aspect[i][j], colorMap.get(colors[i][j]));

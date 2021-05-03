@@ -5,6 +5,9 @@ import Model.arena.Arena;
 import Model.elements.blocks.Block;
 import Model.elements.enemies.Enemy;
 import Model.items.Item;
+import Viewer.Image.AnimatedImage;
+import Viewer.Image.ImageDimensions;
+import Viewer.Image.StillImage;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -60,8 +63,12 @@ public class ArenaViewer {
                 itemCache.put(item.getClass(), new ItemViewer(item));
             }
             ItemViewer viewer = itemCache.get(item.getClass());
-            System.out.println("Drawing item...");
-            viewer.draw(item, gui);
+
+            AnimatedImage animImage = (AnimatedImage) heroViewer.image;
+            StillImage currImage = animImage.getImages().get(animImage.getFrameSpeed().getCurrentImage());
+            ImageDimensions dimensions = currImage.getDimensions();
+
+            viewer.draw(item, dimensions, gui);
         }
 
         heroViewer.draw(arena.getHero(), gui);
