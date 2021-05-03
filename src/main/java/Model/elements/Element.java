@@ -27,4 +27,6 @@ public class Element {
     public void setDimensions(Dimensions dimensions) {
         this.dimensions = dimensions;
     }
+
+    public enum Orientation {LEFT, RIGHT}
 }

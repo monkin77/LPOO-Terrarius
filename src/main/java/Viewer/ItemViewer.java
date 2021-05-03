@@ -2,6 +2,7 @@ package Viewer;
 
 import GUI.GUI;
 import Model.Position;
+import Model.elements.Element;
 import Model.elements.Hero;
 import Model.items.Item;
 import Model.items.tools.Axe;
@@ -24,7 +25,7 @@ public class ItemViewer {
         StillImage currImage = (StillImage) image;
         Hero hero = item.getHero();
         Position itemPos = new Position(hero.getPosition());
-        itemPos.setX(itemPos.getX() + dimensions.getWidth());
+        itemPos.setX(itemPos.getX() + ( hero.getOrientation() == Element.Orientation.RIGHT ? dimensions.getWidth() : -1 ) );
         itemPos.setY(itemPos.getY() - currImage.getDimensions().getHeight());
 
         this.image.draw(itemPos, gui);

@@ -4,6 +4,7 @@ import Model.Dimensions;
 import Model.Level;
 import Model.Position;
 import Model.items.Item;
+import Model.items.Toolbar;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +12,8 @@ import java.util.Map;
 public class Hero extends Element {
     private Level level;
     private int health;
-    private Map<Integer, Item> toolBar = new HashMap<>();
+    private Orientation orientation = Orientation.RIGHT;
+    private Toolbar toolBar = new Toolbar();
 
     public Hero(Position position) {
         super(position, new Dimensions(8, 4));
@@ -35,17 +37,25 @@ public class Hero extends Element {
         this.health = health;
     }
 
-    public Map<Integer, Item> getToolBar() {
+    public Toolbar getToolBar() {
         return toolBar;
     }
 
     public void addItem(Integer toolBarPosition, Item item) {
         // Check if there is already an item in the slot
-        this.toolBar.put(toolBarPosition, item);
+        this.toolBar.setItem(toolBarPosition, item);
     }
 
     public void removeItem(Integer toolBarPosition) {
-        this.toolBar.remove(toolBarPosition);
+        this.toolBar.removeItem(toolBarPosition);
+    }
+
+    public Orientation getOrientation() {
+        return orientation;
+    }
+
+    public void setOrientation(Orientation orientation) {
+        this.orientation = orientation;
     }
 
     // TO DO: ITEMS LOGIC (maybe limit to X items)

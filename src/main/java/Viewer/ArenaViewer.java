@@ -58,7 +58,8 @@ public class ArenaViewer {
             viewer.draw(enemy, gui);
         }
 
-        for(Item item : arena.getHero().getToolBar().values()) {
+        Item item = arena.getHero().getToolBar().getActiveItem();
+        if(item != null){
             if (!itemCache.containsKey(item.getClass())){
                 itemCache.put(item.getClass(), new ItemViewer(item));
             }
