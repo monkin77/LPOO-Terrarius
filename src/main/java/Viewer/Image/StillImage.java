@@ -65,8 +65,4 @@ public class StillImage extends Image{
             }
         }
     }
-
-    public ImageDimensions getDimensions() {
-        return dimensions;
-    }
 }

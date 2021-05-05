@@ -6,6 +6,7 @@ import java.util.Map;
 public class Toolbar {
     private Map<Integer, Item> toolBar;
     private Integer activeItemIdx;
+    private final Integer maxSlots = 9;
 
     public Toolbar() {
         this.toolBar = new HashMap<>();
@@ -31,5 +32,17 @@ public class Toolbar {
 
     public void removeItem(Integer index) {
         this.toolBar.remove(index);
+    }
+
+    /**
+     * Finds the first free slot on the toolbar
+     * @return key of the first free slot. If there is no free slot, returns -1
+     */
+    public Integer findFreeSlot() {
+        for(Integer i = 1; i <= maxSlots; i++) {
+            if(!this.toolBar.containsKey(i))
+                return i;
+        }
+        return -1;
     }
 }

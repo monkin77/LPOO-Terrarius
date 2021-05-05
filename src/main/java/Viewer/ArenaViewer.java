@@ -65,11 +65,7 @@ public class ArenaViewer {
             }
             ItemViewer viewer = itemCache.get(item.getClass());
 
-            AnimatedImage animImage = (AnimatedImage) heroViewer.image;
-            StillImage currImage = animImage.getImages().get(animImage.getFrameSpeed().getCurrentImage());
-            ImageDimensions dimensions = currImage.getDimensions();
-
-            viewer.draw(item, dimensions, gui);
+            viewer.draw(item, gui);
         }
 
         heroViewer.draw(arena.getHero(), gui);

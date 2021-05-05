@@ -21,12 +21,11 @@ public class ItemViewer {
         }
     }
 
-    public void draw(Item item, ImageDimensions dimensions, GUI gui){
-        StillImage currImage = (StillImage) image;
+    public void draw(Item item, GUI gui){
         Hero hero = item.getHero();
         Position itemPos = new Position(hero.getPosition());
-        itemPos.setX(itemPos.getX() + ( hero.getOrientation() == Element.Orientation.RIGHT ? dimensions.getWidth() : -1 ) );
-        itemPos.setY(itemPos.getY() - currImage.getDimensions().getHeight());
+        itemPos.setX(itemPos.getX() + ( hero.getOrientation() == Element.Orientation.RIGHT ? 4 : -1 ) ); // CHANGE HERE AFTER REBASING TO GET DIMENSIONS (Hero Width)
+        itemPos.setY(itemPos.getY() - 4);   // CHANGE HERE AFTER REBASING TO GET DIMENSIONS (TOOL HEIGHT)
 
         this.image.draw(itemPos, gui);
     }

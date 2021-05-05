@@ -1,8 +1,8 @@
 package Viewer.Image;
 
 public class ImageDimensions {
-    protected int height;
-    protected int width;
+    private int height;
+    private int width;
 
     public ImageDimensions(int width, int height) {
         this.height = height;

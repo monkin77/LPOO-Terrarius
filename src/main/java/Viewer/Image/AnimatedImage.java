@@ -71,8 +71,4 @@ public class AnimatedImage extends Image {
     public void setFrameSpeed(FrameHandler frameHandler) {
         this.frameHandler = frameHandler;
     }
-
-    public List<StillImage> getImages() {
-        return images;
-    }
 }

@@ -6,9 +6,6 @@ import Model.Position;
 import Model.items.Item;
 import Model.items.Toolbar;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Hero extends Element {
     private Level level;
     private int health;
@@ -41,6 +38,22 @@ public class Hero extends Element {
         return toolBar;
     }
 
+    /**
+     * Adds an item to the first free slot. If full, the item is not added
+     * @param item
+     */
+    public void addItemFreeSlot(Item item) {
+        Integer key = this.toolBar.findFreeSlot();
+        if(key == -1)
+            return;
+        this.toolBar.setItem(key, item);
+    }
+
+    /**
+     * Adds an item to a specific toolbar slot. If there is already an item on that position, replace it.
+     * @param toolBarPosition
+     * @param item
+     */
     public void addItem(Integer toolBarPosition, Item item) {
         // Check if there is already an item in the slot
         this.toolBar.setItem(toolBarPosition, item);
