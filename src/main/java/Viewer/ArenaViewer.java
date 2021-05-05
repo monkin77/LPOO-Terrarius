@@ -18,6 +18,7 @@ public class ArenaViewer {
     private final Map<Class, ElementViewer> enemyCache = new HashMap<>();
     private final Map<Class, ElementViewer> blockCache = new HashMap<>();
     private final Map<Class, ItemViewer> itemCache = new HashMap<>();
+    private final ToolbarViewer toolbarViewer = new ToolbarViewer();
     private HeroViewer heroViewer = new HeroViewer();
 
     private final GUI gui;
@@ -67,6 +68,8 @@ public class ArenaViewer {
 
             viewer.draw(item, gui);
         }
+
+        this.toolbarViewer.draw(arena.getHero().getToolBar(), gui);
 
         heroViewer.draw(arena.getHero(), gui);
 

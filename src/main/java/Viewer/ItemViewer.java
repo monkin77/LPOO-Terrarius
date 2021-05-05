@@ -7,7 +7,6 @@ import Model.elements.Hero;
 import Model.items.Item;
 import Model.items.tools.Axe;
 import Viewer.Image.Image;
-import Viewer.Image.ImageDimensions;
 import Viewer.Image.StillImage;
 
 

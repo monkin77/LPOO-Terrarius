@@ -1,0 +1,6 @@
+5 40
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+x   x   x   x   x   x   x   x   x   x  x
+x   x   x   x   x   x   x   x   x   x  x
+x   x   x   x   x   x   x   x   x   x  x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
