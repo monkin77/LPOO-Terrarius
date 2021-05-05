@@ -1,10 +1,10 @@
 8 4
-OOOO
-OIIO
-OIIO
-OOOO
- HH
- HH
+MMMM
+MCOO
+M __
+M
+####
+ ##
 H  H
 H  H
  
