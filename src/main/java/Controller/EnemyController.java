@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Position;
 import Model.arena.Arena;
+import Model.elements.Element;
 import Model.elements.enemies.Enemy;
 
 public class EnemyController {
@@ -13,10 +14,14 @@ public class EnemyController {
 
     public void moveEnemies() {
         for (Enemy enemy : arena.getEnemies()) {
-            if (enemy.getPosition().getX() < arena.getHero().getPosition().getX())
+            if (enemy.getPosition().getX() < arena.getHero().getPosition().getX()) {
                 moveEnemy(enemy, enemy.getPosition().getRight());
-            else
+                enemy.setOrientation(Element.Orientation.RIGHT);
+            }
+            else {
                 moveEnemy(enemy, enemy.getPosition().getLeft());
+                enemy.setOrientation(Element.Orientation.LEFT);
+            }
         }
     }
 

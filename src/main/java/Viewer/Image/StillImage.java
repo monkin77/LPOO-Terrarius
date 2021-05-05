@@ -58,10 +58,19 @@ public class StillImage extends Image{
         //Not doing anything for now
     }
 
-    public void draw(Position position, GUI gui){
+    public void draw(Position position, Element.Orientation orientation, GUI gui){
         for(int i = 0; i < this.dimensions.getHeight(); i++){
             for (int j = 0; j < this.dimensions.getWidth(); j++){
-                gui.drawCharacter(position.getX()+j, position.getY()+i, aspect[i][j]);
+                char aspect_char = ' ';
+
+                if(orientation == Element.Orientation.RIGHT){
+                    aspect_char = aspect[i][j];
+                }
+                else{
+                    aspect_char = aspect[i][this.dimensions.getWidth() - 1 - j];
+                }
+
+                gui.drawCharacter(position.getX()+j, position.getY()+i, aspect_char);
             }
         }
     }

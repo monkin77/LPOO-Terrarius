@@ -9,7 +9,6 @@ import Model.items.Toolbar;
 public class Hero extends Element {
     private Level level;
     private int health;
-    private Orientation orientation = Orientation.RIGHT;
     private Toolbar toolBar = new Toolbar();
 
     public Hero(Position position) {
@@ -61,14 +60,6 @@ public class Hero extends Element {
 
     public void removeItem(Integer toolBarPosition) {
         this.toolBar.removeItem(toolBarPosition);
-    }
-
-    public Orientation getOrientation() {
-        return orientation;
-    }
-
-    public void setOrientation(Orientation orientation) {
-        this.orientation = orientation;
     }
 
     // TO DO: ITEMS LOGIC (maybe limit to X items)

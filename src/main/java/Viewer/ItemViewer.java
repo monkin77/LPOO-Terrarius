@@ -24,9 +24,9 @@ public class ItemViewer {
     public void draw(Item item, GUI gui){
         Hero hero = item.getHero();
         Position itemPos = new Position(hero.getPosition());
-        itemPos.setX(itemPos.getX() + ( hero.getOrientation() == Element.Orientation.RIGHT ? 4 : -1 ) ); // CHANGE HERE AFTER REBASING TO GET DIMENSIONS (Hero Width)
+        itemPos.setX(itemPos.getX() + ( hero.getOrientation() == Element.Orientation.RIGHT ? 4 : -2 ) ); // CHANGE HERE AFTER REBASING TO GET DIMENSIONS (Hero Width)
         itemPos.setY(itemPos.getY() - 4);   // CHANGE HERE AFTER REBASING TO GET DIMENSIONS (TOOL HEIGHT)
 
-        this.image.draw(itemPos, gui);
+        this.image.draw(itemPos, hero.getOrientation(), gui);
     }
 }

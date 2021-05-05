@@ -90,12 +90,25 @@ public class ColoredImage extends StillImage{
     }
 
     @Override
-    public void draw(Position position, GUI gui) {
+    public void draw(Position position, Element.Orientation orientation, GUI gui) {
         for(int i = 0; i < this.dimensions.getHeight(); i++){
             for (int j = 0; j < this.dimensions.getWidth(); j++){
+
+                char aspect_char = ' ';
+                String color = "#DDDDDD";
+
+                if(orientation == Element.Orientation.RIGHT){
+                    aspect_char = aspect[i][j];
+                    color = colorMap.get(colors[i][j]);
+                }
+                else{
+                    aspect_char = aspect[i][this.dimensions.getWidth() - 1 - j];
+                    color = colorMap.get(colors[i][this.dimensions.getWidth() - 1 - j]);
+                }
+
                 gui.drawCharacter(
                         position.getX()+j, position.getY()+i,
-                        aspect[i][j], colorMap.get(colors[i][j]));
+                        aspect_char, color);
             }
         }
     }

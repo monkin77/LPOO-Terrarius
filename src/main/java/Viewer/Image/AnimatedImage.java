@@ -58,9 +58,9 @@ public class AnimatedImage extends Image {
         frameHandler.reset();
     }
 
-    public void draw(Position position, GUI gui){
+    public void draw(Position position, Element.Orientation orientation, GUI gui){
 
-        images.get(frameHandler.getCurrentImage()).draw(position, gui);
+        images.get(frameHandler.getCurrentImage()).draw(position, orientation, gui);
 
     }
 
