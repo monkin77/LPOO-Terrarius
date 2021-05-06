@@ -9,7 +9,7 @@ public class Apple extends Food {
 
     @Override
     public void updateStats() {
-        int heroLevel = this.hero.getLevel().getNumLevel();
+        int heroLevel = this.getHero().getLevel().getNumLevel();
         int duration = Math.max(10 - heroLevel / 5, 1);
         this.setStats(new FoodStats(10, duration));
     }

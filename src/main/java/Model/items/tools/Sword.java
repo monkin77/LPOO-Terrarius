@@ -9,7 +9,7 @@ public class Sword extends Tool {
 
     @Override
     public void updateStats() {
-        int heroLevel = this.hero.getLevel().getNumLevel();
+        int heroLevel = this.getHero().getLevel().getNumLevel();
         this.setStats(new ToolStats(heroLevel / 2 + 1, 0, 0));
     }
 }

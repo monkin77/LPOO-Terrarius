@@ -3,7 +3,7 @@ package Model.items;
 import Model.elements.Hero;
 
 public abstract class Item {
-    protected Hero hero;
+    private Hero hero;
 
     public Item(Hero hero) {
         this.hero = hero;

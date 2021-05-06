@@ -9,7 +9,7 @@ public class Axe extends Tool {
 
     @Override
     public void updateStats() {
-        int heroLevel = this.hero.getLevel().getNumLevel();
+        int heroLevel = this.getHero().getLevel().getNumLevel();
         this.setStats(new ToolStats(1 + heroLevel / 5, 10 + heroLevel / 5, 2));
     }
 }

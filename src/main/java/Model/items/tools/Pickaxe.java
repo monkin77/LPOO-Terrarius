@@ -9,7 +9,7 @@ public class Pickaxe extends Tool {
 
     @Override
     public void updateStats() {
-        int heroLevel = this.hero.getLevel().getNumLevel();
+        int heroLevel = this.getHero().getLevel().getNumLevel();
         this.setStats(new ToolStats(2, 10 + heroLevel / 10, 3));
     }
 }
