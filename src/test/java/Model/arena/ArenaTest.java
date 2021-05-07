@@ -61,4 +61,38 @@ public class ArenaTest {
         Assertions.assertFalse(this.arena.collides(new Position(4, 4), new Dimensions(1, 1)));
         Assertions.assertFalse(this.arena.collides(new Position(14, 14), new Dimensions(5, 5)));
     }
+
+    @Test
+    public void hasAdjacent() {
+        // Top right
+        Assertions.assertTrue(this.arena.hasAdjacent(new Position(4, 6), new Dimensions(1, 1)));
+
+        // Bottom right
+        Assertions.assertTrue(this.arena.hasAdjacent(new Position(3, 8), new Dimensions(2, 2)));
+
+        // Top Left
+        Assertions.assertTrue(this.arena.hasAdjacent(new Position(9, 6), new Dimensions(1, 1)));
+
+        // Bottom Left
+        Assertions.assertTrue(this.arena.hasAdjacent(new Position(9, 8), new Dimensions(2, 2)));
+
+    }
+
+    @Test
+    public void notAdjacent() {
+        // Far
+        Assertions.assertFalse(this.arena.hasAdjacent(new Position(1, 1), new Dimensions(2, 2)));
+
+        // Adjacent but larger
+        Assertions.assertFalse(this.arena.hasAdjacent(new Position(4, 4), new Dimensions(1, 10)));
+
+        // Adjacent but taller
+        Assertions.assertFalse(this.arena.hasAdjacent(new Position(4, 4), new Dimensions(10, 1)));
+
+        // Adjacent but larger and taller
+        Assertions.assertFalse(this.arena.hasAdjacent(new Position(4, 4), new Dimensions(10, 10)));
+
+        // Embedded
+        Assertions.assertFalse(this.arena.hasAdjacent(new Position(8, 6), new Dimensions(1, 1)));
+    }
 }

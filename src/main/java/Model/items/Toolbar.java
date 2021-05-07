@@ -5,14 +5,17 @@ import Model.Dimensions;
 import java.util.HashMap;
 import java.util.Map;
 
+// TODO: STILL A MAP
 public class Toolbar {
     private Map<Integer, Item> toolBar;
     private Integer activeItemIdx;
-    private final Integer maxSlots = 9;
-    private final Dimensions dimensions = new Dimensions(5, 37);
+    private final Dimensions dimensions;
+    private final Integer maxSlots;
 
     public Toolbar() {
         this.toolBar = new HashMap<>();
+        maxSlots = 9;
+        dimensions = new Dimensions(5, 37);
         activeItemIdx = 1;  // Just for testing. Should change this to 0 (unarmed) and change when pressing the numbers on the keyboard
     }
 

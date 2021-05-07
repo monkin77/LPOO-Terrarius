@@ -8,6 +8,7 @@ import Model.elements.enemies.Enemy;
 
 import java.util.List;
 
+// TODO: Refactor
 public class Arena {
     private final Dimensions dimensions;
 
@@ -64,6 +65,8 @@ public class Arena {
         return true;
     }
 
+    // CHANGE NAME, ADJACENT IS NOT ENOUGH. DOES NOT WORK IF IT'S LARGER/TALLER THAN THE BLOCKS
+    // SHOULD IT BE LIKE THIS?
     public boolean hasAdjacent(Position position, Dimensions dimensions){
         for (Block block : this.blocks){
 
