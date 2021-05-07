@@ -9,7 +9,7 @@ public class Toolbar {
     private Map<Integer, Item> toolBar;
     private Integer activeItemIdx;
     private final Integer maxSlots = 9;
-    Dimensions dimensions = new Dimensions(5, 37);
+    private final Dimensions dimensions = new Dimensions(5, 37);
 
     public Toolbar() {
         this.toolBar = new HashMap<>();
