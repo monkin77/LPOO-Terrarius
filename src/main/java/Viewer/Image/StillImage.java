@@ -39,7 +39,6 @@ public class StillImage extends Image{
                 String data = imageScanner.nextLine();
 
                 for (int j = 0; j < width; j++){
-                    int k = data.length();
                     aspect[i][j] = j >= data.length() ? ' ' : data.charAt(j);
                 }
             }
