@@ -44,15 +44,21 @@ public class LanternaGuiTest {
         Mockito.verify(textGraphics, Mockito.times(1)).
                 setForegroundColor(TextColor.Factory.fromString(DEFAULT_FOREGROUND_COLOR));
 
+        Mockito.verify(textGraphics, Mockito.times(1)).
+                setBackgroundColor(TextColor.Factory.fromString(DEFAULT_FOREGROUND_COLOR));
+
         Mockito.verify(textGraphics, Mockito.times(1)).setCharacter(10, 10, 'c');
     }
 
     @Test
     public void drawColouredCharacter() {
-        gui.drawCharacter(10, 10, 'c', "blue");
+        gui.drawCharacter(10, 10, 'c', "blue", "blue");
 
         Mockito.verify(textGraphics, Mockito.times(1)).
                 setForegroundColor(TextColor.Factory.fromString("blue"));
+
+        Mockito.verify(textGraphics, Mockito.times(1)).
+                setBackgroundColor(TextColor.Factory.fromString("blue"));
 
         Mockito.verify(textGraphics, Mockito.times(1)).setCharacter(10, 10, 'c');
     }
