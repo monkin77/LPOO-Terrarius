@@ -5,5 +5,5 @@
 +--+
 IMMI
 IMMI
-I  I
-I  I
+I..I
+I..I

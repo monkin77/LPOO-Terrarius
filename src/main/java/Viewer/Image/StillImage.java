@@ -70,6 +70,8 @@ public class StillImage extends Image{
                     aspect_char = aspect[i][this.dimensions.getWidth() - 1 - j];
                 }
 
+                if (aspect_char == '.') continue;
+
                 gui.drawCharacter(position.getX()+j, position.getY()+i, aspect_char);
             }
         }
