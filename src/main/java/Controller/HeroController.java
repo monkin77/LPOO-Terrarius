@@ -3,6 +3,7 @@ package Controller;
 import GUI.GUI;
 import Model.Position;
 import Model.arena.Arena;
+import Model.elements.Element;
 
 public class HeroController {
     private final Arena arena;
@@ -24,10 +25,12 @@ public class HeroController {
 
     public void moveHeroLeft() {
         moveHero(arena.getHero().getPosition().getLeft());
+        arena.getHero().setOrientation(Element.Orientation.LEFT);
     }
 
     public void moveHeroRight() {
         moveHero(arena.getHero().getPosition().getRight());
+        arena.getHero().setOrientation(Element.Orientation.RIGHT);
     }
 
     public void moveHeroUp() {

@@ -3,6 +3,7 @@ import GUI.GUI;
 import GUI.LanternaGui;
 import Model.arena.Arena;
 import Model.arena.DefaultArenaBuilder;
+import Model.items.tools.Axe;
 
 
 import java.awt.*;
@@ -20,6 +21,10 @@ public class Game {
     public Game(int width, int height) throws FontFormatException, IOException, URISyntaxException {
         this.gui = new LanternaGui(width, height);
         this.arena = new DefaultArenaBuilder(width, height).createArena();
+
+        // temporary
+        this.arena.getHero().addItem(1, new Axe(this.arena.getHero()));
+
         GameController controller = new GameController(arena, gui);
 
         controller.start();

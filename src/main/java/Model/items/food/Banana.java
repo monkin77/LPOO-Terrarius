@@ -1,15 +1,16 @@
 package Model.items.food;
 
+import Model.Dimensions;
 import Model.elements.Hero;
 
 public class Banana extends Food {
     public Banana(Hero hero) {
-        super(hero);
-    }
+        super(hero, new Dimensions(2, 2));
+    } // Could be changed in the future
 
     @Override
-    public void updateStats(Hero hero) {
-        int heroLevel = hero.getLevel().getNumLevel();
+    public void updateStats() {
+        int heroLevel = this.getHero().getLevel().getNumLevel();
         int duration = Math.max(20 - heroLevel / 10, 3);
         this.setStats(new FoodStats(30, duration));
     }

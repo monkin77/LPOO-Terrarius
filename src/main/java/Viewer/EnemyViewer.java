@@ -52,6 +52,6 @@ public class EnemyViewer extends ElementViewer{
 
         animatedImage.setFrameSpeed(frameHandler);
 
-        this.image.draw(element, gui);
+        this.image.draw(element.getPosition(), element.getOrientation(), gui);
     }
 }
