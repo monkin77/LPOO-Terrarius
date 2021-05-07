@@ -29,6 +29,7 @@ public class Element {
 
     public void setDimensions(Dimensions dimensions) {
         this.dimensions = dimensions;
+    }
 
     public void setOrientation(Orientation orientation) {
         this.orientation = orientation;

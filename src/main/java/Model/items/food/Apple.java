@@ -1,10 +1,11 @@
 package Model.items.food;
 
+import Model.Dimensions;
 import Model.elements.Hero;
 
 public class Apple extends Food {
     public Apple(Hero hero) {
-        super(hero);
+        super(hero, new Dimensions(2, 2));
     }
 
     @Override

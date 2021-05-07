@@ -1,11 +1,12 @@
 package Model.items.food;
 
+import Model.Dimensions;
 import Model.elements.Hero;
 
 public class Banana extends Food {
     public Banana(Hero hero) {
-        super(hero);
-    }
+        super(hero, new Dimensions(2, 2));
+    } // Could be changed in the future
 
     @Override
     public void updateStats() {

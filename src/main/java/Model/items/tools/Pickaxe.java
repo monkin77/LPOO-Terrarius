@@ -1,10 +1,11 @@
 package Model.items.tools;
 
+import Model.Dimensions;
 import Model.elements.Hero;
 
 public class Pickaxe extends Tool {
     public Pickaxe(Hero hero) {
-        super(hero);
+        super(hero, new Dimensions(4, 2));
     }
 
     @Override
