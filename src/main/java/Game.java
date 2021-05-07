@@ -24,6 +24,7 @@ public class Game {
 
         // temporary
         this.arena.getHero().addItem(1, new Axe(this.arena.getHero()));
+        this.arena.getHero().addItem(3, new Axe(this.arena.getHero()));
 
         GameController controller = new GameController(arena, gui);
 

@@ -1,10 +1,12 @@
 package Viewer;
 
 import GUI.GUI;
+import Model.Position;
 import Model.arena.Arena;
 import Model.elements.blocks.Block;
 import Model.elements.enemies.Enemy;
 import Model.items.Item;
+import Model.items.Toolbar;
 import Viewer.Image.AnimatedImage;
 import Viewer.Image.ImageDimensions;
 import Viewer.Image.StillImage;
@@ -59,17 +61,21 @@ public class ArenaViewer {
             viewer.draw(enemy, gui);
         }
 
-        Item item = arena.getHero().getToolBar().getActiveItem();
-        if(item != null){
+        Toolbar toolbar = arena.getHero().getToolBar();
+        this.toolbarViewer.draw(toolbar, arena.getDimensions(), gui);
+
+        for(Integer itemKey : toolbar.getToolBar().keySet()) {
+            Item item = toolbar.getItem(itemKey);
             if (!itemCache.containsKey(item.getClass())){
                 itemCache.put(item.getClass(), new ItemViewer(item));
             }
             ItemViewer viewer = itemCache.get(item.getClass());
 
-            viewer.draw(item, gui);
-        }
+            if(itemKey == toolbar.getActiveItemIdx())
+                viewer.draw(item, gui);
 
-        this.toolbarViewer.draw(arena.getHero().getToolBar(), gui);
+            viewer.drawIcon(new Position(arena.getWidth()/2 - toolbar.getDimensions().getWidth()/2 + 1 + ((itemKey-1) * (toolbar.getToolbarCellWidth()+1)), arena.getHeight() - toolbar.getDimensions().getHeight() + 1), gui);
+        }
 
         heroViewer.draw(arena.getHero(), gui);
 

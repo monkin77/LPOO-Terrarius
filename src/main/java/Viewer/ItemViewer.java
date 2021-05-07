@@ -12,11 +12,14 @@ import Viewer.Image.StillImage;
 
 public class ItemViewer {
     protected Image image;
+    protected Image icon;
 
     public ItemViewer(Item item) {
         image = new StillImage();
+        icon = new StillImage();
         if(item.getClass().equals(Axe.class)) {
             image.load("Images/Axe.txt");
+            icon.load("Images/AxeIcon.txt");
         }
     }
 
@@ -27,5 +30,9 @@ public class ItemViewer {
         itemPos.setY(itemPos.getY() - item.getDimensions().getHeight());
 
         this.image.draw(itemPos, hero.getOrientation(), gui);
+    }
+
+    public void drawIcon(Position position, GUI gui){
+        this.icon.draw(position, Element.Orientation.RIGHT, gui);
     }
 }

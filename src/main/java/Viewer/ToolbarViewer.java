@@ -1,6 +1,7 @@
 package Viewer;
 
 import GUI.GUI;
+import Model.Dimensions;
 import Model.Position;
 import Model.elements.Element;
 import Model.elements.Hero;
@@ -17,10 +18,9 @@ public class ToolbarViewer {
         this.image.load("Images/Toolbar.txt");
     }
 
-    public void draw(Toolbar toolbar, GUI gui){
-        Position toolbarPos = new Position(64 - 20, 59);    // When toolbar has the Dimensions attribute replace these random values
+    public void draw(Toolbar toolbar, Dimensions arenaDimensions, GUI gui){
+        Position toolbarPos = new Position(arenaDimensions.getWidth()/2 - toolbar.getDimensions().getWidth()/2, arenaDimensions.getHeight() - toolbar.getDimensions().getHeight());
 
         this.image.draw(toolbarPos, Element.Orientation.RIGHT,  gui);
     }
-    /* NEXT STEP: IMPROVE THE DRAW TO DRAW ICONS OF THE TOOLS */
 }

@@ -1,5 +1,7 @@
 package Model.items;
 
+import Model.Dimensions;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,6 +9,7 @@ public class Toolbar {
     private Map<Integer, Item> toolBar;
     private Integer activeItemIdx;
     private final Integer maxSlots = 9;
+    Dimensions dimensions = new Dimensions(5, 37);
 
     public Toolbar() {
         this.toolBar = new HashMap<>();
@@ -44,5 +47,21 @@ public class Toolbar {
                 return i;
         }
         return -1;
+    }
+
+    public Dimensions getDimensions() {
+        return dimensions;
+    }
+
+    public Map<Integer, Item> getToolBar() {
+        return toolBar;
+    }
+
+    public Integer getToolbarCellHeight() {
+        return this.dimensions.getHeight() - 2;
+    }
+
+    public Integer getToolbarCellWidth() {
+        return ( this.dimensions.getWidth() - 2 - (this.maxSlots-1) ) / this.maxSlots;
     }
 }
