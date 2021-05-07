@@ -4,7 +4,7 @@ WWWW
 WWWW
 WWWW
 <Number of colors to map (Foreground Color)> (in this case 2)
-B #966235
+B #966235   (color in the format #FFFFFF)
 W #FFFFFF
 BBBB
 BWWB
