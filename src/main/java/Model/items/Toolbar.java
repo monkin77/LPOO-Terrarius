@@ -29,7 +29,6 @@ public class Toolbar {
     }
 
     public void setItem(Integer index, Item item) {
-        // Possibly check if there is already an item
         this.toolBar.put(index, item);
     }
 

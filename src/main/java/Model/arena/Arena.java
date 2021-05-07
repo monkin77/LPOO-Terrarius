@@ -2,7 +2,6 @@ package Model.arena;
 
 import Model.Dimensions;
 import Model.Position;
-import Model.elements.Element;
 import Model.elements.Hero;
 import Model.elements.blocks.Block;
 import Model.elements.enemies.Enemy;

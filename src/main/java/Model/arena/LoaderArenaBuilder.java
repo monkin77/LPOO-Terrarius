@@ -10,10 +10,8 @@ import Model.elements.blocks.WoodBlock;
 import Model.elements.enemies.Enemy;
 import Model.elements.enemies.Zombie;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
