@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import static Viewer.ViewerConstants.DEFAULT_FOREGROUND_COLOR;
+import static Viewer.ViewerConstants.*;
 import static java.awt.event.KeyEvent.*;
 
 public class LanternaGui implements GUI {
@@ -104,15 +104,17 @@ public class LanternaGui implements GUI {
     }
 
     @Override
-    public void drawCharacter(int x, int y, char c, String color) {
+    public void drawCharacter(int x, int y, char c, String charColor, String bgColor) {
 
-        graphics.setForegroundColor(TextColor.Factory.fromString(color));
+        graphics.setForegroundColor(TextColor.Factory.fromString(charColor));
+        graphics.setBackgroundColor(TextColor.Factory.fromString(bgColor));
         graphics.setCharacter(x, y, c);
     }
 
     @Override
     public void drawCharacter(int x, int y, char c) {
         graphics.setForegroundColor(TextColor.Factory.fromString(DEFAULT_FOREGROUND_COLOR));
+        graphics.setBackgroundColor(TextColor.Factory.fromString(DEFAULT_BACKGROUND_COLOR));
         graphics.setCharacter(x, y, c);
     }
 

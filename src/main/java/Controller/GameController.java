@@ -51,6 +51,7 @@ public class GameController {
                 lag -= MS_PER_UPDATE;
             }
 
+
             arenaViewer.draw(this.arena);
         }
     }
