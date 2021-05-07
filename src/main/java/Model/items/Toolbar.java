@@ -5,7 +5,7 @@ import Model.Dimensions;
 import java.util.HashMap;
 import java.util.Map;
 
-// TODO: STILL A MAP
+// TODO: STILL A MAP, NOT CHECKING RIGHT KEYS
 public class Toolbar {
     private Map<Integer, Item> toolBar;
     private Integer activeItemIdx;

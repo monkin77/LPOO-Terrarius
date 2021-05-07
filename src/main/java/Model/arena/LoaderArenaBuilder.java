@@ -18,6 +18,7 @@ import java.util.*;
 
 import static java.lang.Math.min;
 
+//TODO: REFACTOR, SEPARATE FUNCTIONS
 public class LoaderArenaBuilder extends ArenaBuilder {
 
     private final int level;
