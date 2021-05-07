@@ -74,7 +74,13 @@ public class ArenaViewer {
             if(itemKey == toolbar.getActiveItemIdx())
                 viewer.draw(item, gui);
 
-            viewer.drawIcon(new Position(arena.getWidth()/2 - toolbar.getDimensions().getWidth()/2 + 1 + ((itemKey-1) * (toolbar.getToolbarCellWidth()+1)), arena.getHeight() - toolbar.getDimensions().getHeight() + 1), gui);
+            int toolbarSeparatorsWidth = 1;
+            int toolbarStartingPositionWidth = arena.getWidth()/2 - toolbar.getDimensions().getWidth()/2 + toolbarSeparatorsWidth;
+            int toolbarOffsetWidth = (itemKey-1) * (toolbar.getToolbarCellWidth() + toolbarSeparatorsWidth);
+
+            int iconX = toolbarStartingPositionWidth + toolbarOffsetWidth;
+            int iconY = arena.getHeight() - toolbar.getDimensions().getHeight() + toolbarSeparatorsWidth;
+            viewer.drawIcon(new Position(iconX, iconY), gui);
         }
 
         heroViewer.draw(arena.getHero(), gui);
