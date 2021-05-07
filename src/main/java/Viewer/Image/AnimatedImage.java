@@ -17,7 +17,7 @@ public class AnimatedImage extends Image {
 
     private FrameHandler frameHandler = new FrameHandler();
 
-    private final List<StillImage> images = new ArrayList<>();
+    private final List<ColoredImage> images = new ArrayList<>();
 
     public void load(String fname){
 
@@ -37,7 +37,7 @@ public class AnimatedImage extends Image {
             imageScanner.nextLine(); //clears the /n
 
             for(int i = 0; i < totalFrames; i++){
-                StillImage image = new StillImage();
+                ColoredImage image = new ColoredImage();
                 String nFname = imageScanner.nextLine();
                 image.load(nFname);
                 images.add(image);

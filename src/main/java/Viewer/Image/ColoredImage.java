@@ -81,7 +81,7 @@ public class ColoredImage extends StillImage{
 
             imageScanner.nextLine();
 
-            for (int i = 0; i< noCharColors; i++){
+            for (int i = 0; i< noBgColors; i++){
                 Character key;
                 key = imageScanner.next().charAt(0);
 
@@ -92,6 +92,8 @@ public class ColoredImage extends StillImage{
 
                 String trash = imageScanner.nextLine();
             }
+
+            System.out.println(fname+ "\n");
 
             for(int i = 0; i < height; i++){
 
