@@ -21,6 +21,8 @@ public class LevelTest {
 
     @Test
     public void equalsWithNewLevels() {
+        Assertions.assertTrue(level.equals(level));
+
         Assertions.assertTrue(level.equals(new Level(3, 0)));
         Assertions.assertFalse(level.equals(new Level(4, 0)));
         Assertions.assertFalse(level.equals(new Level(3, 200)));
