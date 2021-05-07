@@ -9,7 +9,7 @@ public class HeroViewer extends ElementViewer{
     public HeroViewer(){
 
         image = new AnimatedImage();
-        image.load("Images/Hero.txt");
+        image.load("Images/Hero/Hero.txt");
 
     }
 

@@ -1,0 +1,3 @@
+2 20
+Images/Enemies/Zombie1.txt
+Images/Enemies/Zombie2.txt

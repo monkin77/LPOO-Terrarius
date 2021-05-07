@@ -13,7 +13,7 @@ public class EnemyViewer extends ElementViewer{
         image = new AnimatedImage();
 
         if(enemy.getClass().equals(Zombie.class)){
-            image.load("Images/Zombie.txt");
+            image.load("Images/Enemies/Zombie.txt");
         }
 
         FrameHandler frameHandler = ((AnimatedImage)image).getFrameSpeed();

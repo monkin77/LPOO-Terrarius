@@ -1,0 +1,18 @@
+<height> <width> (in this case 4 by 4)
+WWWW
+WWWW
+WWWW
+WWWW
+<Number of colors to map (Foreground Color)> (in this case 2)
+B #966235
+W #FFFFFF
+BBBB
+BWWB
+BWWB
+BBBB
+<Number of colors to map (Background Color)> (in this case 1)
+B #704927
+BBBB
+BBBB
+BBBB
+BBBB
