@@ -63,6 +63,28 @@ public class Arena {
         return true;
     }
 
+    public boolean hasAdjacent(Position position, Dimensions dimensions){
+        for (Block block : this.blocks){
+
+            boolean top_side_touches =
+                    position.getY() >= block.getPosition().getY() &&
+                            position.getY() <= block.getPosition().getY() + block.getDimensions().getHeight() - 1;
+
+            boolean bottom_side_touches =
+                    position.getY() + dimensions.getHeight() - 1 >= block.getPosition().getY() &&
+                            position.getY() + dimensions.getHeight() - 1 <= block.getPosition().getY() + block.getDimensions().getHeight() - 1;
+
+            boolean right_side_touches = position.getX() + dimensions.getWidth() == block.getPosition().getX();
+
+            boolean left_side_touches = position.getX() == block.getPosition().getX() + block.getDimensions().getWidth();
+
+            if ((right_side_touches || left_side_touches) && (top_side_touches || bottom_side_touches)) return true;
+
+        }
+
+        return false;
+    }
+
     public boolean collides(Position position, Dimensions dimensions){
 
         for (Block block : this.blocks){ //Some conditions could have been omitted, however they might become needed

@@ -22,6 +22,12 @@ public class HeroController {
         }
     }
 
+    private void climbHero(Position position){
+        if (!arena.collides(position, arena.getHero().getDimensions()) && arena.hasAdjacent(arena.getHero().getPosition(), arena.getHero().getDimensions())){
+            arena.getHero().setPosition(position);
+        }
+    }
+
     public void moveHeroLeft() {
         moveHero(arena.getHero().getPosition().getLeft());
     }
@@ -31,17 +37,17 @@ public class HeroController {
     }
 
     public void moveHeroUp() {
-        moveHero(arena.getHero().getPosition().getUp());
+        climbHero(arena.getHero().getPosition().getUp());
     }
 
     public void moveHeroDown() {
-        moveHero(arena.getHero().getPosition().getDown());
+        climbHero(arena.getHero().getPosition().getDown());
     }
 
     public void doAction(GUI.ACTION action) {
         switch (action) {
             case UP:
-                // TO DO: JUMPING
+                moveHeroUp();
                 break;
             case LEFT:
                 moveHeroLeft();
@@ -49,6 +55,8 @@ public class HeroController {
             case RIGHT:
                 moveHeroRight();
                 break;
+            case DOWN:
+                moveHeroDown();
             case CLICK:
                 // TO DO: USE ITEM
                 break;
