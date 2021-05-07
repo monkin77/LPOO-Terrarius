@@ -3,16 +3,22 @@ package Controller;
 import GUI.GUI;
 import Model.arena.Arena;
 
+import java.util.List;
+
 public class ArenaController {
     private final HeroController heroController;
     private final EnemyController enemyController;
-    private final int updatesPerAction;
+    private final int enemyMovesPerAction;
+    private final int gravityUpdatesPerAction;
+    private final int inputUpdatesPerAction;
     private int updateCounter;
 
     public ArenaController(Arena arena, int timePerUpdate) {
         this.heroController = new HeroController(arena);
         this.enemyController = new EnemyController(arena);
-        this.updatesPerAction = Math.max(128 / timePerUpdate, 1);
+        this.enemyMovesPerAction = Math.max(128 / timePerUpdate, 1);
+        this.gravityUpdatesPerAction = Math.max(16 / timePerUpdate, 1);
+        this.inputUpdatesPerAction = Math.max(16 / timePerUpdate, 1);
         this.updateCounter = 0;
     }
 
@@ -20,12 +26,24 @@ public class ArenaController {
         heroController.doAction(action);
     }
 
-    public void timedActions() {
+    public void processInputs(){
+
+    }
+
+    public void timedActions(List<GUI.ACTION> actionList) {
         updateCounter++;
-        if (updateCounter % updatesPerAction == 0) {
+        if (updateCounter % enemyMovesPerAction == 0) {
             enemyController.moveEnemies();
-            updateCounter = 0;
         }
+        if (updateCounter % gravityUpdatesPerAction == 0){
+            heroController.fallHero();
+        }
+        if (updateCounter % inputUpdatesPerAction == 0) {
+            for (GUI.ACTION action : actionList) {
+                this.doAction(action);
+            }
+        }
+        updateCounter = updateCounter % Math.max(gravityUpdatesPerAction, enemyMovesPerAction);
     }
 
     public boolean checkEnd() {

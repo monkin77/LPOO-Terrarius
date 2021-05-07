@@ -28,6 +28,11 @@ public class HeroController {
         }
     }
 
+    public void fallHero(){
+        if(!arena.hasAdjacent(arena.getHero().getPosition(), arena.getHero().getDimensions()))
+            moveHero(arena.getHero().getPosition().getDown());
+    }
+
     public void moveHeroLeft() {
         moveHero(arena.getHero().getPosition().getLeft());
     }
@@ -60,6 +65,8 @@ public class HeroController {
             case CLICK:
                 // TO DO: USE ITEM
                 break;
+            case FALL:
+                fallHero();
         }
     }
 
