@@ -65,8 +65,6 @@ public class HeroController {
             case CLICK:
                 // TO DO: USE ITEM
                 break;
-            case FALL:
-                fallHero();
         }
     }
 
