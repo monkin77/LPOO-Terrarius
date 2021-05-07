@@ -10,8 +10,7 @@ import Model.elements.enemies.Enemy;
 import java.util.List;
 
 public class Arena {
-    private final int width;
-    private final int height;
+    private final Dimensions dimensions;
 
     private Hero hero;
 
@@ -19,8 +18,7 @@ public class Arena {
     private List<Block> blocks;
 
     public Arena(int width, int height) {
-        this.width = width;
-        this.height = height;
+        this.dimensions = new Dimensions(height, width);
     }
 
     public Hero getHero() {
@@ -48,11 +46,15 @@ public class Arena {
     }
 
     public int getWidth() {
-        return width;
+        return this.dimensions.getWidth();
     }
 
     public int getHeight() {
-        return height;
+        return this.dimensions.getHeight();
+    }
+
+    public Dimensions getDimensions() {
+        return dimensions;
     }
 
     public boolean isEmpty(Position position){

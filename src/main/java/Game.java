@@ -25,6 +25,7 @@ public class Game {
         this.gui = new LanternaGui(width, height);
         this.arena = new LoaderArenaBuilder(1).createArena();
         this.arena.getHero().addItem(1, new Axe(this.arena.getHero()));
+        this.arena.getHero().addItem(3, new Axe(this.arena.getHero()));
 
         GameController controller = new GameController(arena, gui);
 

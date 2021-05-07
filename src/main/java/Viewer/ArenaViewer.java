@@ -1,10 +1,12 @@
 package Viewer;
 
 import GUI.GUI;
+import Model.Position;
 import Model.arena.Arena;
 import Model.elements.blocks.Block;
 import Model.elements.enemies.Enemy;
 import Model.items.Item;
+import Model.items.Toolbar;
 import Viewer.Image.AnimatedImage;
 import Viewer.Image.ImageDimensions;
 import Viewer.Image.StillImage;
@@ -20,6 +22,7 @@ public class ArenaViewer {
     private final Map<Class, ElementViewer> enemyCache = new HashMap<>();
     private final Map<Class, ElementViewer> blockCache = new HashMap<>();
     private final Map<Class, ItemViewer> itemCache = new HashMap<>();
+    private final ToolbarViewer toolbarViewer = new ToolbarViewer();
     private HeroViewer heroViewer = new HeroViewer();
 
     private final GUI gui;
@@ -66,14 +69,26 @@ public class ArenaViewer {
             viewer.draw(enemy, gui);
         }
 
-        Item item = arena.getHero().getToolBar().getActiveItem();
-        if(item != null){
+        Toolbar toolbar = arena.getHero().getToolBar();
+        this.toolbarViewer.draw(toolbar, arena.getDimensions(), gui);
+
+        for(Integer itemKey : toolbar.getToolBar().keySet()) {
+            Item item = toolbar.getItem(itemKey);
             if (!itemCache.containsKey(item.getClass())){
                 itemCache.put(item.getClass(), new ItemViewer(item));
             }
             ItemViewer viewer = itemCache.get(item.getClass());
 
-            viewer.draw(item, gui);
+            if(itemKey == toolbar.getActiveItemIdx())
+                viewer.draw(item, gui);
+
+            int toolbarSeparatorsWidth = 1;
+            int toolbarStartingPositionWidth = arena.getWidth()/2 - toolbar.getDimensions().getWidth()/2 + toolbarSeparatorsWidth;
+            int toolbarOffsetWidth = (itemKey-1) * (toolbar.getToolbarCellWidth() + toolbarSeparatorsWidth);
+
+            int iconX = toolbarStartingPositionWidth + toolbarOffsetWidth;
+            int iconY = arena.getHeight() - toolbar.getDimensions().getHeight() + toolbarSeparatorsWidth;
+            viewer.drawIcon(new Position(iconX, iconY), gui);
         }
 
         heroViewer.draw(arena.getHero(), gui);
