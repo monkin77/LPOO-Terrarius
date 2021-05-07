@@ -23,6 +23,7 @@ public class HeroController {
         }
     }
 
+    // TODO: POSSIBLY REFACTOR
     private void climbHero(Position position){
         if (!arena.collides(position, arena.getHero().getDimensions()) && arena.hasAdjacent(arena.getHero().getPosition(), arena.getHero().getDimensions())){
             arena.getHero().setPosition(position);

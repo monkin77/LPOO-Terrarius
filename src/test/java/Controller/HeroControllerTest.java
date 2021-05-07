@@ -45,12 +45,14 @@ public class HeroControllerTest {
 
     @Test
     public void moveHeroUp() {
+        Mockito.when(arena.hasAdjacent(Mockito.any(), Mockito.any())).thenReturn(true);
         heroController.moveHeroUp();
         Mockito.verify(hero, Mockito.times(1)).setPosition(new Position(10, 9));
     }
 
     @Test
     public void moveHeroDown() {
+        Mockito.when(arena.hasAdjacent(Mockito.any(), Mockito.any())).thenReturn(true);
         heroController.moveHeroDown();
         Mockito.verify(hero, Mockito.times(1)).setPosition(new Position(10, 11));
     }
@@ -80,6 +82,14 @@ public class HeroControllerTest {
     }
 
     @Test
+    public void fallHero() {
+        Mockito.when(arena.hasAdjacent(Mockito.any(), Mockito.any())).thenReturn(false);
+
+        heroController.fallHero();
+        Mockito.verify(hero, Mockito.times(1)).setPosition(new Position(10, 11));
+    }
+
+    @Test
     public void isHeroAlive() {
         Mockito.when(hero.getHealth()).thenReturn(50);
         Assertions.assertTrue(heroController.isHeroAlive());
@@ -95,8 +105,10 @@ public class HeroControllerTest {
 
         spyController.doAction(GUI.ACTION.LEFT);
         spyController.doAction(GUI.ACTION.RIGHT);
+        spyController.doAction(GUI.ACTION.UP);
 
         Mockito.verify(spyController, Mockito.times(1)).moveHeroLeft();
         Mockito.verify(spyController, Mockito.times(1)).moveHeroRight();
+        Mockito.verify(spyController, Mockito.times(1)).moveHeroUp();
     }
 }
