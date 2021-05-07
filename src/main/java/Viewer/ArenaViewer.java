@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static Viewer.ViewerConstants.*;
+
 public class ArenaViewer {
 
     private final Map<Class, ElementViewer> enemyCache = new HashMap<>();
@@ -41,6 +43,12 @@ public class ArenaViewer {
     public void draw(Arena arena) throws IOException { //Arena argument
 
         this.gui.clear();
+
+        for (int i = 0; i < arena.getWidth(); i++){
+            for (int j = 0; j < arena.getHeight(); j++){
+                gui.drawCharacter(i, j, ' ', SKY_COLOR, SKY_COLOR);
+            }
+        }
 
         for(Block block : arena.getBlocks()){
             if (!blockCache.containsKey(block.getClass())){
