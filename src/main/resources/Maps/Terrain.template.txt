@@ -1,0 +1,20 @@
+<Number of classes>
+d DirtBlock     (identifier and className)
+s StoneBlock
+w WoodBlock
+................................        '.' -> Transparent
+................................
+................................
+................................
+..............................w.
+..............................w.
+..............................w.
+..............................w.
+........dddd..................w.
+...dddddssssdddd..............w.
+dddsssssssssssssddddd.........w.
+sssssssssssssssssssssdddddd..ddd
+sssssssssssssssssssssssssss..sss
+sssssssssssssss..............sss
+sssssssssssssss..............sss
+ssssssssssssssssssssssssssssssss
