@@ -32,6 +32,12 @@ public class LanternaGui implements GUI {
     private boolean mouseClicked;
     private KeyboardHandler keyboardHandler;
 
+    public LanternaGui(TerminalScreen screen, KeyboardHandler keyboardHandler) {
+        this.screen = screen;
+        this.keyboardHandler = keyboardHandler;
+        graphics = screen.newTextGraphics();
+        this.mouseClicked = true;
+    }
 
     public LanternaGui(int width, int height) throws IOException, FontFormatException, URISyntaxException {
         AWTTerminalFontConfiguration fontConfig = loadSquareFont();
@@ -133,7 +139,7 @@ public class LanternaGui implements GUI {
         screen.close();
     }
 
-    public List<ACTION> getNextActions() throws IOException {
+    public List<ACTION> getNextActions() {
 
         List<ACTION> actionList = new ArrayList<>();
 
