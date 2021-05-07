@@ -21,10 +21,7 @@ public class ArenaViewer {
         this.gui = gui;
     }
 
-    public void draw(Arena arena) throws IOException { //Arena argument
-
-        this.gui.clear();
-
+    public void update() {
         for (ElementViewer elementViewer : blockCache.values()){
             elementViewer.update();
         }
@@ -34,6 +31,11 @@ public class ArenaViewer {
         }
 
         heroViewer.update();
+    }
+
+    public void draw(Arena arena) throws IOException { //Arena argument
+
+        this.gui.clear();
 
         for(Block block : arena.getBlocks()){
             if (!blockCache.containsKey(block.getClass())){
