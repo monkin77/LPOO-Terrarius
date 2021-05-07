@@ -1,0 +1,3 @@
+<numImages> <numFramesPerImage>
+Images/<image1>.txt
+Images/<image2>.txt

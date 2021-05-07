@@ -14,9 +14,7 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class StillImage extends Image{
-
-    protected int height;
-    protected int width;
+    protected ImageDimensions dimensions;     // Possibly write about this on report (Primitive Obsession smell fixed)
     protected char[][] aspect;
 
     public void load(String fname){
@@ -28,8 +26,9 @@ public class StillImage extends Image{
 
             Scanner imageScanner = new Scanner(imageFile);
 
-            height = imageScanner.nextInt();
-            width = imageScanner.nextInt();
+            int height = imageScanner.nextInt();
+            int width = imageScanner.nextInt();
+            this.dimensions = new ImageDimensions(width, height);
 
             aspect = new char[height][width];
 
@@ -59,10 +58,19 @@ public class StillImage extends Image{
         //Not doing anything for now
     }
 
-    public void draw(Element element, GUI gui){
-        for(int i = 0; i < height; i++){
-            for (int j = 0; j < width; j++){
-                gui.drawCharacter(element.getPosition().getX()+j, element.getPosition().getY()+i, aspect[i][j]);
+    public void draw(Position position, Element.Orientation orientation, GUI gui){
+        for(int i = 0; i < this.dimensions.getHeight(); i++){
+            for (int j = 0; j < this.dimensions.getWidth(); j++){
+                char aspect_char = ' ';
+
+                if(orientation == Element.Orientation.RIGHT){
+                    aspect_char = aspect[i][j];
+                }
+                else{
+                    aspect_char = aspect[i][this.dimensions.getWidth() - 1 - j];
+                }
+
+                gui.drawCharacter(position.getX()+j, position.getY()+i, aspect_char);
             }
         }
     }
