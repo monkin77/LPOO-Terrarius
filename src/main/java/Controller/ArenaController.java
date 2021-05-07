@@ -37,6 +37,7 @@ public class ArenaController {
         }
         if (updateCounter % gravityUpdatesPerAction == 0){
             heroController.fallHero();
+            enemyController.fallEnemies();
         }
         if (updateCounter % inputUpdatesPerAction == 0) {
             for (GUI.ACTION action : actionList) {

@@ -45,10 +45,7 @@ public class GameController {
 
             //if (arenaController.checkEnd()) break;
 
-            int i= 0;
-            System.out.printf( "hello");
             while (lag >= MS_PER_UPDATE) {
-                System.out.printf( "h:" + i++ +"\n");
                 arenaController.timedActions(actions);
                 arenaViewer.update();
                 lag -= MS_PER_UPDATE;
