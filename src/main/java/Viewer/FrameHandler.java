@@ -13,6 +13,7 @@ public class FrameHandler {
         this.totalFPI = totalFPI;
     }
 
+    //TODO: SHOULD ALL THESE BE 0?
     public FrameHandler(){
         this.currentImage = 0;
         this.totalImages = 0;
