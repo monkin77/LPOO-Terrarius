@@ -20,7 +20,7 @@ public class ToolbarViewer {
     public void draw(Toolbar toolbar, GUI gui){
         Position toolbarPos = new Position(64 - 20, 59);    // When toolbar has the Dimensions attribute replace these random values
 
-        this.image.draw(toolbarPos, gui);
+        this.image.draw(toolbarPos, Element.Orientation.RIGHT,  gui);
     }
     /* NEXT STEP: IMPROVE THE DRAW TO DRAW ICONS OF THE TOOLS */
 }
