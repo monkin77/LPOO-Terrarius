@@ -14,11 +14,11 @@ public class BlockViewer extends ElementViewer{
     public BlockViewer(Block block){
 
         if(block.getClass().equals(DirtBlock.class)){
-            image = new StillImage();
+            image = new ColoredImage();
             image.load("Images/Dirt.txt");
         }
         else if(block.getClass().equals(StoneBlock.class)){
-            image = new StillImage();
+            image = new ColoredImage();
             image.load("Images/Stone.txt");
         }
         else if(block.getClass().equals(WoodBlock.class)){
