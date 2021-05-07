@@ -20,23 +20,33 @@ public class BlockTest {
     }
 
     @Test
-    public void hp() {
+    public void initHP() {
         for (Block block : blocks) {
             Assertions.assertEquals(block.getHP(), block.initHP());
-            block.setHp(5);
-            Assertions.assertEquals(5, block.getHP());
+            int oldHP = block.getHP();
+            block.setHp(0);
+            Assertions.assertEquals(oldHP, block.initHP());
         }
     }
 
     @Test
-    public void hardness() {
-        for (Block block : blocks) {
-            if (block instanceof DirtBlock)
-                Assertions.assertEquals(DirtBlock.DIRT_BLOCK_HARDNESS, block.getHardness());
-            else if (block instanceof WoodBlock)
-                Assertions.assertEquals(WoodBlock.WOOD_BLOCK_HARDNESS, block.getHardness());
-            else if (block instanceof StoneBlock)
-                Assertions.assertEquals(StoneBlock.STONE_BLOCK_HARDNESS, block.getHardness());
-        }
+    public void DirtBlock() {
+        DirtBlock dirt = (DirtBlock) blocks.get(0);
+        Assertions.assertEquals(10, dirt.getHP());
+        Assertions.assertEquals(1, dirt.getHardness());
+    }
+
+    @Test
+    public void WoodBlock() {
+        WoodBlock wood = (WoodBlock) blocks.get(1);
+        Assertions.assertEquals(20, wood.getHP());
+        Assertions.assertEquals(2, wood.getHardness());
+    }
+
+    @Test
+    public void StoneBlock() {
+        StoneBlock stone = (StoneBlock) blocks.get(2);
+        Assertions.assertEquals(30, stone.getHP());
+        Assertions.assertEquals(3, stone.getHardness());
     }
 }

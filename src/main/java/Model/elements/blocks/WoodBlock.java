@@ -4,7 +4,7 @@ import Model.Dimensions;
 import Model.Position;
 
 public class WoodBlock extends Block {
-    protected static final int WOOD_BLOCK_HARDNESS = 2;
+    private static final int WOOD_BLOCK_HARDNESS = 2;
 
     public WoodBlock(Position position) {
         super(position, new Dimensions(4, 4));
