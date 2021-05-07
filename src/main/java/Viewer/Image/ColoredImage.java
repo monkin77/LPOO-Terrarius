@@ -12,11 +12,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import static Viewer.ViewerConstants.*;
+
 public class ColoredImage extends StillImage{
 
-    private int no_colors;
-    private Map<Character, String> colorMap = new HashMap<>();
-    private char[][] colors;
+    private final Map<Character, String> charColorMap = new HashMap<>();
+    private char[][] charColors;
+    private final Map<Character, String> bgColorMap = new HashMap<>();
+    private char[][] bgColors;
 
     @Override
     public void load(String fname) {
@@ -33,7 +36,8 @@ public class ColoredImage extends StillImage{
             this.dimensions = new ImageDimensions(width, height);
 
             aspect = new char[height][width];
-            colors = new char[height][width];
+            charColors = new char[height][width];
+            bgColors = new char[height][width];
 
             imageScanner.nextLine(); //clears the /n
 
@@ -47,18 +51,18 @@ public class ColoredImage extends StillImage{
                 }
             }
 
-            no_colors = imageScanner.nextInt();
+            int noCharColors = imageScanner.nextInt();
 
             imageScanner.nextLine();
 
-            for (int i = 0; i<no_colors; i++){
+            for (int i = 0; i< noCharColors; i++){
                 Character key;
                 key = imageScanner.next().charAt(0);
 
                 String value;
                 value = imageScanner.next();
 
-                colorMap.put(key, value);
+                charColorMap.put(key, value);
 
                 String trash = imageScanner.nextLine();
             }
@@ -69,7 +73,33 @@ public class ColoredImage extends StillImage{
 
                 for (int j = 0; j < width; j++){
                     int k = data.length();
-                    colors[i][j] = data.charAt(j);
+                    charColors[i][j] = data.charAt(j);
+                }
+            }
+
+            int noBgColors = imageScanner.nextInt();
+
+            imageScanner.nextLine();
+
+            for (int i = 0; i< noCharColors; i++){
+                Character key;
+                key = imageScanner.next().charAt(0);
+
+                String value;
+                value = imageScanner.next();
+
+                bgColorMap.put(key, value);
+
+                String trash = imageScanner.nextLine();
+            }
+
+            for(int i = 0; i < height; i++){
+
+                String data = imageScanner.nextLine();
+
+                for (int j = 0; j < width; j++){
+                    int k = data.length();
+                    bgColors[i][j] = data.charAt(j);
                 }
             }
 
@@ -95,20 +125,23 @@ public class ColoredImage extends StillImage{
             for (int j = 0; j < this.dimensions.getWidth(); j++){
 
                 char aspect_char = ' ';
-                String color = "#DDDDDD";
+                String charColor = DEFAULT_FOREGROUND_COLOR;
+                String bgColor = DEFAULT_BACKGROUND_COLOR;
 
                 if(orientation == Element.Orientation.RIGHT){
                     aspect_char = aspect[i][j];
-                    color = colorMap.get(colors[i][j]);
+                    bgColor = bgColorMap.get(bgColors[i][j]);
+                    charColor = charColorMap.get(charColors[i][j]);
                 }
                 else{
                     aspect_char = aspect[i][this.dimensions.getWidth() - 1 - j];
-                    color = colorMap.get(colors[i][this.dimensions.getWidth() - 1 - j]);
+                    bgColor = bgColorMap.get(bgColors[i][this.dimensions.getWidth() - 1 - j]);
+                    charColor = charColorMap.get(charColors[i][this.dimensions.getWidth() - 1 - j]);
                 }
 
                 gui.drawCharacter(
                         position.getX()+j, position.getY()+i,
-                        aspect_char, color);
+                        aspect_char, charColor, bgColor);
             }
         }
     }

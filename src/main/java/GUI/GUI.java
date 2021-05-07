@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface GUI {
-    void drawCharacter(int x, int y, char c, String color);
+    void drawCharacter(int x, int y, char c, String charColor, String bgColor);
     void drawCharacter(int x, int y, char c);
     void clear();
     void refresh() throws IOException;
