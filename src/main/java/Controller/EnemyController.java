@@ -25,8 +25,14 @@ public class EnemyController {
         }
     }
 
+    public void fallEnemies(){
+        for (Enemy enemy : arena.getEnemies()) {
+            moveEnemy(enemy, enemy.getPosition().getDown());
+        }
+    }
+
     private void moveEnemy(Enemy enemy, Position position) {
-        if (arena.isEmpty(position)) {
+        if (!arena.collides(position, enemy.getDimensions())) {
             enemy.setPosition(position);
             // TO DO: TAKE INTO ACCOUNT WIDTH AND HEIGHT
             if (arena.getHero().getPosition().equals(position))
