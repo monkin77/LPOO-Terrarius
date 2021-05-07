@@ -17,6 +17,7 @@ import java.util.Map;
 
 import static Viewer.ViewerConstants.*;
 
+//TODO: REFACTOR
 public class ArenaViewer {
 
     private final Map<Class, ElementViewer> enemyCache = new HashMap<>();

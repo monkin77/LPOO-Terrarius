@@ -7,6 +7,7 @@ import Viewer.Image.Image;
 import java.util.HashMap;
 import java.util.Map;
 
+// TODO: REFACTORING
 public abstract class ElementViewer {
     protected Image image;
     protected Map<Element, FrameHandler> elementFrameSpeedMap = new HashMap<>();

@@ -9,7 +9,7 @@ import Model.items.tools.Axe;
 import Viewer.Image.Image;
 import Viewer.Image.StillImage;
 
-
+//TODO: REFACTOR PROTECTED?
 public class ItemViewer {
     protected Image image;
     protected Image icon;

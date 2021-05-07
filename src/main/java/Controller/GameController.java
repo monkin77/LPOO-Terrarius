@@ -24,16 +24,17 @@ public class GameController {
         this.arenaController = new ArenaController(this.arena, MS_PER_UPDATE);
         this.arenaViewer = new ArenaViewer(gui);
         this.gui = gui;
-
     }
 
     /*
     Check this pattern at:
     https://gameprogrammingpatterns.com/game-loop.html
      */
-    long previous = System.currentTimeMillis();
-    long lag = 0;
+    // TODO: REFACTORING SO WE CAN TEST
     public void start() throws IOException {
+        long previous = System.currentTimeMillis();
+        long lag = 0;
+
         while (true) {
             long current = System.currentTimeMillis();
             long elapsed = current - previous;

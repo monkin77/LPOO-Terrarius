@@ -5,6 +5,7 @@ import Model.arena.Arena;
 
 import java.util.List;
 
+// TODO: REFACTORING
 public class ArenaController {
     private final HeroController heroController;
     private final EnemyController enemyController;
