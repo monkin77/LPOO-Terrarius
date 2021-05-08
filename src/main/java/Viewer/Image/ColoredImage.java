@@ -69,14 +69,14 @@ public class ColoredImage extends StillImage{
         }
     }
 
-    private void loadCharColors(Scanner imageScanner, int width, int height) {
+    protected void loadCharColors(Scanner imageScanner, int width, int height) {
         charColors = new char[height][width];
 
         int noCharColors = imageScanner.nextInt();
 
         imageScanner.nextLine();
 
-        for (int i = 0; i< noCharColors; i++){
+        for (int i = 0; i < noCharColors; i++){
             Character key;
             key = imageScanner.next().charAt(0);
 
@@ -98,14 +98,14 @@ public class ColoredImage extends StillImage{
         }
     }
 
-    private void loadBackgroundColors(Scanner imageScanner, int width, int height) {
+    protected void loadBackgroundColors(Scanner imageScanner, int width, int height) {
         bgColors = new char[height][width];
 
         int noBgColors = imageScanner.nextInt();
 
         imageScanner.nextLine();
 
-        for (int i = 0; i< noBgColors; i++){
+        for (int i = 0; i < noBgColors; i++) {
             Character key;
             key = imageScanner.next().charAt(0);
 
@@ -117,7 +117,7 @@ public class ColoredImage extends StillImage{
             String trash = imageScanner.nextLine();
         }
 
-        for(int i = 0; i < height; i++){
+        for(int i = 0; i < height; i++) {
 
             String data = imageScanner.nextLine();
 
