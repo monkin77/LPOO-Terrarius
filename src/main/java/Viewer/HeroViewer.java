@@ -7,18 +7,16 @@ import Viewer.Image.AnimatedImage;
 public class HeroViewer extends ElementViewer{
 
     public HeroViewer(){
-
-        image = new AnimatedImage();
-        image.load("Images/Hero/Hero.txt");
-
+        setImage(new AnimatedImage());
+        getImage().load("Images/Hero/Hero.txt");
     }
 
     @Override
     public void update() {
-        image.update();
+        getImage().update();
     }
 
     public void draw(Element element, GUI gui){
-        image.draw(element.getPosition(), element.getOrientation(), gui);
+        getImage().draw(element.getPosition(), element.getOrientation(), gui);
     }
 }

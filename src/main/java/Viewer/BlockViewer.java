@@ -12,27 +12,25 @@ public class BlockViewer extends ElementViewer{
 
     public BlockViewer(Block block){
 
+        setImage(new ColoredImage());
         if(block.getClass().equals(DirtBlock.class)){
-            image = new ColoredImage();
-            image.load("Images/Blocks/Dirt.txt");
+            getImage().load("Images/Blocks/Dirt.txt");
         }
         else if(block.getClass().equals(StoneBlock.class)){
-            image = new ColoredImage();
-            image.load("Images/Blocks/Stone.txt");
+            getImage().load("Images/Blocks/Stone.txt");
         }
         else if(block.getClass().equals(WoodBlock.class)){
-            image = new ColoredImage();
-            image.load("Images/Blocks/ColoredWood.txt");
+            getImage().load("Images/Blocks/ColoredWood.txt");
         }
     }
 
     @Override
     public void update() {
-        image.update();
+        getImage().update();
     }
 
     @Override
     public void draw(Element element, GUI gui) {
-        this.image.draw(element.getPosition(), element.getOrientation(), gui);
+        getImage().draw(element.getPosition(), element.getOrientation(), gui);
     }
 }
