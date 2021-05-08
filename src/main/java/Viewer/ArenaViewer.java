@@ -17,21 +17,16 @@ import static Viewer.ViewerConstants.*;
 
 public class ArenaViewer {
 
-    private final Map<Class, ElementViewer> enemyCache;
-    private final Map<Class, ElementViewer> blockCache;
-    private final Map<Class, ItemViewer> itemCache;
-    private final ToolbarViewer toolbarViewer;
-    private HeroViewer heroViewer;
+    private final Map<Class, ElementViewer> enemyCache = new HashMap<>();
+    private final Map<Class, ElementViewer> blockCache = new HashMap<>();
+    private final Map<Class, ItemViewer> itemCache = new HashMap<>();
+    private final ToolbarViewer toolbarViewer = new ToolbarViewer();
+    private HeroViewer heroViewer = new HeroViewer();
 
     private final GUI gui;
 
-    public ArenaViewer(GUI gui){
+    public ArenaViewer(GUI gui) {
         this.gui = gui;
-        enemyCache = new HashMap<>();
-        blockCache = new HashMap<>();
-        itemCache = new HashMap<>();
-        toolbarViewer = new ToolbarViewer();
-        heroViewer = new HeroViewer();
     }
 
     public void update() {
