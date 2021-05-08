@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import static Viewer.ViewerConstants.DEFAULT_BACKGROUND_COLOR;
 import static Viewer.ViewerConstants.DEFAULT_FOREGROUND_COLOR;
 import static java.awt.event.KeyEvent.*;
 
@@ -45,7 +46,7 @@ public class LanternaGuiTest {
                 setForegroundColor(TextColor.Factory.fromString(DEFAULT_FOREGROUND_COLOR));
 
         Mockito.verify(textGraphics, Mockito.times(1)).
-                setBackgroundColor(TextColor.Factory.fromString(DEFAULT_FOREGROUND_COLOR));
+                setBackgroundColor(TextColor.Factory.fromString(DEFAULT_BACKGROUND_COLOR));
 
         Mockito.verify(textGraphics, Mockito.times(1)).setCharacter(10, 10, 'c');
     }

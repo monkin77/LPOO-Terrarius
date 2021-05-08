@@ -52,7 +52,7 @@ public class StillImageTest {
 
     @Test
     public void draw() {
-        stillImage.load("Images/Axe.txt");
+        stillImage.load("Images/Items/Axe.txt");
         stillImage.draw(new Position(10, 10), Element.Orientation.RIGHT, gui);
 
         Mockito.verify(gui, Mockito.times(6)).

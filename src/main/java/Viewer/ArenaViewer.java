@@ -7,9 +7,6 @@ import Model.elements.blocks.Block;
 import Model.elements.enemies.Enemy;
 import Model.items.Item;
 import Model.items.Toolbar;
-import Viewer.Image.AnimatedImage;
-import Viewer.Image.ImageDimensions;
-import Viewer.Image.StillImage;
 
 import java.io.IOException;
 import java.util.HashMap;

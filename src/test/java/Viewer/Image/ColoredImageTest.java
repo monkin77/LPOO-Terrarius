@@ -75,7 +75,7 @@ public class ColoredImageTest {
 
     @Test
     public void draw() {
-        coloredImage.load("Images/ColoredWood.txt");
+        coloredImage.load("Images/Blocks/ColoredWood.txt");
         coloredImage.draw(new Position(10, 10), Element.Orientation.RIGHT, gui);
 
         Mockito.verify(gui, Mockito.times(16)).
