@@ -12,6 +12,10 @@ public class StillImage extends Image{
     protected ImageDimensions dimensions;
     protected char[][] aspect;
 
+    public StillImage() {
+        dimensions = new ImageDimensions(0, 0);
+    }
+
     public void load(String fname) {
         try {
             Scanner imageScanner = getScannerFromFile(fname);
@@ -51,7 +55,7 @@ public class StillImage extends Image{
 
         imageScanner.nextLine(); //clears the /n
 
-        for(int i = 0; i < height; i++){
+        for(int i = 0; i < height; i++) {
 
             String data = imageScanner.nextLine();
 
