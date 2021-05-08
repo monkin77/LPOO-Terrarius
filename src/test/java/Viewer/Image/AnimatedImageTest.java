@@ -10,8 +10,8 @@ import java.net.URISyntaxException;
 import java.util.Scanner;
 
 public class AnimatedImageTest {
-    AnimatedImage animatedImage;
-    GUI gui;
+    private AnimatedImage animatedImage;
+    private GUI gui;
 
     @BeforeEach
     public void setup() {

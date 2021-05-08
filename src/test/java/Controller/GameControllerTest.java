@@ -13,9 +13,9 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class GameControllerTest {
-    GameController gameController;
-    Arena arena;
-    GUI gui;
+    private GameController gameController;
+    private Arena arena;
+    private GUI gui;
 
     @BeforeEach
     public void setup() {

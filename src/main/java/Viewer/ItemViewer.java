@@ -11,8 +11,8 @@ import Viewer.Image.StillImage;
 
 //TODO: REFACTOR PROTECTED?
 public class ItemViewer {
-    protected Image image;
-    protected Image icon;
+    private Image image;
+    private Image icon;
 
     public ItemViewer(Item item) {
         image = new StillImage();

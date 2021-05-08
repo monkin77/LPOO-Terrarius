@@ -13,8 +13,8 @@ import java.net.URISyntaxException;
 import java.util.Scanner;
 
 public class StillImageTest {
-    StillImage stillImage;
-    GUI gui;
+    private StillImage stillImage;
+    private GUI gui;
 
     @BeforeEach
     public void setup() {

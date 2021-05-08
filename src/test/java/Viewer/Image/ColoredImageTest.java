@@ -13,8 +13,8 @@ import java.net.URISyntaxException;
 import java.util.Scanner;
 
 public class ColoredImageTest {
-    ColoredImage coloredImage;
-    GUI gui;
+    private ColoredImage coloredImage;
+    private GUI gui;
 
     @BeforeEach
     public void setup() {
