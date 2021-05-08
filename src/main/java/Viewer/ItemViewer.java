@@ -18,8 +18,8 @@ public class ItemViewer {
         image = new StillImage();
         icon = new StillImage();
         if(item.getClass().equals(Axe.class)) {
-            image.load("Images/Axe.txt");
-            icon.load("Images/AxeIcon.txt");
+            image.load("Images/Items/Axe.txt");
+            icon.load("Images/Items/AxeIcon.txt");
         }
     }
 

@@ -4,8 +4,6 @@ import GUI.GUI;
 import Model.Dimensions;
 import Model.Position;
 import Model.elements.Element;
-import Model.elements.Hero;
-import Model.items.Item;
 import Model.items.Toolbar;
 import Viewer.Image.Image;
 import Viewer.Image.StillImage;
@@ -15,7 +13,7 @@ public class ToolbarViewer {
 
     public ToolbarViewer() {
         this.image = new StillImage();
-        this.image.load("Images/Toolbar.txt");
+        this.image.load("Images/Toolbar/Toolbar.txt");
     }
 
     public void draw(Toolbar toolbar, Dimensions arenaDimensions, GUI gui){

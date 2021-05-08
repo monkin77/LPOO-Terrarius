@@ -7,7 +7,6 @@ import Model.elements.blocks.DirtBlock;
 import Model.elements.blocks.StoneBlock;
 import Model.elements.blocks.WoodBlock;
 import Viewer.Image.ColoredImage;
-import Viewer.Image.StillImage;
 
 public class BlockViewer extends ElementViewer{
 
@@ -15,15 +14,15 @@ public class BlockViewer extends ElementViewer{
 
         if(block.getClass().equals(DirtBlock.class)){
             image = new ColoredImage();
-            image.load("Images/Dirt.txt");
+            image.load("Images/Blocks/Dirt.txt");
         }
         else if(block.getClass().equals(StoneBlock.class)){
             image = new ColoredImage();
-            image.load("Images/Stone.txt");
+            image.load("Images/Blocks/Stone.txt");
         }
         else if(block.getClass().equals(WoodBlock.class)){
             image = new ColoredImage();
-            image.load("Images/ColoredWood.txt");
+            image.load("Images/Blocks/ColoredWood.txt");
         }
     }
 
