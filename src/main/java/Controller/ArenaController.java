@@ -36,7 +36,7 @@ public class ArenaController {
             if (!actionList.contains(action)) actionList.add(action);
     }
 
-    public void timedActions() {
+    public void update() {
         updateCounter++;
         if (updateCounter % updatesPerEnemyAction == 0)
             enemyController.moveEnemies();

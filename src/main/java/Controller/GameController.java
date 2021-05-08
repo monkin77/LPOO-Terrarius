@@ -7,16 +7,12 @@ import Viewer.ArenaViewer;
 import java.io.IOException;
 import java.util.List;
 
-/*
-GameController will manage the whole map, which contains multiple arenas changing and being generated while
-the player explores the game. This means that the arenaController will change!
- */
 public class GameController {
     private static final int MS_PER_UPDATE = 16;
 
     private ArenaController arenaController;
     private ArenaViewer arenaViewer;
-    private Arena arena;
+    private Arena arena;  // Arena will change mid-game, in the future
     private GUI gui;
 
     public GameController(Arena arena, GUI gui) {
@@ -30,7 +26,6 @@ public class GameController {
     Check this pattern at:
     https://gameprogrammingpatterns.com/game-loop.html
      */
-    // TODO: REFACTORING SO WE CAN TEST
     public void start() throws IOException {
         long previous = System.currentTimeMillis();
         long lag = 0;
@@ -41,18 +36,34 @@ public class GameController {
             previous = current;
             lag += elapsed;
 
-            List<GUI.ACTION> actions = gui.getNextActions();
-            if (actions.contains(GUI.ACTION.QUIT)) break;
-            arenaController.addActions(actions);
+            if (readInputAndCheckExit())
+                return;
 
             while (lag >= MS_PER_UPDATE) {
-                arenaController.timedActions();
-                arenaViewer.update();
+                if (updateAndCheckEnd()) return;
                 lag -= MS_PER_UPDATE;
-                if (arenaController.checkEnd()) return;
             }
 
             arenaViewer.draw(this.arena);
         }
+    }
+
+    protected boolean readInputAndCheckExit() throws IOException {
+        List<GUI.ACTION> actions = gui.getNextActions();
+
+        if (actions.contains(GUI.ACTION.QUIT))
+            return true;
+
+        arenaController.addActions(actions);
+        return false;
+    }
+
+    protected boolean updateAndCheckEnd() {
+        arenaController.update();
+        arenaViewer.update();
+
+        if (arenaController.checkEnd())
+            return true;
+        return false;
     }
 }

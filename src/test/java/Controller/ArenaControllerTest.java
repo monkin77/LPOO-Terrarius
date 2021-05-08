@@ -25,7 +25,7 @@ public class ArenaControllerTest {
     public void inputActions() {
         List<GUI.ACTION> actions = Arrays.asList(GUI.ACTION.UP, GUI.ACTION.DOWN, GUI.ACTION.LEFT, GUI.ACTION.RIGHT);
         arenaController.addActions(actions);
-        arenaController.timedActions();
+        arenaController.update();
 
         for (GUI.ACTION action : actions)
             Mockito.verify(heroController, Mockito.times(1)).doAction(action);
@@ -34,18 +34,18 @@ public class ArenaControllerTest {
     @Test
     public void enemyActions() {
         for (int i = 0; i < 11; ++i)
-            arenaController.timedActions();
+            arenaController.update();
 
         Mockito.verify(enemyController, Mockito.times(1)).moveEnemies();
     }
 
     @Test
     public void gravityActions() {
-        arenaController.timedActions();
+        arenaController.update();
         Mockito.verify(heroController, Mockito.times(1)).fallHero();
         Mockito.verify(enemyController, Mockito.times(1)).fallEnemies();
 
-        arenaController.timedActions();
+        arenaController.update();
         Mockito.verify(heroController, Mockito.times(2)).fallHero();
         Mockito.verify(enemyController, Mockito.times(2)).fallEnemies();
     }
