@@ -33,12 +33,8 @@ public class AnimatedImage extends Image {
 
             imageScanner.nextLine(); //clears the /n
 
-            for(int i = 0; i < totalFrames; i++){
-                ColoredImage image = new ColoredImage();
-                String nFname = imageScanner.nextLine();
-                image.load(nFname);
-                images.add(image);
-            }
+            for(int i = 0; i < totalFrames; i++)
+                addNextImage(imageScanner);
 
         } catch (URISyntaxException | FileNotFoundException e) {
             e.printStackTrace();
@@ -56,9 +52,7 @@ public class AnimatedImage extends Image {
     }
 
     public void draw(Position position, Element.Orientation orientation, GUI gui){
-
         images.get(frameHandler.getCurrentImage()).draw(position, orientation, gui);
-
     }
 
     public FrameHandler getFrameSpeed() {
@@ -67,5 +61,12 @@ public class AnimatedImage extends Image {
 
     public void setFrameSpeed(FrameHandler frameHandler) {
         this.frameHandler = frameHandler;
+    }
+
+    protected void addNextImage(Scanner imageScanner) {
+        ColoredImage image = new ColoredImage();
+        String nFname = imageScanner.nextLine();
+        image.load(nFname);
+        images.add(image);
     }
 }
