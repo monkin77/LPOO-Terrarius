@@ -43,15 +43,14 @@ public class GameController {
 
             List<GUI.ACTION> actions = gui.getNextActions();
             if (actions.contains(GUI.ACTION.QUIT)) break;
-
-            //if (arenaController.checkEnd()) break;
+            arenaController.addActions(actions);
 
             while (lag >= MS_PER_UPDATE) {
-                arenaController.timedActions(actions);
+                arenaController.timedActions();
                 arenaViewer.update();
                 lag -= MS_PER_UPDATE;
+                if (arenaController.checkEnd()) return;
             }
-
 
             arenaViewer.draw(this.arena);
         }

@@ -3,52 +3,60 @@ package Controller;
 import GUI.GUI;
 import Model.arena.Arena;
 
+import java.util.ArrayList;
 import java.util.List;
 
-// TODO: REFACTORING
 public class ArenaController {
+    private final int updatesPerEnemyAction;
+    private final int updatesPerGravityAction;
+    private final int updatesPerInputAction;
+    private final int maxCounter;
+
     private final HeroController heroController;
     private final EnemyController enemyController;
-    private final int enemyMovesPerAction;
-    private final int gravityUpdatesPerAction;
-    private final int inputUpdatesPerAction;
+
     private int updateCounter;
+    private List<GUI.ACTION> actionList;
 
     public ArenaController(Arena arena, int timePerUpdate) {
         this.heroController = new HeroController(arena);
         this.enemyController = new EnemyController(arena);
-        this.enemyMovesPerAction = Math.max(128 / timePerUpdate, 1);
-        this.gravityUpdatesPerAction = Math.max(16 / timePerUpdate, 1);
-        this.inputUpdatesPerAction = Math.max(16 / timePerUpdate, 1);
+        this.actionList = new ArrayList<>();
+
+        this.updatesPerEnemyAction = Math.max(128 / timePerUpdate, 1);
+        this.updatesPerGravityAction = Math.max(16 / timePerUpdate, 1);
+        this.updatesPerInputAction = Math.max(16 / timePerUpdate, 1);
+
+        this.maxCounter = updatesPerEnemyAction * updatesPerGravityAction * updatesPerInputAction;
         this.updateCounter = 0;
     }
 
-    public void doAction(GUI.ACTION action) {
-        heroController.doAction(action);
+    public void addActions(List<GUI.ACTION> newActions){
+        for (GUI.ACTION action : newActions)
+            if (!actionList.contains(action)) actionList.add(action);
     }
 
-    public void processInputs(){
-
-    }
-
-    public void timedActions(List<GUI.ACTION> actionList) {
+    public void timedActions() {
         updateCounter++;
-        if (updateCounter % enemyMovesPerAction == 0) {
+        if (updateCounter % updatesPerEnemyAction == 0)
             enemyController.moveEnemies();
-        }
-        if (updateCounter % gravityUpdatesPerAction == 0){
+
+        if (updateCounter % updatesPerGravityAction == 0){
             heroController.fallHero();
             enemyController.fallEnemies();
         }
-        if (updateCounter % inputUpdatesPerAction == 0) {
+
+        if (updateCounter % updatesPerInputAction == 0) {
             for (GUI.ACTION action : actionList) {
-                this.doAction(action);
+                this.heroController.doAction(action);
             }
+            actionList.clear();
         }
-        updateCounter = updateCounter % Math.max(gravityUpdatesPerAction, enemyMovesPerAction);
+
+        updateCounter %= maxCounter;
     }
 
     public boolean checkEnd() {
-        return heroController.isHeroAlive();
+        return !heroController.isHeroAlive();
     }
 }
