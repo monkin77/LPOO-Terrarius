@@ -44,7 +44,7 @@ public class GameController {
                 lag -= MS_PER_UPDATE;
             }
 
-            arenaViewer.draw(this.arena);
+            draw();
         }
     }
 
@@ -65,5 +65,9 @@ public class GameController {
         if (arenaController.checkEnd())
             return true;
         return false;
+    }
+
+    protected void draw() throws IOException {
+        arenaViewer.draw(this.arena);
     }
 }
