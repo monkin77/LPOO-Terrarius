@@ -48,7 +48,7 @@ public class EnemyViewer extends ElementViewer{
 
         FrameHandler frameHandler = getElementFrameSpeedMap().get(element);
 
-        AnimatedImage animatedImage =  (AnimatedImage)getImage();
+        AnimatedImage animatedImage = (AnimatedImage)getImage();
 
         animatedImage.setFrameSpeed(frameHandler);
 
