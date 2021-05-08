@@ -5,28 +5,25 @@ import Model.Position;
 import Model.elements.Element;
 import Viewer.FrameHandler;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class AnimatedImage extends Image {
 
-    private FrameHandler frameHandler = new FrameHandler();
+    private FrameHandler frameHandler;
+    private final List<ColoredImage> images;
 
-    private final List<ColoredImage> images = new ArrayList<>();
+    public AnimatedImage() {
+        frameHandler = new FrameHandler();
+        images = new ArrayList<>();
+    }
 
-    public void load(String fname){
-
-        URL resource = getClass().getClassLoader().getResource(fname);
-
+    public void load(String fname) {
         try {
-            File imageFile = new File(resource.toURI());
-
-            Scanner imageScanner = new Scanner(imageFile);
+            Scanner imageScanner = getScannerFromFile(fname);
 
             int totalFrames = imageScanner.nextInt();
             int totalSpeed = imageScanner.nextInt();
