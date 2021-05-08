@@ -1,4 +1,21 @@
-3 3
-0II
-OI
-0
+5 5
+.....
+<<|DD
+..|D.
+..|..
+..|..
+2
+B #BC6424
+W #FFFFFF
+BBBBB
+WWWWW
+BBWWB
+BBWBB
+BBWBB
+1
+B #BC6424
+BBBBB
+BBBBB
+BBBBB
+BBBBB
+BBBBB

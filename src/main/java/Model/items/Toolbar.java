@@ -9,13 +9,13 @@ import java.util.Map;
 public class Toolbar {
     private Map<Integer, Item> toolBar;
     private Integer activeItemIdx;
-    private final Dimensions dimensions;
-    private final Integer maxSlots;
+    private final Integer maxSlots = 9;
+    private final Dimensions dimensions = new Dimensions(9, 128);
+    private final int toolbarCellLength = 5;
+    private final int toolbarSeparatorWidth = 1;
 
     public Toolbar() {
         this.toolBar = new HashMap<>();
-        maxSlots = 9;
-        dimensions = new Dimensions(5, 37);
         activeItemIdx = 1;  // Just for testing. Should change this to 0 (unarmed) and change when pressing the numbers on the keyboard
     }
 
@@ -60,11 +60,15 @@ public class Toolbar {
         return toolBar;
     }
 
-    public Integer getToolbarCellHeight() {
-        return this.dimensions.getHeight() - 2;
+    public int getToolbarCellLength() {
+        return this.toolbarCellLength;
     }
 
-    public Integer getToolbarCellWidth() {
-        return ( this.dimensions.getWidth() - 2 - (this.maxSlots-1) ) / this.maxSlots;
+    public int getToolbarSeparatorWidth() {
+        return toolbarSeparatorWidth;
+    }
+
+    public Integer getMaxSlots() {
+        return maxSlots;
     }
 }
