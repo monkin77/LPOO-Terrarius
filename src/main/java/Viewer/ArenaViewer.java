@@ -14,19 +14,24 @@ import java.util.Map;
 
 import static Viewer.ViewerConstants.*;
 
-//TODO: REFACTOR
+
 public class ArenaViewer {
 
-    private final Map<Class, ElementViewer> enemyCache = new HashMap<>();
-    private final Map<Class, ElementViewer> blockCache = new HashMap<>();
-    private final Map<Class, ItemViewer> itemCache = new HashMap<>();
-    private final ToolbarViewer toolbarViewer = new ToolbarViewer();
-    private HeroViewer heroViewer = new HeroViewer();
+    private final Map<Class, ElementViewer> enemyCache;
+    private final Map<Class, ElementViewer> blockCache;
+    private final Map<Class, ItemViewer> itemCache;
+    private final ToolbarViewer toolbarViewer;
+    private HeroViewer heroViewer;
 
     private final GUI gui;
 
     public ArenaViewer(GUI gui){
         this.gui = gui;
+        enemyCache = new HashMap<>();
+        blockCache = new HashMap<>();
+        itemCache = new HashMap<>();
+        toolbarViewer = new ToolbarViewer();
+        heroViewer = new HeroViewer();
     }
 
     public void update() {
@@ -41,58 +46,74 @@ public class ArenaViewer {
         heroViewer.update();
     }
 
-    public void draw(Arena arena) throws IOException { //Arena argument
-
+    public void draw(Arena arena) throws IOException {
         this.gui.clear();
 
-        for (int i = 0; i < arena.getWidth(); i++){
-            for (int j = 0; j < arena.getHeight(); j++){
-                gui.drawCharacter(i, j, ' ', SKY_COLOR, SKY_COLOR);
-            }
-        }
+        drawBackground(arena);
+        drawBlocks(arena);
+        drawEnemies(arena);
+        drawToolbar(arena);
+        heroViewer.draw(arena.getHero(), gui);
 
-        for(Block block : arena.getBlocks()){
-            if (!blockCache.containsKey(block.getClass())){
+        this.gui.refresh();
+    }
+
+    protected void drawBackground(Arena arena) {
+        for (int i = 0; i < arena.getWidth(); i++)
+            for (int j = 0; j < arena.getHeight(); j++)
+                gui.drawCharacter(i, j, ' ', SKY_COLOR, SKY_COLOR);
+    }
+
+    protected void drawBlocks(Arena arena) {
+        for(Block block : arena.getBlocks()) {
+
+            if (!blockCache.containsKey(block.getClass()))
                 blockCache.put(block.getClass(), new BlockViewer(block));
-            }
+
             ElementViewer viewer = blockCache.get(block.getClass());
             viewer.draw(block, gui);
         }
+    }
 
-        for(Enemy enemy : arena.getEnemies()){
-            if (!enemyCache.containsKey(enemy.getClass())){
+    protected void drawEnemies(Arena arena) {
+        for(Enemy enemy : arena.getEnemies()) {
+
+            if (!enemyCache.containsKey(enemy.getClass()))
                 enemyCache.put(enemy.getClass(), new EnemyViewer(enemy));
-            }
+
             ElementViewer viewer = enemyCache.get(enemy.getClass());
             viewer.draw(enemy, gui);
         }
+    }
 
+    protected void drawToolbar(Arena arena) {
         Toolbar toolbar = arena.getHero().getToolBar();
-        this.toolbarViewer.draw(toolbar, arena.getDimensions(), gui);
+        toolbarViewer.draw(toolbar, arena.getDimensions(), gui);
+        drawToolbarItems(toolbar, arena);
+    }
 
+    protected void drawToolbarItems(Toolbar toolbar, Arena arena) {
         for(Integer itemKey : toolbar.getToolBar().keySet()) {
             Item item = toolbar.getItem(itemKey);
-            if (!itemCache.containsKey(item.getClass())){
+
+            if (!itemCache.containsKey(item.getClass()))
                 itemCache.put(item.getClass(), new ItemViewer(item));
-            }
+
             ItemViewer viewer = itemCache.get(item.getClass());
 
-            if(itemKey == toolbar.getActiveItemIdx())
+            if (itemKey.equals(toolbar.getActiveItemIdx()))
                 viewer.draw(item, gui);
 
             int toolbarSeparatorsWidth = 1;
-            int toolbarStartingPositionWidth = arena.getWidth()/2 - toolbar.getDimensions().getWidth()/2 + toolbarSeparatorsWidth;
+            int toolbarStartingPositionWidth = arena.getWidth()/2 - toolbar.getDimensions().getWidth()/2 +
+                    toolbarSeparatorsWidth;
+
             int toolbarOffsetWidth = (itemKey-1) * (toolbar.getToolbarCellWidth() + toolbarSeparatorsWidth);
 
             int iconX = toolbarStartingPositionWidth + toolbarOffsetWidth;
             int iconY = arena.getHeight() - toolbar.getDimensions().getHeight() + toolbarSeparatorsWidth;
+
             viewer.drawIcon(new Position(iconX, iconY), gui);
         }
-
-        heroViewer.draw(arena.getHero(), gui);
-
-        this.gui.refresh();
-
     }
-
 }
