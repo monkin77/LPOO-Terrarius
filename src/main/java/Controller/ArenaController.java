@@ -18,9 +18,9 @@ public class ArenaController {
     private int updateCounter;
     private List<GUI.ACTION> actionList;
 
-    public ArenaController(Arena arena, int timePerUpdate) {
-        this.heroController = new HeroController(arena);
-        this.enemyController = new EnemyController(arena);
+    public ArenaController(HeroController heroController, EnemyController enemyController, int timePerUpdate) {
+        this.heroController = heroController;
+        this.enemyController = enemyController;
         this.actionList = new ArrayList<>();
 
         this.updatesPerEnemyAction = Math.max(128 / timePerUpdate, 1);

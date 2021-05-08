@@ -21,7 +21,7 @@ public class GameController {
 
     public GameController(Arena arena, GUI gui) {
         this.arena = arena;
-        this.arenaController = new ArenaController(this.arena, MS_PER_UPDATE);
+        this.arenaController = new ArenaController(new HeroController(arena), new EnemyController(arena), MS_PER_UPDATE);
         this.arenaViewer = new ArenaViewer(gui);
         this.gui = gui;
     }
