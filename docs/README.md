@@ -12,7 +12,6 @@ image, represented by characters and saved in text files
 [WRITE HERE WHAT WE WILL DO AFTER THE FIRST DELIVERY]
 
 ## Design
-[WRITE HERE EACH TIME YOU HAVE TO SOLVE A PROBLEM]
 
 ### Model-View-Controller
 #### Problem in context
@@ -263,7 +262,6 @@ Disavantages:
    another point of evolution will have to be dealt with.
    
 ## Known Code Smells and Refactoring Suggestions
-[DO IT IN THE END]
 
 ### Data Classes
 Like said above, the classes made for Element Stats are Data Classes. This could be
@@ -279,11 +277,76 @@ the Item class and creating a new Item Stats instance, we could use the Item Sta
 to update its primitives. This, however, would decrease the importance of the Item class,
 making it almost obsolete and falling in another code smell: **Lazy Class**
 
-### Switch Statement
-[WRITE ABOUT ACTION SWITCHES AFTER IT'S DONE]
+### Refused Bequest
+
+Right now, the Image class has two abstract methods (*update* and *reset*) 
+which are not used by one of its subclasses, StillImage
+(technically, it is using them but the methods don't do anything). This is happening
+for two reasons:
+
+- So classes using images can benefit from polymorphism, by calling
+those methods without having to think about what type of image they have.
+  
+- StillImage might use these methods for something, in the future.
+This also falls a bit into the Speculative Generality smell.
+
+A way to fix this smell would be to remove these two methods from the
+Image abstract class and only implement them in the subclasses which use them.
+However, this means that classes using images need to know the type of
+image they're working with.
+
+Here are the relevant classes:
+
+- [Image](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/Image.java)
+- [StillImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/StillImage.java)
+- [AnimatedImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/AnimatedImage.java)
+
+### Comments
+
+Since the project is in mid-development, there are some comments throughout the code reminding us
+of something or explaining that some feature is still under changes (like TODOs). Here are some examples:
+
+- [TODO](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/d6a706003ecfb1c35a176f74305885d62cc7b7e2/src/main/java/Controller/EnemyController.java#L15)
+
+- [Explanation Comment](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/d6a706003ecfb1c35a176f74305885d62cc7b7e2/src/main/java/Model/items/Toolbar.java#L19)
+
+This smell will be fixed when the features are properly implemented and the comments are removed.
+
+### Duplicate Code
+
+Currently, there are two classes who serve almost the same purpose: Dimensions and ImageDimensions.
+ The difference between them is almost uniquely the package in which they act (Model and Viewer).
+
+This could be fixed by defining a Dimensions class which both packaged can use (possibly, in a
+common *Utils* package).
+
+Here are the relevant classes:
+- [Dimensions](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/Dimensions.java)
+- [ImageDimensions](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/ImageDimensions.java)
+
+### Speculative Generality
+
+Since the project is in mid-development, there are currently methods, classes and fields
+which are not being used. These are usually methods/fields which were
+thought useful when creating their respective classes but weren't put in execution right away,
+probably because they'll serve a purpose in a feature that's yet to be implemented.
+
+Here are some examples:
+
+- [Toolbar item selection](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/items/Toolbar.java)
+- [CLICK action](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/d6a706003ecfb1c35a176f74305885d62cc7b7e2/src/main/java/Controller/HeroController.java#L68)
+- Most of the [items](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java/Model/items), with the exception of the Axe
+
+This code smell can be fixed by either implementing features which use these methods/classes or
+removed them altogether, if they're not useful in the end.
 
 ## Testing
-[PUT SCREENSHOTS OF THE TESTS IN THE END]
+![Test Coverage](img/test.png)
+
+![Pitest Results](img/pitest.png)
+
+As we can see, we already have a solid line coverage in the project
+but some tests still need to be strengthen.
 
 ## Self-Evaluation
 Bruno Rosendo: 1/3
