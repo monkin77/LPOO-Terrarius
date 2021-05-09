@@ -24,13 +24,13 @@ public class HeroController {
     }
 
     private void climbHero(Position position) {
-        if (arena.hasAdjacent(arena.getHero().getPosition(), arena.getHero().getDimensions())) {
+        if (arena.hasAdjacentBlockNotFloating(arena.getHero().getPosition(), arena.getHero().getDimensions())) {
             moveHero(position);
         }
     }
 
     public void fallHero() {
-        if(!arena.hasAdjacent(arena.getHero().getPosition(), arena.getHero().getDimensions()))
+        if(!arena.hasAdjacentBlockNotFloating(arena.getHero().getPosition(), arena.getHero().getDimensions()))
             moveHero(arena.getHero().getPosition().getDown());
     }
 

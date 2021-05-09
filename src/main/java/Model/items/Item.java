@@ -17,9 +17,6 @@ public abstract class Item {
         return hero;
     }
 
-    // Item stats should be updated when hero level/stats are increased
-    public abstract void updateStats();
-
     public Dimensions getDimensions() {
         return dimensions;
     }
@@ -27,4 +24,7 @@ public abstract class Item {
     public void setDimensions(Dimensions dimensions) {
         this.dimensions = dimensions;
     }
+
+    // Item stats should be updated when hero level/stats are increased
+    public abstract void updateStats();
 }

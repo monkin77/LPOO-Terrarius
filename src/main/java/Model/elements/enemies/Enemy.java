@@ -17,7 +17,6 @@ public abstract class Enemy extends Element {
         return stats;
     }
 
-    // In the future, it might be calculateStats with an extra class
     abstract int calculateHP(Level level);
     abstract int calculatePower(Level level);
 }
