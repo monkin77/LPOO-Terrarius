@@ -107,7 +107,7 @@ Below, we can find a flowchart which can help visualize this:
 The pattern was implemented exactly like above and can be found
 in the following class:
 
-- [GameController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java/Controller/GameController)
+- [GameController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Controller/GameController.java)
 
 #### Consequences
 The use of this pattern has a lot of advantages, like:
@@ -281,7 +281,7 @@ Diagram showing how the implementation of the factory method for ElementViewer w
 The classes mentioned in the UML can be found in the following links:
 
 * [Image](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/Image.java)
-* [ColoredImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/mastersrc/main/java/Viewer/Image/ColoredImage.java)
+* [ColoredImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/ColoredImage.java)
 * [AnimatedImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/AnimatedImage.java)
 * [ElementViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/ElementViewer.java)
 * [BlockViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/BlockViewer.java)
@@ -390,7 +390,7 @@ removed them altogether, if they're not useful in the end.
 ![Pitest Results](img/pitest.png)
 
 As we can see, we already have a solid line coverage in the project
-but some tests still need to be strengthen.
+but some tests still need to be strengthened.
 
 ## Self-Evaluation
 Bruno Rosendo: 1/3
