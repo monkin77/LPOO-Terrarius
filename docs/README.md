@@ -1,4 +1,4 @@
-# LPOO_34 - Terraria
+# LPOO_34 - Terrarius
 
 An open-world adventure game where our hero must defeat enemies to unlock new areas and unlock new more powerful tools.
 In this pseudo-random infinitely generated world our hero will have to deal with different enemies by either slaying them or
