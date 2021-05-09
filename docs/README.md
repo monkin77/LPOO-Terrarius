@@ -219,8 +219,8 @@ These classes can be found in the following files:
 #### Problem in context
 
 Each element, hero, enemy or block, can be visually represented by a "matrix" of characters.
-A good way to store the visual representation of these elements is through files, however if we have 2 Blocks from the
-sam class even though we want them to look the same loading the files multiple times would be wasteful.
+A good way to store the visual representation of these elements is through files. However if we have 2 Blocks from the
+same class, even though we want them to look the same, loading the files multiple times would be wasteful.
 
 #### The Pattern
 
