@@ -12,6 +12,7 @@ import Model.elements.enemies.Zombie;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO: DELETE?
 public class DefaultArenaBuilder extends ArenaBuilder{
     private final int width;
     private final int height;

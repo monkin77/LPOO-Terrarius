@@ -27,8 +27,7 @@ public class LoaderArenaBuilder extends ArenaBuilder {
 
     public LoaderArenaBuilder(int level) throws FileNotFoundException, URISyntaxException {
         this.level = level;
-        URL resource = LoaderArenaBuilder.class.getResource("/Maps/Map" + level + "/Dimensions.txt");
-        Scanner fileScanner = new Scanner(new File(resource.toURI()));
+        Scanner fileScanner = getScannerFromFile("Dimensions.txt");
 
         this.width = fileScanner.nextInt();
         this.height = fileScanner.nextInt();
