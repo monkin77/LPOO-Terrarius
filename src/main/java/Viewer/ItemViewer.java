@@ -6,6 +6,7 @@ import Model.elements.Element;
 import Model.elements.Hero;
 import Model.items.Item;
 import Model.items.tools.Axe;
+import Viewer.Image.ColoredImage;
 import Viewer.Image.Image;
 import Viewer.Image.StillImage;
 
@@ -14,7 +15,7 @@ public class ItemViewer {
     private Image icon;
 
     public ItemViewer(Item item) {
-        image = new StillImage();
+        image = new ColoredImage();
         icon = new StillImage();
         if(item.getClass().equals(Axe.class)) {
             image.load("Images/Items/Axe.txt");
