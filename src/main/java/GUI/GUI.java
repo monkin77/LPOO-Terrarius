@@ -10,6 +10,6 @@ public interface GUI {
     void refresh() throws IOException;
     void close() throws IOException;
     List<ACTION> getNextActions() throws IOException;
-    // TO DO: ADD KEY NUMBERS
-    enum ACTION {UP, DOWN, RIGHT, LEFT, CLICK, NONE, QUIT}
+    // TODO: ADD KEY NUMBERS
+    enum ACTION {UP, DOWN, RIGHT, LEFT, CLICK, QUIT}
 }

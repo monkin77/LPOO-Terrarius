@@ -8,7 +8,7 @@ import Model.elements.enemies.Enemy;
 
 import java.util.List;
 
-// TODO: TWO TYPES OF DIMENSIONS
+
 public class Arena {
     private final Dimensions dimensions;
 
