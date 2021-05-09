@@ -14,7 +14,7 @@ public class Game {
     private final Arena arena;
 
     public static void main(String[] args) throws FontFormatException, IOException, URISyntaxException {
-        Game game = new Game(128, 64);
+        new Game(128, 64);
     }
 
     public Game(int width, int height) throws FontFormatException, IOException, URISyntaxException {

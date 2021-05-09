@@ -217,7 +217,6 @@ These classes can be found in the following files:
 
 
 ## Known Code Smells and Refactoring Suggestions
-[DO IT IN THE END]
 
 ### Data Classes
 Like said above, the classes made for Element Stats are Data Classes. This could be
@@ -233,11 +232,41 @@ the Item class and creating a new Item Stats instance, we could use the Item Sta
 to update its primitives. This, however, would decrease the importance of the Item class,
 making it almost obsolete and falling in another code smell: **Lazy Class**
 
-### Switch Statement
-[WRITE ABOUT ACTION SWITCHES AFTER IT'S DONE]
+### Refused Bequest
+
+Right now, the Image class has two abstract methods (*update* and *reset*) 
+which are not used by one of its subclasses, StillImage
+(technically, it is using them but the methods don't do anything). This is happening
+for two reasons:
+
+- So classes using images can benefit from polymorphism, by calling
+those methods without having to think about what type of image they have.
+  
+- StillImage might use these methods for something, in the future.
+This also falls a bit into the Speculative Generality smell.
+
+A way to fix this smell would be to remove these two methods from the
+Image abstract class and only implement them in the subclasses which use them.
+However, this means that classes using images need to know the type of
+image they're working with.
+
+Here are the relevant classes:
+
+- [Image](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/Image.java)
+- [StillImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/StillImage.java)
+- [AnimatedImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/AnimatedImage.java)
+
+### Comments
+
+Since the project is in mid-development, there 
 
 ## Testing
-[PUT SCREENSHOTS OF THE TESTS IN THE END]
+![Test Coverage](img/test.png)
+
+![Pitest Results](img/pitest.png)
+
+As we can see, we already have a solid line coverage in the project
+but some tests still need to be strengthen.
 
 ## Self-Evaluation
 Bruno Rosendo: 1/3
