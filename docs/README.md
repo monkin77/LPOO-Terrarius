@@ -23,7 +23,10 @@ sometimes be trapped.
 **Tools** - Items that the hero can hold in his hand.
 
 ## Planned Features
-[WRITE HERE WHAT WE WILL DO AFTER THE FIRST DELIVERY]
+
+**Breaking blocks** - The hero, when equipped with the proper tool, will be able to break blocks from the map.
+
+**Placing blocks** - The hero will be able to place blocks, this way being able to modify the map.
 
 ## Design
 
