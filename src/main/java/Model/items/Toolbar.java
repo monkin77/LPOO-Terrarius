@@ -5,7 +5,7 @@ import Model.Dimensions;
 import java.util.HashMap;
 import java.util.Map;
 
-// TODO: STILL A MAP, NOT CHECKING RIGHT KEYS
+
 public class Toolbar {
     private Map<Integer, Item> toolBar;
     private Integer activeItemIdx;
@@ -32,6 +32,7 @@ public class Toolbar {
     }
 
     public void setItem(Integer index, Item item) {
+        if (index < 1 || index > 9) return;
         this.toolBar.put(index, item);
     }
 

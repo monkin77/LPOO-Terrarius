@@ -23,14 +23,13 @@ public class HeroController {
         }
     }
 
-    // TODO: POSSIBLY REFACTOR
-    private void climbHero(Position position){
-        if (!arena.collides(position, arena.getHero().getDimensions()) && arena.hasAdjacent(arena.getHero().getPosition(), arena.getHero().getDimensions())){
-            arena.getHero().setPosition(position);
+    private void climbHero(Position position) {
+        if (arena.hasAdjacent(arena.getHero().getPosition(), arena.getHero().getDimensions())) {
+            moveHero(position);
         }
     }
 
-    public void fallHero(){
+    public void fallHero() {
         if(!arena.hasAdjacent(arena.getHero().getPosition(), arena.getHero().getDimensions()))
             moveHero(arena.getHero().getPosition().getDown());
     }
