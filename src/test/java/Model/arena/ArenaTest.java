@@ -1,14 +1,10 @@
 package Model.arena;
 
-import Model.Level;
+import Model.Dimensions;
 import Model.Position;
-import Model.elements.Hero;
 import Model.elements.blocks.Block;
 import Model.elements.blocks.DirtBlock;
 import Model.elements.blocks.StoneBlock;
-import Model.elements.blocks.WoodBlock;
-import Model.elements.enemies.Enemy;
-import Model.elements.enemies.Zombie;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,59 +20,79 @@ public class ArenaTest {
     @BeforeEach
     public void setUp() {
         this.arena = new Arena(10, 10);
-    }
 
-    @Test
-    public void heroSetup() {
-        Hero hero = new Hero(new Position(5, 5));
-        this.arena.setHero(hero);
-        Assertions.assertEquals(hero, this.arena.getHero());
-    }
-
-
-    @Test
-    public void enemiesSetup() {
-        List<Enemy> enemies = new ArrayList<>();
-
-        enemies.add(new Zombie(new Position(0, 0), new Level(1, 0)));
-        enemies.add(new Zombie(new Position(5, 5), new Level(3, 0)));
-        enemies.add(new Zombie(new Position(7, 7), new Level(5, 10)));
-
-        this.arena.setEnemies(enemies);
-
-        Assertions.assertEquals(enemies, this.arena.getEnemies());
-    }
-
-    @Test
-    public void blocksSetup() {
-        List<Block> blocks = new ArrayList<>();
-
-        blocks.add(new StoneBlock(new Position(0, 0)));
-        blocks.add(new DirtBlock(new Position(0, 0)));
-        blocks.add(new WoodBlock(new Position(0, 0)));
-
-        this.arena.setBlocks(blocks);
-
-        Assertions.assertEquals(blocks, this.arena.getBlocks());
-    }
-
-    @Test
-    public void isEmpty() {
         List<Block> blocks = new ArrayList<>();
 
         StoneBlock block1 = Mockito.mock(StoneBlock.class);
         Mockito.when(block1.getPosition()).thenReturn(new Position(5, 5));
+        Mockito.when(block1.getDimensions()).thenReturn(new Dimensions(4, 4));
 
         DirtBlock block2 = Mockito.mock(DirtBlock.class);
         Mockito.when(block2.getPosition()).thenReturn(new Position(10, 10));
+        Mockito.when(block2.getDimensions()).thenReturn(new Dimensions(4, 4));
 
         blocks.add(block1);
         blocks.add(block2);
 
         this.arena.setBlocks(blocks);
+    }
 
-        Assertions.assertEquals(true, this.arena.isEmpty(new Position(0, 0)));
+    @Test
+    public void isEmpty() {
+        Assertions.assertTrue(this.arena.isEmpty(new Position(0, 0)));
 
-        Assertions.assertEquals(false, this.arena.isEmpty(new Position(5, 5)));
+        Assertions.assertFalse(this.arena.isEmpty(new Position(5, 5)));
+    }
+
+    @Test
+    public void overlappedCollisions() {
+        Assertions.assertTrue(this.arena.collides(new Position(4, 4), new Dimensions(2, 2)));
+        Assertions.assertTrue(this.arena.collides(new Position(11, 11), new Dimensions(5, 5)));
+    }
+
+    @Test
+    public void embeddedCollisions() {
+        Assertions.assertTrue(this.arena.collides(new Position(9, 9), new Dimensions(6, 2)));
+        Assertions.assertTrue(this.arena.collides(new Position(6, 6), new Dimensions(1, 1)));
+    }
+
+    @Test
+    public void notColliding() {
+        Assertions.assertFalse(this.arena.collides(new Position(4, 4), new Dimensions(1, 1)));
+        Assertions.assertFalse(this.arena.collides(new Position(14, 14), new Dimensions(5, 5)));
+    }
+
+    @Test
+    public void hasAdjacent() {
+        // Top right
+        Assertions.assertTrue(this.arena.hasAdjacentBlockNotFloating(new Position(4, 6), new Dimensions(1, 1)));
+
+        // Bottom right
+        Assertions.assertTrue(this.arena.hasAdjacentBlockNotFloating(new Position(3, 8), new Dimensions(2, 2)));
+
+        // Top Left
+        Assertions.assertTrue(this.arena.hasAdjacentBlockNotFloating(new Position(9, 6), new Dimensions(1, 1)));
+
+        // Bottom Left
+        Assertions.assertTrue(this.arena.hasAdjacentBlockNotFloating(new Position(9, 8), new Dimensions(2, 2)));
+
+    }
+
+    @Test
+    public void notAdjacent() {
+        // Far
+        Assertions.assertFalse(this.arena.hasAdjacentBlockNotFloating(new Position(1, 1), new Dimensions(2, 2)));
+
+        // Adjacent but larger
+        Assertions.assertFalse(this.arena.hasAdjacentBlockNotFloating(new Position(4, 4), new Dimensions(1, 10)));
+
+        // Adjacent but taller
+        Assertions.assertFalse(this.arena.hasAdjacentBlockNotFloating(new Position(4, 4), new Dimensions(10, 1)));
+
+        // Adjacent but larger and taller
+        Assertions.assertFalse(this.arena.hasAdjacentBlockNotFloating(new Position(4, 4), new Dimensions(10, 10)));
+
+        // Embedded
+        Assertions.assertFalse(this.arena.hasAdjacentBlockNotFloating(new Position(8, 6), new Dimensions(1, 1)));
     }
 }

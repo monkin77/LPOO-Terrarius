@@ -1,13 +1,14 @@
 package Model.elements.blocks;
 
+import Model.Dimensions;
 import Model.Position;
 import Model.elements.Element;
 
 public abstract class Block extends Element {
     private int hp;
 
-    public Block(Position position) {
-        super(position);
+    public Block(Position position, Dimensions dimensions) {
+        super(position, dimensions);
         this.hp = initHP();
     }
 

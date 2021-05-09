@@ -1,9 +1,0 @@
-8 4
-OOOO
-OIIO
-OIIO
-OOOO
- HH
- HH
- HH
- HH

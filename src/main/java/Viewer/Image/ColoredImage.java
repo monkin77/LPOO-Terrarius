@@ -1,99 +1,129 @@
 package Viewer.Image;
 
 import GUI.GUI;
+import Model.Position;
 import Model.elements.Element;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import static Viewer.ViewerConstants.DEFAULT_BACKGROUND_COLOR;
+import static Viewer.ViewerConstants.DEFAULT_FOREGROUND_COLOR;
+
 public class ColoredImage extends StillImage{
 
-    private int no_colors;
-    private Map<Character, String> colorMap = new HashMap<>();
-    private char[][] colors;
+    private final Map<Character, String> charColorMap;
+    private char[][] charColors;
+    private final Map<Character, String> bgColorMap;
+    private char[][] bgColors;
+
+    public ColoredImage() {
+        charColorMap = new HashMap<>();
+        bgColorMap = new HashMap<>();
+    }
 
     @Override
     public void load(String fname) {
-
-        URL resource = getClass().getClassLoader().getResource(fname);
-
         try {
-            File imageFile = new File(resource.toURI());
+            Scanner imageScanner = getScannerFromFile(fname);
+            int height = imageScanner.nextInt();
+            int width = imageScanner.nextInt();
 
-            Scanner imageScanner = new Scanner(imageFile);
-
-            height = imageScanner.nextInt();
-            width = imageScanner.nextInt();
-
-            aspect = new char[height][width];
-            colors = new char[height][width];
-
-            imageScanner.nextLine(); //clears the /n
-
-            for(int i = 0; i < height; i++){
-
-                String data = imageScanner.nextLine();
-
-                for (int j = 0; j < width; j++){
-                    int k = data.length();
-                    aspect[i][j] = j >= data.length() ? ' ' : data.charAt(j);
-                }
-            }
-
-            no_colors = imageScanner.nextInt();
-
-            imageScanner.nextLine();
-
-            for (int i = 0; i<no_colors; i++){
-                Character key;
-                key = imageScanner.next().charAt(0);
-
-                String value;
-                value = imageScanner.next();
-
-                colorMap.put(key, value);
-
-                String trash = imageScanner.nextLine();
-            }
-
-            for(int i = 0; i < height; i++){
-
-                String data = imageScanner.nextLine();
-
-                for (int j = 0; j < width; j++){
-                    int k = data.length();
-                    colors[i][j] = data.charAt(j);
-                }
-            }
-
+            loadAspect(imageScanner, width, height);
+            loadCharColors(imageScanner, width, height);
+            loadBackgroundColors(imageScanner, width, height);
 
         } catch (FileNotFoundException | URISyntaxException e) {
-            //TODO what to do with th exception
+            //TODO handle exception
         }
     }
 
     @Override
-    public void update() {
+    public void draw(Position position, Element.Orientation orientation, GUI gui) {
+        for(int i = 0; i < this.dimensions.getHeight(); i++){
+            for (int j = 0; j < this.dimensions.getWidth(); j++){
 
-    }
+                char aspect_char = ' ';
+                String charColor = DEFAULT_FOREGROUND_COLOR;
+                String bgColor = DEFAULT_BACKGROUND_COLOR;
 
-    @Override
-    public void reset() {
+                if(orientation == Element.Orientation.RIGHT){
+                    aspect_char = aspect[i][j];
+                    bgColor = bgColorMap.get(bgColors[i][j]);
+                    charColor = charColorMap.get(charColors[i][j]);
+                }
+                else{
+                    aspect_char = aspect[i][this.dimensions.getWidth() - 1 - j];
+                    bgColor = bgColorMap.get(bgColors[i][this.dimensions.getWidth() - 1 - j]);
+                    charColor = charColorMap.get(charColors[i][this.dimensions.getWidth() - 1 - j]);
+                }
 
-    }
+                if (aspect_char == '.') continue;
 
-    @Override
-    public void draw(Element element, GUI gui) {
-        for(int i = 0; i < height; i++){
-            for (int j = 0; j < width; j++){
                 gui.drawCharacter(
-                        element.getPosition().getX()+j, element.getPosition().getY()+i,
-                        aspect[i][j], colorMap.get(colors[i][j]));
+                        position.getX()+j, position.getY()+i,
+                        aspect_char, charColor, bgColor);
+            }
+        }
+    }
+
+    protected void loadCharColors(Scanner imageScanner, int width, int height) {
+        charColors = new char[height][width];
+
+        int noCharColors = imageScanner.nextInt();
+
+        imageScanner.nextLine();
+
+        for (int i = 0; i < noCharColors; i++){
+            Character key;
+            key = imageScanner.next().charAt(0);
+
+            String value;
+            value = imageScanner.next();
+
+            charColorMap.put(key, value);
+
+            String trash = imageScanner.nextLine();
+        }
+
+        for(int i = 0; i < height; i++){
+
+            String data = imageScanner.nextLine();
+
+            for (int j = 0; j < width; j++){
+                charColors[i][j] = data.charAt(j);
+            }
+        }
+    }
+
+    protected void loadBackgroundColors(Scanner imageScanner, int width, int height) {
+        bgColors = new char[height][width];
+
+        int noBgColors = imageScanner.nextInt();
+
+        imageScanner.nextLine();
+
+        for (int i = 0; i < noBgColors; i++) {
+            Character key;
+            key = imageScanner.next().charAt(0);
+
+            String value;
+            value = imageScanner.next();
+
+            bgColorMap.put(key, value);
+
+            String trash = imageScanner.nextLine();
+        }
+
+        for(int i = 0; i < height; i++) {
+
+            String data = imageScanner.nextLine();
+
+            for (int j = 0; j < width; j++){
+                bgColors[i][j] = data.charAt(j);
             }
         }
     }

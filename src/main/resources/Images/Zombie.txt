@@ -1,3 +1,0 @@
-2 2
-Images/Zombie1.txt
-Images/Zombie2.txt

@@ -1,0 +1,7 @@
+<Number of classes>
+z Zombie    (identifier and className)
+<Number of enemies>
+z 0 0 1 10      (identifier x y level xp_base)
+z 64 0 2 10
+z 120 0 3 10
+z 16 8 4 10

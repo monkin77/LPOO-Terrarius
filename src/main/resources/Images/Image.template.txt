@@ -1,10 +1,9 @@
-8 4
+<height> <width>
 OOOO
 OIIO
 OIIO
 OOOO
  HH
  HH
-H  H
-H  H
- 
+ HH
+ HH

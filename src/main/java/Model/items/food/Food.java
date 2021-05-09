@@ -1,13 +1,14 @@
 package Model.items.food;
 
+import Model.Dimensions;
 import Model.elements.Hero;
 import Model.items.Item;
 
 public abstract class Food extends Item {
     private FoodStats stats;
 
-    public Food(Hero hero) {
-        super(hero);
+    public Food(Hero hero, Dimensions dimensions) {
+        super(hero, dimensions);
     }
 
     public FoodStats getStats() {

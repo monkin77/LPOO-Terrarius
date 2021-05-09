@@ -1,9 +1,0 @@
-8 4
-+--+
-|OO|
-|VV|
-+--+
-IMMI
-IMMI
-I  I
-I  I

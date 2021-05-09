@@ -3,49 +3,65 @@ package Viewer.Image;
 import GUI.GUI;
 import Model.Position;
 import Model.elements.Element;
-import Model.elements.enemies.Enemy;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.Reader;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Scanner;
 
 public class StillImage extends Image{
-
-    protected int height;
-    protected int width;
+    protected ImageDimensions dimensions;
     protected char[][] aspect;
 
-    public void load(String fname){
+    public StillImage() {
+        dimensions = new ImageDimensions(0, 0);
+    }
 
-        URL resource = getClass().getClassLoader().getResource(fname);
-
+    public void load(String fname) {
         try {
-            File imageFile = new File(resource.toURI());
+            Scanner imageScanner = getScannerFromFile(fname);
+            int height = imageScanner.nextInt();
+            int width = imageScanner.nextInt();
 
-            Scanner imageScanner = new Scanner(imageFile);
+            loadAspect(imageScanner, width, height);
 
-            height = imageScanner.nextInt();
-            width = imageScanner.nextInt();
-
-            aspect = new char[height][width];
-
-            imageScanner.nextLine(); //clears the /n
-
-            for(int i = 0; i < height; i++){
-
-                String data = imageScanner.nextLine();
-
-                for (int j = 0; j < width; j++){
-                    int k = data.length();
-                    aspect[i][j] = j >= data.length() ? ' ' : data.charAt(j);
-                }
-            }
         } catch (FileNotFoundException | URISyntaxException e) {
-            //TODO what to do with th exception
+            //TODO handle exception
+        }
+    }
+
+    public void draw(Position position, Element.Orientation orientation, GUI gui){
+        for(int i = 0; i < this.dimensions.getHeight(); i++){
+            for (int j = 0; j < this.dimensions.getWidth(); j++){
+                char aspect_char = ' ';
+
+                if(orientation == Element.Orientation.RIGHT){
+                    aspect_char = aspect[i][j];
+                }
+                else{
+                    aspect_char = aspect[i][this.dimensions.getWidth() - 1 - j];
+                }
+
+                if (aspect_char == '.') continue;
+
+                gui.drawCharacter(position.getX()+j, position.getY()+i, aspect_char);
+            }
+        }
+    }
+
+    protected void loadAspect(Scanner imageScanner, int width, int height) {
+        this.dimensions = new ImageDimensions(width, height);
+
+        aspect = new char[height][width];
+
+        imageScanner.nextLine(); //clears the /n
+
+        for(int i = 0; i < height; i++) {
+
+            String data = imageScanner.nextLine();
+
+            for (int j = 0; j < width; j++){
+                aspect[i][j] = j >= data.length() ? ' ' : data.charAt(j);
+            }
         }
     }
 
@@ -57,13 +73,5 @@ public class StillImage extends Image{
     @Override
     public void reset() {
         //Not doing anything for now
-    }
-
-    public void draw(Element element, GUI gui){
-        for(int i = 0; i < height; i++){
-            for (int j = 0; j < width; j++){
-                gui.drawCharacter(element.getPosition().getX()+j, element.getPosition().getY()+i, aspect[i][j]);
-            }
-        }
     }
 }

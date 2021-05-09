@@ -1,0 +1,3 @@
+2 15
+Images/Hero/Hero1.txt
+Images/Hero/Hero2.txt
