@@ -5,14 +5,15 @@ import Model.Dimensions;
 import java.util.HashMap;
 import java.util.Map;
 
+import static Viewer.ViewerConstants.*;
 
 public class Toolbar {
     private Map<Integer, Item> toolBar;
     private Integer activeItemIdx;
-    private final Integer maxSlots = 9;
-    private final Dimensions dimensions = new Dimensions(9, 128);
-    private final int toolbarCellLength = 5;
-    private final int toolbarSeparatorWidth = 1;
+    private final Integer maxSlots = TOOLBAR_SLOTS;
+    private final Dimensions dimensions = new Dimensions(TOOLBAR_HEIGHT, SCREEN_WIDTH);
+    private final int toolbarCellLength = TOOLBAR_CELL_LENGTH;
+    private final int toolbarSeparatorWidth = TOOLBAR_SEPARATOR_THICKNESS;
 
     public Toolbar() {
         this.toolBar = new HashMap<>();

@@ -9,12 +9,15 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+import static Viewer.ViewerConstants.SCREEN_HEIGHT;
+import static Viewer.ViewerConstants.SCREEN_WIDTH;
+
 public class Game {
     private final GUI gui;
     private final Arena arena;
 
     public static void main(String[] args) throws FontFormatException, IOException, URISyntaxException {
-        new Game(128, 64);
+        new Game(SCREEN_WIDTH, SCREEN_HEIGHT);
     }
 
     public Game(int width, int height) throws FontFormatException, IOException, URISyntaxException {
