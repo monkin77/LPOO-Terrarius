@@ -189,7 +189,6 @@ The use of this pattern prevents duplicate code and allows us to easily
 change how the class attributes are calculates, when they depend on subclass
 implementations
 
-
 ### There should be multiple ways of creating arenas
 
 **Problem in Context:** We want to have the possibility of creating different arenas, which could be associated with a specific level / region. Additionally, we also want to introduce more flexibility so that in the future we can create the arena through different methods, for example, reading a file.
@@ -215,7 +214,54 @@ These classes can be found in the following files:
 * Reuse the same construction code
 * Single Responsability Principle. Isolate complex construction code from the logic of the Arena.
 
+### Element viewers and images
 
+#### Problem in context
+
+Each element, hero, enemy or block, can be visually represented by a "matrix" of characters.
+A good way to store the visual representation of these elements is through files, however if we have 2 Blocks from the
+sam class even though we want them to look the same loading the files multiple times would be wasteful.
+
+#### The Pattern
+
+To solve this problem the **Factory Method** pattern was used. This pattern allows the creation of an interface for
+creating an object but lets it's subclasses determine which class to instantiate.
+
+Further explanation can be found here: https://www.cs.unc.edu/~stotts/GOF/hires/pat3cfso.htm
+
+#### Implementation
+
+Diagram showing how the implementation of the factory method for ElementViewer was done.
+
+![FactoryMethodUML](img/viewerFactoryMethod.png)
+
+The classes mentioned in the UML can be found in the following links:
+
+* [Image](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/Image.java)
+* [ColoredImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/mastersrc/main/java/Viewer/Image/ColoredImage.java)
+* [AnimatedImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/AnimatedImage.java)
+* [ElementViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/ElementViewer.java)
+* [BlockViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/BlockViewer.java)
+* [EnemyViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/EnemyViewer.java)
+* [HeroViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/HeroViewer.java)
+
+#### Consequences
+
+Advantages:
+
+- Eliminates the need to bind application-specific classes into your code.
+
+- Creating objects inside a class with a factory method is always more flexible than creating an object directly. 
+  Factory Method gives subclasses a hook for providing an extended version of an object.
+  
+- The factory method doesn't have to be called by only Factories. It can also be used for parallel class hierarchies.
+  (our case?)
+
+Disavantages:
+
+ - In order to create a Concrete Product object, the Factory class might have to be subclassed, this is a disavantage since 
+   another point of evolution will have to be dealt with.
+   
 ## Known Code Smells and Refactoring Suggestions
 [DO IT IN THE END]
 
