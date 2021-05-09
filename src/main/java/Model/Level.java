@@ -10,7 +10,7 @@ public class Level {
     public Level(int numLevel, long startXP) {
         this.numLevel = numLevel;
         this.currentXP = startXP;  // we may xp carrying from the previous level
-        this.maxXP = numLevel * XP_MULTIPLIER;
+        this.maxXP = (long) numLevel * XP_MULTIPLIER;
     }
 
     protected static int getXpMultiplier() {

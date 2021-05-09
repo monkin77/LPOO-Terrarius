@@ -47,9 +47,7 @@ public class Hero extends Element {
      */
     public void addItemFreeSlot(Item item) {
         Integer key = this.toolBar.findFreeSlot();
-        if(key == -1)
-            return;
-        this.toolBar.setItem(key, item);
+        if (key != -1) this.toolBar.setItem(key, item);
     }
 
     /**

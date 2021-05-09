@@ -45,14 +45,14 @@ public class HeroControllerTest {
 
     @Test
     public void moveHeroUp() {
-        Mockito.when(arena.hasAdjacent(Mockito.any(), Mockito.any())).thenReturn(true);
+        Mockito.when(arena.hasAdjacentBlockNotFloating(Mockito.any(), Mockito.any())).thenReturn(true);
         heroController.moveHeroUp();
         Mockito.verify(hero, Mockito.times(1)).setPosition(new Position(10, 9));
     }
 
     @Test
     public void moveHeroDown() {
-        Mockito.when(arena.hasAdjacent(Mockito.any(), Mockito.any())).thenReturn(true);
+        Mockito.when(arena.hasAdjacentBlockNotFloating(Mockito.any(), Mockito.any())).thenReturn(true);
         heroController.moveHeroDown();
         Mockito.verify(hero, Mockito.times(1)).setPosition(new Position(10, 11));
     }
@@ -83,7 +83,7 @@ public class HeroControllerTest {
 
     @Test
     public void fallHero() {
-        Mockito.when(arena.hasAdjacent(Mockito.any(), Mockito.any())).thenReturn(false);
+        Mockito.when(arena.hasAdjacentBlockNotFloating(Mockito.any(), Mockito.any())).thenReturn(false);
 
         heroController.fallHero();
         Mockito.verify(hero, Mockito.times(1)).setPosition(new Position(10, 11));
