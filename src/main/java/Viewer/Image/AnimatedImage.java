@@ -19,6 +19,7 @@ public class AnimatedImage extends Image {
 
     private final List<ColoredImage> images = new ArrayList<>();
 
+    @Override
     public void load(String fname){
 
         URL resource = getClass().getClassLoader().getResource(fname);
@@ -58,6 +59,7 @@ public class AnimatedImage extends Image {
         frameHandler.reset();
     }
 
+    @Override
     public void draw(Position position, Element.Orientation orientation, GUI gui){
 
         images.get(frameHandler.getCurrentImage()).draw(position, orientation, gui);
