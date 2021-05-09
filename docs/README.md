@@ -6,7 +6,6 @@ by manipulating the world with the powers to break and place blocks. As the play
 challenging enemies will appear and the tools at the disposal of the hero will evolve and improve.
  
 ## Implemented Features
-[WRITE HERE WHAT YOU IMPLEMENT IN CONTROLLER/VIEWERS]
 
 **Element drawing** - Each element of the game is drawn with its own
 image, represented by characters and saved in text files. Elements can be represented by static images 
