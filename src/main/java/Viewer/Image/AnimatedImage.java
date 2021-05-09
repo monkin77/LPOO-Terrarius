@@ -13,14 +13,10 @@ import java.util.Scanner;
 
 public class AnimatedImage extends Image {
 
-    private FrameHandler frameHandler;
-    private final List<ColoredImage> images;
+    private FrameHandler frameHandler = new FrameHandler();
+    private final List<ColoredImage> images = new ArrayList<>();
 
-    public AnimatedImage() {
-        frameHandler = new FrameHandler();
-        images = new ArrayList<>();
-    }
-
+    @Override
     public void load(String fname) {
         try {
             Scanner imageScanner = getScannerFromFile(fname);
@@ -51,6 +47,7 @@ public class AnimatedImage extends Image {
         frameHandler.reset();
     }
 
+    @Override
     public void draw(Position position, Element.Orientation orientation, GUI gui){
         images.get(frameHandler.getCurrentImage()).draw(position, orientation, gui);
     }

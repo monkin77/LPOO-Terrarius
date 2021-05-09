@@ -16,6 +16,7 @@ public class HeroViewer extends ElementViewer{
         getImage().update();
     }
 
+    @Override
     public void draw(Element element, GUI gui){
         getImage().draw(element.getPosition(), element.getOrientation(), gui);
     }
