@@ -225,7 +225,7 @@ same class, even though we want them to look the same, loading the files multipl
 #### The Pattern
 
 To solve this problem the **Factory Method** pattern was used. This pattern allows the creation of an interface for
-creating an object but lets it's subclasses determine which class to instantiate.
+creating an object but lets its subclasses determine which class to instantiate.
 
 Further explanation can be found here: https://www.cs.unc.edu/~stotts/GOF/hires/pat3cfso.htm
 
