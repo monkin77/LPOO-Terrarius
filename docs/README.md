@@ -77,7 +77,7 @@ We needed a way to faithfully update the game without depending on the CPU's clo
 while also rendering images as fast as possible, so the player gets an experience as smooth
 as his computer allows him
 
-### The Pattern
+#### The Pattern
 The pattern (and further explanation) used can be found in the following website,
 in the *Play Catch up* section:
 
@@ -92,7 +92,7 @@ lets them.
 This way, we can have a smoother gameplay in a faster computer without
 compromising the speed of the game
 
-### Implementation
+#### Implementation
 Below, we can find a flowchart which can help visualize this:
 
 ![Loop](img/loop.png)
@@ -102,7 +102,7 @@ in the following class:
 
 - [GameController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java/Controller/GameController)
 
-### Consequences
+#### Consequences
 The use of this pattern has a lot of advantages, like:
 
 - We can have the framerate depend almost solely on the speed of the computer. This way,
@@ -219,12 +219,18 @@ implementations
 
 ### There should be multiple ways of creating arenas
 
-**Problem in Context:** We want to have the possibility of creating different arenas, which could be associated with a specific level / region. Additionally, we also want to introduce more flexibility so that in the future we can create the arena through different methods, for example, reading a file.
+#### Problem in Context
 
-**The Pattern:**  We have applied the Builder pattern. This is a creational design pattern that lets you construct complex objects step by step. The pattern allows you to produce different types and representations of an object using the same construction code.
+We want to have the possibility of creating different arenas, which could be associated with a specific level / region. Additionally, we also want to introduce more flexibility so that in the future we can create the arena through different methods, for example, reading a file.
+
+#### The Pattern  
+
+We have applied the Builder pattern. This is a creational design pattern that lets you construct complex objects step by step. The pattern allows you to produce different types and representations of an object using the same construction code.
 (Alternative: Fluent Builder pattern)
 
-**Implementation:** This pattern suggests that we extract the object construction out of its own class and move it to separate objects called builders.
+#### Implementation 
+
+This pattern suggests that we extract the object construction out of its own class and move it to separate objects called builders.
 
 ![alt text](img/builderMethod_arena.png "Builder Method UML")
 
@@ -237,10 +243,12 @@ These classes can be found in the following files:
 * [Arena](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/arena/Arena.java)
 * [Game](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Game.java)
 
-**Consequences:** The use of the Builder Pattern allows the following benefits:
-* Construct objects step-by-step
-* Reuse the same construction code
-* Single Responsability Principle. Isolate complex construction code from the logic of the Arena.
+#### Consequences
+
+The use of the Builder Pattern allows the following benefits:
+- Construct objects step-by-step
+- Reuse the same construction code
+- Single Responsability Principle. Isolate complex construction code from the logic of the Arena.
 
 ### Element viewers and images
 
