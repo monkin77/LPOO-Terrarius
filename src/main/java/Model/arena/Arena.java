@@ -65,7 +65,7 @@ public class Arena {
         return true;
     }
 
-    public boolean hasAdjacentBlockNotFloating(Position position, Dimensions dimensions) {
+    public boolean hasAdjacentBlock(Position position, Dimensions dimensions) {
         for (Block block : this.blocks){
 
             boolean top_side_touches =
@@ -76,11 +76,22 @@ public class Arena {
                     position.getY() + dimensions.getHeight() - 1 >= block.getPosition().getY() &&
                             position.getY() + dimensions.getHeight() - 1 <= block.getPosition().getY() + block.getDimensions().getHeight() - 1;
 
+            //Just the Y is "inside" not the X
+            boolean element_inside_block =
+                    position.getY() >= block.getPosition().getY() &&
+                            position.getY() + dimensions.getHeight() <= block.getPosition().getY() + block.getDimensions().getHeight() - 1;
+
+            boolean block_inside_element =
+                    block.getPosition().getY() >= position.getY() &&
+                            block.getPosition().getY() + block.getDimensions().getHeight() - 1 <= position.getY() + dimensions.getHeight();
+
             boolean right_side_touches = position.getX() + dimensions.getWidth() == block.getPosition().getX();
 
             boolean left_side_touches = position.getX() == block.getPosition().getX() + block.getDimensions().getWidth();
 
-            if ((right_side_touches || left_side_touches) && (top_side_touches || bottom_side_touches)) return true;
+            if ((right_side_touches || left_side_touches) &&
+                    (top_side_touches || bottom_side_touches || element_inside_block || block_inside_element))
+                return true;
         }
 
         return false;
