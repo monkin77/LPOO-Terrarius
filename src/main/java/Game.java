@@ -1,13 +1,9 @@
 import Controller.GameController;
 import GUI.GUI;
 import GUI.LanternaGui;
-import Model.arena.ArenaBuilder;
-import Model.arena.LoaderArenaBuilder;
-import Viewer.ArenaViewer;
 import Model.arena.Arena;
-import Model.arena.DefaultArenaBuilder;
+import Model.arena.LoaderArenaBuilder;
 import Model.items.tools.Axe;
-
 
 import java.awt.*;
 import java.io.IOException;

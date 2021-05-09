@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static Viewer.ViewerConstants.*;
+import static Viewer.ViewerConstants.SKY_COLOR;
 
 
 public class ArenaViewer {

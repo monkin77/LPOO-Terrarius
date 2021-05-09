@@ -15,7 +15,8 @@ import java.util.List;
 
 import static Viewer.ViewerConstants.DEFAULT_BACKGROUND_COLOR;
 import static Viewer.ViewerConstants.DEFAULT_FOREGROUND_COLOR;
-import static java.awt.event.KeyEvent.*;
+import static java.awt.event.KeyEvent.VK_RIGHT;
+import static java.awt.event.KeyEvent.VK_UP;
 
 public class LanternaGuiTest {
     private LanternaGui gui;

@@ -22,8 +22,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import static Viewer.ViewerConstants.*;
+import static Viewer.ViewerConstants.DEFAULT_BACKGROUND_COLOR;
+import static Viewer.ViewerConstants.DEFAULT_FOREGROUND_COLOR;
 import static java.awt.event.KeyEvent.*;
 
 public class LanternaGui implements GUI {

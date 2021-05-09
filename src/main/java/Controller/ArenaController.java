@@ -1,7 +1,6 @@
 package Controller;
 
 import GUI.GUI;
-import Model.arena.Arena;
 
 import java.util.ArrayList;
 import java.util.List;

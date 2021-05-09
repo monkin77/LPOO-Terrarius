@@ -10,7 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import static Viewer.ViewerConstants.*;
+import static Viewer.ViewerConstants.DEFAULT_BACKGROUND_COLOR;
+import static Viewer.ViewerConstants.DEFAULT_FOREGROUND_COLOR;
 
 public class ColoredImage extends StillImage{
 
