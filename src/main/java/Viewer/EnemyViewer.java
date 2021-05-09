@@ -10,15 +10,15 @@ public class EnemyViewer extends ElementViewer{
 
     public EnemyViewer(Enemy enemy){
 
-        image = new AnimatedImage();
+        setImage(new AnimatedImage());
 
         if(enemy.getClass().equals(Zombie.class)){
-            image.load("Images/Enemies/Zombie.txt");
+            getImage().load("Images/Enemies/Zombie.txt");
         }
 
-        FrameHandler frameHandler = ((AnimatedImage)image).getFrameSpeed();
+        FrameHandler frameHandler = ((AnimatedImage)getImage()).getFrameSpeed();
 
-        this.elementFrameSpeedMap.put(enemy, new FrameHandler(
+        this.getElementFrameSpeedMap().put(enemy, new FrameHandler(
                 (int) (Math.random() * frameHandler.getCurrentImage()),
                 frameHandler.getTotalImages(),
                 (int) (Math.random() * frameHandler.getCurrentFPI()),
@@ -27,7 +27,7 @@ public class EnemyViewer extends ElementViewer{
 
     @Override
     public void update() {
-        for (FrameHandler frameHandler : this.elementFrameSpeedMap.values()){
+        for (FrameHandler frameHandler : this.getElementFrameSpeedMap().values()){
             frameHandler.update();
         }
     }
@@ -35,23 +35,23 @@ public class EnemyViewer extends ElementViewer{
     @Override
     public void draw(Element element, GUI gui) {
 
-        if (!elementFrameSpeedMap.containsKey(element)){
+        if (!getElementFrameSpeedMap().containsKey(element)){
 
-            FrameHandler frameHandler = ((AnimatedImage)image).getFrameSpeed();
+            FrameHandler frameHandler = ((AnimatedImage)getImage()).getFrameSpeed();
 
-            elementFrameSpeedMap.put(element, new FrameHandler(
+            getElementFrameSpeedMap().put(element, new FrameHandler(
                     (int) (Math.random() * frameHandler.getTotalImages()),
                     frameHandler.getTotalImages(),
                     (int) (Math.random() * frameHandler.getTotalFPI()),
                     frameHandler.getTotalFPI()));
         }
 
-        FrameHandler frameHandler = elementFrameSpeedMap.get(element);
+        FrameHandler frameHandler = getElementFrameSpeedMap().get(element);
 
-        AnimatedImage animatedImage =  (AnimatedImage)image;
+        AnimatedImage animatedImage = (AnimatedImage)getImage();
 
         animatedImage.setFrameSpeed(frameHandler);
 
-        this.image.draw(element.getPosition(), element.getOrientation(), gui);
+        this.getImage().draw(element.getPosition(), element.getOrientation(), gui);
     }
 }

@@ -13,16 +13,24 @@ public class PositionTest {
     }
 
     @Test
-    public void getters() {
-        Assertions.assertEquals(10, position.getX());
-        Assertions.assertEquals(10, position.getY());
+    public void adjacent() {
+        Assertions.assertEquals(9, position.getLeft().getX());
+        Assertions.assertEquals(10, position.getLeft().getY());
+
+        Assertions.assertEquals(11, position.getRight().getX());
+        Assertions.assertEquals(10, position.getRight().getY());
+
+        Assertions.assertEquals(10, position.getDown().getX());
+        Assertions.assertEquals(11, position.getDown().getY());
+
+        Assertions.assertEquals(10, position.getUp().getX());
+        Assertions.assertEquals(9, position.getUp().getY());
     }
 
     @Test
-    public void setters() {
-        position.setX(15);
-        position.setY(20);
-        Assertions.assertEquals(15, position.getX());
-        Assertions.assertEquals(20, position.getY());
+    public void equals() {
+        Assertions.assertTrue(position.equals(new Position(10, 10)));
+        Assertions.assertFalse(position.equals(new Position(11, 10)));
+        Assertions.assertFalse(position.equals(new Position(10, 11)));
     }
 }

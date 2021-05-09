@@ -12,6 +12,7 @@ public class EnemyController {
         this.arena = arena;
     }
 
+    // TODO: Make them only follow the hero when close
     public void moveEnemies() {
         for (Enemy enemy : arena.getEnemies()) {
             if (enemy.getPosition().getX() < arena.getHero().getPosition().getX()) {
@@ -34,7 +35,7 @@ public class EnemyController {
     private void moveEnemy(Enemy enemy, Position position) {
         if (!arena.collides(position, enemy.getDimensions())) {
             enemy.setPosition(position);
-            // TO DO: TAKE INTO ACCOUNT WIDTH AND HEIGHT
+            // TODO: USE COLLISIONS
             if (arena.getHero().getPosition().equals(position))
                 arena.getHero().setHealth(arena.getHero().getHealth() - enemy.getStats().getPower());
         }

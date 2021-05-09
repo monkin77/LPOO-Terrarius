@@ -2,12 +2,12 @@ package Model.arena;
 
 import Model.Dimensions;
 import Model.Position;
-import Model.elements.Element;
 import Model.elements.Hero;
 import Model.elements.blocks.Block;
 import Model.elements.enemies.Enemy;
 
 import java.util.List;
+
 
 public class Arena {
     private final Dimensions dimensions;
@@ -65,7 +65,7 @@ public class Arena {
         return true;
     }
 
-    public boolean hasAdjacent(Position position, Dimensions dimensions){
+    public boolean hasAdjacentBlockNotFloating(Position position, Dimensions dimensions) {
         for (Block block : this.blocks){
 
             boolean top_side_touches =
@@ -81,7 +81,6 @@ public class Arena {
             boolean left_side_touches = position.getX() == block.getPosition().getX() + block.getDimensions().getWidth();
 
             if ((right_side_touches || left_side_touches) && (top_side_touches || bottom_side_touches)) return true;
-
         }
 
         return false;
@@ -89,52 +88,62 @@ public class Arena {
 
     public boolean collides(Position position, Dimensions dimensions){
 
-        for (Block block : this.blocks){ //Some conditions could have been omitted, however they might become needed
-
-            //read has: left side of element (position and dimensions) inside of block
-            boolean left_elem_in_block =
-                    position.getX() >= block.getPosition().getX() &&
-                    position.getX() <= block.getPosition().getX() + block.getDimensions().getWidth() - 1;
-
-            boolean right_elem_in_block =
-                    position.getX() + dimensions.getWidth() - 1 >= block.getPosition().getX() &&
-                    position.getX() + dimensions.getWidth() - 1 <= block.getPosition().getX() + block.getDimensions().getWidth() - 1;
-
-            if (left_elem_in_block || right_elem_in_block){
-
-                boolean top_elem_in_block =
-                        position.getY() >= block.getPosition().getY() &&
-                                position.getY() <= block.getPosition().getY() + block.getDimensions().getHeight() - 1;
-
-                boolean bottom_elem_in_block =
-                        position.getY() + dimensions.getHeight() - 1 >= block.getPosition().getY() &&
-                                position.getY() + dimensions.getHeight() - 1 <= block.getPosition().getY() + block.getDimensions().getHeight() - 1;
-
-                if (top_elem_in_block || bottom_elem_in_block) return true;
-            }
-
-            boolean left_block_in_elem =
-                    block.getPosition().getX() >= position.getX() &&
-                            block.getPosition().getX() <= position.getX() + dimensions.getWidth() - 1;
-
-            boolean right_block_in_elem =
-                    block.getPosition().getX() + block.getDimensions().getWidth() - 1 >= position.getX() &&
-                            block.getPosition().getX() + block.getDimensions().getWidth() - 1 <= position.getX() + dimensions.getWidth() - 1;
-
-            if (left_block_in_elem || right_block_in_elem){
-
-                boolean top_block_in_elem =
-                        block.getPosition().getY() >= position.getY() &&
-                        block.getPosition().getY() <= position.getY() + dimensions.getHeight() - 1;
-
-                boolean bottom_block_in_elem =
-                        block.getPosition().getY() + block.getDimensions().getHeight() - 1 >= position.getY() &&
-                        block.getPosition().getY() + block.getDimensions().getHeight() - 1 <= position.getY() + dimensions.getHeight() - 1;
-
-                if (top_block_in_elem || bottom_block_in_elem) return true;
-            }
+        for (Block block : this.blocks) {
+            if (isElementInBlock(position, dimensions, block) || isBlockInElement(position, dimensions, block))
+                return true;
         }
 
+        return false;
+    }
+
+    private boolean isElementInBlock(Position position, Dimensions dimensions, Block block) {
+        boolean left_elem_in_block =
+                position.getX() >= block.getPosition().getX() &&
+                        position.getX() <= block.getPosition().getX() + block.getDimensions().getWidth() - 1;
+
+        boolean right_elem_in_block =
+                position.getX() + dimensions.getWidth() - 1 >= block.getPosition().getX() &&
+                        position.getX() + dimensions.getWidth() - 1 <= block.getPosition().getX() + block.getDimensions().getWidth() - 1;
+
+        if (left_elem_in_block || right_elem_in_block){
+
+            boolean top_elem_in_block =
+                    position.getY() >= block.getPosition().getY() &&
+                            position.getY() <= block.getPosition().getY() + block.getDimensions().getHeight() - 1;
+
+            boolean bottom_elem_in_block =
+                    position.getY() + dimensions.getHeight() - 1 >= block.getPosition().getY() &&
+                            position.getY() + dimensions.getHeight() - 1 <= block.getPosition().getY() + block.getDimensions().getHeight() - 1;
+
+            if (top_elem_in_block || bottom_elem_in_block) return true;
+        }
+        return false;
+    }
+
+    /**
+     * For situations where a block is floating and collides with the middle of the element
+     */
+    private boolean isBlockInElement(Position position, Dimensions dimensions, Block block) {
+        boolean left_block_in_elem =
+                block.getPosition().getX() >= position.getX() &&
+                        block.getPosition().getX() <= position.getX() + dimensions.getWidth() - 1;
+
+        boolean right_block_in_elem =
+                block.getPosition().getX() + block.getDimensions().getWidth() - 1 >= position.getX() &&
+                        block.getPosition().getX() + block.getDimensions().getWidth() - 1 <= position.getX() + dimensions.getWidth() - 1;
+
+        if (left_block_in_elem || right_block_in_elem){
+
+            boolean top_block_in_elem =
+                    block.getPosition().getY() >= position.getY() &&
+                            block.getPosition().getY() <= position.getY() + dimensions.getHeight() - 1;
+
+            boolean bottom_block_in_elem =
+                    block.getPosition().getY() + block.getDimensions().getHeight() - 1 >= position.getY() &&
+                            block.getPosition().getY() + block.getDimensions().getHeight() - 1 <= position.getY() + dimensions.getHeight() - 1;
+
+            if (top_block_in_elem || bottom_block_in_elem) return true;
+        }
         return false;
     }
 }

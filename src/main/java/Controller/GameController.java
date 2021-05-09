@@ -7,52 +7,67 @@ import Viewer.ArenaViewer;
 import java.io.IOException;
 import java.util.List;
 
-/*
-GameController will manage the whole map, which contains multiple arenas changing and being generated while
-the player explores the game. This means that the arenaController will change!
- */
 public class GameController {
     private static final int MS_PER_UPDATE = 16;
 
     private ArenaController arenaController;
     private ArenaViewer arenaViewer;
-    private Arena arena;
+    private Arena arena;  // Arena will change mid-game, in the future
     private GUI gui;
 
     public GameController(Arena arena, GUI gui) {
         this.arena = arena;
-        this.arenaController = new ArenaController(this.arena, MS_PER_UPDATE);
+        this.arenaController = new ArenaController(new HeroController(arena), new EnemyController(arena), MS_PER_UPDATE);
         this.arenaViewer = new ArenaViewer(gui);
         this.gui = gui;
-
     }
 
     /*
     Check this pattern at:
     https://gameprogrammingpatterns.com/game-loop.html
      */
-    long previous = System.currentTimeMillis();
-    long lag = 0;
     public void start() throws IOException {
+        long previous = System.currentTimeMillis();
+        long lag = 0;
+
         while (true) {
             long current = System.currentTimeMillis();
             long elapsed = current - previous;
             previous = current;
             lag += elapsed;
 
-            List<GUI.ACTION> actions = gui.getNextActions();
-            if (actions.contains(GUI.ACTION.QUIT)) break;
-
-            //if (arenaController.checkEnd()) break;
+            if (readInputAndCheckExit())
+                return;
 
             while (lag >= MS_PER_UPDATE) {
-                arenaController.timedActions(actions);
-                arenaViewer.update();
+                if (updateAndCheckEnd()) return;
                 lag -= MS_PER_UPDATE;
             }
 
-
-            arenaViewer.draw(this.arena);
+            draw();
         }
+    }
+
+    protected boolean readInputAndCheckExit() throws IOException {
+        List<GUI.ACTION> actions = gui.getNextActions();
+
+        if (actions.contains(GUI.ACTION.QUIT))
+            return true;
+
+        arenaController.addActions(actions);
+        return false;
+    }
+
+    protected boolean updateAndCheckEnd() {
+        arenaController.update();
+        arenaViewer.update();
+
+        if (arenaController.checkEnd())
+            return true;
+        return false;
+    }
+
+    protected void draw() throws IOException {
+        arenaViewer.draw(this.arena);
     }
 }

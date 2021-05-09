@@ -23,14 +23,14 @@ public class HeroController {
         }
     }
 
-    private void climbHero(Position position){
-        if (!arena.collides(position, arena.getHero().getDimensions()) && arena.hasAdjacent(arena.getHero().getPosition(), arena.getHero().getDimensions())){
-            arena.getHero().setPosition(position);
+    private void climbHero(Position position) {
+        if (arena.hasAdjacentBlockNotFloating(arena.getHero().getPosition(), arena.getHero().getDimensions())) {
+            moveHero(position);
         }
     }
 
-    public void fallHero(){
-        if(!arena.hasAdjacent(arena.getHero().getPosition(), arena.getHero().getDimensions()))
+    public void fallHero() {
+        if(!arena.hasAdjacentBlockNotFloating(arena.getHero().getPosition(), arena.getHero().getDimensions()))
             moveHero(arena.getHero().getPosition().getDown());
     }
 
@@ -66,7 +66,7 @@ public class HeroController {
             case DOWN:
                 moveHeroDown();
             case CLICK:
-                // TO DO: USE ITEM
+                // TODO: USE ITEM
                 break;
         }
     }

@@ -3,58 +3,30 @@ package Viewer.Image;
 import GUI.GUI;
 import Model.Position;
 import Model.elements.Element;
-import Model.elements.enemies.Enemy;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.Reader;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Scanner;
 
 public class StillImage extends Image{
-    protected ImageDimensions dimensions;     // Possibly write about this on report (Primitive Obsession smell fixed)
+    protected ImageDimensions dimensions;
     protected char[][] aspect;
 
-    public void load(String fname){
+    public StillImage() {
+        dimensions = new ImageDimensions(0, 0);
+    }
 
-        URL resource = getClass().getClassLoader().getResource(fname);
-
+    public void load(String fname) {
         try {
-            File imageFile = new File(resource.toURI());
-
-            Scanner imageScanner = new Scanner(imageFile);
-
+            Scanner imageScanner = getScannerFromFile(fname);
             int height = imageScanner.nextInt();
             int width = imageScanner.nextInt();
-            this.dimensions = new ImageDimensions(width, height);
 
-            aspect = new char[height][width];
+            loadAspect(imageScanner, width, height);
 
-            imageScanner.nextLine(); //clears the /n
-
-            for(int i = 0; i < height; i++){
-
-                String data = imageScanner.nextLine();
-
-                for (int j = 0; j < width; j++){
-                    aspect[i][j] = j >= data.length() ? ' ' : data.charAt(j);
-                }
-            }
         } catch (FileNotFoundException | URISyntaxException e) {
-            //TODO what to do with th exception
+            //TODO handle exception
         }
-    }
-
-    @Override
-    public void update() {
-        //Not doing anything for now
-    }
-
-    @Override
-    public void reset() {
-        //Not doing anything for now
     }
 
     public void draw(Position position, Element.Orientation orientation, GUI gui){
@@ -74,5 +46,32 @@ public class StillImage extends Image{
                 gui.drawCharacter(position.getX()+j, position.getY()+i, aspect_char);
             }
         }
+    }
+
+    protected void loadAspect(Scanner imageScanner, int width, int height) {
+        this.dimensions = new ImageDimensions(width, height);
+
+        aspect = new char[height][width];
+
+        imageScanner.nextLine(); //clears the /n
+
+        for(int i = 0; i < height; i++) {
+
+            String data = imageScanner.nextLine();
+
+            for (int j = 0; j < width; j++){
+                aspect[i][j] = j >= data.length() ? ' ' : data.charAt(j);
+            }
+        }
+    }
+
+    @Override
+    public void update() {
+        //Not doing anything for now
+    }
+
+    @Override
+    public void reset() {
+        //Not doing anything for now
     }
 }

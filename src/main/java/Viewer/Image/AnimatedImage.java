@@ -5,10 +5,8 @@ import Model.Position;
 import Model.elements.Element;
 import Viewer.FrameHandler;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -16,18 +14,12 @@ import java.util.Scanner;
 public class AnimatedImage extends Image {
 
     private FrameHandler frameHandler = new FrameHandler();
-
     private final List<ColoredImage> images = new ArrayList<>();
 
     @Override
-    public void load(String fname){
-
-        URL resource = getClass().getClassLoader().getResource(fname);
-
+    public void load(String fname) {
         try {
-            File imageFile = new File(resource.toURI());
-
-            Scanner imageScanner = new Scanner(imageFile);
+            Scanner imageScanner = getScannerFromFile(fname);
 
             int totalFrames = imageScanner.nextInt();
             int totalSpeed = imageScanner.nextInt();
@@ -37,12 +29,8 @@ public class AnimatedImage extends Image {
 
             imageScanner.nextLine(); //clears the /n
 
-            for(int i = 0; i < totalFrames; i++){
-                ColoredImage image = new ColoredImage();
-                String nFname = imageScanner.nextLine();
-                image.load(nFname);
-                images.add(image);
-            }
+            for(int i = 0; i < totalFrames; i++)
+                addNextImage(imageScanner);
 
         } catch (URISyntaxException | FileNotFoundException e) {
             e.printStackTrace();
@@ -61,9 +49,7 @@ public class AnimatedImage extends Image {
 
     @Override
     public void draw(Position position, Element.Orientation orientation, GUI gui){
-
         images.get(frameHandler.getCurrentImage()).draw(position, orientation, gui);
-
     }
 
     public FrameHandler getFrameSpeed() {
@@ -72,5 +58,12 @@ public class AnimatedImage extends Image {
 
     public void setFrameSpeed(FrameHandler frameHandler) {
         this.frameHandler = frameHandler;
+    }
+
+    protected void addNextImage(Scanner imageScanner) {
+        ColoredImage image = new ColoredImage();
+        String nFname = imageScanner.nextLine();
+        image.load(nFname);
+        images.add(image);
     }
 }

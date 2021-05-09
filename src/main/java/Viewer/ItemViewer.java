@@ -9,10 +9,9 @@ import Model.items.tools.Axe;
 import Viewer.Image.Image;
 import Viewer.Image.StillImage;
 
-
 public class ItemViewer {
-    protected Image image;
-    protected Image icon;
+    private Image image;
+    private Image icon;
 
     public ItemViewer(Item item) {
         image = new StillImage();
@@ -21,6 +20,14 @@ public class ItemViewer {
             image.load("Images/Items/Axe.txt");
             icon.load("Images/Items/AxeIcon.txt");
         }
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public void setIcon(Image icon) {
+        this.icon = icon;
     }
 
     public void draw(Item item, GUI gui){

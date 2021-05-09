@@ -1,5 +1,6 @@
 package Viewer.Image;
 
+//TODO: SAME AS DIMENSIONS. USE THE SAME
 public class ImageDimensions {
     private int height;
     private int width;
