@@ -76,6 +76,9 @@ public class ArenaTest {
         // Bottom Left
         Assertions.assertTrue(this.arena.hasAdjacentBlock(new Position(9, 8), new Dimensions(2, 2)));
 
+        // Floating
+        Assertions.assertTrue(this.arena.hasAdjacentBlock(new Position(4, 4), new Dimensions(10, 1)));
+
     }
 
     @Test
@@ -85,9 +88,6 @@ public class ArenaTest {
 
         // Adjacent but larger
         Assertions.assertFalse(this.arena.hasAdjacentBlock(new Position(4, 4), new Dimensions(1, 10)));
-
-        // Adjacent but taller
-        Assertions.assertFalse(this.arena.hasAdjacentBlock(new Position(4, 4), new Dimensions(10, 1)));
 
         // Adjacent but larger and taller
         Assertions.assertFalse(this.arena.hasAdjacentBlock(new Position(4, 4), new Dimensions(10, 10)));
