@@ -13,6 +13,14 @@ public class FrameHandlerTest {
     }
 
     @Test
+    public void defaultCreation() {
+        FrameHandler defaultFrame = new FrameHandler();
+        // Prevent division by 0
+        Assertions.assertNotEquals(0, defaultFrame.getTotalFPI());
+        Assertions.assertNotEquals(0, defaultFrame.getTotalImages());
+    }
+
+    @Test
     public void update() {
         frameHandler.update();
 
