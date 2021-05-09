@@ -10,14 +10,19 @@ import static Viewer.ViewerConstants.*;
 public class Toolbar {
     private Map<Integer, Item> toolBar;
     private Integer activeItemIdx;
-    private final Integer maxSlots = TOOLBAR_SLOTS;
-    private final Dimensions dimensions = new Dimensions(TOOLBAR_HEIGHT, SCREEN_WIDTH);
-    private final int toolbarCellLength = TOOLBAR_CELL_LENGTH;
-    private final int toolbarSeparatorWidth = TOOLBAR_SEPARATOR_THICKNESS;
+    private final Integer maxSlots;
+
+    private final Dimensions dimensions;
+    private final int toolbarCellLength;
+    private final int toolbarSeparatorWidth;
 
     public Toolbar() {
         this.toolBar = new HashMap<>();
-        activeItemIdx = 1;  // Just for testing. Should change this to 0 (unarmed) and change when pressing the numbers on the keyboard
+        this.activeItemIdx = 1;  // Just for testing. Should change this to 0 (unarmed) and change when pressing the numbers on the keyboard
+        this.maxSlots = TOOLBAR_SLOTS;
+        this.dimensions = new Dimensions(TOOLBAR_HEIGHT, SCREEN_WIDTH);
+        this.toolbarCellLength = TOOLBAR_CELL_LENGTH;
+        this.toolbarSeparatorWidth = TOOLBAR_SEPARATOR_THICKNESS;
     }
 
     public Integer getActiveItemIdx() {
