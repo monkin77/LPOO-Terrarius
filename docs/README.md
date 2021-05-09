@@ -6,7 +6,19 @@
 [WRITE HERE WHAT YOU IMPLEMENT IN CONTROLLER/VIEWERS]
 
 **Element drawing** - Each element of the game is drawn with its own
-image, represented by characters and saved in text files
+image, represented by characters and saved in text files. Elements can be represented by static images 
+or with animations.
+
+**Arena** - Has the map, enemies and hero of our game.
+
+**Arena Loading** - The composition of the arena is done by loading different files. These contain representation of 
+the terrain of the map, the enemies and the hero.
+
+**Hero movement** - The hero can move around the map, due to collision with blocks, according to the inputs from the 
+player, up, down, left and right arrows. These movements consist of lateral movements and vertical block climbing.
+
+**Enemy movement** - Enemies move towards the hero along the map but can't move up, just fall down, therefore they can 
+sometimes be trapped.
 
 ## Planned Features
 [WRITE HERE WHAT WE WILL DO AFTER THE FIRST DELIVERY]
