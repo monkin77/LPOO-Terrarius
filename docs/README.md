@@ -24,6 +24,8 @@ sometimes be trapped.
 
 **Tools** - Items that the hero can hold in his hand.
 
+**Toolbar** - Stores items the hero grabs.
+
 ## Planned Features
 
 **Breaking blocks** - The hero, when equipped with the proper tool, will be able to break blocks from the map.
@@ -38,6 +40,14 @@ Therefore, providing a sense of progression to the game.
 will have to fight them off with different tools.
 
 **Healing** - If the hero has taken damage it may consume food to restore some of the lost HP.
+
+**Toolbar Appearance** - Show the toolbar in the bottom of the screen, outside of the arena.
+
+**Crafting Functionality** - The hero will be capable of crafting Items, using materials.
+
+**Tree Evolution System** - The hero may upgrade his stats / learn new skills, through leveling.
+
+**Hidden Rooms / Traps** - Include hidden areas that require some trick to get inside.
 
 ## Design
 
@@ -257,7 +267,7 @@ Each element, hero, enemy or block, can be visually represented by a "matrix" of
 A good way to store the visual representation of these elements is through files. However if we have 2 Blocks from the
 same class, even though we want them to look the same, loading the files multiple times would be wasteful.
 
-#### The Pattern
+#### The Pattern    
 
 To solve this problem the **Factory Method** pattern was used. This pattern allows the creation of an interface for
 creating an object but lets its subclasses determine which class to instantiate.
