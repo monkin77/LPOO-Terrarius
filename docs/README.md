@@ -41,8 +41,6 @@ will have to fight them off with different tools.
 
 **Healing** - If the hero has taken damage it may consume food to restore some of the lost HP.
 
-**Toolbar Appearance** - Show the toolbar in the bottom of the screen, outside of the arena.
-
 **Crafting Functionality** - The hero will be capable of crafting Items, using materials.
 
 **Tree Evolution System** - The hero may upgrade his stats / learn new skills, through leveling.
