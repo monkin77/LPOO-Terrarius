@@ -20,9 +20,7 @@ player, up, down, left and right arrows. These movements consist of lateral move
 **Enemy movement** - Enemies move towards the hero along the map but can't move up, just fall down, therefore they can 
 sometimes be trapped.
 
-**Tools** - Items that the hero can hold in its hands
-
-**Toolbar** - TODO should we consider this has implemented?
+**Tools** - Items that the hero can hold in his hand.
 
 ## Planned Features
 [WRITE HERE WHAT WE WILL DO AFTER THE FIRST DELIVERY]
