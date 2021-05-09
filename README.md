@@ -9,6 +9,7 @@ challenging enemies will appear and the tools at the disposal of the hero will e
 ### Screenshots
 
 ![Screenshot 1](docs/img/screenshots/screenshot1.png)
+![Screenshot 2](docs/img/screenshots/screenshot2.png)
 
 
 
