@@ -12,7 +12,6 @@ image, represented by characters and saved in text files
 [WRITE HERE WHAT WE WILL DO AFTER THE FIRST DELIVERY]
 
 ## Design
-[WRITE HERE EACH TIME YOU HAVE TO SOLVE A PROBLEM]
 
 ### Model-View-Controller
 #### Problem in context
@@ -258,7 +257,42 @@ Here are the relevant classes:
 
 ### Comments
 
-Since the project is in mid-development, there 
+Since the project is in mid-development, there are some comments throughout the code reminding us
+of something or explaining that some feature is still under changes (like TODOs). Here are some examples:
+
+- [TODO](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/d6a706003ecfb1c35a176f74305885d62cc7b7e2/src/main/java/Controller/EnemyController.java#L15)
+
+- [Explanation Comment](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/d6a706003ecfb1c35a176f74305885d62cc7b7e2/src/main/java/Model/items/Toolbar.java#L19)
+
+This smell will be fixed when the features are properly implemented and the comments are removed.
+
+### Duplicate Code
+
+Currently, there are two classes who serve almost the same purpose: Dimensions and ImageDimensions.
+ The difference between them is almost uniquely the package in which they act (Model and Viewer).
+
+This could be fixed by defining a Dimensions class which both packaged can use (possibly, in a
+common *Utils* package).
+
+Here are the relevant classes:
+- [Dimensions](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/Dimensions.java)
+- [ImageDimensions](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/ImageDimensions.java)
+
+### Speculative Generality
+
+Since the project is in mid-development, there are currently methods, classes and fields
+which are not being used. These are usually methods/fields which were
+thought useful when creating their respective classes but weren't put in execution right away,
+probably because they'll serve a purpose in a feature that's yet to be implemented.
+
+Here are some examples:
+
+- [Toolbar item selection](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/items/Toolbar.java)
+- [CLICK action](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/d6a706003ecfb1c35a176f74305885d62cc7b7e2/src/main/java/Controller/HeroController.java#L68)
+- Most of the [items](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java/Model/items), with the exception of the Axe
+
+This code smell can be fixed by either implementing features which use these methods/classes or
+removed them altogether, if they're not useful in the end.
 
 ## Testing
 ![Test Coverage](img/test.png)
