@@ -23,7 +23,19 @@ sometimes be trapped.
 **Tools** - Items that the hero can hold in his hand.
 
 ## Planned Features
-[WRITE HERE WHAT WE WILL DO AFTER THE FIRST DELIVERY]
+
+**Breaking blocks** - The hero, when equipped with the proper tool, will be able to break blocks from the map.
+
+**Placing blocks** - The hero will be able to place blocks, this way being able to modify the map.
+
+**Multiple maps** - The arena will be able to contain several maps, but will only display one at a time.
+These maps can have been already created or can be newly generated according to the hero's level. 
+Therefore, providing a sense of progression to the game.
+
+**Combat system** - Enemies will be able to inflict damage on the hero through physical contact, and the hero
+will have to fight them off with different tools.
+
+**Healing** - If the hero has taken damage it may consume food to restore some of the lost HP.
 
 ## Design
 
