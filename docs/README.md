@@ -12,13 +12,17 @@ or with animations.
 **Arena** - Has the map, enemies and hero of our game.
 
 **Arena Loading** - The composition of the arena is done by loading different files. These contain representation of 
-the terrain of the map, the enemies and the hero.
+the terrain of the map, the enemies and the hero, allowing the modification of the arena to be easily done.
 
 **Hero movement** - The hero can move around the map, due to collision with blocks, according to the inputs from the 
 player, up, down, left and right arrows. These movements consist of lateral movements and vertical block climbing.
 
 **Enemy movement** - Enemies move towards the hero along the map but can't move up, just fall down, therefore they can 
 sometimes be trapped.
+
+**Tools** - Items that the hero can hold in its hands
+
+**Toolbar** - TODO should we consider this has implemented?
 
 ## Planned Features
 [WRITE HERE WHAT WE WILL DO AFTER THE FIRST DELIVERY]
