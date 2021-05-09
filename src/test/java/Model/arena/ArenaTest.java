@@ -65,34 +65,34 @@ public class ArenaTest {
     @Test
     public void hasAdjacent() {
         // Top right
-        Assertions.assertTrue(this.arena.hasAdjacentBlockNotFloating(new Position(4, 6), new Dimensions(1, 1)));
+        Assertions.assertTrue(this.arena.hasAdjacentBlock(new Position(4, 6), new Dimensions(1, 1)));
 
         // Bottom right
-        Assertions.assertTrue(this.arena.hasAdjacentBlockNotFloating(new Position(3, 8), new Dimensions(2, 2)));
+        Assertions.assertTrue(this.arena.hasAdjacentBlock(new Position(3, 8), new Dimensions(2, 2)));
 
         // Top Left
-        Assertions.assertTrue(this.arena.hasAdjacentBlockNotFloating(new Position(9, 6), new Dimensions(1, 1)));
+        Assertions.assertTrue(this.arena.hasAdjacentBlock(new Position(9, 6), new Dimensions(1, 1)));
 
         // Bottom Left
-        Assertions.assertTrue(this.arena.hasAdjacentBlockNotFloating(new Position(9, 8), new Dimensions(2, 2)));
+        Assertions.assertTrue(this.arena.hasAdjacentBlock(new Position(9, 8), new Dimensions(2, 2)));
 
     }
 
     @Test
     public void notAdjacent() {
         // Far
-        Assertions.assertFalse(this.arena.hasAdjacentBlockNotFloating(new Position(1, 1), new Dimensions(2, 2)));
+        Assertions.assertFalse(this.arena.hasAdjacentBlock(new Position(1, 1), new Dimensions(2, 2)));
 
         // Adjacent but larger
-        Assertions.assertFalse(this.arena.hasAdjacentBlockNotFloating(new Position(4, 4), new Dimensions(1, 10)));
+        Assertions.assertFalse(this.arena.hasAdjacentBlock(new Position(4, 4), new Dimensions(1, 10)));
 
         // Adjacent but taller
-        Assertions.assertFalse(this.arena.hasAdjacentBlockNotFloating(new Position(4, 4), new Dimensions(10, 1)));
+        Assertions.assertFalse(this.arena.hasAdjacentBlock(new Position(4, 4), new Dimensions(10, 1)));
 
         // Adjacent but larger and taller
-        Assertions.assertFalse(this.arena.hasAdjacentBlockNotFloating(new Position(4, 4), new Dimensions(10, 10)));
+        Assertions.assertFalse(this.arena.hasAdjacentBlock(new Position(4, 4), new Dimensions(10, 10)));
 
         // Embedded
-        Assertions.assertFalse(this.arena.hasAdjacentBlockNotFloating(new Position(8, 6), new Dimensions(1, 1)));
+        Assertions.assertFalse(this.arena.hasAdjacentBlock(new Position(8, 6), new Dimensions(1, 1)));
     }
 }
