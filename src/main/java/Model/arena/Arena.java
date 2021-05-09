@@ -9,7 +9,7 @@ import Model.elements.enemies.Enemy;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO: Refactor
+// TODO: TWO TYPES OF DIMENSIONS
 public class Arena {
     private final Dimensions dimensions;
 

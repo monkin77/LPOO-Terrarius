@@ -17,10 +17,10 @@ import static Viewer.ViewerConstants.*;
 
 public class ArenaViewer {
 
-    private final Map<Class, ElementViewer> enemyCache = new HashMap<>();
-    private final Map<Class, ElementViewer> blockCache = new HashMap<>();
-    private final Map<Class, ItemViewer> itemCache = new HashMap<>();
-    private final ToolbarViewer toolbarViewer = new ToolbarViewer();
+    private Map<Class, ElementViewer> enemyCache = new HashMap<>();
+    private Map<Class, ElementViewer> blockCache = new HashMap<>();
+    private Map<Class, ItemViewer> itemCache = new HashMap<>();
+    private ToolbarViewer toolbarViewer = new ToolbarViewer();
     private HeroViewer heroViewer = new HeroViewer();
 
     private final GUI gui;
@@ -110,5 +110,25 @@ public class ArenaViewer {
 
             viewer.drawIcon(new Position(iconX, iconY), gui);
         }
+    }
+
+    protected void setEnemyCache(Map<Class, ElementViewer> enemyCache) {
+        this.enemyCache = enemyCache;
+    }
+
+    protected void setBlockCache(Map<Class, ElementViewer> blockCache) {
+        this.blockCache = blockCache;
+    }
+
+    protected void setItemCache(Map<Class, ItemViewer> itemCache) {
+        this.itemCache = itemCache;
+    }
+
+    protected void setToolbarViewer(ToolbarViewer toolbarViewer) {
+        this.toolbarViewer = toolbarViewer;
+    }
+
+    protected void setHeroViewer(HeroViewer heroViewer) {
+        this.heroViewer = heroViewer;
     }
 }
