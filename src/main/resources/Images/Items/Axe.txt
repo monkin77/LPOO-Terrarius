@@ -1,5 +1,20 @@
-4 2
-OO
-OI
-O.
-O.
+5 3
+<ID
+.|.
+.|.
+.|.
+.|.
+1
+M #444444
+MMM
+MMM
+MMM
+MMM
+MMM
+1
+S #50a8cc
+SSS
+SSS
+SSS
+SSS
+SSS
