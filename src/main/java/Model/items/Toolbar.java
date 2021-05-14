@@ -29,6 +29,10 @@ public class Toolbar {
         return activeItemIdx;
     }
 
+    public void setActiveItemIdx(Integer activeItemIdx) {
+        this.activeItemIdx = activeItemIdx;
+    }
+
     public Item getActiveItem() {
         return this.toolBar.get(activeItemIdx);
     }

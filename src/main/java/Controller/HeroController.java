@@ -52,6 +52,10 @@ public class HeroController {
         climbHero(arena.getHero().getPosition().getDown());
     }
 
+    public void changeHeroSlot(Integer slot) {
+        this.arena.getHero().getToolBar().setActiveItemIdx(slot);
+    }
+
     public void doAction(GUI.ACTION action) {
         switch (action) {
             case UP:
@@ -67,6 +71,14 @@ public class HeroController {
                 moveHeroDown();
             case CLICK:
                 // TODO: USE ITEM
+                break;
+            case SLOT0:
+                changeHeroSlot(0);
+                System.out.println("0 Pressed!");
+                break;
+            case SLOT1:
+                changeHeroSlot(1);
+                System.out.println("1 Pressed!");
                 break;
         }
     }
