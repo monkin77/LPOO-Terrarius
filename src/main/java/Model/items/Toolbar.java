@@ -5,18 +5,24 @@ import Model.Dimensions;
 import java.util.HashMap;
 import java.util.Map;
 
+import static Viewer.ViewerConstants.*;
 
 public class Toolbar {
     private Map<Integer, Item> toolBar;
     private Integer activeItemIdx;
-    private final Dimensions dimensions;
     private final Integer maxSlots;
+
+    private final Dimensions dimensions;
+    private final int toolbarCellLength;
+    private final int toolbarSeparatorWidth;
 
     public Toolbar() {
         this.toolBar = new HashMap<>();
-        maxSlots = 9;
-        dimensions = new Dimensions(5, 37);
-        activeItemIdx = 1;  // Just for testing. Should change this to 0 (unarmed) and change when pressing the numbers on the keyboard
+        this.activeItemIdx = 1;  // Just for testing. Should change this to 0 (unarmed) and change when pressing the numbers on the keyboard
+        this.maxSlots = TOOLBAR_SLOTS;
+        this.dimensions = new Dimensions(TOOLBAR_HEIGHT, SCREEN_WIDTH);
+        this.toolbarCellLength = TOOLBAR_CELL_LENGTH;
+        this.toolbarSeparatorWidth = TOOLBAR_SEPARATOR_THICKNESS;
     }
 
     public Integer getActiveItemIdx() {
@@ -60,11 +66,15 @@ public class Toolbar {
         return toolBar;
     }
 
-    public Integer getToolbarCellHeight() {
-        return this.dimensions.getHeight() - 2;
+    public int getToolbarCellLength() {
+        return this.toolbarCellLength;
     }
 
-    public Integer getToolbarCellWidth() {
-        return ( this.dimensions.getWidth() - 2 - (this.maxSlots-1) ) / this.maxSlots;
+    public int getToolbarSeparatorWidth() {
+        return toolbarSeparatorWidth;
+    }
+
+    public Integer getMaxSlots() {
+        return maxSlots;
     }
 }

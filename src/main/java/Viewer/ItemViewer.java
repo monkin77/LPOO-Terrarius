@@ -16,7 +16,7 @@ public class ItemViewer {
 
     public ItemViewer(Item item) {
         image = new ColoredImage();
-        icon = new StillImage();
+        icon = new ColoredImage();
         if(item.getClass().equals(Axe.class)) {
             image.load("Images/Items/Axe.txt");
             icon.load("Images/Items/AxeIcon.txt");
