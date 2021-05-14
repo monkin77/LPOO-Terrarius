@@ -35,7 +35,7 @@ public class Game {
     Check this pattern at:
     https://gameprogrammingpatterns.com/game-loop.html
      */
-    private void start() throws IOException {
+    protected void start() throws IOException {
         long previous = System.currentTimeMillis();
         long lag = 0;
 

@@ -1,4 +1,4 @@
-package Terrarius.Viewer;
+package Terrarius.Viewer.Game;
 
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Dimensions;
@@ -100,7 +100,7 @@ public class ArenaViewerTest {
         Mockito.doNothing().when(arenaViewer).drawEnemies(gui, arena);
         Mockito.doNothing().when(arenaViewer).drawToolbar(gui, arena);
 
-        arenaViewer.draw(arena);
+        arenaViewer.draw(gui, arena);
 
         Mockito.verify(arenaViewer, Mockito.times(1)).drawBackground(gui, arena);
         Mockito.verify(arenaViewer, Mockito.times(1)).drawBlocks(gui, arena);

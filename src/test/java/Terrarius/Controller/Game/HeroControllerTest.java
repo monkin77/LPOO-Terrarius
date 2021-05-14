@@ -1,4 +1,4 @@
-package Terrarius.Controller;
+package Terrarius.Controller.Game;
 
 import Terrarius.Controller.Game.HeroController;
 import Terrarius.GUI.GUI;

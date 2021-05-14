@@ -1,4 +1,4 @@
-package Terrarius.Viewer;
+package Terrarius.Viewer.Game;
 
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Dimensions;

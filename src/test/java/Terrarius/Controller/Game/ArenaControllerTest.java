@@ -1,4 +1,4 @@
-package Terrarius.Controller;
+package Terrarius.Controller.Game;
 
 import Terrarius.Controller.Game.ArenaController;
 import Terrarius.Controller.Game.EnemyController;
