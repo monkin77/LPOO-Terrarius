@@ -1,9 +1,9 @@
 package Terrarius.States;
 
 import Terrarius.Controller.Controller;
-import Terrarius.Controller.GameController;
+import Terrarius.Controller.Game.GameController;
 import Terrarius.Model.arena.Arena;
-import Terrarius.Viewer.ArenaViewer;
+import Terrarius.Viewer.Game.ArenaViewer;
 import Terrarius.Viewer.Viewer;
 
 public class GameState extends State<Arena> {

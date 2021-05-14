@@ -1,4 +1,4 @@
-package Terrarius.Controller;
+package Terrarius.Controller.Game;
 
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Position;

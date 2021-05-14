@@ -1,5 +1,6 @@
 package Terrarius.Controller;
 
+import Terrarius.Controller.Game.GameController;
 import Terrarius.GUI.GUI;
 import Terrarius.Model.arena.Arena;
 import org.junit.jupiter.api.Assertions;

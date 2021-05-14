@@ -15,6 +15,7 @@ import Terrarius.Model.items.Item;
 import Terrarius.Model.items.Toolbar;
 import Terrarius.Model.items.tools.Axe;
 import Terrarius.Model.items.tools.Pickaxe;
+import Terrarius.Viewer.Game.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static Terrarius.Viewer.ViewerConstants.SKY_COLOR;
+import static Terrarius.Viewer.Game.GameViewerConstants.SKY_COLOR;
 
 public class ArenaViewerTest {
     private ArenaViewer arenaViewer;

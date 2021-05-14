@@ -4,6 +4,7 @@ import Terrarius.GUI.GUI;
 import Terrarius.Model.Position;
 import Terrarius.Model.elements.Element;
 import Terrarius.Model.elements.Hero;
+import Terrarius.Viewer.Game.HeroViewer;
 import Terrarius.Viewer.Image.Image;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

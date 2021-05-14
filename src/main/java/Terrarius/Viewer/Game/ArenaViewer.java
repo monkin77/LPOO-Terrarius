@@ -1,4 +1,4 @@
-package Terrarius.Viewer;
+package Terrarius.Viewer.Game;
 
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Position;
@@ -7,12 +7,13 @@ import Terrarius.Model.elements.blocks.Block;
 import Terrarius.Model.elements.enemies.Enemy;
 import Terrarius.Model.items.Item;
 import Terrarius.Model.items.Toolbar;
+import Terrarius.Viewer.Viewer;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static Terrarius.Viewer.ViewerConstants.SKY_COLOR;
+import static Terrarius.Viewer.Game.GameViewerConstants.SKY_COLOR;
 
 
 public class ArenaViewer extends Viewer<Arena> {

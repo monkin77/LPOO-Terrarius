@@ -7,6 +7,7 @@ import Terrarius.Model.elements.Element;
 import Terrarius.Model.elements.Hero;
 import Terrarius.Model.items.Item;
 import Terrarius.Model.items.tools.Axe;
+import Terrarius.Viewer.Game.ItemViewer;
 import Terrarius.Viewer.Image.Image;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

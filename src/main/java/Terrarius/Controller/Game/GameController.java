@@ -1,5 +1,6 @@
-package Terrarius.Controller;
+package Terrarius.Controller.Game;
 
+import Terrarius.Controller.Controller;
 import Terrarius.GUI.GUI;
 import Terrarius.Game;
 import Terrarius.Model.arena.Arena;

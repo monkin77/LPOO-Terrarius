@@ -4,6 +4,7 @@ import Terrarius.GUI.GUI;
 import Terrarius.Model.Position;
 import Terrarius.Model.elements.Element;
 import Terrarius.Model.elements.enemies.Enemy;
+import Terrarius.Viewer.Game.EnemyViewer;
 import Terrarius.Viewer.Image.AnimatedImage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

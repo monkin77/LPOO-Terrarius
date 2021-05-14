@@ -1,5 +1,6 @@
 package Terrarius.Controller;
 
+import Terrarius.Controller.Game.HeroController;
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Dimensions;
 import Terrarius.Model.Position;
