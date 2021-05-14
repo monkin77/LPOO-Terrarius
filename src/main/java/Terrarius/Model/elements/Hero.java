@@ -60,4 +60,12 @@ public class Hero extends Element {
     public void removeItem(Integer toolBarPosition) {
         this.toolBar.removeItem(toolBarPosition);
     }
+
+    public Dimensions getDimensionsWithItem() {
+        if(toolBar.getActiveItemIdx() == 0) return this.getDimensions();
+
+        Dimensions totalDimensions = new Dimensions(this.getDimensions());
+        totalDimensions.incrementWidth(toolBar.getActiveItem().getDimensions().getWidth());
+        return totalDimensions;
+    }
 }
