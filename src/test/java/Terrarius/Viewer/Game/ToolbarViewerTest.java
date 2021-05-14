@@ -34,6 +34,6 @@ public class ToolbarViewerTest {
         toolbarViewer.draw(toolbar, new Dimensions(50, 50), gui);
 
         Mockito.verify(image, Mockito.times(1))
-                .draw(new Position(20, 40), Element.Orientation.RIGHT, gui);
+                .draw(new Position(0, 50), Element.Orientation.RIGHT, gui);
     }
 }

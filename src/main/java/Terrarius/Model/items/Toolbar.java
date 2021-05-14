@@ -5,7 +5,7 @@ import Terrarius.Model.Dimensions;
 import java.util.HashMap;
 import java.util.Map;
 
-import static Viewer.ViewerConstants.*;
+import static Terrarius.Viewer.Game.GameViewerConstants.*;
 
 public class Toolbar {
     private Map<Integer, Item> toolBar;
