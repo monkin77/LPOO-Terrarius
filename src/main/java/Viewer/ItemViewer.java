@@ -15,13 +15,8 @@ public class ItemViewer {
     private Image icon;
 
     public ItemViewer(Item item) {
-<<<<<<< HEAD
         image = new ColoredImage();
-        icon = new StillImage();
-=======
-        image = new StillImage();
         icon = new ColoredImage();
->>>>>>> Drawing toolbar outside the arena and coloring some components
         if(item.getClass().equals(Axe.class)) {
             image.load("Images/Items/Axe.txt");
             icon.load("Images/Items/AxeIcon.txt");
