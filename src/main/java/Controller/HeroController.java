@@ -18,8 +18,12 @@ public class HeroController {
             || position.getY() < 0 || position.getY() + arena.getHero().getDimensions().getHeight() > arena.getHeight())
             return;
 
+        /*
+        * CHANGE THIS. INSTEAD OF OVERLOADING THE ARENA COLLIDES FUNCTION. CREATE ANOTHER VERIFICATION HERE TO CHECK
+        * TOOLS COLLISIONS TAKING INTO ACCOUNT THE TOOL HEIGHT POSITION
+        *  */
 
-        if (!arena.collides(position, arena.getHero().getDimensionsWithItem())) {
+        if (!arena.collides(position, arena.getHero())) {
             arena.getHero().setPosition(position);
         }
     }
