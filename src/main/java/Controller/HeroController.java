@@ -18,7 +18,8 @@ public class HeroController {
             || position.getY() < 0 || position.getY() + arena.getHero().getDimensions().getHeight() > arena.getHeight())
             return;
 
-        if (!arena.collides(position, arena.getHero().getDimensions())) {
+
+        if (!arena.collides(position, arena.getHero().getDimensionsWithItem())) {
             arena.getHero().setPosition(position);
         }
     }
