@@ -5,6 +5,7 @@ import Model.Position;
 import Model.elements.Hero;
 import Model.elements.blocks.Block;
 import Model.elements.enemies.Enemy;
+import Model.items.tools.Tool;
 
 import java.util.List;
 
@@ -156,5 +157,29 @@ public class Arena {
             if (top_block_in_elem || bottom_block_in_elem) return true;
         }
         return false;
+    }
+
+    public void breakBlock(Position position, Tool tool){
+        Block block = null;
+
+        Position realPosition = new Position(position.getX()/4 * 4, position.getY()/4 * 4); //Make this better somehow
+
+        for (Block block1 : blocks){ //TODO maybe divide this into a function
+            if (block1.getPosition().equals(realPosition)){
+                block = block1;
+                break;
+            }
+        }
+
+        if (block == null) return;
+
+        if (tool.getStats().getMiningHardness() >= block.getHardness()){
+            block.setHp(block.getHP() - tool.getStats().getMiningPower());
+            if (block.getHP() <= 0){
+                //TODO pickup block
+                blocks.remove(block);
+            }
+        }
+
     }
 }

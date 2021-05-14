@@ -4,9 +4,12 @@ import GUI.GUI;
 import Model.Position;
 import Model.arena.Arena;
 import Model.elements.Element;
+import Model.items.tools.Axe;
+import Model.items.tools.Tool;
 
 public class HeroController {
     private final Arena arena;
+    private Position targetPosition; //TODO Should this be here?
 
     public HeroController(Arena arena) {
         this.arena = arena;
@@ -52,6 +55,11 @@ public class HeroController {
         climbHero(arena.getHero().getPosition().getDown());
     }
 
+    public void useItem() {
+        //TODO change this
+        arena.breakBlock(targetPosition, (Tool)arena.getHero().getToolBar().getActiveItem());
+    }
+
     public void doAction(GUI.ACTION action) {
         switch (action) {
             case UP:
@@ -65,13 +73,18 @@ public class HeroController {
                 break;
             case DOWN:
                 moveHeroDown();
+                break;
             case CLICK:
-                // TODO: USE ITEM
+                useItem();
                 break;
         }
     }
 
     public boolean isHeroAlive() {
         return arena.getHero().getHealth() > 0;
+    }
+
+    public void setTargetPosition(Position targetPosition) {
+        this.targetPosition = targetPosition;
     }
 }

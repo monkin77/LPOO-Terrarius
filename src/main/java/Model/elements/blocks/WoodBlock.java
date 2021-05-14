@@ -12,7 +12,7 @@ public class WoodBlock extends Block {
 
     @Override
     protected int initHP() {
-        return 20;
+        return 200;
     }
 
     @Override

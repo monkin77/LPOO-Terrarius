@@ -1,6 +1,7 @@
 package Controller;
 
 import GUI.GUI;
+import Model.Position;
 import Model.arena.Arena;
 import Viewer.ArenaViewer;
 
@@ -55,6 +56,8 @@ public class GameController {
             return true;
 
         arenaController.addActions(actions);
+        arenaController.setHeroTargetPosition(
+                new Position(gui.getMouseX() / gui.getFontSize(), gui.getMouseY()/ gui.getFontSize()));
         return false;
     }
 

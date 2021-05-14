@@ -6,6 +6,9 @@ import java.util.List;
 public interface GUI {
     void drawCharacter(int x, int y, char c, String charColor, String bgColor);
     void drawCharacter(int x, int y, char c);
+    int getFontSize();
+    int getMouseX();
+    int getMouseY();
     void clear();
     void refresh() throws IOException;
     void close() throws IOException;

@@ -22,5 +22,5 @@ public abstract class Block extends Element {
 
     // Functions for block initial stats
     abstract int initHP();
-    abstract int getHardness();
+    public abstract int getHardness();
 }

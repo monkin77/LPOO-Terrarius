@@ -1,6 +1,7 @@
 package GUI;
 
 import Controller.KeyboardHandler;
+import Controller.MouseHandler;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -28,37 +29,56 @@ import static java.awt.event.KeyEvent.*;
 
 public class LanternaGui implements GUI {
     private final TerminalScreen screen;
+    private final int FONT_SIZE = 10;
     private TextGraphics graphics;
-    private boolean mouseClicked;
     private KeyboardHandler keyboardHandler;
+    private MouseHandler mouseHandler;
 
     public LanternaGui(TerminalScreen screen, KeyboardHandler keyboardHandler) {
         this.screen = screen;
         this.keyboardHandler = keyboardHandler;
         graphics = screen.newTextGraphics();
-        this.mouseClicked = true;
     }
 
     public LanternaGui(int width, int height) throws IOException, FontFormatException, URISyntaxException {
         AWTTerminalFontConfiguration fontConfig = loadSquareFont();
         Terminal terminal = createTerminal(width, height, fontConfig);
+        addMouseMotionListener(terminal);
         addMouseListener(terminal);
         addKeyListener(terminal);
 
         keyboardHandler = new KeyboardHandler();
+        mouseHandler = new MouseHandler();
         screen = createScreen(terminal);
         graphics = screen.newTextGraphics();
+
+
     }
 
     private void addMouseListener(Terminal terminal) {
-        mouseClicked = false;
         ((AWTTerminalFrame) terminal).getComponent(0).addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                /* If mouse position is needed, use e.getX() and e.getY()
-                   and remove setCursorPosition(null) below
-                 */
-                mouseClicked = true;
+            public void mousePressed(MouseEvent e) {
+                mouseHandler.mousePressed();
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                mouseHandler.mouseRelease();
+            }
+        });
+    }
+
+    private void addMouseMotionListener(Terminal terminal) {
+        ((AWTTerminalFrame) terminal).getComponent(0).addMouseMotionListener(new MouseAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                mouseHandler.setX(e.getX());
+                mouseHandler.setY(e.getY());
+            }
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                mouseHandler.setX(e.getX());
+                mouseHandler.setY(e.getY());
             }
         });
     }
@@ -104,7 +124,7 @@ public class LanternaGui implements GUI {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
-        Font loadedFont = font.deriveFont(Font.PLAIN, 10);
+        Font loadedFont = font.deriveFont(Font.PLAIN, FONT_SIZE);
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         return fontConfig;
     }
@@ -125,6 +145,11 @@ public class LanternaGui implements GUI {
     }
 
     @Override
+    public int getFontSize() {
+        return FONT_SIZE;
+    }
+
+    @Override
     public void clear() {
         screen.clear();
     }
@@ -139,12 +164,19 @@ public class LanternaGui implements GUI {
         screen.close();
     }
 
+    public int getMouseX(){
+        return mouseHandler.getX();
+    }
+
+    public int getMouseY(){
+        return mouseHandler.getY();
+    }
+
     public List<ACTION> getNextActions() {
 
         List<ACTION> actionList = new ArrayList<>();
 
-        if (mouseClicked) {
-            mouseClicked = false;
+        if (mouseHandler.isPressed()) {
             actionList.add(ACTION.CLICK);
         }
 
