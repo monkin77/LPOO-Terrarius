@@ -5,7 +5,7 @@ import Terrarius.Model.elements.Hero;
 
 public class Axe extends Tool {
     public Axe(Hero hero) {
-        super(hero, new Dimensions(4, 2));
+        super(hero, new Dimensions(5, 3));
     }
 
     @Override

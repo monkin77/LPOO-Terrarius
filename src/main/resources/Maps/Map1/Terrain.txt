@@ -11,10 +11,10 @@ w WoodBlock
 ..............................w.
 ..............................w.
 ........dddd..................w.
-...dddddssssdddd..............w.
-dddsssssssssssssddddd.........w.
-sssssssssssssssssssssdddddd..ddd
-sssssssssssssssssssssssssss..sss
+...dddddssssdddd.....d........w.
+dddsssssssssssssdddddd........w.
+sssssssssssssssssssssddddd...ddd
+sssssssssssssss..............sss
 sssssssssssssss..............sss
 sssssssssssssss..............sss
 ssssssssssssssssssssssssssssssss
