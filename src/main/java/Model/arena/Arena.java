@@ -112,7 +112,7 @@ public class Arena {
         if (this.collides(position, hero.getDimensions()))
             return true;
 
-        if(hero.getToolBar().getActiveItemIdx() != 0) {
+        if(hero.getToolBar().getActiveItem() != null) {
             Item activeItem = hero.getToolBar().getActiveItem();
             Position copyPos = activeItem.getPosition(position);
 

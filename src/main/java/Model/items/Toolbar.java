@@ -29,6 +29,10 @@ public class Toolbar {
         return activeItemIdx;
     }
 
+    /**
+     *
+     * @return Active item. If there is no item attached to that slot, returns null
+     */
     public Item getActiveItem() {
         return this.toolBar.get(activeItemIdx);
     }
