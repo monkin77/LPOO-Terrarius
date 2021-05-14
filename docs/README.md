@@ -49,20 +49,20 @@ will have to fight them off with different tools.
 
 ## Design
 
-### Model-View-Controller
+### Terrarius.Model-View-Terrarius.Controller
 #### Problem in context
 We needed a way to represent the data, actions, input and interface of the game,
 in an organized way that separates those responsibilities.
 
 #### The Pattern
-For this problem, we used the **Model-View-Controller** pattern. This way,
-we stored the game data in the Model, the logic/rules of the game in the Controller and
-the interface in the Viewer. Additionally, we also created a package for the GUI
-since it had a different responsibility from the Viewer
+For this problem, we used the **Terrarius.Model-View-Terrarius.Controller** pattern. This way,
+we stored the game data in the Terrarius.Model, the logic/rules of the game in the Terrarius.Controller and
+the interface in the Terrarius.Viewer. Additionally, we also created a package for the Terrarius.GUI
+since it had a different responsibility from the Terrarius.Viewer
 
 #### Implementation
-To implement this pattern, we created four packages: Model, View, Controller
-and GUI. The implemented GUI uses Lanterna
+To implement this pattern, we created four packages: Terrarius.Model, View, Terrarius.Controller
+and Terrarius.GUI. The implemented Terrarius.GUI uses Lanterna
 
 The way they interact can be analyzed in the following diagram:
 
@@ -77,7 +77,7 @@ making it significantly easier to make changes on them, without having to change
 the others
 
 
-### Game Loop Pattern
+### Terrarius.Game Loop Pattern
 
 #### Problem in Context
 We needed a way to faithfully update the game without depending on the CPU's clock
@@ -107,7 +107,7 @@ Below, we can find a flowchart which can help visualize this:
 The pattern was implemented exactly like above and can be found
 in the following class:
 
-- [GameController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Controller/GameController.java)
+- [GameController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Controller/GameController.java)
 
 #### Consequences
 The use of this pattern has a lot of advantages, like:
@@ -132,7 +132,7 @@ a lot of smoothness to the motion. However, in some cases, this strategy can fai
 resulting in objects being rendered out of place (for example, if the object is blocked
 by an obstacle). This happens because we're pretty much guessing where the object will be
 in X milliseconds from now
-- The extrapolation method turned out difficult to implement with the Lanterna GUI, since,
+- The extrapolation method turned out difficult to implement with the Lanterna Terrarius.GUI, since,
 almost always, the elements only move one unit per X updates, meaning that we can't divide
 their movements any further.
   
@@ -164,17 +164,17 @@ Below, there's a diagram showing how this was done in the Enemy class
 
 The relevant classes for this pattern can be found in the following files:
 
-- [Enemy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/elements/enemies/Enemy.java)
+- [Enemy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/elements/enemies/Enemy.java)
 
-- [EnemyStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/elements/enemies/EnemyStats.java)
+- [EnemyStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/elements/enemies/EnemyStats.java)
 
-- [Tool](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/items/tools/Tool.java)
+- [Tool](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/items/tools/Tool.java)
 
-- [ToolStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/items/tools/ToolStats.java)
+- [ToolStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/items/tools/ToolStats.java)
 
-- [Food](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/items/food/Food.java)
+- [Food](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/items/food/Food.java)
 
-- [FoodStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/items/food/FoodStats.java)
+- [FoodStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/items/food/FoodStats.java)
 
 #### Consequences
 The use of this pattern allows for:
@@ -215,9 +215,9 @@ The following image shows how this pattern can be implemented in each class:
 
 Below, we're linking the classes where this was applied:
 
-- [Enemy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/elements/enemies/Enemy.java)
-- [Block](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/elements/blocks/Block.java)
-- [Item](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/items/Item.java)
+- [Enemy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/elements/enemies/Enemy.java)
+- [Block](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/elements/blocks/Block.java)
+- [Item](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/items/Item.java)
 
 #### Consequences
 The use of this pattern prevents duplicate code and allows us to easily
@@ -245,10 +245,10 @@ As we can see, we have an *ArenaBuilder* that knows how to create an arena (crea
 
 These classes can be found in the following files: 
 
-* [ArenaBuilder](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/arena/ArenaBuilder.java).
-* [DefaultArenaBuilder](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/arena/DefaultArenaBuilder.java).
-* [Arena](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/arena/Arena.java)
-* [Game](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Game.java)
+* [ArenaBuilder](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/arena/ArenaBuilder.java).
+* [DefaultArenaBuilder](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/arena/DefaultArenaBuilder.java).
+* [Arena](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/arena/Arena.java)
+* [Terrarius.Game](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Game.java)
 
 #### Consequences
 
@@ -280,13 +280,13 @@ Diagram showing how the implementation of the factory method for ElementViewer w
 
 The classes mentioned in the UML can be found in the following links:
 
-* [Image](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/Image.java)
-* [ColoredImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/ColoredImage.java)
-* [AnimatedImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/AnimatedImage.java)
-* [ElementViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/ElementViewer.java)
-* [BlockViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/BlockViewer.java)
-* [EnemyViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/EnemyViewer.java)
-* [HeroViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/HeroViewer.java)
+* [Image](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/Image/Image.java)
+* [ColoredImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/Image/ColoredImage.java)
+* [AnimatedImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/Image/AnimatedImage.java)
+* [ElementViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/ElementViewer.java)
+* [BlockViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/BlockViewer.java)
+* [EnemyViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/EnemyViewer.java)
+* [HeroViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/HeroViewer.java)
 
 #### Consequences
 
@@ -341,32 +341,32 @@ image they're working with.
 
 Here are the relevant classes:
 
-- [Image](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/Image.java)
-- [StillImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/StillImage.java)
-- [AnimatedImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/AnimatedImage.java)
+- [Image](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/Image/Image.java)
+- [StillImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/Image/StillImage.java)
+- [AnimatedImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/Image/AnimatedImage.java)
 
 ### Comments
 
 Since the project is in mid-development, there are some comments throughout the code reminding us
 of something or explaining that some feature is still under changes (like TODOs). Here are some examples:
 
-- [TODO](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/d6a706003ecfb1c35a176f74305885d62cc7b7e2/src/main/java/Controller/EnemyController.java#L15)
+- [TODO](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/d6a706003ecfb1c35a176f74305885d62cc7b7e2/src/main/java/Terrarius.Controller/EnemyController.java#L15)
 
-- [Explanation Comment](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/d6a706003ecfb1c35a176f74305885d62cc7b7e2/src/main/java/Model/items/Toolbar.java#L19)
+- [Explanation Comment](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/d6a706003ecfb1c35a176f74305885d62cc7b7e2/src/main/java/Terrarius.Model/items/Toolbar.java#L19)
 
 This smell will be fixed when the features are properly implemented and the comments are removed.
 
 ### Duplicate Code
 
 Currently, there are two classes who serve almost the same purpose: Dimensions and ImageDimensions.
- The difference between them is almost uniquely the package in which they act (Model and Viewer).
+ The difference between them is almost uniquely the package in which they act (Terrarius.Model and Terrarius.Viewer).
 
 This could be fixed by defining a Dimensions class which both packaged can use (possibly, in a
 common *Utils* package).
 
 Here are the relevant classes:
-- [Dimensions](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/Dimensions.java)
-- [ImageDimensions](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/ImageDimensions.java)
+- [Dimensions](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/Dimensions.java)
+- [ImageDimensions](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/Image/ImageDimensions.java)
 
 ### Speculative Generality
 
@@ -377,9 +377,9 @@ probably because they'll serve a purpose in a feature that's yet to be implement
 
 Here are some examples:
 
-- [Toolbar item selection](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/items/Toolbar.java)
-- [CLICK action](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/d6a706003ecfb1c35a176f74305885d62cc7b7e2/src/main/java/Controller/HeroController.java#L68)
-- Most of the [items](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java/Model/items), with the exception of the Axe
+- [Toolbar item selection](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/items/Toolbar.java)
+- [CLICK action](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/d6a706003ecfb1c35a176f74305885d62cc7b7e2/src/main/java/Terrarius.Controller/HeroController.java#L68)
+- Most of the [items](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java/Terrarius.Model/items), with the exception of the Axe
 
 This code smell can be fixed by either implementing features which use these methods/classes or
 removed them altogether, if they're not useful in the end.
