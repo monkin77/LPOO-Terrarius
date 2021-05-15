@@ -194,10 +194,9 @@ public class Arena {
         if (tool.getStats().getMiningHardness() >= block.getHardness()){
             block.setHp(block.getHP() - tool.getStats().getMiningPower());
             if (block.getHP() <= 0){
-                //TODO pickup block
+                hero.getToolBar().getBlockPouch().incrementBlock(block);
                 blocks.remove(block);
             }
         }
-
     }
 }

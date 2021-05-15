@@ -1,5 +1,6 @@
 package Model.items;
 
+import Model.BlockPouch;
 import Model.Dimensions;
 
 import java.util.HashMap;
@@ -16,6 +17,8 @@ public class Toolbar {
     private final int toolbarCellLength;
     private final int toolbarSeparatorWidth;
 
+    private final BlockPouch blockPouch; //TODO maybe not inside of ToolBar but the hero?
+
     public Toolbar() {
         this.toolBar = new HashMap<>();
         this.activeItemIdx = 1;  // Just for testing. Should change this to 0 (unarmed) and change when pressing the numbers on the keyboard
@@ -23,6 +26,7 @@ public class Toolbar {
         this.dimensions = new Dimensions(TOOLBAR_HEIGHT, SCREEN_WIDTH);
         this.toolbarCellLength = TOOLBAR_CELL_LENGTH;
         this.toolbarSeparatorWidth = TOOLBAR_SEPARATOR_THICKNESS;
+        this.blockPouch = new BlockPouch();
     }
 
     public Integer getActiveItemIdx() {
@@ -30,7 +34,13 @@ public class Toolbar {
     }
 
     public void setActiveItemIdx(Integer activeItemIdx) {
-        this.activeItemIdx = activeItemIdx;
+
+        if (activeItemIdx == 0 && this.activeItemIdx == 0){
+            blockPouch.cycleCurrentBlock();
+        }
+        else{
+            this.activeItemIdx = activeItemIdx;
+        }
     }
 
     /**
@@ -72,6 +82,10 @@ public class Toolbar {
 
     public Map<Integer, Item> getToolBar() {
         return toolBar;
+    }
+
+    public BlockPouch getBlockPouch(){
+        return this.blockPouch;
     }
 
     public int getToolbarCellLength() {
