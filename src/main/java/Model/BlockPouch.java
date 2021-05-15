@@ -60,10 +60,6 @@ public class BlockPouch {
         }
     }
 
-    public Class getCurrentBlockClass(){ //TODO this has to be changed
-        return blockClasses.get(currentBlock);
-    }
-
     public Integer getCurrentBlockQuantity(){
         return blockQuantities.get(currentBlock);
     }

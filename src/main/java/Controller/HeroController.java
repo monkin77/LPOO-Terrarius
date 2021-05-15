@@ -58,7 +58,12 @@ public class HeroController {
 
     public void useItem() {
         //TODO change this
-        arena.breakBlock(targetPosition, (Tool) arena.getHero().getToolBar().getActiveItem());
+        if(this.arena.getHero().getToolBar().getActiveItemIdx() != 0) {
+            arena.breakBlock(targetPosition, (Tool) arena.getHero().getToolBar().getActiveItem());
+        }
+        else{
+            arena.placeBlock(targetPosition);
+        }
     }
     public void changeHeroSlot(Integer slot) {
         this.arena.getHero().getToolBar().setActiveItemIdx(slot);

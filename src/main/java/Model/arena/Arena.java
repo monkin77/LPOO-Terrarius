@@ -5,6 +5,9 @@ import Model.Position;
 import Model.elements.Element;
 import Model.elements.Hero;
 import Model.elements.blocks.Block;
+import Model.elements.blocks.DirtBlock;
+import Model.elements.blocks.StoneBlock;
+import Model.elements.blocks.WoodBlock;
 import Model.elements.enemies.Enemy;
 import Model.items.tools.Tool;
 import Model.items.Item;
@@ -198,5 +201,32 @@ public class Arena {
                 blocks.remove(block);
             }
         }
+    }
+
+    public void placeBlock(Position position){
+
+        String blockName = hero.getToolBar().getBlockPouch().getCurrentBlockName();
+
+        position = new Position(position.getX()/4*4, position.getY()/4*4);
+
+        if (this.collides(position, new Dimensions(4, 4))
+                || hero.getToolBar().getBlockPouch().getCurrentBlockQuantity() <= 0) return;
+
+        if (blockName.equals("DirtBlock")){ //TODO make this not hardcoded somehow
+            Block block = new DirtBlock(position);
+            this.blocks.add(block);
+            hero.getToolBar().getBlockPouch().decrementBlock(block);
+        }
+        else if (blockName.equals("StoneBlock")){
+            Block block = new StoneBlock(position);
+            this.blocks.add(block);
+            hero.getToolBar().getBlockPouch().decrementBlock(block);
+        }
+        else if (blockName.equals("WoodBlock")){
+            Block block = new WoodBlock(position);
+            this.blocks.add(block);
+            hero.getToolBar().getBlockPouch().decrementBlock(block);
+        }
+
     }
 }
