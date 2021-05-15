@@ -88,11 +88,9 @@ public class HeroController {
                 break;
             case SLOT0:
                 changeHeroSlot(0);
-                System.out.println("0 Pressed!");
                 break;
             case SLOT1:
                 changeHeroSlot(1);
-                System.out.println("1 Pressed!");
                 break;
         }
     }
