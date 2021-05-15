@@ -52,15 +52,15 @@ public class StillImageTest {
 
     @Test
     public void draw() {
-        stillImage.load("Images/Items/Axe.txt");
+        stillImage.load("Images/Items/AxeIcon.txt");
         stillImage.draw(new Position(10, 10), Element.Orientation.RIGHT, gui);
 
-        Mockito.verify(gui, Mockito.times(6)).
+        Mockito.verify(gui, Mockito.times(9)).
                 drawCharacter(Mockito.anyInt(), Mockito.anyInt(), Mockito.anyChar());
 
         stillImage.draw(new Position(10, 10), Element.Orientation.LEFT, gui);
 
-        Mockito.verify(gui, Mockito.times(12)).
+        Mockito.verify(gui, Mockito.times(18)).
                 drawCharacter(Mockito.anyInt(), Mockito.anyInt(), Mockito.anyChar());
     }
 }

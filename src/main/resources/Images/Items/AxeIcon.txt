@@ -1,4 +1,21 @@
-3 3
-0II
-OI
-0
+5 5
+.....
+<<|DD
+..|D.
+..|..
+..|..
+2
+B #AA5518
+W #FFFFFF
+BBBBB
+WWWWW
+BBWWB
+BBWBB
+BBWBB
+1
+B #AA5518
+BBBBB
+BBBBB
+BBBBB
+BBBBB
+BBBBB

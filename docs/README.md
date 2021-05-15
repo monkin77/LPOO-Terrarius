@@ -1,4 +1,4 @@
-# LPOO_34 - Terraria
+# LPOO_34 - Terrarius
 
 An open-world adventure game where our hero must defeat enemies to unlock new areas and unlock new more powerful tools.
 In this pseudo-random infinitely generated world our hero will have to deal with different enemies by either slaying them or
@@ -24,6 +24,8 @@ sometimes be trapped.
 
 **Tools** - Items that the hero can hold in his hand.
 
+**Toolbar** - Stores items the hero grabs.
+
 ## Planned Features
 
 **Breaking blocks** - The hero, when equipped with the proper tool, will be able to break blocks from the map.
@@ -38,6 +40,12 @@ Therefore, providing a sense of progression to the game.
 will have to fight them off with different tools.
 
 **Healing** - If the hero has taken damage it may consume food to restore some of the lost HP.
+
+**Crafting Functionality** - The hero will be capable of crafting Items, using materials.
+
+**Tree Evolution System** - The hero may upgrade his stats / learn new skills, through leveling.
+
+**Hidden Rooms / Traps** - Include hidden areas that require some trick to get inside.
 
 ## Design
 
@@ -99,7 +107,7 @@ Below, we can find a flowchart which can help visualize this:
 The pattern was implemented exactly like above and can be found
 in the following class:
 
-- [GameController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java/Controller/GameController)
+- [GameController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Controller/GameController.java)
 
 #### Consequences
 The use of this pattern has a lot of advantages, like:
@@ -257,7 +265,7 @@ Each element, hero, enemy or block, can be visually represented by a "matrix" of
 A good way to store the visual representation of these elements is through files. However if we have 2 Blocks from the
 same class, even though we want them to look the same, loading the files multiple times would be wasteful.
 
-#### The Pattern
+#### The Pattern    
 
 To solve this problem the **Factory Method** pattern was used. This pattern allows the creation of an interface for
 creating an object but lets its subclasses determine which class to instantiate.
@@ -273,7 +281,7 @@ Diagram showing how the implementation of the factory method for ElementViewer w
 The classes mentioned in the UML can be found in the following links:
 
 * [Image](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/Image.java)
-* [ColoredImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/mastersrc/main/java/Viewer/Image/ColoredImage.java)
+* [ColoredImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/ColoredImage.java)
 * [AnimatedImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/AnimatedImage.java)
 * [ElementViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/ElementViewer.java)
 * [BlockViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/BlockViewer.java)
@@ -382,7 +390,7 @@ removed them altogether, if they're not useful in the end.
 ![Pitest Results](img/pitest.png)
 
 As we can see, we already have a solid line coverage in the project
-but some tests still need to be strengthen.
+but some tests still need to be strengthened.
 
 ## Self-Evaluation
 Bruno Rosendo: 1/3

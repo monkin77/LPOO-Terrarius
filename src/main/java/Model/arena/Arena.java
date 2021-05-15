@@ -2,10 +2,12 @@ package Model.arena;
 
 import Model.Dimensions;
 import Model.Position;
+import Model.elements.Element;
 import Model.elements.Hero;
 import Model.elements.blocks.Block;
 import Model.elements.enemies.Enemy;
 import Model.items.tools.Tool;
+import Model.items.Item;
 
 import java.util.List;
 
@@ -99,10 +101,26 @@ public class Arena {
     }
 
     public boolean collides(Position position, Dimensions dimensions){
-
         for (Block block : this.blocks) {
             if (isElementInBlock(position, dimensions, block) || isBlockInElement(position, dimensions, block))
                 return true;
+        }
+
+        return false;
+    }
+
+    public boolean collides(Position position, Hero hero) {
+        if (this.collides(position, hero.getDimensions()))
+            return true;
+
+        if(hero.getToolBar().getActiveItem() != null) {
+            Item activeItem = hero.getToolBar().getActiveItem();
+            Position copyPos = activeItem.getPosition(position);
+
+            for (Block block : this.blocks) {
+                if (isElementInBlock(copyPos, activeItem.getDimensions(), block) || isBlockInElement(copyPos, activeItem.getDimensions(), block))
+                    return true;
+            }
         }
 
         return false;

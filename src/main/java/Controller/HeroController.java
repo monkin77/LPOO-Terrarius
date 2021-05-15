@@ -21,7 +21,7 @@ public class HeroController {
             || position.getY() < 0 || position.getY() + arena.getHero().getDimensions().getHeight() > arena.getHeight())
             return;
 
-        if (!arena.collides(position, arena.getHero().getDimensions())) {
+        if (!arena.collides(position, arena.getHero())) {
             arena.getHero().setPosition(position);
         }
     }
@@ -55,9 +55,13 @@ public class HeroController {
         climbHero(arena.getHero().getPosition().getDown());
     }
 
+
     public void useItem() {
         //TODO change this
-        arena.breakBlock(targetPosition, (Tool)arena.getHero().getToolBar().getActiveItem());
+        arena.breakBlock(targetPosition, (Tool) arena.getHero().getToolBar().getActiveItem());
+    }
+    public void changeHeroSlot(Integer slot) {
+        this.arena.getHero().getToolBar().setActiveItemIdx(slot);
     }
 
     public void doAction(GUI.ACTION action) {
@@ -76,6 +80,14 @@ public class HeroController {
                 break;
             case CLICK:
                 useItem();
+                break;
+            case SLOT0:
+                changeHeroSlot(0);
+                System.out.println("0 Pressed!");
+                break;
+            case SLOT1:
+                changeHeroSlot(1);
+                System.out.println("1 Pressed!");
                 break;
         }
     }

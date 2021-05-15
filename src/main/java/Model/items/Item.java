@@ -1,6 +1,8 @@
 package Model.items;
 
 import Model.Dimensions;
+import Model.Position;
+import Model.elements.Element;
 import Model.elements.Hero;
 
 public abstract class Item {
@@ -24,6 +26,27 @@ public abstract class Item {
     public void setDimensions(Dimensions dimensions) {
         this.dimensions = dimensions;
     }
+
+    public Position getPosition() {
+        Position itemPos = new Position(hero.getPosition());
+        itemPos.incrementY(hero.getDimensions().getHeight()/2 - 2 - dimensions.getHeight());
+        itemPos.incrementX( hero.getOrientation() == Element.Orientation.RIGHT ? hero.getDimensions().getWidth() - 1 : - dimensions.getWidth() );
+        return itemPos;
+    }
+
+    /**
+     * Calculate item position when the hero tries to move to position possiblePosition
+     * @param possiblePosition
+     * @return
+     */
+    public Position getPosition(Position possiblePosition) {
+        Position itemPos = new Position(possiblePosition);
+
+        itemPos.incrementY(hero.getDimensions().getHeight()/2 - 2 - dimensions.getHeight());
+        itemPos.incrementX( hero.getOrientation() == Element.Orientation.RIGHT ? hero.getDimensions().getWidth() - 1 : - dimensions.getWidth() );
+        return itemPos;
+    }
+
 
     // Item stats should be updated when hero level/stats are increased
     public abstract void updateStats();

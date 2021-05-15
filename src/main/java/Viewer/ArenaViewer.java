@@ -99,16 +99,9 @@ public class ArenaViewer {
             if (itemKey.equals(toolbar.getActiveItemIdx()))
                 viewer.draw(item, gui);
 
-            int toolbarSeparatorsWidth = 1;
-            int toolbarStartingPositionWidth = arena.getWidth()/2 - toolbar.getDimensions().getWidth()/2 +
-                    toolbarSeparatorsWidth;
+            Position iconPosition = toolbarViewer.calculateIconPosition(arena, toolbar, itemKey);
 
-            int toolbarOffsetWidth = (itemKey-1) * (toolbar.getToolbarCellWidth() + toolbarSeparatorsWidth);
-
-            int iconX = toolbarStartingPositionWidth + toolbarOffsetWidth;
-            int iconY = arena.getHeight() - toolbar.getDimensions().getHeight() + toolbarSeparatorsWidth;
-
-            viewer.drawIcon(new Position(iconX, iconY), gui);
+            viewer.drawIcon(iconPosition, gui);
         }
     }
 
