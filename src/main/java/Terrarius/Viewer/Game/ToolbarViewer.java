@@ -2,7 +2,7 @@ package Terrarius.Viewer.Game;
 
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Dimensions;
+import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Position;
 import Terrarius.Model.arena.Arena;
 import Terrarius.Model.elements.Element;

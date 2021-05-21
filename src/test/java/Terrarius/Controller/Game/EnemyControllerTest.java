@@ -1,6 +1,6 @@
 package Terrarius.Controller.Game;
 
-import Terrarius.Model.Dimensions;
+import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Level;
 import Terrarius.Model.Position;
 import Terrarius.Model.arena.Arena;

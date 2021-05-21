@@ -1,6 +1,6 @@
 package Terrarius.Model.elements.blocks;
 
-import Terrarius.Model.Dimensions;
+import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Position;
 
 public class DirtBlock extends Block {

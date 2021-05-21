@@ -1,6 +1,6 @@
 package Terrarius.Model.elements.enemies;
 
-import Terrarius.Model.Dimensions;
+import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Level;
 import Terrarius.Model.Position;
 

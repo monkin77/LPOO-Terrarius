@@ -1,6 +1,6 @@
 package Terrarius.Model.arena;
 
-import Terrarius.Model.Dimensions;
+import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Position;
 import Terrarius.Model.elements.Hero;
 import Terrarius.Model.elements.blocks.Block;

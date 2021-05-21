@@ -1,6 +1,6 @@
 package Terrarius.Model.items;
 
-import Terrarius.Model.Dimensions;
+import Terrarius.Utils.Dimensions;
 
 import java.util.HashMap;
 import java.util.Map;

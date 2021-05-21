@@ -1,6 +1,6 @@
 package Terrarius.Model.items.tools;
 
-import Terrarius.Model.Dimensions;
+import Terrarius.Utils.Dimensions;
 import Terrarius.Model.elements.Hero;
 
 public class Shovel extends Tool {

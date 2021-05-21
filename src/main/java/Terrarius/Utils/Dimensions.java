@@ -1,4 +1,4 @@
-package Terrarius.Model;
+package Terrarius.Utils;
 
 public class Dimensions {
 

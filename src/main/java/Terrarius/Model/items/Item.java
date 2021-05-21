@@ -1,13 +1,12 @@
 package Terrarius.Model.items;
 
-
-import Terrarius.Model.Dimensions;
 import Terrarius.Model.Position;
 import Terrarius.Model.elements.Element;
+import Terrarius.Utils.Dimensions;
 import Terrarius.Model.elements.Hero;
 
 public abstract class Item {
-    private Hero hero;
+    private final Hero hero;
     private Dimensions dimensions;
 
     public Item(Hero hero, Dimensions dimensions) {
@@ -30,8 +29,6 @@ public abstract class Item {
 
     /**
      * Calculate item position relative to a certain position
-     * @param possiblePosition
-     * @return
      */
     public Position getPosition(Position possiblePosition) {
         Position itemPos = new Position(possiblePosition);
@@ -40,7 +37,6 @@ public abstract class Item {
         itemPos.incrementX( hero.getOrientation() == Element.Orientation.RIGHT ? hero.getDimensions().getWidth() - 1 : - dimensions.getWidth() );
         return itemPos;
     }
-
 
     // Item stats should be updated when hero level/stats are increased
     public abstract void updateStats();

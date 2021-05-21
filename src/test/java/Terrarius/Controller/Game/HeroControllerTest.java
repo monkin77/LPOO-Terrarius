@@ -1,8 +1,7 @@
 package Terrarius.Controller.Game;
 
-import Terrarius.Controller.Game.HeroController;
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Dimensions;
+import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Position;
 import Terrarius.Model.arena.Arena;
 import Terrarius.Model.elements.Hero;

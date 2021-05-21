@@ -1,7 +1,7 @@
 package Terrarius.Viewer.Game;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Dimensions;
+import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Position;
 import Terrarius.Model.arena.Arena;
 import Terrarius.Model.elements.Hero;
@@ -15,7 +15,6 @@ import Terrarius.Model.items.Item;
 import Terrarius.Model.items.Toolbar;
 import Terrarius.Model.items.tools.Axe;
 import Terrarius.Model.items.tools.Pickaxe;
-import Terrarius.Viewer.Game.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

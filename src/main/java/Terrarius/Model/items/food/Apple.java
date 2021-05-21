@@ -1,6 +1,6 @@
 package Terrarius.Model.items.food;
 
-import Terrarius.Model.Dimensions;
+import Terrarius.Utils.Dimensions;
 import Terrarius.Model.elements.Hero;
 
 public class Apple extends Food {
