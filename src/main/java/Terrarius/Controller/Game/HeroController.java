@@ -4,6 +4,7 @@ import Terrarius.GUI.GUI;
 import Terrarius.Model.Position;
 import Terrarius.Model.arena.Arena;
 import Terrarius.Model.elements.Element;
+import Terrarius.Model.items.Item;
 
 public class HeroController {
     private final Arena arena;
@@ -18,7 +19,15 @@ public class HeroController {
             || position.getY() < 0 || position.getY() + arena.getHero().getDimensions().getHeight() > arena.getHeight())
             return;
 
-        if (!arena.collides(position, arena.getHero())) {
+        if (!arena.collides(position, arena.getHero().getDimensions())) {
+
+            if(arena.getHero().getToolBar().getActiveItem() != null) {
+                Item activeItem = arena.getHero().getToolBar().getActiveItem();
+                Position copyPos = activeItem.getPosition(position);
+                if(arena.collides(copyPos, activeItem.getDimensions()))
+                    return;
+            }
+
             arena.getHero().setPosition(position);
         }
     }

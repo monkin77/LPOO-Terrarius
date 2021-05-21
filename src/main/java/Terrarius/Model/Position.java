@@ -47,7 +47,7 @@ public class Position {
     }
 
     public void incrementX(int incValue) {
-        this.x += incValue;     // Maybe we could check if it goes out of bounds (shouldn't be possible)
+        this.x += incValue;
     }
 
     public void incrementY(int incValue) {

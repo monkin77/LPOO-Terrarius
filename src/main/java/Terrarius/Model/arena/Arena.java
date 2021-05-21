@@ -107,23 +107,6 @@ public class Arena {
         return false;
     }
 
-    public boolean collides(Position position, Hero hero) {
-        if (this.collides(position, hero.getDimensions()))
-            return true;
-
-        if(hero.getToolBar().getActiveItem() != null) {
-            Item activeItem = hero.getToolBar().getActiveItem();
-            Position copyPos = activeItem.getPosition(position);
-
-            for (Block block : this.blocks) {
-                if (isElementInBlock(copyPos, activeItem.getDimensions(), block) || isBlockInElement(copyPos, activeItem.getDimensions(), block))
-                    return true;
-            }
-        }
-
-        return false;
-    }
-
     private boolean isElementInBlock(Position position, Dimensions dimensions, Block block) {
         boolean left_elem_in_block =
                 position.getX() >= block.getPosition().getX() &&

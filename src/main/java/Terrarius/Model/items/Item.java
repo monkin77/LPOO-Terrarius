@@ -28,15 +28,8 @@ public abstract class Item {
         this.dimensions = dimensions;
     }
 
-    public Position getPosition() {
-        Position itemPos = new Position(hero.getPosition());
-        itemPos.incrementY(hero.getDimensions().getHeight()/2 - 2 - dimensions.getHeight());
-        itemPos.incrementX( hero.getOrientation() == Element.Orientation.RIGHT ? hero.getDimensions().getWidth() - 1 : - dimensions.getWidth() );
-        return itemPos;
-    }
-
     /**
-     * Calculate item position when the hero tries to move to position possiblePosition
+     * Calculate item position relative to a certain position
      * @param possiblePosition
      * @return
      */

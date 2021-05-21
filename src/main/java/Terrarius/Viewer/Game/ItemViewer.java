@@ -32,7 +32,7 @@ public class ItemViewer {
     }
 
     public void draw(Item item, GUI gui){
-        Position itemPos = item.getPosition();
+        Position itemPos = item.getPosition(item.getHero().getPosition());
 
         this.image.draw(itemPos, item.getHero().getOrientation(), gui);
     }
