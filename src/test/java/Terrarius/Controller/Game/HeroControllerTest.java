@@ -8,6 +8,9 @@ import Terrarius.Model.arena.Arena;
 import Terrarius.Model.elements.Hero;
 
 import Terrarius.Model.items.Toolbar;
+
+
+import Terrarius.Model.items.tools.Axe;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +27,6 @@ public class HeroControllerTest {
         hero = Mockito.mock(Hero.class);
         Mockito.when(hero.getDimensions()).thenReturn(new Dimensions(5, 5));
         Mockito.when(hero.getPosition()).thenReturn(new Position(10, 10));
-        Mockito.when(hero.getToolBar()).thenReturn(new Toolbar());
 
         arena = Mockito.mock(Arena.class);
 
@@ -117,5 +119,18 @@ public class HeroControllerTest {
         Mockito.verify(spyController, Mockito.times(1)).moveHeroRight();
         Mockito.verify(spyController, Mockito.times(1)).moveHeroUp();
         Mockito.verify(spyController, Mockito.times(1)).changeHeroSlot(0);
+    }
+
+    @Test
+    public void checkToolCollisionWhenActive() {
+        Axe axe = Mockito.mock(Axe.class);
+        Mockito.when(axe.getPosition(Mockito.any())).thenReturn(new Position(5,5));
+
+        Toolbar tb = Mockito.mock(Toolbar.class);
+        Mockito.when(tb.getActiveItem()).thenReturn(axe);
+        Mockito.when(hero.getToolBar()).thenReturn(tb);
+
+        heroController.moveHeroLeft();
+        Mockito.verify(arena, Mockito.times(2)).collides(Mockito.any(), Mockito.any());
     }
 }
