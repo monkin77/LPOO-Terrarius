@@ -12,16 +12,16 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 // TODO: This tests opens the terminal. Try to make it better
-public class GameTest {
-    private Game game;
+public class TerrariusTest {
+    private Terrarius terrarius;
     private State state;
 
     @BeforeEach
     public void setup() throws FontFormatException, IOException, URISyntaxException {
         state = Mockito.mock(State.class);
 
-        game = new Game(10, 10);
-        game.setState(state);
+        terrarius = new Terrarius(10, 10);
+        terrarius.setState(state);
     }
 
     @Test
@@ -40,15 +40,15 @@ public class GameTest {
 
                 current = System.currentTimeMillis();
                 if (current - start > 30)
-                    game.setState(null);
+                    terrarius.setState(null);
                 return new Object();
             }
         }).when(state).draw(Mockito.any());
 
-        game.start();
+        terrarius.start();
 
-        Mockito.verify(state, Mockito.atLeastOnce()).readInput(Mockito.same(game), Mockito.any());
+        Mockito.verify(state, Mockito.atLeastOnce()).readInput(Mockito.same(terrarius), Mockito.any());
         Mockito.verify(state, Mockito.atLeastOnce()).draw(Mockito.any());
-        Mockito.verify(state, Mockito.atLeastOnce()).update(Mockito.same(game));
+        Mockito.verify(state, Mockito.atLeastOnce()).update(Mockito.same(terrarius));
     }
 }

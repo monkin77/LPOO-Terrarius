@@ -2,8 +2,9 @@ package Terrarius.Controller.Game;
 
 import Terrarius.Controller.Controller;
 import Terrarius.GUI.GUI;
-import Terrarius.Game;
+import Terrarius.Terrarius;
 import Terrarius.Model.arena.Arena;
+
 import java.util.List;
 
 public class GameController extends Controller<Arena> {
@@ -16,22 +17,22 @@ public class GameController extends Controller<Arena> {
 
     public GameController(Arena arena) {
         super(arena);
-        this.arenaController = new ArenaController(new HeroController(arena), new EnemyController(arena), Game.getMsPerUpdate());
+        this.arenaController = new ArenaController(new HeroController(arena), new EnemyController(arena), Terrarius.getMsPerUpdate());
     }
 
     @Override
-    public void giveActions(Game game, List<GUI.ACTION> actions) {
+    public void giveActions(Terrarius terrarius, List<GUI.ACTION> actions) {
         if (actions.contains(GUI.ACTION.QUIT))
-            game.setState(null);  //TODO: PUT MENU STATE HERE WHEN DONE
+            terrarius.setState(null);  //TODO: PUT MENU STATE HERE WHEN DONE
         else
             arenaController.addActions(actions);
     }
 
     @Override
-    public void update(Game game) {
+    public void update(Terrarius terrarius) {
         arenaController.update();
 
         if (arenaController.checkEnd())  //TODO: LOSING/WINNING SCREEN
-            game.setState(null);
+            terrarius.setState(null);
     }
 }

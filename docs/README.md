@@ -11,7 +11,7 @@ challenging enemies will appear and the tools at the disposal of the hero will e
 image, represented by characters and saved in text files. Elements can be represented by static images 
 or with animations.
 
-**Arena** - Has the map, enemies and hero of our game.
+**Arena** - Has the map, enemies and hero of the game.
 
 **Arena Loading** - The composition of the arena is done by loading different files. These contain representation of 
 the terrain of the map, the enemies and the hero, allowing the modification of the arena to be easily done.
@@ -49,20 +49,20 @@ will have to fight them off with different tools.
 
 ## Design
 
-### Terrarius.Model-View-Terrarius.Controller
+### Model-View-Controller
 #### Problem in context
 We needed a way to represent the data, actions, input and interface of the game,
 in an organized way that separates those responsibilities.
 
 #### The Pattern
-For this problem, we used the **Terrarius.Model-View-Terrarius.Controller** pattern. This way,
-we stored the game data in the Terrarius.Model, the logic/rules of the game in the Terrarius.Controller and
-the interface in the Terrarius.Viewer. Additionally, we also created a package for the Terrarius.GUI
-since it had a different responsibility from the Terrarius.Viewer
+For this problem, we used the **Model-View-Controller** pattern. This way,
+we stored the game data in the Model, the logic/rules of the game in the Controller and
+the interface in the Viewer. Additionally, we also created a package for the GUI
+since it had a different responsibility from the Viewer
 
 #### Implementation
-To implement this pattern, we created four packages: Terrarius.Model, View, Terrarius.Controller
-and Terrarius.GUI. The implemented Terrarius.GUI uses Lanterna
+To implement this pattern, we created four packages: Model, View, Controller
+and GUI. The implemented GUI uses Lanterna
 
 The way they interact can be analyzed in the following diagram:
 
@@ -77,7 +77,7 @@ making it significantly easier to make changes on them, without having to change
 the others
 
 
-### Terrarius.Game Loop Pattern
+### Terrarius.Terrarius Loop Pattern
 
 #### Problem in Context
 We needed a way to faithfully update the game without depending on the CPU's clock
@@ -88,7 +88,7 @@ as his computer allows him
 The pattern (and further explanation) used can be found in the following website,
 in the *Play Catch up* section:
 
-https://gameprogrammingpatterns.com/game-loop.html
+https://gameprogrammingpatterns.com/terrarius-loop.html
 
 With this strategy, we have a *lag* variable counting the time passing in
 each iteration and, if that variable is greater than the amount of time defined
@@ -132,7 +132,7 @@ a lot of smoothness to the motion. However, in some cases, this strategy can fai
 resulting in objects being rendered out of place (for example, if the object is blocked
 by an obstacle). This happens because we're pretty much guessing where the object will be
 in X milliseconds from now
-- The extrapolation method turned out difficult to implement with the Lanterna Terrarius.GUI, since,
+- The extrapolation method turned out difficult to implement with the Lanterna GUI, since,
 almost always, the elements only move one unit per X updates, meaning that we can't divide
 their movements any further.
   
@@ -248,7 +248,7 @@ These classes can be found in the following files:
 * [ArenaBuilder](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/arena/ArenaBuilder.java).
 * [DefaultArenaBuilder](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/arena/DefaultArenaBuilder.java).
 * [Arena](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/arena/Arena.java)
-* [Terrarius.Game](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Game.java)
+* [Terrarius.Terrarius](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Terrarius.java)
 
 #### Consequences
 
@@ -262,7 +262,7 @@ The use of the Builder Pattern allows the following benefits:
 #### Problem in context
 
 Each element, hero, enemy or block, can be visually represented by a "matrix" of characters.
-A good way to store the visual representation of these elements is through files. However if we have 2 Blocks from the
+A good way to store the visual representation of these elements is through files. However, if we have 2 Blocks from the
 same class, even though we want them to look the same, loading the files multiple times would be wasteful.
 
 #### The Pattern    
@@ -300,7 +300,7 @@ Advantages:
 - The factory method doesn't have to be called by only Factories. It can also be used for parallel class hierarchies.
   (our case?)
 
-Disavantages:
+Disadvantages:
 
  - In order to create a Concrete Product object, the Factory class might have to be subclassed, this is a disavantage since 
    another point of evolution will have to be dealt with.
@@ -325,7 +325,7 @@ making it almost obsolete and falling in another code smell: **Lazy Class**
 
 Right now, the Image class has two abstract methods (*update* and *reset*) 
 which are not used by one of its subclasses, StillImage
-(technically, it is using them but the methods don't do anything). This is happening
+(technically, it is using them, but the methods don't do anything). This is happening
 for two reasons:
 
 - So classes using images can benefit from polymorphism, by calling
@@ -359,7 +359,7 @@ This smell will be fixed when the features are properly implemented and the comm
 ### Duplicate Code
 
 Currently, there are two classes who serve almost the same purpose: Dimensions and ImageDimensions.
- The difference between them is almost uniquely the package in which they act (Terrarius.Model and Terrarius.Viewer).
+ The difference between them is almost uniquely the package in which they act (Model and Viewer).
 
 This could be fixed by defining a Dimensions class which both packaged can use (possibly, in a
 common *Utils* package).

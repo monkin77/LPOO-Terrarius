@@ -2,7 +2,7 @@ package Terrarius.States;
 
 import Terrarius.Controller.Controller;
 import Terrarius.GUI.GUI;
-import Terrarius.Game;
+import Terrarius.Terrarius;
 import Terrarius.Viewer.Viewer;
 
 import java.io.IOException;
@@ -23,13 +23,13 @@ public abstract class State<T> {
         return model;
     }
 
-    public void readInput(Game game, GUI gui) throws IOException {
+    public void readInput(Terrarius terrarius, GUI gui) throws IOException {
         List<GUI.ACTION> actions = gui.getNextActions();
-        controller.giveActions(game, actions);
+        controller.giveActions(terrarius, actions);
     }
 
-    public void update(Game game) {
-        controller.update(game);
+    public void update(Terrarius terrarius) {
+        controller.update(terrarius);
         viewer.update();
     }
 

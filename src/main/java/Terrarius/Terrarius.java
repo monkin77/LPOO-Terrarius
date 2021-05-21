@@ -12,17 +12,17 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class Game {
+public class Terrarius {
     private static final int MS_PER_UPDATE = 16;
 
     private final GUI gui;
     private State state;
 
     public static void main(String[] args) throws FontFormatException, IOException, URISyntaxException {
-        new Game(128, 64).start();
+        new Terrarius(128, 64).start();
     }
 
-    public Game(int width, int height) throws FontFormatException, IOException, URISyntaxException {
+    public Terrarius(int width, int height) throws FontFormatException, IOException, URISyntaxException {
         this.gui = new LanternaGui(width, height);
 
         Arena arena = new LoaderArenaBuilder(1).createArena();

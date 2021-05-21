@@ -2,7 +2,7 @@ package Terrarius.States;
 
 import Terrarius.Controller.Game.GameController;
 import Terrarius.GUI.GUI;
-import Terrarius.Game;
+import Terrarius.Terrarius;
 import Terrarius.Model.arena.Arena;
 import Terrarius.Viewer.Game.ArenaViewer;
 import org.junit.jupiter.api.Assertions;
@@ -36,8 +36,8 @@ public class GameStateTest {
 
     @Test
     public void guiReadInput() throws IOException {
-        Game game = Mockito.mock(Game.class);
-        state.readInput(game, gui);
+        Terrarius terrarius = Mockito.mock(Terrarius.class);
+        state.readInput(terrarius, gui);
         Mockito.verify(gui, Mockito.times(1)).getNextActions();
     }
 }

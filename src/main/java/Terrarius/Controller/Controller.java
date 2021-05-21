@@ -1,7 +1,7 @@
 package Terrarius.Controller;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Game;
+import Terrarius.Terrarius;
 
 import java.util.List;
 
@@ -16,6 +16,6 @@ public abstract class Controller<T> {
         return model;
     }
 
-    public abstract void giveActions(Game game, List<GUI.ACTION> actions);
-    public abstract void update(Game game);
+    public abstract void giveActions(Terrarius terrarius, List<GUI.ACTION> actions);
+    public abstract void update(Terrarius terrarius);
 }
