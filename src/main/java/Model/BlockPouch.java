@@ -10,7 +10,7 @@ import java.util.*;
 public class BlockPouch {
 
     private final List<Class> blockClasses = new ArrayList<>();
-    private final List<Integer> blockQuantities = new ArrayList<>(); //TODO a list of pairs could also be used
+    private final List<Integer> blockQuantities = new ArrayList<>();
     private int currentBlock;
 
     public BlockPouch(){

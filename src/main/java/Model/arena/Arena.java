@@ -185,7 +185,7 @@ public class Arena {
 
         Position realPosition = new Position(position.getX()/4 * 4, position.getY()/4 * 4); //Make this better somehow
 
-        for (Block block1 : blocks){ //TODO maybe divide this into a function
+        for (Block block1 : blocks){
             if (block1.getPosition().equals(realPosition)){
                 block = block1;
                 break;
@@ -215,7 +215,7 @@ public class Arena {
 
         Block block;
 
-        if (blockName.equals("DirtBlock")){ //TODO make this not hardcoded somehow
+        if (blockName.equals("DirtBlock")){
             block = new DirtBlock(position);
         }
         else if (blockName.equals("StoneBlock")){
