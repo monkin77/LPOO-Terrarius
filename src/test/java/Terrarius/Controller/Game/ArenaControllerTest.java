@@ -1,8 +1,5 @@
 package Terrarius.Controller.Game;
 
-import Terrarius.Controller.Game.ArenaController;
-import Terrarius.Controller.Game.EnemyController;
-import Terrarius.Controller.Game.HeroController;
 import Terrarius.GUI.GUI;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
