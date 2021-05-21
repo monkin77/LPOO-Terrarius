@@ -83,11 +83,33 @@ public class HeroController {
                 break;
             case SLOT0:
                 changeHeroSlot(0);
-                System.out.println("0 Pressed!");
                 break;
             case SLOT1:
                 changeHeroSlot(1);
-                System.out.println("1 Pressed!");
+                break;
+            case SLOT2:
+                changeHeroSlot(2);
+                break;
+            case SLOT3:
+                changeHeroSlot(3);
+                break;
+            case SLOT4:
+                changeHeroSlot(4);
+                break;
+            case SLOT5:
+                changeHeroSlot(5);
+                break;
+            case SLOT6:
+                changeHeroSlot(6);
+                break;
+            case SLOT7:
+                changeHeroSlot(7);
+                break;
+            case SLOT8:
+                changeHeroSlot(8);
+                break;
+            case SLOT9:
+                changeHeroSlot(9);
                 break;
         }
     }
