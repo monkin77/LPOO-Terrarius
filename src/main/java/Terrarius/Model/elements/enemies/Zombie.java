@@ -5,7 +5,7 @@ import Terrarius.Model.Level;
 import Terrarius.Model.Position;
 
 public class Zombie extends Enemy {
-    static private int ZOMBIE_VIEW_DISTANCE = 5;
+    static private final int ZOMBIE_VIEW_DISTANCE = 20;
 
     public Zombie(Position position, Level level) {
         super(position, new Dimensions(8, 4), level);
