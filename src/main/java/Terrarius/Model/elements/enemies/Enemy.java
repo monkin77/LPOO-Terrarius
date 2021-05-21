@@ -10,13 +10,12 @@ public abstract class Enemy extends Element {
 
     public Enemy(Position position, Dimensions dimensions, Level level) {
         super(position, dimensions);
-        this.stats = new EnemyStats(calculateHP(level), calculatePower(level), level);
+        this.stats = calculateStats(level);
     }
 
     public EnemyStats getStats() {
         return stats;
     }
 
-    abstract int calculateHP(Level level);
-    abstract int calculatePower(Level level);
+    abstract EnemyStats calculateStats(Level level);
 }
