@@ -57,9 +57,12 @@ public class HeroController {
 
 
     public void useItem() {
-        //TODO change this
-        if(this.arena.getHero().getToolBar().getActiveItemIdx() != 0) {
-            arena.breakBlock(targetPosition, (Tool) arena.getHero().getToolBar().getActiveItem());
+
+        if( this.arena.getHero().getToolBar().getActiveItemIdx() != 0) {
+            if (this.arena.getHero().getToolBar().getActiveItem() instanceof Tool){
+                arena.breakBlock(targetPosition, (Tool) arena.getHero().getToolBar().getActiveItem());
+            }
+            //Else / else if for stuff like food and whatever
         }
         else{
             arena.placeBlock(targetPosition);
@@ -91,6 +94,30 @@ public class HeroController {
                 break;
             case SLOT1:
                 changeHeroSlot(1);
+                break;
+            case SLOT2:
+                changeHeroSlot(2);
+                break;
+            case SLOT3:
+                changeHeroSlot(3);
+                break;
+            case SLOT4:
+                changeHeroSlot(4);
+                break;
+            case SLOT5:
+                changeHeroSlot(5);
+                break;
+            case SLOT6:
+                changeHeroSlot(6);
+                break;
+            case SLOT7:
+                changeHeroSlot(7);
+                break;
+            case SLOT8:
+                changeHeroSlot(8);
+                break;
+            case SLOT9:
+                changeHeroSlot(9);
                 break;
         }
     }
