@@ -50,6 +50,7 @@ public class ArenaController {
                 this.heroController.doAction(action);
             }
             actionList.clear();
+
         }
 
         updateCounter %= maxCounter;

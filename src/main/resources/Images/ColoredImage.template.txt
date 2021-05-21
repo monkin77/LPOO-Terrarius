@@ -3,14 +3,14 @@ WWWW
 WWWW
 WWWW
 WWWW
-<Number of colors to map (Foreground Color)> (in this case 2)
+<Number of colors to mapZone (Foreground Color)> (in this case 2)
 B #966235   (color in the format #FFFFFF)
 W #FFFFFF
 BBBB
 BWWB
 BWWB
 BBBB
-<Number of colors to map (Background Color)> (in this case 1)
+<Number of colors to mapZone (Background Color)> (in this case 1)
 B #704927
 BBBB
 BBBB

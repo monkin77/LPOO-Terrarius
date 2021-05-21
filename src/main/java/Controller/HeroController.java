@@ -14,9 +14,9 @@ public class HeroController {
 
     private void moveHero(Position position) {
         // Can't move outside of arena boundaries
-        if (position.getX() < 0 || position.getX() + arena.getHero().getDimensions().getWidth() > arena.getWidth()
+        /*if (position.getX() < 0 || position.getX() + arena.getHero().getDimensions().getWidth() > arena.getWidth()
             || position.getY() < 0 || position.getY() + arena.getHero().getDimensions().getHeight() > arena.getHeight())
-            return;
+            return;TODO CHANGE THIS*/
 
         if (!arena.collides(position, arena.getHero().getDimensions())) {
             arena.getHero().setPosition(position);

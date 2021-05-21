@@ -5,7 +5,10 @@ import Model.Position;
 import Model.elements.Hero;
 import Model.elements.blocks.Block;
 import Model.elements.enemies.Enemy;
+import Model.map.MapChooser;
+import Model.map.MapZone;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -14,11 +17,49 @@ public class Arena {
 
     private Hero hero;
 
+    private List<MapZone> mapZoneList = new ArrayList<>();
+    private Integer currentMapIndex;
+
     private List<Enemy> enemies;
     private List<Block> blocks;
 
+    private MapChooser mapChooser;
+
     public Arena(int width, int height) {
         this.dimensions = new Dimensions(height, width);
+        this.mapChooser = new MapChooser();
+        this.currentMapIndex = 0;
+    }
+
+    public void update(){
+        if (hero.getPosition().getX() + hero.getDimensions().getWidth() > getWidth()){
+            currentMapIndex++;
+
+            if (currentMapIndex >= mapZoneList.size()){
+                mapZoneList.add(mapChooser.getMap(hero.getLevel().getNumLevel()));
+            }
+
+            this.enemies = mapZoneList.get(currentMapIndex).getEnemies();
+            this.blocks = mapZoneList.get(currentMapIndex).getBlocks();
+            this.hero.setPosition(mapZoneList.get(currentMapIndex).getLeftSpawn());
+        }
+        else if(hero.getPosition().getX() < 0){
+
+            if(currentMapIndex == 0){
+                mapZoneList.add(0, mapChooser.getMap(hero.getLevel().getNumLevel()));
+            }
+            else{
+                currentMapIndex--;
+            }
+
+            this.enemies = mapZoneList.get(currentMapIndex).getEnemies();
+            this.blocks = mapZoneList.get(currentMapIndex).getBlocks();
+            this.hero.setPosition(mapZoneList.get(currentMapIndex).getRightSpawn());
+        }
+    }
+
+    public void addMap(int index, MapZone mapZone){
+        this.mapZoneList.add(index, mapZone);
     }
 
     public Hero getHero() {
@@ -157,4 +198,5 @@ public class Arena {
         }
         return false;
     }
+
 }
