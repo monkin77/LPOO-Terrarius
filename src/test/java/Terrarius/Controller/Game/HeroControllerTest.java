@@ -6,9 +6,12 @@ import Terrarius.Model.Dimensions;
 import Terrarius.Model.Position;
 import Terrarius.Model.arena.Arena;
 import Terrarius.Model.elements.Hero;
+
+import Terrarius.Model.items.Toolbar;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 public class HeroControllerTest {
@@ -21,6 +24,7 @@ public class HeroControllerTest {
         hero = Mockito.mock(Hero.class);
         Mockito.when(hero.getDimensions()).thenReturn(new Dimensions(5, 5));
         Mockito.when(hero.getPosition()).thenReturn(new Position(10, 10));
+        Mockito.when(hero.getToolBar()).thenReturn(new Toolbar());
 
         arena = Mockito.mock(Arena.class);
 
@@ -107,9 +111,11 @@ public class HeroControllerTest {
         spyController.doAction(GUI.ACTION.LEFT);
         spyController.doAction(GUI.ACTION.RIGHT);
         spyController.doAction(GUI.ACTION.UP);
+        spyController.doAction(GUI.ACTION.SLOT0);
 
         Mockito.verify(spyController, Mockito.times(1)).moveHeroLeft();
         Mockito.verify(spyController, Mockito.times(1)).moveHeroRight();
         Mockito.verify(spyController, Mockito.times(1)).moveHeroUp();
+        Mockito.verify(spyController, Mockito.times(1)).changeHeroSlot(0);
     }
 }
