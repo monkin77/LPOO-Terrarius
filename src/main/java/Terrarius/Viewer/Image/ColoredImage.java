@@ -1,8 +1,8 @@
 package Terrarius.Viewer.Image;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Position;
-import Terrarius.Model.elements.Element;
+import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.elements.Element;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;

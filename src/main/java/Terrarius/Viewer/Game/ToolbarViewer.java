@@ -3,10 +3,10 @@ package Terrarius.Viewer.Game;
 
 import Terrarius.GUI.GUI;
 import Terrarius.Utils.Dimensions;
-import Terrarius.Model.Position;
-import Terrarius.Model.arena.Arena;
-import Terrarius.Model.elements.Element;
-import Terrarius.Model.items.Toolbar;
+import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.arena.Arena;
+import Terrarius.Model.Game.elements.Element;
+import Terrarius.Model.Game.items.Toolbar;
 import Terrarius.Viewer.Image.Image;
 import Terrarius.Viewer.Image.ColoredImage;
 

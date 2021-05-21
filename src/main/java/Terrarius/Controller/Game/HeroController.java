@@ -1,10 +1,10 @@
 package Terrarius.Controller.Game;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Position;
-import Terrarius.Model.arena.Arena;
-import Terrarius.Model.elements.Element;
-import Terrarius.Model.items.Item;
+import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.arena.Arena;
+import Terrarius.Model.Game.elements.Element;
+import Terrarius.Model.Game.items.Item;
 
 public class HeroController {
     private final Arena arena;

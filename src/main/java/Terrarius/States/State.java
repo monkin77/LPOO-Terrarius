@@ -5,7 +5,9 @@ import Terrarius.GUI.GUI;
 import Terrarius.Terrarius;
 import Terrarius.Viewer.Viewer;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 public abstract class State<T> {
@@ -29,8 +31,13 @@ public abstract class State<T> {
     }
 
     public void update(Terrarius terrarius) {
-        controller.update(terrarius);
-        viewer.update();
+        try {
+            controller.update(terrarius);
+            viewer.update();
+        } catch (FileNotFoundException | URISyntaxException e) {
+            e.printStackTrace();
+            terrarius.setState(null);
+        }
     }
 
     public void draw(GUI gui) throws IOException {

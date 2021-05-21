@@ -1,11 +1,11 @@
 package Terrarius.Controller.Game;
 
-import Terrarius.Model.Position;
-import Terrarius.Model.arena.Arena;
-import Terrarius.Model.elements.Element;
-import Terrarius.Model.elements.Hero;
-import Terrarius.Model.elements.enemies.Enemy;
 import Terrarius.Viewer.Game.GameViewerConstants;
+import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.arena.Arena;
+import Terrarius.Model.Game.elements.Element;
+import Terrarius.Model.Game.elements.Hero;
+import Terrarius.Model.Game.elements.enemies.Enemy;
 
 public class EnemyController {
     private final Arena arena;

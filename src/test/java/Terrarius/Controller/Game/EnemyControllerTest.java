@@ -1,13 +1,13 @@
 package Terrarius.Controller.Game;
 
 import Terrarius.Utils.Dimensions;
-import Terrarius.Model.Level;
-import Terrarius.Model.Position;
-import Terrarius.Model.arena.Arena;
-import Terrarius.Model.elements.Element;
-import Terrarius.Model.elements.Hero;
-import Terrarius.Model.elements.enemies.Enemy;
-import Terrarius.Model.elements.enemies.EnemyStats;
+import Terrarius.Model.Game.Level;
+import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.arena.Arena;
+import Terrarius.Model.Game.elements.Element;
+import Terrarius.Model.Game.elements.Hero;
+import Terrarius.Model.Game.elements.enemies.Enemy;
+import Terrarius.Model.Game.elements.enemies.EnemyStats;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

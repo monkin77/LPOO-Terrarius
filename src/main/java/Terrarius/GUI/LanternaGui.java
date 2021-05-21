@@ -28,6 +28,7 @@ import static java.awt.event.KeyEvent.*;
 
 public class LanternaGui implements GUI {
     private final TerminalScreen screen;
+    private final int FONT_SIZE = 10;
     private TextGraphics graphics;
     private boolean mouseClicked;
     private KeyboardHandler keyboardHandler;
@@ -104,7 +105,7 @@ public class LanternaGui implements GUI {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
-        Font loadedFont = font.deriveFont(Font.PLAIN, 10);
+        Font loadedFont = font.deriveFont(Font.PLAIN, FONT_SIZE);
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         return fontConfig;
     }
@@ -122,6 +123,18 @@ public class LanternaGui implements GUI {
         graphics.setForegroundColor(TextColor.Factory.fromString(DEFAULT_FOREGROUND_COLOR));
         graphics.setBackgroundColor(TextColor.Factory.fromString(DEFAULT_BACKGROUND_COLOR));
         graphics.setCharacter(x, y, c);
+    }
+
+    @Override
+    public void drawString(int x, int y, String message, String charColor, String bgColor) {
+        graphics.setForegroundColor(TextColor.Factory.fromString(charColor));
+        graphics.setBackgroundColor(TextColor.Factory.fromString(bgColor));
+        graphics.putString(x, y, message);
+    }
+
+    @Override
+    public int getFontSize() {
+        return FONT_SIZE;
     }
 
     @Override
@@ -163,9 +176,7 @@ public class LanternaGui implements GUI {
         if (keyboardHandler.isKeyPressed(VK_7)) actionList.add(ACTION.SLOT7);
         if (keyboardHandler.isKeyPressed(VK_8)) actionList.add(ACTION.SLOT8);
         if (keyboardHandler.isKeyPressed(VK_9)) actionList.add(ACTION.SLOT9);
-
-
-
+        if (keyboardHandler.isKeyPressed(VK_ENTER)) actionList.add(ACTION.SELECT);
 
         return actionList;
     }

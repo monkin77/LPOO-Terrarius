@@ -1,12 +1,12 @@
 package Terrarius.Viewer.Game;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Position;
-import Terrarius.Model.arena.Arena;
-import Terrarius.Model.elements.blocks.Block;
-import Terrarius.Model.elements.enemies.Enemy;
-import Terrarius.Model.items.Item;
-import Terrarius.Model.items.Toolbar;
+import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.arena.Arena;
+import Terrarius.Model.Game.elements.blocks.Block;
+import Terrarius.Model.Game.elements.enemies.Enemy;
+import Terrarius.Model.Game.items.Item;
+import Terrarius.Model.Game.items.Toolbar;
 import Terrarius.Viewer.Viewer;
 
 import java.io.IOException;

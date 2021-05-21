@@ -2,6 +2,7 @@ package Terrarius.Controller.Game;
 
 import Terrarius.GUI.GUI;
 import Terrarius.Utils.Dimensions;
+<<<<<<< HEAD
 import Terrarius.Model.Position;
 import Terrarius.Model.arena.Arena;
 import Terrarius.Model.elements.Hero;
@@ -10,6 +11,11 @@ import Terrarius.Model.items.Toolbar;
 
 
 import Terrarius.Model.items.tools.Axe;
+=======
+import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.arena.Arena;
+import Terrarius.Model.Game.elements.Hero;
+>>>>>>> Slow version of menu
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

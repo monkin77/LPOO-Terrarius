@@ -2,7 +2,7 @@ package Terrarius.Controller.Game;
 
 import Terrarius.GUI.GUI;
 import Terrarius.Terrarius;
-import Terrarius.Model.arena.Arena;
+import Terrarius.Model.Game.arena.Arena;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -33,7 +33,7 @@ public class GameControllerTest {
         actions = Arrays.asList(GUI.ACTION.QUIT);
         gameController.giveActions(terrarius, actions);
         Mockito.verify(arenaController, Mockito.never()).addActions(actions);
-        Mockito.verify(terrarius, Mockito.times(1)).setState(null);
+        Mockito.verify(terrarius, Mockito.times(1)).setState(Mockito.any());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class GameControllerTest {
 
         gameController.update(terrarius);
         Mockito.verify(arenaController, Mockito.times(2)).update();
-        Mockito.verify(terrarius, Mockito.times(1)).setState(null);
+        Mockito.verify(terrarius, Mockito.times(1)).setState(Mockito.any());
     }
     /*
     private Arena arena;
