@@ -210,23 +210,35 @@ public class Arena {
         position = new Position(position.getX()/4*4, position.getY()/4*4);
 
         if (this.collides(position, new Dimensions(4, 4))
-                || hero.getToolBar().getBlockPouch().getCurrentBlockQuantity() <= 0) return;
+                || hero.getToolBar().getBlockPouch().getCurrentBlockQuantity() <= 0)
+            return;
+
+        Block block;
 
         if (blockName.equals("DirtBlock")){ //TODO make this not hardcoded somehow
-            Block block = new DirtBlock(position);
-            this.blocks.add(block);
-            hero.getToolBar().getBlockPouch().decrementBlock(block);
+            block = new DirtBlock(position);
         }
         else if (blockName.equals("StoneBlock")){
-            Block block = new StoneBlock(position);
-            this.blocks.add(block);
-            hero.getToolBar().getBlockPouch().decrementBlock(block);
+            block = new StoneBlock(position);
         }
         else if (blockName.equals("WoodBlock")){
-            Block block = new WoodBlock(position);
-            this.blocks.add(block);
-            hero.getToolBar().getBlockPouch().decrementBlock(block);
+            block = new WoodBlock(position);
         }
+        else{
+            return;
+        }
+
+        for (Enemy enemy : this.enemies){
+            if (isBlockInElement(enemy.getPosition(), enemy.getDimensions(), block) ||
+                    isElementInBlock(enemy.getPosition(), enemy.getDimensions(), block))
+                return;
+        }
+        if ((isBlockInElement(this.hero.getPosition(), this.hero.getDimensions(), block) ||
+                isElementInBlock(this.hero.getPosition(), this.hero.getDimensions(), block)))
+            return;
+
+        this.blocks.add(block);
+        hero.getToolBar().getBlockPouch().decrementBlock(block);
 
     }
 }
