@@ -62,6 +62,11 @@ public class EnemyControllerTest {
 
     @Test
     public void collidedWithHero() {
+        Mockito.when(hero.getPosition()).thenReturn(new Position(6, 5));
+        Mockito.when(hero.getHealth()).thenReturn(100);
+        Mockito.when(enemies.get(0).getStats()).thenReturn(new EnemyStats(100, 5, 5, new Level(2, 0)));
+        Mockito.when(enemies.get(1).getStats()).thenReturn(new EnemyStats(100, 5, 0, new Level(2, 0)));
+
         enemyController.moveEnemies();
 
         Mockito.verify(hero, Mockito.times(1)).setHealth(95);
