@@ -33,10 +33,7 @@ public class EnemyController {
     }
 
     private void moveEnemy(Enemy enemy, Position position) {
-<<<<<<< HEAD
         if(position.getX() < 0) return;
-=======
->>>>>>> 09f87ac... Added enemy collisions
         if ( (!arena.collides(position, enemy.getDimensions())) && (!hasEnemy(enemy, position)) ) {
             enemy.setPosition(position);
             // TODO: USE COLLISIONS
