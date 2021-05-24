@@ -25,6 +25,7 @@ public class KeyboardHandler {
         keyMap.put(VK_7, false);
         keyMap.put(VK_8, false);
         keyMap.put(VK_9, false);
+        keyMap.put(VK_ENTER, false);
     }
 
     public void pressKey(int keyCode){

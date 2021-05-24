@@ -7,8 +7,13 @@ import Terrarius.Viewer.Viewer;
 import java.io.IOException;
 
 public class MenuViewer extends Viewer<Menu> {
+    private int previousSelected = -1;
+
     @Override
     public void draw(GUI gui, Menu menu) throws IOException {
+        if (menu.getSelectedIndex() == previousSelected) return;
+        previousSelected = menu.getSelectedIndex();
+
         // TODO: GET SCREEN DIMENSIONS AND DRAW BASED ON THEM
         gui.clear();
         gui.drawString(50, 5, "Terrarius", "#FFFFFF", "#000000");

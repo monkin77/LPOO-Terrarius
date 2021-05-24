@@ -44,7 +44,7 @@ public class Terrarius {
         long previous = System.currentTimeMillis();
         long lag = 0;
 
-        while (this.state != null) {
+        while (true) {
             long current = System.currentTimeMillis();
             long elapsed = current - previous;
             previous = current;
@@ -55,11 +55,15 @@ public class Terrarius {
             while (lag >= MS_PER_UPDATE) {
                 state.update(this);
                 lag -= MS_PER_UPDATE;
+
+                if (state == null) {
+                    gui.close();
+                    return;
+                }
             }
 
             state.draw(gui);
         }
-        gui.close();
     }
 
     public void setState(State state) {

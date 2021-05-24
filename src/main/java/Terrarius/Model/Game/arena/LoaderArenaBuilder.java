@@ -9,6 +9,7 @@ import Terrarius.Model.Game.elements.blocks.StoneBlock;
 import Terrarius.Model.Game.elements.blocks.WoodBlock;
 import Terrarius.Model.Game.elements.enemies.Enemy;
 import Terrarius.Model.Game.elements.enemies.Zombie;
+import Terrarius.Model.Game.items.tools.Axe;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -81,7 +82,10 @@ public class LoaderArenaBuilder extends ArenaBuilder {
             int x = fileScanner.nextInt();
             int y = fileScanner.nextInt();
 
-            return new Hero(new Position(x, y));
+            Hero hero = new Hero(new Position(x, y));
+            hero.addItem(1, new Axe(hero));  // TODO: CHANGE WHEN WE HAVE ITEM CRAFTING
+
+            return hero;
 
         } catch (FileNotFoundException | URISyntaxException e) {
             e.printStackTrace();
