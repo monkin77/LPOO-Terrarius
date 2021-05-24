@@ -9,7 +9,7 @@ import Model.items.tools.Tool;
 
 public class HeroController {
     private final Arena arena;
-    private Position targetPosition; //TODO Should this be here?
+
 
     public HeroController(Arena arena) {
         this.arena = arena;
@@ -60,12 +60,12 @@ public class HeroController {
 
         if( this.arena.getHero().getToolBar().getActiveItemIdx() != 0) {
             if (this.arena.getHero().getToolBar().getActiveItem() instanceof Tool){
-                arena.breakBlock(targetPosition, (Tool) arena.getHero().getToolBar().getActiveItem());
+                arena.breakBlock(this.arena.getHero().getTargetPosition(), (Tool) arena.getHero().getToolBar().getActiveItem());
             }
             //Else / else if for stuff like food and whatever
         }
         else{
-            arena.placeBlock(targetPosition);
+            arena.placeBlock(this.arena.getHero().getTargetPosition());
         }
     }
     public void changeHeroSlot(Integer slot) {
@@ -127,6 +127,6 @@ public class HeroController {
     }
 
     public void setTargetPosition(Position targetPosition) {
-        this.targetPosition = targetPosition;
+        this.arena.getHero().setTargetPosition(targetPosition);
     }
 }

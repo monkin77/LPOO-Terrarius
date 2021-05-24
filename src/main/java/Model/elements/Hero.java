@@ -10,6 +10,7 @@ public class Hero extends Element {
     private Level level;
     private int health;
     private Toolbar toolBar;
+    private Position targetPosition;
 
     public Hero(Position position) {
         super(position, new Dimensions(8, 4));
@@ -67,5 +68,13 @@ public class Hero extends Element {
         Dimensions totalDimensions = new Dimensions(this.getDimensions());
         totalDimensions.incrementWidth(toolBar.getActiveItem().getDimensions().getWidth());
         return totalDimensions;
+    }
+
+    public Position getTargetPosition() {
+        return targetPosition;
+    }
+
+    public void setTargetPosition(Position targetPosition) {
+        this.targetPosition = targetPosition;
     }
 }
