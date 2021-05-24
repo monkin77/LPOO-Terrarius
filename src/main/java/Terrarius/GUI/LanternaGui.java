@@ -152,6 +152,16 @@ public class LanternaGui implements GUI {
         screen.close();
     }
 
+    @Override
+    public int getWidth() {
+        return screen.getTerminalSize().getColumns();
+    }
+
+    @Override
+    public int getHeight() {
+        return screen.getTerminalSize().getRows();
+    }
+
     public List<ACTION> getNextActions() {
 
         List<ACTION> actionList = new ArrayList<>();
