@@ -11,6 +11,7 @@ public class Hero extends Element {
     private int health;
     private Toolbar toolBar;
     private Position targetPosition;
+    private static final Double RANGE = 10.0;
 
     public Hero(Position position) {
         super(position, new Dimensions(8, 4));
@@ -76,5 +77,14 @@ public class Hero extends Element {
 
     public void setTargetPosition(Position targetPosition) {
         this.targetPosition = targetPosition;
+    }
+
+    public Boolean targetWithinRange(Double value){ //TODO I forgot what I wanted to call this argument
+        Double dist = Math.sqrt(
+                Math.pow((this.getPosition().getX() + this.getDimensions().getWidth()/2.0) - targetPosition.getX(), 2) +
+                Math.pow((this.getPosition().getY() + this.getDimensions().getHeight()/2.0) - targetPosition.getY(), 2));
+
+        if (dist <= RANGE + value) return true;
+        else return false;
     }
 }

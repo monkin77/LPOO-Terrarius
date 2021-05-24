@@ -6,6 +6,8 @@ import Terrarius.Model.arena.Arena;
 import Terrarius.Model.elements.Element;
 import Terrarius.Model.items.tools.Tool;
 
+import java.util.concurrent.TransferQueue;
+
 
 public class HeroController {
     private final Arena arena;
@@ -59,12 +61,13 @@ public class HeroController {
     public void useItem() {
 
         if( this.arena.getHero().getToolBar().getActiveItemIdx() != 0) {
-            if (this.arena.getHero().getToolBar().getActiveItem() instanceof Tool){
+            if (this.arena.getHero().getToolBar().getActiveItem() instanceof Tool
+                    && this.arena.getHero().targetWithinRange(2.0)){
                 arena.breakBlock(this.arena.getHero().getTargetPosition(), (Tool) arena.getHero().getToolBar().getActiveItem());
             }
             //Else / else if for stuff like food and whatever
         }
-        else{
+        else if (this.arena.getHero().targetWithinRange(2.0)){
             arena.placeBlock(this.arena.getHero().getTargetPosition());
         }
     }
