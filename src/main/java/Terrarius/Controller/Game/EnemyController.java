@@ -4,6 +4,7 @@ import Terrarius.Model.Position;
 import Terrarius.Model.arena.Arena;
 import Terrarius.Model.elements.Element;
 import Terrarius.Model.elements.enemies.Enemy;
+import Terrarius.Viewer.Game.GameViewerConstants;
 
 public class EnemyController {
     private final Arena arena;
@@ -33,7 +34,7 @@ public class EnemyController {
     }
 
     private void moveEnemy(Enemy enemy, Position position) {
-        if(position.getX() < 0) return;
+        if(position.getX() < 0 || position.getX() + enemy.getDimensions().getWidth() >= GameViewerConstants.SCREEN_WIDTH) return;
         if ( (!arena.collides(position, enemy.getDimensions())) && (!hasEnemy(enemy, position)) ) {
             enemy.setPosition(position);
             // TODO: USE COLLISIONS
@@ -45,7 +46,7 @@ public class EnemyController {
     private boolean hasEnemy(Enemy enemy, Position position) {
         for(Enemy currEnemy : arena.getEnemies()) {
             if (currEnemy.equals(enemy)) continue;
-            if (arena.checkElementsCollision(position, enemy.getDimensions(), currEnemy.getPosition(), currEnemy.getDimensions()))
+            if (Position.checkElementsCollision(position, enemy.getDimensions(), currEnemy.getPosition(), currEnemy.getDimensions()))
                 return true;
         }
         return false;

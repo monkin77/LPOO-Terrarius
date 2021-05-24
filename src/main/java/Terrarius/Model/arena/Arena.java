@@ -107,33 +107,6 @@ public class Arena {
         return false;
     }
 
-    /**
-     * Checks if Element1 collides with Element2
-     * @param p1 Element1 Position
-     * @param d1 Element1 Dimensions
-     * @param p2 Element2 Position
-     * @param d2 Element2 Dimensions
-     * @return true if they collide, false otherwise
-     */
-    public boolean checkElementsCollision(Position p1, Dimensions d1, Position p2, Dimensions d2) {
-        boolean leftSideElementCollides = p1.getX() >= p2.getX() &&
-                p1.getX() <= p2.getX() + d2.getWidth() - 1;
-
-        boolean rightSideElementCollides = p1.getX() <= p2.getX() &&
-                p1.getX() + d1.getWidth() - 1 >= p2.getX();
-
-        if(leftSideElementCollides || rightSideElementCollides) {
-            boolean topElementCollides = p1.getY() >= p2.getY() &&
-                    p1.getY() <= p2.getY() + d2.getHeight() - 1;
-
-            boolean bottomElementCollides = p1.getY() <= p2.getY() &&
-                    p1.getY() + d1.getHeight() - 1 >= p2.getY();
-
-            if(topElementCollides || bottomElementCollides) return true;
-        }
-        return false;
-    }
-
     private boolean isElementInBlock(Position position, Dimensions dimensions, Block block) {
         boolean left_elem_in_block =
                 position.getX() >= block.getPosition().getX() &&
