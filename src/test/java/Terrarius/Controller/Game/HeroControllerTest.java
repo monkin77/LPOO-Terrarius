@@ -27,7 +27,7 @@ public class HeroControllerTest {
         Mockito.when(arena.getHeight()).thenReturn(100);
         Mockito.when(arena.getWidth()).thenReturn(100);
         Mockito.when(arena.getHero()).thenReturn(hero);
-        Mockito.when(arena.collides(Mockito.any(), Mockito.any())).thenReturn(false);
+        Mockito.when(arena.collides(Mockito.any(), (Dimensions) Mockito.any())).thenReturn(false);
 
         heroController = new HeroController(arena);
     }
@@ -76,7 +76,7 @@ public class HeroControllerTest {
 
     @Test
     public void moveHeroWhenColliding() {
-        Mockito.when(arena.collides(Mockito.any(), Mockito.any())).thenReturn(true);
+        Mockito.when(arena.collides(Mockito.any(), (Dimensions) Mockito.any())).thenReturn(true);
 
         heroController.moveHeroUp();
         Mockito.verify(hero, Mockito.never()).setPosition(Mockito.any());
