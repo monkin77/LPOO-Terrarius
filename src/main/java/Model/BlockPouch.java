@@ -56,7 +56,7 @@ public class BlockPouch {
             return "StoneBlock";
         }
         else{
-            return "ERROR";
+            return "NullBlock"; //aka no block
         }
     }
 
