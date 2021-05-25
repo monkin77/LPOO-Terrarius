@@ -60,6 +60,7 @@ public class EnemyController {
 
     private boolean canFollowHero(Enemy enemy, Hero hero) {
         return Math.abs(enemy.getPosition().getX() - hero.getPosition().getX()) <= enemy.getStats().getViewDistance()
-                && Math.abs(enemy.getPosition().getY() - hero.getPosition().getY()) <= hero.getDimensions().getHeight();
+                && Math.abs(enemy.getPosition().getY() - hero.getPosition().getY()) <=
+                    Math.max(hero.getDimensions().getHeight(), enemy.getDimensions().getHeight());
     }
 }
