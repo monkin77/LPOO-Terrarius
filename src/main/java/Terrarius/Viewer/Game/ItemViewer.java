@@ -32,12 +32,9 @@ public class ItemViewer {
     }
 
     public void draw(Item item, GUI gui){
-        Hero hero = item.getHero();
-        Position itemPos = new Position(hero.getPosition());
-        itemPos.setX(itemPos.getX() + ( hero.getOrientation() == Element.Orientation.RIGHT ? hero.getDimensions().getWidth() : -item.getDimensions().getWidth() ) );
-        itemPos.setY(itemPos.getY() - item.getDimensions().getHeight());
+        Position itemPos = item.getPosition(item.getHero().getPosition());
 
-        this.image.draw(itemPos, hero.getOrientation(), gui);
+        this.image.draw(itemPos, item.getHero().getOrientation(), gui);
     }
 
     public void drawIcon(Position position, GUI gui){

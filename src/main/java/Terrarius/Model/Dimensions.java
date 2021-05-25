@@ -10,6 +10,11 @@ public class Dimensions {
         this.height = height;
     }
 
+    public Dimensions(Dimensions dimensions) {
+        this.width = dimensions.getWidth();
+        this.height = dimensions.getHeight();
+    }
+
     public int getHeight() {
         return height;
     }
@@ -24,5 +29,13 @@ public class Dimensions {
 
     public void setWidth(int width) {
         this.width = width;
+    }
+
+    public void incrementWidth(int incValue) {
+        if(this.width + incValue > 0) this.width += incValue;
+    }
+
+    public void incrementHeight(int incValue) {
+        if(this.height + incValue > 0) this.height += incValue;
     }
 }

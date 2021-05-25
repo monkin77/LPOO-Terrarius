@@ -5,6 +5,7 @@ import Terrarius.Model.Position;
 import Terrarius.Model.elements.Hero;
 import Terrarius.Model.elements.blocks.Block;
 import Terrarius.Model.elements.enemies.Enemy;
+import Terrarius.Model.items.Item;
 
 import java.util.List;
 
@@ -98,10 +99,9 @@ public class Arena {
     }
 
     public boolean collides(Position position, Dimensions dimensions){
-
         for (Block block : this.blocks) {
             if (isElementInBlock(position, dimensions, block) || isBlockInElement(position, dimensions, block))
-                return true;
+                 return true;
         }
 
         return false;

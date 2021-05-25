@@ -4,6 +4,7 @@ import Terrarius.GUI.GUI;
 import Terrarius.Model.Position;
 import Terrarius.Model.arena.Arena;
 import Terrarius.Model.elements.Element;
+import Terrarius.Model.items.Item;
 
 public class HeroController {
     private final Arena arena;
@@ -19,6 +20,14 @@ public class HeroController {
             return;
 
         if (!arena.collides(position, arena.getHero().getDimensions())) {
+
+            if(arena.getHero().getToolBar().getActiveItem() != null) {
+                Item activeItem = arena.getHero().getToolBar().getActiveItem();
+                Position copyPos = activeItem.getPosition(position);
+                if(arena.collides(copyPos, activeItem.getDimensions()))
+                    return;
+            }
+
             arena.getHero().setPosition(position);
         }
     }
@@ -52,6 +61,10 @@ public class HeroController {
         climbHero(arena.getHero().getPosition().getDown());
     }
 
+    public void changeHeroSlot(Integer slot) {
+        this.arena.getHero().getToolBar().setActiveItemIdx(slot);
+    }
+
     public void doAction(GUI.ACTION action) {
         switch (action) {
             case UP:
@@ -67,6 +80,36 @@ public class HeroController {
                 moveHeroDown();
             case CLICK:
                 // TODO: USE ITEM
+                break;
+            case SLOT0:
+                changeHeroSlot(0);
+                break;
+            case SLOT1:
+                changeHeroSlot(1);
+                break;
+            case SLOT2:
+                changeHeroSlot(2);
+                break;
+            case SLOT3:
+                changeHeroSlot(3);
+                break;
+            case SLOT4:
+                changeHeroSlot(4);
+                break;
+            case SLOT5:
+                changeHeroSlot(5);
+                break;
+            case SLOT6:
+                changeHeroSlot(6);
+                break;
+            case SLOT7:
+                changeHeroSlot(7);
+                break;
+            case SLOT8:
+                changeHeroSlot(8);
+                break;
+            case SLOT9:
+                changeHeroSlot(9);
                 break;
         }
     }
