@@ -101,7 +101,7 @@ public class Arena {
     public boolean collides(Position position, Dimensions dimensions){
         for (Block block : this.blocks) {
             if (isElementInBlock(position, dimensions, block) || isBlockInElement(position, dimensions, block))
-            return true;
+                 return true;
         }
 
         return false;
