@@ -125,39 +125,12 @@ public class Arena {
         return false;
     }
 
-    /**
-     * For situations where a block is floating and collides with the middle of the element
-     */
-    private boolean isElement2InElement1(Element element1, Element element2) {
-        boolean left_block_in_elem =
-                element2.getPosition().getX() >= element1.getPosition().getX() &&
-                        element2.getPosition().getX() <= element1.getPosition().getX() + element1.getDimensions().getWidth() - 1;
-
-        boolean right_block_in_elem =
-                element2.getPosition().getX() +element2.getDimensions().getWidth() - 1 >= element1.getPosition().getX() &&
-                        element2.getPosition().getX() + element2.getDimensions().getWidth() - 1 <= element1.getPosition().getX() + element1.getDimensions().getWidth() - 1;
-
-        if (left_block_in_elem || right_block_in_elem){
-
-            boolean top_block_in_elem =
-                    element2.getPosition().getY() >= element1.getPosition().getY() &&
-                            element2.getPosition().getY() <= element1.getPosition().getY() + element1.getDimensions().getHeight() - 1;
-
-            boolean bottom_block_in_elem =
-                    element2.getPosition().getY() + element2.getDimensions().getHeight() - 1 >= element1.getPosition().getY() &&
-                            element2.getPosition().getY() + element2.getDimensions().getHeight() - 1 <= element1.getPosition().getY() + element1.getDimensions().getHeight() - 1;
-
-            if (top_block_in_elem || bottom_block_in_elem) return true;
-        }
-        return false;
-    }
-
     public boolean collides(Element element, Position position, Dimensions dimensions){
         return collides(element, new Element(position, dimensions));
     }
 
     public boolean collides(Element element1, Element element2){
-        return (isElement1InElement2(element1, element2) || isElement2InElement1(element1, element2));
+        return (isElement1InElement2(element1, element2) || isElement1InElement2(element2, element1));
     }
 
     public boolean collidesWithBlocks(Position position, Dimensions dimensions){

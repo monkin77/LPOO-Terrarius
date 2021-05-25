@@ -67,12 +67,12 @@ public class HeroController {
     }
 
     private void useBlockPlacer(){
-        if (this.arena.getHero().targetWithinRange(2.0))
+        if (this.arena.getHero().targetWithinRange())
             arena.placeBlock((this.arena.getHero().getTargetPosition()));
     }
 
     private void useTool(Tool tool) { //TODO incomplete
-        if (this.arena.getHero().targetWithinRange(2.0))
+        if (this.arena.getHero().targetWithinRange())
             arena.breakBlock(this.arena.getHero().getTargetPosition(), (Tool) arena.getHero().getToolBar().getActiveItem());
     }
 
