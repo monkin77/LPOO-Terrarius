@@ -216,14 +216,7 @@ public class Arena {
                 || hero.getToolBar().getBlockPouch().getCurrentBlockQuantity() <= 0)
             return;
 
-        Block block;
-
-        switch (blockName) {
-            case "DirtBlock":  block = new DirtBlock(gridPosition);  break;
-            case "StoneBlock": block = new StoneBlock(gridPosition); break;
-            case "WoodBlock":  block = new WoodBlock(gridPosition);  break;
-            default: return;
-        }
+        Block block = this.hero.getToolBar().getBlockPouch().generateCurrentBlock(gridPosition);
 
         for (Enemy enemy : this.enemies){
             if (collides(enemy, block)) return;

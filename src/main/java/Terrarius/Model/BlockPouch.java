@@ -51,4 +51,13 @@ public class BlockPouch {
         return blockQuantities.get(currentBlock);
     }
 
+    public Block generateCurrentBlock(Position position){
+        switch (this.blockNames.get(this.currentBlock)) {
+            case "DirtBlock":  return new DirtBlock(position);
+            case "StoneBlock": return new StoneBlock(position);
+            case "WoodBlock":  return new WoodBlock(position);
+            default: return null;
+        }
+    }
+
 }
