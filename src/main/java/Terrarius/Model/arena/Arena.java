@@ -2,11 +2,13 @@ package Terrarius.Model.arena;
 
 import Terrarius.Model.Dimensions;
 import Terrarius.Model.Position;
+import Terrarius.Model.elements.Element;
 import Terrarius.Model.elements.Hero;
 import Terrarius.Model.elements.blocks.*;
 import Terrarius.Model.elements.enemies.Enemy;
 import Terrarius.Model.items.Item;
 import Terrarius.Model.items.tools.Tool;
+import com.sun.source.tree.ReturnTree;
 
 import java.util.List;
 
@@ -99,50 +101,24 @@ public class Arena {
         return false;
     }
 
-    public boolean collides(Position position, Dimensions dimensions){
-        for (Block block : this.blocks) {
-            if (isElementInBlock(position, dimensions, block) || isBlockInElement(position, dimensions, block))
-                return true;
-        }
-
-        return false;
-    }
-
-    public boolean collides(Position position, Hero hero) {
-        if (this.collides(position, hero.getDimensions()))
-            return true;
-
-        if(hero.getToolBar().getActiveItem() != null) {
-            Item activeItem = hero.getToolBar().getActiveItem();
-            Position copyPos = activeItem.getPosition(position);
-
-            for (Block block : this.blocks) {
-                if (isElementInBlock(copyPos, activeItem.getDimensions(), block) || isBlockInElement(copyPos, activeItem.getDimensions(), block))
-                    return true;
-            }
-        }
-
-        return false;
-    }
-
-    private boolean isElementInBlock(Position position, Dimensions dimensions, Block block) {
+    private boolean isElement1InElement2(Element element1, Element element2) {
         boolean left_elem_in_block =
-                position.getX() >= block.getPosition().getX() &&
-                        position.getX() <= block.getPosition().getX() + block.getDimensions().getWidth() - 1;
+                element1.getPosition().getX() >= element2.getPosition().getX() &&
+                        element1.getPosition().getX() <= element2.getPosition().getX() + element2.getDimensions().getWidth() - 1;
 
         boolean right_elem_in_block =
-                position.getX() + dimensions.getWidth() - 1 >= block.getPosition().getX() &&
-                        position.getX() + dimensions.getWidth() - 1 <= block.getPosition().getX() + block.getDimensions().getWidth() - 1;
+                element1.getPosition().getX() + element1.getDimensions().getWidth() - 1 >= element2.getPosition().getX() &&
+                        element1.getPosition().getX() + element1.getDimensions().getWidth() - 1 <= element2.getPosition().getX() + element2.getDimensions().getWidth() - 1;
 
         if (left_elem_in_block || right_elem_in_block){
 
             boolean top_elem_in_block =
-                    position.getY() >= block.getPosition().getY() &&
-                            position.getY() <= block.getPosition().getY() + block.getDimensions().getHeight() - 1;
+                    element1.getPosition().getY() >= element2.getPosition().getY() &&
+                            element1.getPosition().getY() <= element2.getPosition().getY() + element2.getDimensions().getHeight() - 1;
 
             boolean bottom_elem_in_block =
-                    position.getY() + dimensions.getHeight() - 1 >= block.getPosition().getY() &&
-                            position.getY() + dimensions.getHeight() - 1 <= block.getPosition().getY() + block.getDimensions().getHeight() - 1;
+                    element1.getPosition().getY() + element1.getDimensions().getHeight() - 1 >= element2.getPosition().getY() &&
+                            element1.getPosition().getY() + element1.getDimensions().getHeight() - 1 <= element2.getPosition().getY() + element2.getDimensions().getHeight() - 1;
 
             if (top_elem_in_block || bottom_elem_in_block) return true;
         }
@@ -152,37 +128,68 @@ public class Arena {
     /**
      * For situations where a block is floating and collides with the middle of the element
      */
-    private boolean isBlockInElement(Position position, Dimensions dimensions, Block block) {
+    private boolean isElement2InElement1(Element element1, Element element2) {
         boolean left_block_in_elem =
-                block.getPosition().getX() >= position.getX() &&
-                        block.getPosition().getX() <= position.getX() + dimensions.getWidth() - 1;
+                element2.getPosition().getX() >= element1.getPosition().getX() &&
+                        element2.getPosition().getX() <= element1.getPosition().getX() + element1.getDimensions().getWidth() - 1;
 
         boolean right_block_in_elem =
-                block.getPosition().getX() + block.getDimensions().getWidth() - 1 >= position.getX() &&
-                        block.getPosition().getX() + block.getDimensions().getWidth() - 1 <= position.getX() + dimensions.getWidth() - 1;
+                element2.getPosition().getX() +element2.getDimensions().getWidth() - 1 >= element1.getPosition().getX() &&
+                        element2.getPosition().getX() + element2.getDimensions().getWidth() - 1 <= element1.getPosition().getX() + element1.getDimensions().getWidth() - 1;
 
         if (left_block_in_elem || right_block_in_elem){
 
             boolean top_block_in_elem =
-                    block.getPosition().getY() >= position.getY() &&
-                            block.getPosition().getY() <= position.getY() + dimensions.getHeight() - 1;
+                    element2.getPosition().getY() >= element1.getPosition().getY() &&
+                            element2.getPosition().getY() <= element1.getPosition().getY() + element1.getDimensions().getHeight() - 1;
 
             boolean bottom_block_in_elem =
-                    block.getPosition().getY() + block.getDimensions().getHeight() - 1 >= position.getY() &&
-                            block.getPosition().getY() + block.getDimensions().getHeight() - 1 <= position.getY() + dimensions.getHeight() - 1;
+                    element2.getPosition().getY() + element2.getDimensions().getHeight() - 1 >= element1.getPosition().getY() &&
+                            element2.getPosition().getY() + element2.getDimensions().getHeight() - 1 <= element1.getPosition().getY() + element1.getDimensions().getHeight() - 1;
 
             if (top_block_in_elem || bottom_block_in_elem) return true;
         }
         return false;
     }
 
+    public boolean collides(Element element, Position position, Dimensions dimensions){
+        return collides(element, new Element(position, dimensions));
+    }
+
+    public boolean collides(Element element1, Element element2){
+        return (isElement1InElement2(element1, element2) || isElement2InElement1(element1, element2));
+    }
+
+    public boolean collidesWithBlocks(Position position, Dimensions dimensions){
+        return this.collidesWithBlocks(new Element(position, dimensions));
+    }
+
+    public boolean collidesWithBlocks(Element element){
+        for (Block block : this.blocks) {
+            if (collides(element, block)) return true;
+        }
+        return false;
+    }
+
+    public boolean collides(Position position, Hero hero) {
+        if (this.collidesWithBlocks(hero)) return true;
+
+        if(hero.getToolBar().getActiveItem() != null) {
+            Item activeItem = hero.getToolBar().getActiveItem();
+            Position copyPos = activeItem.getPosition(position);
+            return collidesWithBlocks(new Element(copyPos, activeItem.getDimensions()));
+        }
+
+        return false;
+    }
+
     public void breakBlock(Position position, Tool tool){
         Block block = null;
 
-        Position realPosition = new Position(position.getX()/4 * 4, position.getY()/4 * 4); //Make this better somehow
+        Position gridPosition = new Position(position.getX()/4 * 4, position.getY()/4 * 4); //Make this better somehow
 
         for (Block block1 : blocks){
-            if (block1.getPosition().equals(realPosition)){
+            if (block1.getPosition().equals(gridPosition)){
                 block = block1;
                 break;
             }
@@ -203,35 +210,25 @@ public class Arena {
 
         String blockName = hero.getToolBar().getBlockPouch().getCurrentBlockName();
 
-        position = new Position(position.getX()/4*4, position.getY()/4*4);
+        Position gridPosition = new Position(position.getX()/4*4, position.getY()/4*4);
 
-        if (this.collides(position, new Dimensions(4, 4))
+        if (this.collidesWithBlocks(new Element(gridPosition, new Dimensions(4, 4)))
                 || hero.getToolBar().getBlockPouch().getCurrentBlockQuantity() <= 0)
             return;
 
         Block block;
 
-        if (blockName.equals("DirtBlock")){
-            block = new DirtBlock(position);
-        }
-        else if (blockName.equals("StoneBlock")){
-            block = new StoneBlock(position);
-        }
-        else if (blockName.equals("WoodBlock")){
-            block = new WoodBlock(position);
-        }
-        else{
-            return;
+        switch (blockName) {
+            case "DirtBlock":  block = new DirtBlock(gridPosition);  break;
+            case "StoneBlock": block = new StoneBlock(gridPosition); break;
+            case "WoodBlock":  block = new WoodBlock(gridPosition);  break;
+            default: return;
         }
 
         for (Enemy enemy : this.enemies){
-            if (isBlockInElement(enemy.getPosition(), enemy.getDimensions(), block) ||
-                    isElementInBlock(enemy.getPosition(), enemy.getDimensions(), block))
-                return;
+            if (collides(enemy, block)) return;
         }
-        if ((isBlockInElement(this.hero.getPosition(), this.hero.getDimensions(), block) ||
-                isElementInBlock(this.hero.getPosition(), this.hero.getDimensions(), block)))
-            return;
+        if (collides(hero, block)) return;
 
         this.blocks.add(block);
         hero.getToolBar().getBlockPouch().decrementBlock(block);
