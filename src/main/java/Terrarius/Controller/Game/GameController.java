@@ -11,7 +11,6 @@ import java.util.List;
 
 public class GameController extends Controller<Arena> {
     private ArenaController arenaController;
-    private GUI gui;
 
     public GameController(Arena arena, ArenaController arenaController) {
         super(arena);
