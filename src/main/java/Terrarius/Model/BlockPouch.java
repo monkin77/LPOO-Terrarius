@@ -7,55 +7,44 @@ import java.util.*;
 
 public class BlockPouch {
 
-    private final List<Class> blockClasses = new ArrayList<>();
+    private final List<String> blockNames = new ArrayList<>();
     private final List<Integer> blockQuantities = new ArrayList<>();
     private int currentBlock;
 
     public BlockPouch(){
-        blockClasses.add(DirtBlock.class);
-        blockClasses.add(StoneBlock.class);
-        blockClasses.add(WoodBlock.class);
+        blockNames.add("DirtBlock");
+        blockNames.add("StoneBlock");
+        blockNames.add("WoodBlock");
         currentBlock = 0;
-        for (int i = 0; i < blockClasses.size(); i++) blockQuantities.add(0);
+        for (int i = 0; i < blockNames.size(); i++) blockQuantities.add(0);
     }
 
     public void setBlock(Block block, int val){
-        int index = blockClasses.indexOf(block.getClass());
+        int index = blockNames.indexOf(block.getName());
         blockQuantities.set(index, val);
     }
 
     public int getBlock(Block block){
-        int index = blockClasses.indexOf(block.getClass());
+        int index = blockNames.indexOf(block.getName());
         return blockQuantities.get(index);
     }
 
     public void incrementBlock(Block block){
-        int index = blockClasses.indexOf(block.getClass());
+        int index = blockNames.indexOf(block.getName());
         blockQuantities.set(index, blockQuantities.get(index) + 1);
     }
 
     public void decrementBlock(Block block){
-        int index = blockClasses.indexOf(block.getClass());
+        int index = blockNames.indexOf(block.getName());
         blockQuantities.set(index, blockQuantities.get(index) - 1);
     }
 
     public void cycleCurrentBlock(){
-        currentBlock = (currentBlock + 1) % blockClasses.size();
+        currentBlock = (currentBlock + 1) % blockNames.size();
     }
 
     public String getCurrentBlockName(){
-        if (this.blockClasses.get(currentBlock).equals(DirtBlock.class)){
-            return "DirtBlock";
-        }
-        else if (this.blockClasses.get(currentBlock).equals(WoodBlock.class)){
-            return "WoodBlock";
-        }
-        else if (this.blockClasses.get(currentBlock).equals(StoneBlock.class)){
-            return "StoneBlock";
-        }
-        else{
-            return "NullBlock"; //aka no block
-        }
+        return this.blockNames.get(currentBlock);
     }
 
     public Integer getCurrentBlockQuantity(){
