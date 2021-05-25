@@ -19,6 +19,7 @@ public class MenuController extends Controller<Menu> {
     public MenuController(Menu menu) {
         super(menu);
         actions = new ArrayList<>();
+        lastAction = GUI.ACTION.NONE;
     }
 
     @Override
@@ -28,6 +29,8 @@ public class MenuController extends Controller<Menu> {
 
     @Override
     public void update(Terrarius terrarius) throws FileNotFoundException, URISyntaxException {
+        if (!actions.contains(lastAction)) lastAction = GUI.ACTION.NONE;
+
         for (GUI.ACTION action : this.actions) {
             if (lastAction == action) continue;  // Menu shouldn't be spammable
 

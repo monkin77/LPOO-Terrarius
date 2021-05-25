@@ -15,6 +15,6 @@ public interface GUI {
     int getHeight();
     List<ACTION> getNextActions() throws IOException;
     // TODO: ADD KEY NUMBERS
-    enum ACTION {UP, DOWN, RIGHT, LEFT, CLICK, QUIT, SELECT, SLOT0, SLOT1, SLOT2, SLOT3, SLOT4, SLOT5, SLOT6, SLOT7,
-    SLOT8, SLOT9};
+    enum ACTION {UP, DOWN, RIGHT, LEFT, CLICK, QUIT, SELECT, NONE, SLOT0, SLOT1, SLOT2, SLOT3, SLOT4, SLOT5,
+        SLOT6, SLOT7, SLOT8, SLOT9};
 }
