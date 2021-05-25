@@ -35,7 +35,6 @@ public abstract class Item {
      */
     public Position getPosition(Position possiblePosition) {
         Position itemPos = new Position(possiblePosition);
-
         itemPos.incrementY(hero.getDimensions().getHeight()/2 - 2 - dimensions.getHeight());
         itemPos.incrementX( hero.getOrientation() == Element.Orientation.RIGHT ? hero.getDimensions().getWidth() - 1 : - dimensions.getWidth() );
         return itemPos;

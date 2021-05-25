@@ -35,9 +35,9 @@ public class EnemyController {
 
     private void moveEnemy(Enemy enemy, Position position) {
         if(position.getX() < 0 || position.getX() + enemy.getDimensions().getWidth() >= GameViewerConstants.SCREEN_WIDTH) return;
-        if ( (!arena.collides(position, enemy.getDimensions())) && (!hasEnemy(enemy, position)) ) {
+        if ( (!arena.collidesWithBlocks(position, enemy.getDimensions())) && (!hasEnemy(enemy, position)) ) {
             enemy.setPosition(position);
-            // TODO: USE COLLISIONS
+
             if (arena.getHero().getPosition().equals(position))
                 arena.getHero().setHealth(arena.getHero().getHealth() - enemy.getStats().getPower());
         }

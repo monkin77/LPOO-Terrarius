@@ -1,6 +1,7 @@
 package Terrarius.Controller.Game;
 
 import Terrarius.GUI.GUI;
+import Terrarius.Model.Position;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ public class ArenaController {
 
     private int updateCounter;
     private List<GUI.ACTION> actionList;
+
 
     public ArenaController(HeroController heroController, EnemyController enemyController, int timePerUpdate) {
         this.heroController = heroController;
@@ -33,6 +35,10 @@ public class ArenaController {
     public void addActions(List<GUI.ACTION> newActions){
         for (GUI.ACTION action : newActions)
             if (!actionList.contains(action)) actionList.add(action);
+    }
+
+    public void setHeroTargetPosition(Position position){
+        this.heroController.setTargetPosition(position);
     }
 
     public void update() {

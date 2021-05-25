@@ -1,6 +1,10 @@
 package Terrarius.Model.items;
 
+
+import Terrarius.Model.BlockPouch;
 import Terrarius.Model.Dimensions;
+import Terrarius.Model.elements.Hero;
+import Terrarius.Model.elements.blocks.Block;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,27 +20,35 @@ public class Toolbar {
     private final int toolbarCellLength;
     private final int toolbarSeparatorWidth;
 
-    public Toolbar() {
+    private final BlockPouch blockPouch;
+
+    public Toolbar(Hero hero) {
         this.toolBar = new HashMap<>();
         this.activeItemIdx = 1;  // Just for testing. Should change this to 0 (unarmed) and change when pressing the numbers on the keyboard
         this.maxSlots = TOOLBAR_SLOTS;
         this.dimensions = new Dimensions(TOOLBAR_HEIGHT, SCREEN_WIDTH);
         this.toolbarCellLength = TOOLBAR_CELL_LENGTH;
         this.toolbarSeparatorWidth = TOOLBAR_SEPARATOR_THICKNESS;
+        this.blockPouch = new BlockPouch();
+        this.toolBar.put(0, new BlockPlacer(hero));
     }
 
     public Integer getActiveItemIdx() {
         return activeItemIdx;
     }
 
+    public void setActiveItemIdx(Integer activeItemIdx) {
+
+        if (activeItemIdx == 0 && this.activeItemIdx == 0){
+            blockPouch.cycleCurrentBlock();
+        }
+        this.activeItemIdx = activeItemIdx;
+    }
+
     /**
      *
      * @return Active item. If there is no item attached to that slot, returns null
      */
-    public void setActiveItemIdx(Integer activeItemIdx) {
-        this.activeItemIdx = activeItemIdx;
-    }
-
     public Item getActiveItem() {
         return this.toolBar.get(activeItemIdx);
     }
@@ -72,6 +84,10 @@ public class Toolbar {
 
     public Map<Integer, Item> getToolBar() {
         return toolBar;
+    }
+
+    public BlockPouch getBlockPouch(){
+        return this.blockPouch;
     }
 
     public int getToolbarCellLength() {

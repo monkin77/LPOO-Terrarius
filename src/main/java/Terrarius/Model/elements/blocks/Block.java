@@ -6,10 +6,12 @@ import Terrarius.Model.elements.Element;
 
 public abstract class Block extends Element {
     private int hp;
+    private final String name;
 
-    public Block(Position position, Dimensions dimensions) {
+    public Block(Position position, Dimensions dimensions, String name) {
         super(position, dimensions);
         this.hp = initHP();
+        this.name = name;
     }
 
     public int getHP() {
@@ -22,5 +24,7 @@ public abstract class Block extends Element {
 
     // Functions for block initial stats
     abstract int initHP();
-    abstract int getHardness();
+    public abstract int getHardness();
+
+    public String getName(){ return this.name;}
 }
