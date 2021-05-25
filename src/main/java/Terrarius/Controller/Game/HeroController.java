@@ -61,9 +61,9 @@ public class HeroController {
 
     public void useItem() {
         Item activeItem = this.arena.getHero().getToolBar().getActiveItem();
-        if (activeItem instanceof Tool) this.useTool((Tool) activeItem);
-        if (activeItem instanceof Food) this.useFood((Food) activeItem);
-        if (activeItem instanceof BlockPlacer) this.useBlockPlacer();
+        if (activeItem instanceof Tool)         this.useTool((Tool) activeItem);
+        if (activeItem instanceof Food)         this.useFood((Food) activeItem);
+        if (activeItem instanceof BlockPlacer)  this.useBlockPlacer();
     }
 
     private void useBlockPlacer(){
@@ -71,7 +71,7 @@ public class HeroController {
             arena.placeBlock((this.arena.getHero().getTargetPosition()));
     }
 
-    private void useTool(Tool tool) {
+    private void useTool(Tool tool) { //TODO incomplete
         if (this.arena.getHero().targetWithinRange(2.0))
             arena.breakBlock(this.arena.getHero().getTargetPosition(), (Tool) arena.getHero().getToolBar().getActiveItem());
     }
