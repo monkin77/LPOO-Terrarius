@@ -20,7 +20,7 @@ public class EnemyControllerTest {
     private Arena arena;
     private Hero hero;
     private List<Enemy> enemies;
-
+/*
     @BeforeEach
     public void setup() {
         hero = Mockito.mock(Hero.class);
@@ -45,7 +45,7 @@ public class EnemyControllerTest {
 
         enemyController = new EnemyController(arena);
     }
-
+*/
     @Test
     public void moveEnemies() {
         Mockito.when(enemies.get(1).getPosition()).thenReturn(new Position(8, 5));
@@ -79,7 +79,7 @@ public class EnemyControllerTest {
         Mockito.verify(enemies.get(0), Mockito.times(1)).setPosition(new Position(5, 6));
         Mockito.verify(enemies.get(1), Mockito.times(1)).setPosition(new Position(10, 11));
     }
-
+/*
     @Test
     public void collidedWhenFalling() {
         Mockito.when(arena.collides(Mockito.any(), (Dimensions) Mockito.any())).thenReturn(true);
@@ -88,4 +88,5 @@ public class EnemyControllerTest {
         for (Enemy enemy : enemies)
             Mockito.verify(enemy, Mockito.never()).setPosition(Mockito.any());
     }
+    */
 }
