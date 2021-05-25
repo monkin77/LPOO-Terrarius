@@ -161,10 +161,12 @@ public class Arena {
     }
 
     public boolean collidesWithBlocks(Position position, Dimensions dimensions){
+        if (dimensions.getWidth() <= 0 || dimensions.getHeight() <= 0) return false;
         return this.collidesWithBlocks(new Element(position, dimensions));
     }
 
     public boolean collidesWithBlocks(Element element){
+        if (element.getDimensions().getWidth() <= 0 || element.getDimensions().getHeight() <= 0) return false;
         for (Block block : this.blocks) {
             if (collides(element, block)) return true;
         }

@@ -17,7 +17,7 @@ public class Hero extends Element {
         super(position, new Dimensions(8, 4));
         this.level = new Level(1, 0);
         this.health = 100;
-        this.toolBar = new Toolbar();
+        this.toolBar = new Toolbar(this);
     }
 
     public Level getLevel() {

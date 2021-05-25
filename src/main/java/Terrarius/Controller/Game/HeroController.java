@@ -4,9 +4,10 @@ import Terrarius.GUI.GUI;
 import Terrarius.Model.Position;
 import Terrarius.Model.arena.Arena;
 import Terrarius.Model.elements.Element;
+import Terrarius.Model.items.BlockPlacer;
+import Terrarius.Model.items.Item;
+import Terrarius.Model.items.food.Food;
 import Terrarius.Model.items.tools.Tool;
-
-import java.util.concurrent.TransferQueue;
 
 
 public class HeroController {
@@ -59,18 +60,27 @@ public class HeroController {
 
 
     public void useItem() {
-
-        if( this.arena.getHero().getToolBar().getActiveItemIdx() != 0) {
-            if (this.arena.getHero().getToolBar().getActiveItem() instanceof Tool
-                    && this.arena.getHero().targetWithinRange(2.0)){
-                arena.breakBlock(this.arena.getHero().getTargetPosition(), (Tool) arena.getHero().getToolBar().getActiveItem());
-            }
-            //Else / else if for stuff like food and whatever
-        }
-        else if (this.arena.getHero().targetWithinRange(2.0)){
-            arena.placeBlock(this.arena.getHero().getTargetPosition());
-        }
+        Item activeItem = this.arena.getHero().getToolBar().getActiveItem();
+        if (activeItem instanceof Tool) this.useTool((Tool) activeItem);
+        if (activeItem instanceof Food) this.useFood((Food) activeItem);
+        if (activeItem instanceof BlockPlacer) this.useBlockPlacer();
     }
+
+    private void useBlockPlacer(){
+        if (this.arena.getHero().targetWithinRange(2.0))
+            arena.placeBlock((this.arena.getHero().getTargetPosition()));
+    }
+
+    private void useTool(Tool tool) {
+        if (this.arena.getHero().targetWithinRange(2.0))
+            arena.breakBlock(this.arena.getHero().getTargetPosition(), (Tool) arena.getHero().getToolBar().getActiveItem());
+    }
+
+    private void useFood(Food food) {
+        // This part isn't done but we'd need something like active food that heal overtime.
+        // To simplify, we could just increase the HP and other stats and change the initial food model
+    }
+
     public void changeHeroSlot(Integer slot) {
         this.arena.getHero().getToolBar().setActiveItemIdx(slot);
     }

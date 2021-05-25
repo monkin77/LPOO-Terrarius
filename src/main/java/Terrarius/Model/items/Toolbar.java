@@ -3,6 +3,9 @@ package Terrarius.Model.items;
 
 import Terrarius.Model.BlockPouch;
 import Terrarius.Model.Dimensions;
+import Terrarius.Model.elements.Hero;
+import Terrarius.Model.elements.blocks.Block;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,9 +20,9 @@ public class Toolbar {
     private final int toolbarCellLength;
     private final int toolbarSeparatorWidth;
 
-    private final BlockPouch blockPouch; //TODO maybe not inside of ToolBar but the hero?
+    private final BlockPouch blockPouch;
 
-    public Toolbar() {
+    public Toolbar(Hero hero) {
         this.toolBar = new HashMap<>();
         this.activeItemIdx = 1;  // Just for testing. Should change this to 0 (unarmed) and change when pressing the numbers on the keyboard
         this.maxSlots = TOOLBAR_SLOTS;
@@ -27,6 +30,7 @@ public class Toolbar {
         this.toolbarCellLength = TOOLBAR_CELL_LENGTH;
         this.toolbarSeparatorWidth = TOOLBAR_SEPARATOR_THICKNESS;
         this.blockPouch = new BlockPouch();
+        this.toolBar.put(0, new BlockPlacer(hero));
     }
 
     public Integer getActiveItemIdx() {
@@ -38,9 +42,7 @@ public class Toolbar {
         if (activeItemIdx == 0 && this.activeItemIdx == 0){
             blockPouch.cycleCurrentBlock();
         }
-        else{
-            this.activeItemIdx = activeItemIdx;
-        }
+        this.activeItemIdx = activeItemIdx;
     }
 
     /**
