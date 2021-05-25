@@ -9,6 +9,7 @@ import Terrarius.Model.items.Item;
 import Terrarius.Model.items.food.Food;
 import Terrarius.Model.items.tools.Tool;
 
+import Terrarius.Model.items.Item;
 
 public class HeroController {
     private final Arena arena;
@@ -24,7 +25,15 @@ public class HeroController {
             || position.getY() < 0 || position.getY() + arena.getHero().getDimensions().getHeight() > arena.getHeight())
             return;
 
-        if (!arena.collides(position, arena.getHero())) {
+        if (!arena.collides(position, arena.getHero().getDimensions())) {
+
+            if(arena.getHero().getToolBar().getActiveItem() != null) {
+                Item activeItem = arena.getHero().getToolBar().getActiveItem();
+                Position copyPos = activeItem.getPosition(position);
+                if(arena.collides(copyPos, activeItem.getDimensions()))
+                    return;
+            }
+
             arena.getHero().setPosition(position);
         }
     }
@@ -57,7 +66,6 @@ public class HeroController {
     public void moveHeroDown() {
         climbHero(arena.getHero().getPosition().getDown());
     }
-
 
     public void useItem() {
         Item activeItem = this.arena.getHero().getToolBar().getActiveItem();

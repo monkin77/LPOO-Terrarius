@@ -47,7 +47,9 @@ public class Position {
     }
 
     public void incrementX(int incValue) {
-        this.x += incValue;     // Maybe we could check if it goes out of bounds (shouldn't be possible)
+
+        this.x += incValue;
+
     }
 
     public void incrementY(int incValue) {
@@ -60,5 +62,38 @@ public class Position {
         if (o == null || getClass() != o.getClass()) return false;
         Position position = (Position) o;
         return x == position.x && y == position.y;
+    }
+
+    /**
+     * Checks if Element1 collides with Element2
+     * @param p1 Element1 Position
+     * @param d1 Element1 Dimensions
+     * @param p2 Element2 Position
+     * @param d2 Element2 Dimensions
+     * @return true if they collide, false otherwise
+     */
+    public static boolean checkElementsCollision(Position p1, Dimensions d1, Position p2, Dimensions d2) {
+        boolean leftSideElementCollides = p1.getX() >= p2.getX() &&
+                p1.getX() <= p2.getX() + d2.getWidth() - 1;
+
+        boolean rightSideElementCollides = p1.getX() <= p2.getX() &&
+                p1.getX() + d1.getWidth() - 1 >= p2.getX();
+
+        if(leftSideElementCollides || rightSideElementCollides) {
+            boolean topElementCollides = p1.getY() >= p2.getY() &&
+                    p1.getY() <= p2.getY() + d2.getHeight() - 1;
+
+            boolean bottomElementCollides = p1.getY() <= p2.getY() &&
+                    p1.getY() + d1.getHeight() - 1 >= p2.getY();
+
+            boolean topElementCollides2 = p2.getY() >= p1.getY() &&
+                    p2.getY() <= p1.getY() + d1.getHeight() - 1;
+
+            boolean bottomElementCollides2 = p2.getY() <= p1.getY() &&
+                    p2.getY() + d2.getHeight() - 1 >= p1.getY();
+
+            return topElementCollides || bottomElementCollides || topElementCollides2 || bottomElementCollides2;
+        }
+        return false;
     }
 }

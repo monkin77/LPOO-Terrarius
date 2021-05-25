@@ -101,7 +101,18 @@ public class Arena {
         return false;
     }
 
+    public boolean collides(Position position, Dimensions dimensions){
+        for (Block block : this.blocks) {
+            if (isElement1InElement2(new Element(position, dimensions), block)
+                    || isElement1InElement2(block, new Element(position, dimensions)))
+                 return true;
+        }
+
+        return false;
+    }
+
     private boolean isElement1InElement2(Element element1, Element element2) {
+
         boolean left_elem_in_block =
                 element1.getPosition().getX() >= element2.getPosition().getX() &&
                         element1.getPosition().getX() <= element2.getPosition().getX() + element2.getDimensions().getWidth() - 1;
