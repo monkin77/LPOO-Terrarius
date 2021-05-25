@@ -172,7 +172,7 @@ public class Arena {
     }
 
     public boolean collides(Position position, Hero hero) {
-        if (this.collidesWithBlocks(hero)) return true;
+        if (this.collidesWithBlocks(position, hero.getDimensions())) return true;
 
         if(hero.getToolBar().getActiveItem() != null) {
             Item activeItem = hero.getToolBar().getActiveItem();
@@ -212,7 +212,7 @@ public class Arena {
 
         Position gridPosition = new Position(position.getX()/4*4, position.getY()/4*4);
 
-        if (this.collidesWithBlocks(new Element(gridPosition, new Dimensions(4, 4)))
+        if (this.collidesWithBlocks(new Element(gridPosition, new Dimensions(4, 4))) //TODO make a constant for the default block dimensions
                 || hero.getToolBar().getBlockPouch().getCurrentBlockQuantity() <= 0)
             return;
 
