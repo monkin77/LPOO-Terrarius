@@ -25,12 +25,12 @@ public class HeroController {
             || position.getY() < 0 || position.getY() + arena.getHero().getDimensions().getHeight() > arena.getHeight())
             return;
 
-        if (!arena.collides(position, arena.getHero().getDimensions())) {
+        if (!arena.collidesWithBlocks(position, arena.getHero().getDimensions())) {
 
             if(arena.getHero().getToolBar().getActiveItem() != null) {
                 Item activeItem = arena.getHero().getToolBar().getActiveItem();
                 Position copyPos = activeItem.getPosition(position);
-                if(arena.collides(copyPos, activeItem.getDimensions()))
+                if(arena.collidesWithBlocks(copyPos, activeItem.getDimensions()))
                     return;
             }
 
