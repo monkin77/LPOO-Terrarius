@@ -1,12 +1,14 @@
 package Terrarius.Controller.Game;
 
 import Terrarius.GUI.GUI;
+import Terrarius.GUI.LanternaGui;
 import Terrarius.Terrarius;
 import Terrarius.Model.Game.arena.Arena;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,15 +27,26 @@ public class GameControllerTest {
     }
 
     @Test
-    public void giveActions() {
-        List<GUI.ACTION> actions = Arrays.asList(GUI.ACTION.RIGHT, GUI.ACTION.UP);
-        gameController.giveActions(terrarius, actions);
-        Mockito.verify(arenaController, Mockito.times(1)).addActions(actions);
+    public void giveActions() throws IOException {
+        GUI gui = Mockito.mock(LanternaGui.class);
 
-        actions = Arrays.asList(GUI.ACTION.QUIT);
-        gameController.giveActions(terrarius, actions);
-        Mockito.verify(arenaController, Mockito.never()).addActions(actions);
-        Mockito.verify(terrarius, Mockito.times(1)).setState(Mockito.any());
+        List<GUI.ACTION> actions= Arrays.asList(GUI.ACTION.RIGHT, GUI.ACTION.UP);
+            Mockito.when(gui.getNextActions()).thenReturn(actions);
+
+
+            Mockito.when(gui.getMouseX()).thenReturn(0);
+            Mockito.when(gui.getMouseY()).thenReturn(0);
+
+            gameController.giveActions(terrarius, gui);
+            Mockito.verify(arenaController, Mockito.times(1)).addActions(actions);
+            Mockito.verify(arena.getHero(), Mockito.times(1)).setTargetPosition(Mockito.any());
+
+            actions = Arrays.asList(GUI.ACTION.QUIT);
+            Mockito.when(gui.getNextActions()).thenReturn(actions);
+
+            gameController.giveActions(terrarius, gui);
+            Mockito.verify(arenaController, Mockito.never()).addActions(actions);
+            Mockito.verify(terrarius, Mockito.times(1)).setState(null);
     }
 
     @Test

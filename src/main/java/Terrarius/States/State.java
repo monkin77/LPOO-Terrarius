@@ -26,8 +26,7 @@ public abstract class State<T> {
     }
 
     public void readInput(Terrarius terrarius, GUI gui) throws IOException {
-        List<GUI.ACTION> actions = gui.getNextActions();
-        controller.giveActions(terrarius, actions);
+        controller.giveActions(terrarius, gui);
     }
 
     public void update(Terrarius terrarius) {

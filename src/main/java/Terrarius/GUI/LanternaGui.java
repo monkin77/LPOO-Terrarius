@@ -1,6 +1,7 @@
 package Terrarius.GUI;
 
 import Terrarius.Controller.KeyboardHandler;
+import Terrarius.Controller.MouseHandler;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -30,36 +31,54 @@ public class LanternaGui implements GUI {
     private final TerminalScreen screen;
     private final int FONT_SIZE = 10;
     private TextGraphics graphics;
-    private boolean mouseClicked;
     private KeyboardHandler keyboardHandler;
+    private MouseHandler mouseHandler;
 
     public LanternaGui(TerminalScreen screen, KeyboardHandler keyboardHandler) {
         this.screen = screen;
         this.keyboardHandler = keyboardHandler;
         graphics = screen.newTextGraphics();
-        this.mouseClicked = true;
     }
 
     public LanternaGui(int width, int height) throws IOException, FontFormatException, URISyntaxException {
         AWTTerminalFontConfiguration fontConfig = loadSquareFont();
         Terminal terminal = createTerminal(width, height, fontConfig);
+        addMouseMotionListener(terminal);
         addMouseListener(terminal);
         addKeyListener(terminal);
 
         keyboardHandler = new KeyboardHandler();
+        mouseHandler = new MouseHandler();
         screen = createScreen(terminal);
         graphics = screen.newTextGraphics();
+
+
     }
 
     private void addMouseListener(Terminal terminal) {
-        mouseClicked = false;
         ((AWTTerminalFrame) terminal).getComponent(0).addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                /* If mouse position is needed, use e.getX() and e.getY()
-                   and remove setCursorPosition(null) below
-                 */
-                mouseClicked = true;
+            public void mousePressed(MouseEvent e) {
+                mouseHandler.mousePressed();
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                mouseHandler.mouseRelease();
+            }
+        });
+    }
+
+    private void addMouseMotionListener(Terminal terminal) {
+        ((AWTTerminalFrame) terminal).getComponent(0).addMouseMotionListener(new MouseAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                mouseHandler.setX(e.getX());
+                mouseHandler.setY(e.getY());
+            }
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                mouseHandler.setX(e.getX());
+                mouseHandler.setY(e.getY());
             }
         });
     }
@@ -162,30 +181,36 @@ public class LanternaGui implements GUI {
         return screen.getTerminalSize().getRows();
     }
 
+    public int getMouseX(){
+        return mouseHandler.getX();
+    }
+
+    public int getMouseY(){
+        return mouseHandler.getY();
+    }
+
     public List<ACTION> getNextActions() {
 
         List<ACTION> actionList = new ArrayList<>();
 
-        if (mouseClicked) {
-            mouseClicked = false;
+        if (mouseHandler.isPressed()) {
             actionList.add(ACTION.CLICK);
         }
 
-        if (keyboardHandler.isKeyPressed(VK_ESCAPE)) actionList.add(ACTION.QUIT);
-        if (keyboardHandler.isKeyPressed(VK_UP)) actionList.add(ACTION.UP);
-        if (keyboardHandler.isKeyPressed(VK_DOWN)) actionList.add(ACTION.DOWN);
-        if (keyboardHandler.isKeyPressed(VK_LEFT)) actionList.add(ACTION.LEFT);
-        if (keyboardHandler.isKeyPressed(VK_RIGHT)) actionList.add(ACTION.RIGHT);
-        if (keyboardHandler.isKeyPressed(VK_0)) actionList.add(ACTION.SLOT0);
-        if (keyboardHandler.isKeyPressed(VK_1)) actionList.add(ACTION.SLOT1);
-        if (keyboardHandler.isKeyPressed(VK_2)) actionList.add(ACTION.SLOT2);
-        if (keyboardHandler.isKeyPressed(VK_3)) actionList.add(ACTION.SLOT3);
-        if (keyboardHandler.isKeyPressed(VK_4)) actionList.add(ACTION.SLOT4);
-        if (keyboardHandler.isKeyPressed(VK_5)) actionList.add(ACTION.SLOT5);
-        if (keyboardHandler.isKeyPressed(VK_6)) actionList.add(ACTION.SLOT6);
-        if (keyboardHandler.isKeyPressed(VK_7)) actionList.add(ACTION.SLOT7);
-        if (keyboardHandler.isKeyPressed(VK_8)) actionList.add(ACTION.SLOT8);
-        if (keyboardHandler.isKeyPressed(VK_9)) actionList.add(ACTION.SLOT9);
+        if (keyboardHandler.isKeyPressed(VK_UP) || keyboardHandler.isKeyPressed(VK_W)) actionList.add(ACTION.UP);
+        if (keyboardHandler.isKeyPressed(VK_DOWN) || keyboardHandler.isKeyPressed(VK_S)) actionList.add(ACTION.DOWN);
+        if (keyboardHandler.isKeyPressed(VK_LEFT) || keyboardHandler.isKeyPressed(VK_A)) actionList.add(ACTION.LEFT);
+        if (keyboardHandler.isKeyPressed(VK_RIGHT) || keyboardHandler.isKeyPressed(VK_D)) actionList.add(ACTION.RIGHT);
+        if (keyboardHandler.readKey(VK_0)) actionList.add(ACTION.SLOT0);
+        if (keyboardHandler.readKey(VK_1)) actionList.add(ACTION.SLOT1);
+        if (keyboardHandler.readKey(VK_2)) actionList.add(ACTION.SLOT2);
+        if (keyboardHandler.readKey(VK_4)) actionList.add(ACTION.SLOT4);
+        if (keyboardHandler.readKey(VK_3)) actionList.add(ACTION.SLOT3);
+        if (keyboardHandler.readKey(VK_5)) actionList.add(ACTION.SLOT5);
+        if (keyboardHandler.readKey(VK_6)) actionList.add(ACTION.SLOT6);
+        if (keyboardHandler.readKey(VK_7)) actionList.add(ACTION.SLOT7);
+        if (keyboardHandler.readKey(VK_8)) actionList.add(ACTION.SLOT8);
+        if (keyboardHandler.readKey(VK_9)) actionList.add(ACTION.SLOT9);
         if (keyboardHandler.isKeyPressed(VK_ENTER)) actionList.add(ACTION.SELECT);
 
         return actionList;

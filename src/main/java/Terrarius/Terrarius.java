@@ -21,7 +21,7 @@ public class Terrarius {
     private State state;
 
     public static void main(String[] args) throws FontFormatException, IOException, URISyntaxException {
-        new Terrarius(128, 64).start();
+        new Terrarius(128, 71).start();
     }
 
     public Terrarius(int width, int height) throws FontFormatException, IOException, URISyntaxException {

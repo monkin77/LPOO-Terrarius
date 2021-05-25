@@ -49,7 +49,9 @@ public class Position {
     }
 
     public void incrementX(int incValue) {
+
         this.x += incValue;
+
     }
 
     public void incrementY(int incValue) {

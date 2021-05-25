@@ -7,12 +7,12 @@ public class WoodBlock extends Block {
     private static final int WOOD_BLOCK_HARDNESS = 2;
 
     public WoodBlock(Position position) {
-        super(position, new Dimensions(4, 4));
+        super(position, new Dimensions(4, 4), "WoodBlock");
     }
 
     @Override
     protected int initHP() {
-        return 20;
+        return 200;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package Terrarius.Model.Game.arena;
 
+import Terrarius.Model.Game.items.tools.Tool;
 import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.Hero;
@@ -97,63 +98,59 @@ public class Arena {
         return false;
     }
 
-    public boolean collides(Position position, Dimensions dimensions){
+    public boolean collidesWithBlocks(Position position, Dimensions dimensions){
+        if (dimensions.getWidth() <= 0 || dimensions.getHeight() <= 0) return false;
         for (Block block : this.blocks) {
-            if (isElementInBlock(position, dimensions, block) || isBlockInElement(position, dimensions, block))
-                 return true;
-        }
-
-        return false;
-    }
-
-    private boolean isElementInBlock(Position position, Dimensions dimensions, Block block) {
-        boolean left_elem_in_block =
-                position.getX() >= block.getPosition().getX() &&
-                        position.getX() <= block.getPosition().getX() + block.getDimensions().getWidth() - 1;
-
-        boolean right_elem_in_block =
-                position.getX() + dimensions.getWidth() - 1 >= block.getPosition().getX() &&
-                        position.getX() + dimensions.getWidth() - 1 <= block.getPosition().getX() + block.getDimensions().getWidth() - 1;
-
-        if (left_elem_in_block || right_elem_in_block){
-
-            boolean top_elem_in_block =
-                    position.getY() >= block.getPosition().getY() &&
-                            position.getY() <= block.getPosition().getY() + block.getDimensions().getHeight() - 1;
-
-            boolean bottom_elem_in_block =
-                    position.getY() + dimensions.getHeight() - 1 >= block.getPosition().getY() &&
-                            position.getY() + dimensions.getHeight() - 1 <= block.getPosition().getY() + block.getDimensions().getHeight() - 1;
-
-            return top_elem_in_block || bottom_elem_in_block;
+            if (Position.checkElementsCollision(position, dimensions, block.getPosition(), block.getDimensions()))
+                return true;
         }
         return false;
     }
 
-    /**
-     * For situations where a block is floating and collides with the middle of the element
-     */
-    private boolean isBlockInElement(Position position, Dimensions dimensions, Block block) {
-        boolean left_block_in_elem =
-                block.getPosition().getX() >= position.getX() &&
-                        block.getPosition().getX() <= position.getX() + dimensions.getWidth() - 1;
+    public void breakBlock(Position position, Tool tool){
+        Block block = null;
 
-        boolean right_block_in_elem =
-                block.getPosition().getX() + block.getDimensions().getWidth() - 1 >= position.getX() &&
-                        block.getPosition().getX() + block.getDimensions().getWidth() - 1 <= position.getX() + dimensions.getWidth() - 1;
+        Position gridPosition = new Position(position.getX()/4 * 4, position.getY()/4 * 4); //Make this better somehow
 
-        if (left_block_in_elem || right_block_in_elem){
-
-            boolean top_block_in_elem =
-                    block.getPosition().getY() >= position.getY() &&
-                            block.getPosition().getY() <= position.getY() + dimensions.getHeight() - 1;
-
-            boolean bottom_block_in_elem =
-                    block.getPosition().getY() + block.getDimensions().getHeight() - 1 >= position.getY() &&
-                            block.getPosition().getY() + block.getDimensions().getHeight() - 1 <= position.getY() + dimensions.getHeight() - 1;
-
-            return top_block_in_elem || bottom_block_in_elem;
+        for (Block block1 : blocks){
+            if (block1.getPosition().equals(gridPosition)){
+                block = block1;
+                break;
+            }
         }
-        return false;
+
+        if (block == null) return;
+
+        if (tool.getStats().getMiningHardness() >= block.getHardness()) {
+            block.setHp(block.getHP() - tool.getStats().getMiningPower());
+
+            if (block.getHP() <= 0){
+                hero.getToolBar().getBlockPouch().incrementBlock(block);
+                blocks.remove(block);
+            }
+        }
+    }
+
+    public void placeBlock(Position position){
+        Position gridPosition = new Position(position.getX()/4*4, position.getY()/4*4);
+
+        if (this.collidesWithBlocks(gridPosition, new Dimensions(4, 4)) //TODO make a constant for the default block dimensions
+                || hero.getToolBar().getBlockPouch().getCurrentBlockQuantity() <= 0)
+            return;
+
+        Block block = this.hero.getToolBar().getBlockPouch().generateCurrentBlock(gridPosition);
+
+        for (Enemy enemy : this.enemies){
+            if (Position.checkElementsCollision(enemy.getPosition(), enemy.getDimensions(),
+                    block.getPosition(), block.getDimensions()))
+                return;
+        }
+
+        if (Position.checkElementsCollision(hero.getPosition(), hero.getDimensions(),
+                block.getPosition(), block.getDimensions()))
+            return;
+
+        this.blocks.add(block);
+        hero.getToolBar().getBlockPouch().decrementBlock(block);
     }
 }

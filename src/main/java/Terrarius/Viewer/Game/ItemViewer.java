@@ -3,7 +3,6 @@ package Terrarius.Viewer.Game;
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.Element;
-import Terrarius.Model.Game.elements.Hero;
 import Terrarius.Model.Game.items.Item;
 import Terrarius.Model.Game.items.tools.Axe;
 import Terrarius.Viewer.Image.ColoredImage;
@@ -20,6 +19,10 @@ public class ItemViewer {
             image.load("Images/Items/Axe.txt");
             icon.load("Images/Items/AxeIcon.txt");
         }
+        else{
+            image = null;
+            icon = null;
+        }
     }
 
     public void setImage(Image image) {
@@ -31,12 +34,13 @@ public class ItemViewer {
     }
 
     public void draw(Item item, GUI gui){
+        if (image == null) return;
         Position itemPos = item.getPosition(item.getHero().getPosition());
-
         this.image.draw(itemPos, item.getHero().getOrientation(), gui);
     }
 
     public void drawIcon(Position position, GUI gui){
+        if (icon == null) return;
         this.icon.draw(position, Element.Orientation.RIGHT, gui);
     }
 }

@@ -41,7 +41,7 @@ public class EnemyControllerTest {
         arena = Mockito.mock(Arena.class);
         Mockito.when(arena.getHero()).thenReturn(hero);
         Mockito.when(arena.getEnemies()).thenReturn(enemies);
-        Mockito.when(arena.collides(Mockito.any(), Mockito.any())).thenReturn(false);
+        Mockito.when(arena.collides(Mockito.any(), (Dimensions) Mockito.any())).thenReturn(false);
 
         enemyController = new EnemyController(arena);
     }
@@ -82,7 +82,7 @@ public class EnemyControllerTest {
 
     @Test
     public void collidedWhenFalling() {
-        Mockito.when(arena.collides(Mockito.any(), Mockito.any())).thenReturn(true);
+        Mockito.when(arena.collides(Mockito.any(), (Dimensions) Mockito.any())).thenReturn(true);
         enemyController.fallEnemies();
 
         for (Enemy enemy : enemies)

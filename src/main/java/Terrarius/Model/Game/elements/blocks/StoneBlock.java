@@ -7,7 +7,7 @@ public class StoneBlock extends Block {
     private static final int STONE_BLOCK_HARDNESS = 3;
 
     public StoneBlock(Position position) {
-        super(position, new Dimensions(4, 4));
+        super(position, new Dimensions(4, 4), "StoneBlock");
     }
 
     @Override
