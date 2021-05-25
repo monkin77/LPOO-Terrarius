@@ -2,7 +2,7 @@ package Terrarius.Controller.Game;
 
 import Terrarius.Controller.Controller;
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Position;
+import Terrarius.Model.Game.Position;
 import Terrarius.Terrarius;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Menu.Menu;

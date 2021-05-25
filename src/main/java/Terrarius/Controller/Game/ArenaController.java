@@ -1,7 +1,7 @@
 package Terrarius.Controller.Game;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Position;
+import Terrarius.Model.Game.Position;
 
 import java.util.ArrayList;
 import java.util.List;

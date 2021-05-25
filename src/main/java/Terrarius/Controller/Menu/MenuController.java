@@ -8,6 +8,7 @@ import Terrarius.Model.Menu.Menu;
 import Terrarius.States.GameState;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +24,8 @@ public class MenuController extends Controller<Menu> {
     }
 
     @Override
-    public void giveActions(Terrarius terrarius, List<GUI.ACTION> actions) {
-        this.actions = actions;
+    public void giveActions(Terrarius terrarius, GUI gui) throws IOException {
+        this.actions = gui.getNextActions();
     }
 
     @Override
