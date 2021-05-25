@@ -84,7 +84,13 @@ public class Position {
             boolean bottomElementCollides = p1.getY() <= p2.getY() &&
                     p1.getY() + d1.getHeight() - 1 >= p2.getY();
 
-            if(topElementCollides || bottomElementCollides) return true;
+            boolean topElementCollides2 = p2.getY() >= p1.getY() &&
+                    p2.getY() <= p1.getY() + d1.getHeight() - 1;
+
+            boolean bottomElementCollides2 = p2.getY() <= p1.getY() &&
+                    p2.getY() + d2.getHeight() - 1 >= p1.getY();
+
+            return topElementCollides || bottomElementCollides || topElementCollides2 || bottomElementCollides2;
         }
         return false;
     }
