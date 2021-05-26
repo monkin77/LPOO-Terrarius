@@ -8,9 +8,13 @@ import Terrarius.Viewer.Viewer;
 import java.io.IOException;
 
 public class SkillTreeViewer extends Viewer<SkillTree> {
+    int previousSelected = -1;
 
     @Override
     public void draw(GUI gui, SkillTree model) throws IOException {
+        // System.out.println("drawing...");
+        if (previousSelected == 0) return;
+        previousSelected = 0;
         // For now the screen is flickering too fast
 
         gui.clear();

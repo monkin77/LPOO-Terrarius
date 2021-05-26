@@ -23,7 +23,7 @@ public class SkillTreeController extends Controller<SkillTree> {
 
     @Override
     public void giveActions(Terrarius terrarius, GUI gui) throws IOException {
-        this.actions = gui.getNextActions();
+        this.actions.addAll(gui.getNextActions());
     }
 
     @Override
@@ -31,9 +31,8 @@ public class SkillTreeController extends Controller<SkillTree> {
         for(GUI.ACTION action : this.actions) {
             switch (action) {
                 case SKILL_TREE:
-                    System.out.println("Going to game state...");
                     terrarius.setState(new GameState(new LoaderArenaBuilder(1).createArena()));
-                    break;
+                    return;
                 case SLOT0:
                     getModel().setSelected(getModel().getSelected()+1);
                     break;
