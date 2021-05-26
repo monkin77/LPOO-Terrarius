@@ -20,6 +20,7 @@ public class Hero extends Element {
         super(position, new Dimensions(8, 4));
         this.statusBar = new StatusBar(100, 100, 1, new Level(1, 0));
         this.toolBar = new Toolbar(this);
+        this.statusBar.addStatusEffect(new Regeneration(1, 10));
     }
 
     public void addStatusEffect(StatusEffect statusEffect){

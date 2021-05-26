@@ -16,7 +16,7 @@ public abstract class Enemy extends Element {
     public EnemyStats getStats() {
         return stats;
     }
-
+    public void setHP(int hp) {this.stats.setHp(hp);}
     abstract int calculateHP(Level level);
     abstract int calculatePower(Level level);
 }

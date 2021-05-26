@@ -158,4 +158,11 @@ public class Arena {
         hero.getToolBar().getBlockPouch().decrementBlock(block);
 
     }
+
+    public void heroAttack(Position targetPosition, Tool tool){
+        for (Enemy enemy : this.enemies){
+            if (Position.checkElementsCollision(enemy.getPosition(), enemy.getDimensions(), targetPosition, new Dimensions(1, 1)))
+                enemy.setHP(enemy.getStats().getHp() - hero.getStatusBar().getPower() - tool.getStats().getFightingPower());
+        }
+    }
 }

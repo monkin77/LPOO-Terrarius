@@ -93,6 +93,12 @@ public class HeroController {
         // To simplify, we could just increase the HP and other stats and change the initial food model
     }
 
+    private void heroAttack(){
+        Item item = arena.getHero().getToolBar().getActiveItem();
+        if (this.arena.getHero().targetWithinRange() && item instanceof Tool)
+            arena.heroAttack(this.arena.getHero().getTargetPosition(), (Tool) item);
+    }
+
     public void changeHeroSlot(Integer slot) {
         this.arena.getHero().getToolBar().setActiveItemIdx(slot);
     }
@@ -113,6 +119,9 @@ public class HeroController {
                 break;
             case PRESS:
                 useItem();
+                break;
+            case CLICK:
+                heroAttack();
                 break;
             case SLOT0:
                 changeHeroSlot(0);
