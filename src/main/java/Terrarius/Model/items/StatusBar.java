@@ -38,7 +38,7 @@ public class StatusBar {
 
         for (StatusEffect statusEffect : statusEffects){
             statusEffect.apply(this);
-            if (statusEffect.getDuration() <= 0) removeStatusEffects.add(statusEffect);
+            if (statusEffect.getDuration() == 0) removeStatusEffects.add(statusEffect);
         }
 
         for (StatusEffect statusEffect : removeStatusEffects){

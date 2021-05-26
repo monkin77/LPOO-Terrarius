@@ -14,13 +14,14 @@ public class SteadyStatusEffect extends StatusEffect{
 
     @Override
     public void apply(StatusBar statusBar) {
-        if (duration <= 0){
+        duration--;
+        if (duration == 0){
             switch (super.effectType){
                 case POWER:
-                    statusBar.setPower(initalValue);
+                    statusBar.setPower(this.initalValue);
                     break;
                 case HEALTH:
-                    statusBar.setHealth(initalValue);
+                    statusBar.setHealth(this.initalValue);
                     break;
             }
         }
@@ -37,6 +38,5 @@ public class SteadyStatusEffect extends StatusEffect{
             }
             applied = true;
         }
-        duration--;
     }
 }
