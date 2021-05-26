@@ -1,6 +1,6 @@
 package Terrarius.Model.Game.items;
 
-import Terrarius.Model.Game.elements.Hero;
+import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Utils.Dimensions;
 
 import Terrarius.Model.Game.BlockPouch;
@@ -11,7 +11,7 @@ import java.util.Map;
 import static Terrarius.Viewer.Game.GameViewerConstants.*;
 
 public class Toolbar {
-    private Map<Integer, Item> toolBar;
+    private final Map<Integer, Item> toolBar;
     private Integer activeItemIdx;
     private final Integer maxSlots;
 

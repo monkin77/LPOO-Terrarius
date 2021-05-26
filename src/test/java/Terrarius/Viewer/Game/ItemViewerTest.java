@@ -4,7 +4,7 @@ import Terrarius.GUI.GUI;
 import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.Element;
-import Terrarius.Model.Game.elements.Hero;
+import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.items.Item;
 import Terrarius.Model.Game.items.tools.Axe;
 import Terrarius.Viewer.Image.Image;

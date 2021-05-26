@@ -4,7 +4,7 @@ import Terrarius.Viewer.Game.GameViewerConstants;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Game.elements.Element;
-import Terrarius.Model.Game.elements.Hero;
+import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.elements.enemies.Enemy;
 
 public class EnemyController {
@@ -43,9 +43,14 @@ public class EnemyController {
         if(position.getX() < 0 || position.getX() + enemy.getDimensions().getWidth() >= GameViewerConstants.SCREEN_WIDTH) return;
         if ( (!arena.collidesWithBlocks(position, enemy.getDimensions())) && (!hasEnemy(enemy, position)) ) {
             enemy.setPosition(position);
+        }
+    }
 
-            if (arena.getHero().getPosition().equals(position))
-                arena.getHero().setHealth(arena.getHero().getHealth() - enemy.getStats().getPower());
+    public void damageHero(){
+        for (Enemy enemy : this.arena.getEnemies()){
+            if (Position.checkElementsCollision(enemy.getPosition(), enemy.getDimensions(),
+                    this.arena.getHero().getPosition(), this.arena.getHero().getDimensions()))
+                arena.getHero().setHealth(arena.getHero().getStats().getHp() - enemy.getStats().getPower());
         }
     }
 

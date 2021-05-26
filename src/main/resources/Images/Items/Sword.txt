@@ -1,0 +1,25 @@
+6 3
+.I.
+. .
+. .
+. .
+
+. .
+1
+P #888888
+PPP
+PPP
+PPP
+PPP
+PPP
+PPP
+3
+C #444444
+M #895300
+S #50a8cc
+SCS
+SCS
+SCS
+SCS
+MMM
+SMS

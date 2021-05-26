@@ -9,13 +9,20 @@ import Terrarius.Model.Game.items.Toolbar;
 import Terrarius.Viewer.Image.Image;
 import Terrarius.Viewer.Image.ColoredImage;
 
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+
 public class ToolbarViewer {
     private Image image;
     private final BlockPouchViewer blockPouchViewer = new BlockPouchViewer(); //TODO probably not a good idea to stay here, but this branch is focused more on the functionality than on the "beaty"
 
     public ToolbarViewer() {
         this.image = new ColoredImage();
-        this.image.load("Images/Toolbar/Toolbar.txt");
+        try {
+            this.image.load("Images/Toolbar/Toolbar.txt");
+        } catch (FileNotFoundException | URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setImage(Image image) {
@@ -29,8 +36,7 @@ public class ToolbarViewer {
         int iconIndexOffset = (iconIndex - 1) * (toolbar.getToolbarCellLength() + 1);
 
         int iconX = toolbarStartingPositionWidth + iconIndexOffset;
-        int iconY = arena.getHeight() + (toolbar.getDimensions().getHeight() - toolbar.getToolbarCellLength()) / 2;
-
+        int iconY = arena.getHeight() + (toolbar.getDimensions().getHeight() - toolbar.getToolbarCellLength()) / 2 + 3;
 
         return new Position(iconX, iconY);
     }

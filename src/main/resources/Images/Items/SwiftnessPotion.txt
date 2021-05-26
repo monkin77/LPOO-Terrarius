@@ -1,0 +1,19 @@
+4 3
+.M.
+| |
+| |
+|_|
+2
+P #000000
+R #ffff00
+PPP
+PRP
+PRP
+PPP
+2
+R #ffff00
+S #50a8cc
+SSS
+RRR
+RRR
+RRR

@@ -17,17 +17,12 @@ public class StillImage extends Image{
         dimensions = new Dimensions(0, 0);
     }
 
-    public void load(String fname) {
-        try {
-            Scanner imageScanner = getScannerFromFile(fname);
-            int height = imageScanner.nextInt();
-            int width = imageScanner.nextInt();
+    public void load(String fname) throws FileNotFoundException, URISyntaxException {
+        Scanner imageScanner = getScannerFromFile(fname);
+        int height = imageScanner.nextInt();
+        int width = imageScanner.nextInt();
 
-            loadAspect(imageScanner, width, height);
-
-        } catch (FileNotFoundException | URISyntaxException e) {
-            //TODO handle exception
-        }
+        loadAspect(imageScanner, width, height);
     }
 
     public void draw(Position position, Element.Orientation orientation, GUI gui){

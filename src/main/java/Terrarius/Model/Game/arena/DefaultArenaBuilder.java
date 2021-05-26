@@ -2,7 +2,7 @@ package Terrarius.Model.Game.arena;
 
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.Position;
-import Terrarius.Model.Game.elements.Hero;
+import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.elements.blocks.Block;
 import Terrarius.Model.Game.elements.blocks.StoneBlock;
 import Terrarius.Model.Game.elements.blocks.WoodBlock;

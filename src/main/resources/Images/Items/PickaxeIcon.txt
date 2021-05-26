@@ -1,0 +1,22 @@
+5 5
+
+ . .
+.. ..
+.. ..
+.. ..
+1
+C #895300
+CCCCC
+CCCCC
+CCCCC
+CCCCC
+CCCCC
+3
+C #895300
+M #444444
+S #50a8cc
+MMMMM
+MSCSM
+SSCSS
+SSCSS
+SSCSS

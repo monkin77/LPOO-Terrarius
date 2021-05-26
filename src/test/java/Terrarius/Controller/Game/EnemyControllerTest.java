@@ -1,18 +1,15 @@
 package Terrarius.Controller.Game;
 
-import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Game.elements.Element;
-import Terrarius.Model.Game.elements.Hero;
+import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.elements.enemies.Enemy;
 import Terrarius.Model.Game.elements.enemies.EnemyStats;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EnemyControllerTest {
@@ -63,7 +60,7 @@ public class EnemyControllerTest {
     @Test
     public void collidedWithHero() {
         Mockito.when(hero.getPosition()).thenReturn(new Position(6, 5));
-        Mockito.when(hero.getHealth()).thenReturn(100);
+        Mockito.when(hero.getStats().getHp()).thenReturn(100);
         Mockito.when(enemies.get(0).getStats()).thenReturn(new EnemyStats(100, 5, 5, new Level(2, 0)));
         Mockito.when(enemies.get(1).getStats()).thenReturn(new EnemyStats(100, 5, 0, new Level(2, 0)));
 

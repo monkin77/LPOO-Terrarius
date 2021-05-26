@@ -19,4 +19,9 @@ public class WoodBlock extends Block {
     public int getHardness() {
         return WOOD_BLOCK_HARDNESS;
     }
+
+    @Override
+    public String getComponentName() {
+        return "Wood";
+    }
 }

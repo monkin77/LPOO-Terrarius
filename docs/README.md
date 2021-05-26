@@ -39,7 +39,7 @@ Therefore, providing a sense of progression to the game.
 **Combat system** - Enemies will be able to inflict damage on the hero through physical contact, and the hero
 will have to fight them off with different tools.
 
-**Healing** - If the hero has taken damage it may consume food to restore some of the lost HP.
+**Healing** - If the hero has taken damage it may consume buff to restore some of the lost HP.
 
 **Crafting Functionality** - The hero will be capable of crafting Items, using materials.
 
@@ -172,9 +172,9 @@ The relevant classes for this pattern can be found in the following files:
 
 - [ToolStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/items/tools/ToolStats.java)
 
-- [Food](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/items/food/Food.java)
+- [Food](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/items/buff/Food.java)
 
-- [FoodStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/items/food/FoodStats.java)
+- [FoodStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/items/buff/FoodStats.java)
 
 #### Consequences
 The use of this pattern allows for:

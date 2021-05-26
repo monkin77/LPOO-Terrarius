@@ -19,4 +19,9 @@ public class DirtBlock extends Block {
     public int getHardness() {
         return DIRT_BLOCK_HARDNESS;
     }
+
+    @Override
+    public String getComponentName() {
+        return "Dirt";
+    }
 }

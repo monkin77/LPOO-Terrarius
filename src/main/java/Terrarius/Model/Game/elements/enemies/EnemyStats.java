@@ -4,9 +4,9 @@ import Terrarius.Model.Game.Level;
 
 public class EnemyStats {
     private int hp;
-    private int power;
-    private int viewDistance;
-    private Level level;
+    private final int power;
+    private final int viewDistance;
+    private final Level level;
 
     public EnemyStats(int hp, int power, int viewDistance, Level level) {
         this.hp = hp;

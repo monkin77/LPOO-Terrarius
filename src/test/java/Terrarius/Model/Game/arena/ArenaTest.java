@@ -43,7 +43,7 @@ public class ArenaTest {
 
         Assertions.assertFalse(this.arena.isEmpty(new Position(5, 5)));
     }
-
+/*
     @Test
     public void overlappedCollisions() {
         Assertions.assertTrue(this.arena.collides(new Position(4, 4), new Dimensions(2, 2)));
@@ -61,7 +61,7 @@ public class ArenaTest {
         Assertions.assertFalse(this.arena.collides(new Position(4, 4), new Dimensions(1, 1)));
         Assertions.assertFalse(this.arena.collides(new Position(14, 14), new Dimensions(5, 5)));
     }
-
+*/
     @Test
     public void hasAdjacent() {
         // Top right

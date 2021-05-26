@@ -7,10 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArenaController {
-    private final int updatesPerEnemyAction;
+    private final int updatesPerEnemyMovement;
     private final int updatesPerGravityAction;
     private final int updatesPerInputAction;
+    private final int updatesPerEnemyDamage;
     private final int maxCounter;
+    private final int timePerUpdate;
 
     private final HeroController heroController;
     private final EnemyController enemyController;
@@ -22,13 +24,15 @@ public class ArenaController {
     public ArenaController(HeroController heroController, EnemyController enemyController, int timePerUpdate) {
         this.heroController = heroController;
         this.enemyController = enemyController;
+        this.timePerUpdate = timePerUpdate;
         this.actionList = new ArrayList<>();
 
-        this.updatesPerEnemyAction = Math.max(128 / timePerUpdate, 1);
+        this.updatesPerEnemyMovement = Math.max(128 / timePerUpdate, 1);
         this.updatesPerGravityAction = Math.max(16 / timePerUpdate, 1);
         this.updatesPerInputAction = Math.max(16 / timePerUpdate, 1);
+        this.updatesPerEnemyDamage = Math.max(800 / timePerUpdate, 1);
 
-        this.maxCounter = updatesPerEnemyAction * updatesPerGravityAction * updatesPerInputAction;
+        this.maxCounter = updatesPerEnemyMovement * updatesPerGravityAction * updatesPerInputAction * updatesPerEnemyDamage;
         this.updateCounter = 0;
     }
 
@@ -42,7 +46,7 @@ public class ArenaController {
 
     public void update() {
         updateCounter++;
-        if (updateCounter % updatesPerEnemyAction == 0)
+        if (updateCounter % updatesPerEnemyMovement == 0)
             enemyController.moveEnemies();
 
         if (updateCounter % updatesPerGravityAction == 0){
@@ -56,6 +60,10 @@ public class ArenaController {
             }
         }
 
+        if (updateCounter % updatesPerEnemyDamage == 0)
+            enemyController.damageHero();
+
+        heroController.updateBuffs(timePerUpdate);
         updateCounter %= maxCounter;
     }
 

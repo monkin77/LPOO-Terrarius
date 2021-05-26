@@ -1,6 +1,6 @@
 package Terrarius.Model.Game.items;
 
-import Terrarius.Model.Game.elements.Hero;
+import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Utils.Dimensions;
 
 public class BlockPlacer extends Item {
@@ -11,5 +11,10 @@ public class BlockPlacer extends Item {
     @Override
     public void updateStats() {
 
+    }
+
+    @Override
+    public String getComponentName() {
+        return "BlockPlacer";
     }
 }

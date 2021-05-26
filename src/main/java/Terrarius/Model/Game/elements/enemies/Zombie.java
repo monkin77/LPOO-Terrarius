@@ -13,8 +13,13 @@ public class Zombie extends Enemy {
 
     @Override
     public EnemyStats calculateStats(Level level) {
-        int hp = 10 + level.getNumLevel();
-        int power = 2 + level.getNumLevel() / 5;
+        int hp = 20 + level.getNumLevel();
+        int power = 10 + level.getNumLevel();
         return new EnemyStats(hp, power, ZOMBIE_VIEW_DISTANCE, level);
+    }
+
+    @Override
+    public String getComponentName() {
+        return "Zombie";
     }
 }
