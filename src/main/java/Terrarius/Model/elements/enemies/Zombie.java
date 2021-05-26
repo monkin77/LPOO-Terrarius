@@ -16,6 +16,6 @@ public class Zombie extends Enemy {
 
     @Override
     int calculatePower(Level level) {
-        return 2 + level.getNumLevel() / 5;
+        return 10 + level.getNumLevel();
     }
 }

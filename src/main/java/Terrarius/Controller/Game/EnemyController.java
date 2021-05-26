@@ -38,7 +38,14 @@ public class EnemyController {
         if ( (!arena.collidesWithBlocks(position, enemy.getDimensions())) && (!hasEnemy(enemy, position)) ) {
             enemy.setPosition(position);
 
-            if (arena.getHero().getPosition().equals(position))
+
+        }
+    }
+
+    public void damageHero(){
+        for (Enemy enemy : this.arena.getEnemies()){
+            if (Position.checkElementsCollision(enemy.getPosition(), enemy.getDimensions(),
+                    this.arena.getHero().getPosition(), this.arena.getHero().getDimensions()))
                 arena.getHero().setHealth(arena.getHero().getHealth() - enemy.getStats().getPower());
         }
     }
