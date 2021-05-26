@@ -25,9 +25,9 @@ test {
 
 pitest {
     junit5PluginVersion = '0.12'
-    targetClasses = ['Model.*', 'Controller.*', 'GUI.*', 'Viewer.*']
+    targetClasses = ['Terrarius.*']
 }
 
 application {
-    mainClass.set("Game")
+    mainClass.set("Terrarius.Game")
 }

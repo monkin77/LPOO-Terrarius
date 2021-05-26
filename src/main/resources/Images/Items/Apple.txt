@@ -1,0 +1,16 @@
+3 3
+..T
+.
+.
+2
+R #ff0000
+B #000000
+RRB
+RRR
+RRR
+2
+R #ff0000
+S #50a8cc
+SSS
+SRR
+SRR

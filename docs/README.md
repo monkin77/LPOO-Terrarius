@@ -11,7 +11,11 @@ challenging enemies will appear and the tools at the disposal of the hero will e
 image, represented by characters and saved in text files. Elements can be represented by static images 
 or with animations.
 
+<<<<<<< HEAD
 **Arena** - Has the mapZone, enemies and hero of our game.
+=======
+**Arena** - Has the map, enemies and hero of the game.
+>>>>>>> master
 
 **Arena Loading** - The composition of the arena is done by loading different files. These contain representation of 
 the terrain of the mapZone, the enemies and the hero, allowing the modification of the arena to be easily done.
@@ -39,7 +43,7 @@ Therefore, providing a sense of progression to the game.
 **Combat system** - Enemies will be able to inflict damage on the hero through physical contact, and the hero
 will have to fight them off with different tools.
 
-**Healing** - If the hero has taken damage it may consume food to restore some of the lost HP.
+**Healing** - If the hero has taken damage it may consume buff to restore some of the lost HP.
 
 **Crafting Functionality** - The hero will be capable of crafting Items, using materials.
 
@@ -77,7 +81,7 @@ making it significantly easier to make changes on them, without having to change
 the others
 
 
-### Game Loop Pattern
+### Terrarius.Terrarius Loop Pattern
 
 #### Problem in Context
 We needed a way to faithfully update the game without depending on the CPU's clock
@@ -88,7 +92,7 @@ as his computer allows him
 The pattern (and further explanation) used can be found in the following website,
 in the *Play Catch up* section:
 
-https://gameprogrammingpatterns.com/game-loop.html
+https://gameprogrammingpatterns.com/terrarius-loop.html
 
 With this strategy, we have a *lag* variable counting the time passing in
 each iteration and, if that variable is greater than the amount of time defined
@@ -107,7 +111,7 @@ Below, we can find a flowchart which can help visualize this:
 The pattern was implemented exactly like above and can be found
 in the following class:
 
-- [GameController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Controller/GameController.java)
+- [GameController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Controller/GameController.java)
 
 #### Consequences
 The use of this pattern has a lot of advantages, like:
@@ -164,17 +168,17 @@ Below, there's a diagram showing how this was done in the Enemy class
 
 The relevant classes for this pattern can be found in the following files:
 
-- [Enemy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/elements/enemies/Enemy.java)
+- [Enemy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/elements/enemies/Enemy.java)
 
-- [EnemyStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/elements/enemies/EnemyStats.java)
+- [EnemyStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/elements/enemies/EnemyStats.java)
 
-- [Tool](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/items/tools/Tool.java)
+- [Tool](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/items/tools/Tool.java)
 
-- [ToolStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/items/tools/ToolStats.java)
+- [ToolStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/items/tools/ToolStats.java)
 
-- [Food](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/items/food/Food.java)
+- [Food](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/items/buff/Food.java)
 
-- [FoodStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/items/food/FoodStats.java)
+- [FoodStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/items/buff/FoodStats.java)
 
 #### Consequences
 The use of this pattern allows for:
@@ -215,9 +219,9 @@ The following image shows how this pattern can be implemented in each class:
 
 Below, we're linking the classes where this was applied:
 
-- [Enemy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/elements/enemies/Enemy.java)
-- [Block](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/elements/blocks/Block.java)
-- [Item](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/items/Item.java)
+- [Enemy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/elements/enemies/Enemy.java)
+- [Block](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/elements/blocks/Block.java)
+- [Item](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/items/Item.java)
 
 #### Consequences
 The use of this pattern prevents duplicate code and allows us to easily
@@ -245,10 +249,10 @@ As we can see, we have an *ArenaBuilder* that knows how to create an arena (crea
 
 These classes can be found in the following files: 
 
-* [ArenaBuilder](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/arena/ArenaBuilder.java).
-* [DefaultArenaBuilder](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/arena/DefaultArenaBuilder.java).
-* [Arena](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/arena/Arena.java)
-* [Game](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Game.java)
+* [ArenaBuilder](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/arena/ArenaBuilder.java).
+* [DefaultArenaBuilder](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/arena/DefaultArenaBuilder.java).
+* [Arena](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/arena/Arena.java)
+* [Terrarius.Terrarius](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Terrarius.java)
 
 #### Consequences
 
@@ -262,7 +266,7 @@ The use of the Builder Pattern allows the following benefits:
 #### Problem in context
 
 Each element, hero, enemy or block, can be visually represented by a "matrix" of characters.
-A good way to store the visual representation of these elements is through files. However if we have 2 Blocks from the
+A good way to store the visual representation of these elements is through files. However, if we have 2 Blocks from the
 same class, even though we want them to look the same, loading the files multiple times would be wasteful.
 
 #### The Pattern    
@@ -280,13 +284,13 @@ Diagram showing how the implementation of the factory method for ElementViewer w
 
 The classes mentioned in the UML can be found in the following links:
 
-* [Image](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/Image.java)
-* [ColoredImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/ColoredImage.java)
-* [AnimatedImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/AnimatedImage.java)
-* [ElementViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/ElementViewer.java)
-* [BlockViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/BlockViewer.java)
-* [EnemyViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/EnemyViewer.java)
-* [HeroViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/HeroViewer.java)
+* [Image](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/Image/Image.java)
+* [ColoredImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/Image/ColoredImage.java)
+* [AnimatedImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/Image/AnimatedImage.java)
+* [ElementViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/ElementViewer.java)
+* [BlockViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/BlockViewer.java)
+* [EnemyViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/EnemyViewer.java)
+* [HeroViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/HeroViewer.java)
 
 #### Consequences
 
@@ -300,7 +304,7 @@ Advantages:
 - The factory method doesn't have to be called by only Factories. It can also be used for parallel class hierarchies.
   (our case?)
 
-Disavantages:
+Disadvantages:
 
  - In order to create a Concrete Product object, the Factory class might have to be subclassed, this is a disavantage since 
    another point of evolution will have to be dealt with.
@@ -325,7 +329,7 @@ making it almost obsolete and falling in another code smell: **Lazy Class**
 
 Right now, the Image class has two abstract methods (*update* and *reset*) 
 which are not used by one of its subclasses, StillImage
-(technically, it is using them but the methods don't do anything). This is happening
+(technically, it is using them, but the methods don't do anything). This is happening
 for two reasons:
 
 - So classes using images can benefit from polymorphism, by calling
@@ -341,18 +345,18 @@ image they're working with.
 
 Here are the relevant classes:
 
-- [Image](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/Image.java)
-- [StillImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/StillImage.java)
-- [AnimatedImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/AnimatedImage.java)
+- [Image](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/Image/Image.java)
+- [StillImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/Image/StillImage.java)
+- [AnimatedImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/Image/AnimatedImage.java)
 
 ### Comments
 
 Since the project is in mid-development, there are some comments throughout the code reminding us
 of something or explaining that some feature is still under changes (like TODOs). Here are some examples:
 
-- [TODO](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/d6a706003ecfb1c35a176f74305885d62cc7b7e2/src/main/java/Controller/EnemyController.java#L15)
+- [TODO](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/d6a706003ecfb1c35a176f74305885d62cc7b7e2/src/main/java/Terrarius.Controller/EnemyController.java#L15)
 
-- [Explanation Comment](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/d6a706003ecfb1c35a176f74305885d62cc7b7e2/src/main/java/Model/items/Toolbar.java#L19)
+- [Explanation Comment](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/d6a706003ecfb1c35a176f74305885d62cc7b7e2/src/main/java/Terrarius.Model/items/Toolbar.java#L19)
 
 This smell will be fixed when the features are properly implemented and the comments are removed.
 
@@ -365,8 +369,8 @@ This could be fixed by defining a Dimensions class which both packaged can use (
 common *Utils* package).
 
 Here are the relevant classes:
-- [Dimensions](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/Dimensions.java)
-- [ImageDimensions](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Viewer/Image/ImageDimensions.java)
+- [Dimensions](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/Dimensions.java)
+- [ImageDimensions](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/Image/ImageDimensions.java)
 
 ### Speculative Generality
 
@@ -377,9 +381,9 @@ probably because they'll serve a purpose in a feature that's yet to be implement
 
 Here are some examples:
 
-- [Toolbar item selection](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Model/items/Toolbar.java)
-- [CLICK action](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/d6a706003ecfb1c35a176f74305885d62cc7b7e2/src/main/java/Controller/HeroController.java#L68)
-- Most of the [items](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java/Model/items), with the exception of the Axe
+- [Toolbar item selection](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/items/Toolbar.java)
+- [CLICK action](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/d6a706003ecfb1c35a176f74305885d62cc7b7e2/src/main/java/Terrarius.Controller/HeroController.java#L68)
+- Most of the [items](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java/Terrarius.Model/items), with the exception of the Axe
 
 This code smell can be fixed by either implementing features which use these methods/classes or
 removed them altogether, if they're not useful in the end.

@@ -1,0 +1,23 @@
+5 5
+...T.
+.   .
+.   .
+.   .
+.....
+3
+B #AA5518
+R #ff0000
+P #000000
+BBBPB
+BRRRB
+BRRRB
+BRRRB
+BBBBB
+2
+B #AA5518
+R #ff0000
+BBBBB
+BRRRB
+BRRRB
+BRRRB
+BBBBB
