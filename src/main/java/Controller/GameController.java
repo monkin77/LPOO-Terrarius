@@ -40,7 +40,6 @@ public class GameController {
                 return;
 
             while (lag >= MS_PER_UPDATE) {
-                arena.update(); //TODO not here, just temporary
                 if (updateAndCheckEnd()) return;
                 lag -= MS_PER_UPDATE;
             }
@@ -62,6 +61,7 @@ public class GameController {
     protected boolean updateAndCheckEnd() {
         arenaController.update();
         arenaViewer.update();
+        arena.update();
 
         if (arenaController.checkEnd())
             return true;
