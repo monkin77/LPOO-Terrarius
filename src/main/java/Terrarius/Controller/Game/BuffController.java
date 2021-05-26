@@ -50,4 +50,8 @@ public class BuffController {
         hero.setRange(hero.getStats().getRange() - buff.getExtraRange());
         hero.setSpeed(hero.getStats().getSpeed() - buff.getSpeedUp());
     }
+
+    public BuffStats getBuffs() {
+        return buff;
+    }
 }

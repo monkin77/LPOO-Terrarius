@@ -94,7 +94,11 @@ public class HeroController {
         Buff buff = (Buff) this.arena.getHero().getToolBar().getActiveItem();
         this.arena.getHero().getToolBar().removeItem(this.arena.getHero().getToolBar().getActiveItemIdx());
 
-        this.buffList.add(new BuffController(buff.getStats(), this.arena.getHero()));
+        int i = 0;
+        for (; i < buffList.size(); ++i)
+            if (buffList.get(i).getBuffs().getDuration() >= buff.getStats().getDuration())
+                break;
+        this.buffList.add(i, new BuffController(buff.getStats(), this.arena.getHero()));
     }
 
     public void updateBuffs(int timeSinceLastUpdate) {
