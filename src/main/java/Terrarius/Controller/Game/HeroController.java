@@ -52,21 +52,25 @@ public class HeroController {
     }
 
     public void moveHeroLeft() {
-        moveHero(arena.getHero().getPosition().getLeft());
+        for (int i = 0; i < arena.getHero().getStats().getSpeed(); ++i)
+            moveHero(arena.getHero().getPosition().getLeft());
         arena.getHero().setOrientation(Element.Orientation.LEFT);
     }
 
     public void moveHeroRight() {
-        moveHero(arena.getHero().getPosition().getRight());
+        for (int i = 0; i < arena.getHero().getStats().getSpeed(); ++i)
+            moveHero(arena.getHero().getPosition().getRight());
         arena.getHero().setOrientation(Element.Orientation.RIGHT);
     }
 
     public void moveHeroUp() {
-        climbHero(arena.getHero().getPosition().getUp());
+        for (int i = 0; i < arena.getHero().getStats().getSpeed(); ++i)
+            climbHero(arena.getHero().getPosition().getUp());
     }
 
     public void moveHeroDown() {
-        climbHero(arena.getHero().getPosition().getDown());
+        for (int i = 0; i < arena.getHero().getStats().getSpeed(); ++i)
+            climbHero(arena.getHero().getPosition().getDown());
     }
 
     public void useItem() {
@@ -87,9 +91,9 @@ public class HeroController {
     }
 
     private void useSelectedBuff() {
+        Buff buff = (Buff) this.arena.getHero().getToolBar().getActiveItem();
         this.arena.getHero().getToolBar().removeItem(this.arena.getHero().getToolBar().getActiveItemIdx());
 
-        Buff buff = (Buff) this.arena.getHero().getToolBar().getActiveItem();
         this.buffList.add(new BuffController(buff.getStats(), this.arena.getHero()));
     }
 

@@ -14,7 +14,7 @@ public class ToolTest {
     @BeforeEach
     public void createHero() {
         hero = Mockito.mock(Hero.class);
-        Mockito.when(hero.getLevel()).thenReturn(new Level(16, 0));
+        Mockito.when(hero.getStats().getCurrentLevel()).thenReturn(16);
     }
 
     @Test

@@ -51,7 +51,7 @@ public class StillImageTest {
     }
 
     @Test
-    public void draw() {
+    public void draw() throws FileNotFoundException, URISyntaxException {
         stillImage.load("Images/Items/AxeIcon.txt");
         stillImage.draw(new Position(10, 10), Element.Orientation.RIGHT, gui);
 

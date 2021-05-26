@@ -74,7 +74,7 @@ public class ColoredImageTest {
     }
 
     @Test
-    public void draw() {
+    public void draw() throws FileNotFoundException, URISyntaxException {
         coloredImage.load("Images/Blocks/Wood.txt");
         coloredImage.draw(new Position(10, 10), Element.Orientation.RIGHT, gui);
 

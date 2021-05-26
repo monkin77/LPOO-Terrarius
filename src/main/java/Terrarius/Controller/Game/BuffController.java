@@ -23,7 +23,7 @@ public class BuffController {
         if (timePassed % 1000 == 0)
             hero.setHealth(hero.getStats().getHp() + hpPerSecond);
 
-        if (timePassed >= buff.getDuration()) {
+        if (timePassed >= buff.getDuration() * 1000) {
             removeBuffs();
             return true;
         }

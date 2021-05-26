@@ -25,14 +25,14 @@ public class HeroTest {
 
     @Test
     public void startLevel() {
-        Level heroLevel = hero.getLevel();
+        Level heroLevel = hero.getStats().getLevel();
         Assertions.assertEquals(heroLevel.getNumLevel(), 1);
         Assertions.assertEquals(heroLevel.getCurrentXP(), 0);
     }
 
     @Test
     public void startHealth() {
-        Assertions.assertEquals(100, hero.getHealth());
+        Assertions.assertEquals(100, hero.getStats().getHp());
     }
 
     @Test

@@ -2,6 +2,7 @@ package Terrarius.Model.Game.items.buffs;
 
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.elements.hero.Hero;
+import Terrarius.Model.Game.elements.hero.HeroStats;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,7 @@ public class BuffTest {
     @BeforeEach
     public void createHero() {
         hero = Mockito.mock(Hero.class);
-        Mockito.when(hero.getLevel()).thenReturn(new Level(6, 0));
+        Mockito.when(hero.getStats().getCurrentLevel()).thenReturn(6);
     }
 
     @Test

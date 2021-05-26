@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 // TODO: This tests opens the terminal. Try to make it better
+// TODO: BIG, FIX ALL THE TESTS WHEN FEATURES ARE DONE
 public class TerrariusTest {
     private Terrarius terrarius;
     private State state;

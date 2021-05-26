@@ -11,7 +11,7 @@ public class SwiftnessPotion extends Buff {
     @Override
     public void updateStats() {
         int heroLevel = this.getHero().getStats().getCurrentLevel();
-        int speed = 5 + heroLevel / 50;
+        int speed = 1 + heroLevel / 50;
         int duration = 10 + heroLevel / 15;
         this.setStats(new BuffStats(duration, 0, 0, speed, 0));
     }
