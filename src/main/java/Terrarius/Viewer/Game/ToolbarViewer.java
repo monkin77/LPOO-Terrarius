@@ -29,7 +29,7 @@ public class ToolbarViewer {
         int iconIndexOffset = (iconIndex - 1) * (toolbar.getToolbarCellLength() + 1);
 
         int iconX = toolbarStartingPositionWidth + iconIndexOffset;
-        int iconY = arena.getHeight() + (toolbar.getDimensions().getHeight() - toolbar.getToolbarCellLength()) / 2;
+        int iconY = arena.getHeight() + (toolbar.getDimensions().getHeight() - toolbar.getToolbarCellLength()) / 2 + 3;
 
 
         return new Position(iconX, iconY);

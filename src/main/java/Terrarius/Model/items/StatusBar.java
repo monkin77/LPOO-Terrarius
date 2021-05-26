@@ -24,6 +24,10 @@ public class StatusBar {
         this.level = level;
     }
 
+    public List<StatusEffect> getStatusEffects(){
+        return statusEffects;
+    }
+
     public void addStatusEffect(StatusEffect statusEffect){
         statusEffects.add(statusEffect);
     }

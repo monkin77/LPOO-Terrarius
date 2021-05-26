@@ -19,6 +19,10 @@ public class Hero extends Element {
         this.toolBar = new Toolbar(this);
     }
 
+    public StatusBar getStatusBar(){
+        return this.statusBar;
+    }
+
     public Level getLevel() {
         return this.statusBar.getLevel();
     }

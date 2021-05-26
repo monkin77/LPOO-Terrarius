@@ -2,6 +2,7 @@ package Terrarius.Viewer.Game;
 
 import Terrarius.GUI.GUI;
 import Terrarius.Model.elements.Element;
+import Terrarius.Model.items.StatusBar;
 import Terrarius.Viewer.Image.AnimatedImage;
 
 public class HeroViewer extends ElementViewer{

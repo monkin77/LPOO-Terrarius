@@ -1,6 +1,7 @@
 package Terrarius.Viewer.Game;
 
 import Terrarius.GUI.GUI;
+import Terrarius.Model.Dimensions;
 import Terrarius.Model.Position;
 import Terrarius.Model.arena.Arena;
 import Terrarius.Model.elements.blocks.Block;
@@ -22,6 +23,7 @@ public class ArenaViewer extends Viewer<Arena> {
     private Map<Class, ElementViewer> blockCache = new HashMap<>();
     private Map<Class, ItemViewer> itemCache = new HashMap<>();
     private ToolbarViewer toolbarViewer = new ToolbarViewer();
+    private StatusbarViewer statusbarViewer = new StatusbarViewer();
     private HeroViewer heroViewer = new HeroViewer();
 
     public void update() {
@@ -43,6 +45,7 @@ public class ArenaViewer extends Viewer<Arena> {
         drawBlocks(gui, arena);
         drawEnemies(gui, arena);
         drawToolbar(gui, arena);
+        drawStatusBar(gui, arena);
         heroViewer.draw(arena.getHero(), gui);
 
         gui.refresh();
@@ -76,9 +79,14 @@ public class ArenaViewer extends Viewer<Arena> {
         }
     }
 
+    protected void drawStatusBar(GUI gui, Arena arena){
+        statusbarViewer.draw(arena.getHero().getStatusBar(), arena.getDimensions(), gui);
+    }
+
     protected void drawToolbar(GUI gui, Arena arena) {
         Toolbar toolbar = arena.getHero().getToolBar();
-        toolbarViewer.draw(toolbar, arena.getDimensions(), gui);
+        Dimensions tbvDimensions = new Dimensions(arena.getDimensions().getHeight()+3, arena.getDimensions().getWidth()); //TODO make this not hardcoded
+        toolbarViewer.draw(toolbar, tbvDimensions, gui);
         drawToolbarItems(gui, toolbar, arena);
     }
 
