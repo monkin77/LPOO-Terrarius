@@ -7,17 +7,20 @@ import Terrarius.Model.Game.items.Item;
 import Terrarius.Model.Game.items.Toolbar;
 
 public class Hero extends Element {
+    private static final double DEFAULT_RANGE = 24.0;
+
     private Level level;
     private int health;
     private Toolbar toolBar;
     private Position targetPosition;
-    private static final Double RANGE = 24.0;
+    private double range;
 
     public Hero(Position position) {
         super(position, new Dimensions(8, 4));
         this.level = new Level(1, 0);
         this.health = 100;
         this.toolBar = new Toolbar(this);
+        setDefaultRange();
     }
 
     public Level getLevel() {
@@ -34,6 +37,14 @@ public class Hero extends Element {
 
     public void setHealth(int health) {
         this.health = health;
+    }
+
+    public void setRange(double range) {
+        this.range = range;
+    }
+
+    public void setDefaultRange() {
+        setRange(DEFAULT_RANGE);
     }
 
     public Toolbar getToolBar() {
@@ -80,11 +91,10 @@ public class Hero extends Element {
     }
 
     public Boolean targetWithinRange(){ //TODO I forgot what I wanted to call this argument
-        Double dist = Math.sqrt(
+        double dist = Math.sqrt(
                 Math.pow((this.getPosition().getX() + this.getDimensions().getWidth()/2.0) - targetPosition.getX(), 2) +
                 Math.pow((this.getPosition().getY() + this.getDimensions().getHeight()/2.0) - targetPosition.getY(), 2));
 
-        if (dist <= RANGE) return true;
-        else return false;
+        return dist <= range;
     }
 }

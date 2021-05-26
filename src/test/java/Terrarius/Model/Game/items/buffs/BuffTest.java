@@ -1,4 +1,4 @@
-package Terrarius.Model.Game.items.food;
+package Terrarius.Model.Game.items.buffs;
 
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.elements.Hero;
@@ -7,8 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-public class FoodTest {
-    Food food;
+public class BuffTest {
+    Buff buff;
     Hero hero;
 
     @BeforeEach
@@ -19,15 +19,15 @@ public class FoodTest {
 
     @Test
     public void apple() {
-        food = new Apple(hero);
-        Assertions.assertEquals(10, food.getStats().getAmountHP());
-        Assertions.assertEquals(9, food.getStats().getDuration());
+        buff = new Apple(hero);
+        Assertions.assertEquals(10, buff.getStats().getAmountHP());
+        Assertions.assertEquals(9, buff.getStats().getDuration());
     }
 
     @Test
     public void banana() {
-        food = new Banana(hero);
-        Assertions.assertEquals(30, food.getStats().getAmountHP());
-        Assertions.assertEquals(20, food.getStats().getDuration());
+        buff = new Banana(hero);
+        Assertions.assertEquals(30, buff.getStats().getAmountHP());
+        Assertions.assertEquals(20, buff.getStats().getDuration());
     }
 }

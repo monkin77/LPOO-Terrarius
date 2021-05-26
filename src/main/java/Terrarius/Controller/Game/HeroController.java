@@ -5,7 +5,7 @@ import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Game.elements.Element;
 import Terrarius.Model.Game.items.Item;
-import Terrarius.Model.Game.items.food.Food;
+import Terrarius.Model.Game.items.buffs.Buff;
 import Terrarius.Model.Game.items.tools.Tool;
 import Terrarius.Model.Game.items.BlockPlacer;
 
@@ -68,7 +68,7 @@ public class HeroController {
     public void useItem() {
         Item activeItem = this.arena.getHero().getToolBar().getActiveItem();
         if (activeItem instanceof Tool)         this.useTool((Tool) activeItem);
-        if (activeItem instanceof Food)         this.useFood((Food) activeItem);
+        if (activeItem instanceof Buff)         this.useFood((Buff) activeItem);
         if (activeItem instanceof BlockPlacer)  this.useBlockPlacer();
     }
 
@@ -82,7 +82,7 @@ public class HeroController {
             arena.breakBlock(this.arena.getHero().getTargetPosition(), (Tool) arena.getHero().getToolBar().getActiveItem());
     }
 
-    private void useFood(Food food) {
+    private void useFood(Buff buff) {
         // This part isn't done but we'd need something like active food that heal overtime.
         // To simplify, we could just increase the HP and other stats and change the initial food model
     }
