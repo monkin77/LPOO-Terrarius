@@ -21,7 +21,7 @@ public class GameController extends Controller<Arena> {
 
     public GameController(Arena arena) {
         super(arena);
-        this.arenaController = new ArenaController(new HeroController(arena), new EnemyController(arena), Terrarius.getMsPerUpdate());
+        this.arenaController = new ArenaController(arena, new HeroController(arena), new EnemyController(arena), Terrarius.getMsPerUpdate());
     }
 
     @Override
@@ -37,7 +37,6 @@ public class GameController extends Controller<Arena> {
     @Override
     public void update(Terrarius terrarius) {
         arenaController.update();
-
         if (arenaController.checkEnd())  //TODO: LOSING/WINNING SCREEN
             terrarius.setState(new MenuState(new Menu()));
     }
