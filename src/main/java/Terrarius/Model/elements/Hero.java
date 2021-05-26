@@ -4,6 +4,7 @@ import Terrarius.Model.Dimensions;
 import Terrarius.Model.Level;
 import Terrarius.Model.Position;
 import Terrarius.Model.elements.status.Regeneration;
+import Terrarius.Model.elements.status.StatusEffect;
 import Terrarius.Model.elements.status.Strength;
 import Terrarius.Model.items.Item;
 import Terrarius.Model.items.StatusBar;
@@ -19,8 +20,10 @@ public class Hero extends Element {
         super(position, new Dimensions(8, 4));
         this.statusBar = new StatusBar(100, 100, 1, new Level(1, 0));
         this.toolBar = new Toolbar(this);
-        this.statusBar.addStatusEffect(new Regeneration(10, 10));
-        this.statusBar.addStatusEffect(new Strength(5, 5));
+    }
+
+    public void addStatusEffect(StatusEffect statusEffect){
+        this.statusBar.addStatusEffect(statusEffect);
     }
 
     public StatusBar getStatusBar(){
