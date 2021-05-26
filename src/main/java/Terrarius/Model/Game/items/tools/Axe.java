@@ -13,4 +13,9 @@ public class Axe extends Tool {
         int heroLevel = this.getHero().getStats().getCurrentLevel();
         this.setStats(new ToolStats(1 + heroLevel / 5, 10 + heroLevel / 5, 2));
     }
+
+    @Override
+    public String getComponentName() {
+        return "Axe";
+    }
 }

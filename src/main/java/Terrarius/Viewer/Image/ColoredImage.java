@@ -26,8 +26,7 @@ public class ColoredImage extends StillImage{
     }
 
     @Override
-    public void load(String fname) {
-        try {
+    public void load(String fname) throws FileNotFoundException, URISyntaxException {
             Scanner imageScanner = getScannerFromFile(fname);
             int height = imageScanner.nextInt();
             int width = imageScanner.nextInt();
@@ -35,10 +34,6 @@ public class ColoredImage extends StillImage{
             loadAspect(imageScanner, width, height);
             loadCharColors(imageScanner, width, height);
             loadBackgroundColors(imageScanner, width, height);
-
-        } catch (FileNotFoundException | URISyntaxException e) {
-            //TODO handle exception
-        }
     }
 
     @Override

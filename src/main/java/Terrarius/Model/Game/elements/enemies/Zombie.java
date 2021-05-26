@@ -17,4 +17,9 @@ public class Zombie extends Enemy {
         int power = 2 + level.getNumLevel() / 5;
         return new EnemyStats(hp, power, ZOMBIE_VIEW_DISTANCE, level);
     }
+
+    @Override
+    public String getComponentName() {
+        return "Zombie";
+    }
 }

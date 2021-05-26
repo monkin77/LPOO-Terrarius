@@ -4,9 +4,11 @@ import Terrarius.GUI.GUI;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.Element;
 import Terrarius.Model.Game.items.Item;
-import Terrarius.Model.Game.items.tools.Axe;
 import Terrarius.Viewer.Image.ColoredImage;
 import Terrarius.Viewer.Image.Image;
+
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 
 public class ItemViewer {
     private Image image;
@@ -15,11 +17,10 @@ public class ItemViewer {
     public ItemViewer(Item item) {
         image = new ColoredImage();
         icon = new ColoredImage();
-        if(item.getClass().equals(Axe.class)) {
-            image.load("Images/Items/Axe.txt");
-            icon.load("Images/Items/AxeIcon.txt");
-        }
-        else{
+        try {
+            image.load("Images/Items/" + item.getComponentName() + ".txt");
+            icon.load("Images/Items/" + item.getComponentName() + "Icon.txt");
+        } catch (FileNotFoundException | URISyntaxException | NullPointerException e) {
             image = null;
             icon = null;
         }

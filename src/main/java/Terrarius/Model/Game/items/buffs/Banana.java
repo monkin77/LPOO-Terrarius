@@ -14,4 +14,9 @@ public class Banana extends Buff {
         int hp = 5 + heroLevel / 5;
         this.setStats(new BuffStats(hp / 2, hp, 0, 0, 0));
     }
+
+    @Override
+    public String getComponentName() {
+        return "Banana";
+    }
 }

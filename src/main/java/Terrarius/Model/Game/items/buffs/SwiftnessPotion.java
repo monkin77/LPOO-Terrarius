@@ -15,4 +15,9 @@ public class SwiftnessPotion extends Buff {
         int duration = 10 + heroLevel / 15;
         this.setStats(new BuffStats(duration, 0, 0, speed, 0));
     }
+
+    @Override
+    public String getComponentName() {
+        return "SwiftnessPotion";
+    }
 }

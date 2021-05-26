@@ -12,4 +12,9 @@ public class Apple extends Buff {
     public void updateStats() {
         this.setStats(new BuffStats(5, 10, 0, 0, 0));
     }
+
+    @Override
+    public String getComponentName() {
+        return "Apple";
+    }
 }

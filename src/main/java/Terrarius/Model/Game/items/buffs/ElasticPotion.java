@@ -15,4 +15,9 @@ public class ElasticPotion extends Buff {
         int range = 2 + heroLevel / 10;
         this.setStats(new BuffStats(duration, 0, 0, 0, range));
     }
+
+    @Override
+    public String getComponentName() {
+        return "ElasticPotion";
+    }
 }

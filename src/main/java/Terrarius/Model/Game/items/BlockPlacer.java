@@ -12,4 +12,9 @@ public class BlockPlacer extends Item {
     public void updateStats() {
 
     }
+
+    @Override
+    public String getComponentName() {
+        return "BlockPlacer";
+    }
 }

@@ -96,4 +96,9 @@ public class Hero extends Element {
     public void setTargetPosition(Position targetPosition) {
         this.targetPosition = targetPosition;
     }
+
+    @Override
+    public String getComponentName() {
+        return "Hero";
+    }
 }

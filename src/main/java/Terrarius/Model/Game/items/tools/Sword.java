@@ -13,4 +13,9 @@ public class Sword extends Tool {
         int heroLevel = this.getHero().getStats().getCurrentLevel();
         this.setStats(new ToolStats(heroLevel / 2 + 1, 0, 0));
     }
+
+    @Override
+    public String getComponentName() {
+        return "Sword";
+    }
 }

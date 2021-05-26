@@ -1,11 +1,12 @@
 package Terrarius.Model.Game.items;
 
+import Terrarius.Model.Game.NamedComponent;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.Element;
 import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.elements.hero.Hero;
 
-public abstract class Item {
+public abstract class Item implements NamedComponent {
     private final Hero hero;
     private Dimensions dimensions;
 
@@ -40,4 +41,7 @@ public abstract class Item {
 
     // Item stats should be updated when hero level/stats are increased
     public abstract void updateStats();
+
+    @Override
+    public abstract String getComponentName();
 }

@@ -13,4 +13,9 @@ public class Pickaxe extends Tool {
         int heroLevel = this.getHero().getStats().getCurrentLevel();
         this.setStats(new ToolStats(2, 10 + heroLevel / 10, 3));
     }
+
+    @Override
+    public String getComponentName() {
+        return "Pickaxe";
+    }
 }

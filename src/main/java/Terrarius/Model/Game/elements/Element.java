@@ -1,9 +1,10 @@
 package Terrarius.Model.Game.elements;
 
+import Terrarius.Model.Game.NamedComponent;
 import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Position;
 
-public class Element {
+public abstract class Element implements NamedComponent {
     private Position position;
     private Dimensions dimensions;
     private Orientation orientation = Orientation.RIGHT;
@@ -36,4 +37,7 @@ public class Element {
     }
 
     public enum Orientation {LEFT, RIGHT}
+
+    @Override
+    public abstract String getComponentName();
 }

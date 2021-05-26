@@ -13,4 +13,9 @@ public class Shovel extends Tool {
         int heroLevel = this.getHero().getStats().getCurrentLevel();
         this.setStats(new ToolStats(1 + heroLevel / 20, 10, 1));
     }
+
+    @Override
+    public String getComponentName() {
+        return "Shovel";
+    }
 }

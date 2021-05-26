@@ -19,4 +19,9 @@ public class StoneBlock extends Block {
     public int getHardness() {
         return STONE_BLOCK_HARDNESS;
     }
+
+    @Override
+    public String getComponentName() {
+        return "Stone";
+    }
 }

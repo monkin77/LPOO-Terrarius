@@ -7,14 +7,18 @@ import Terrarius.Model.Game.elements.enemies.Zombie;
 import Terrarius.Viewer.FrameHandler;
 import Terrarius.Viewer.Image.AnimatedImage;
 
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+
 public class EnemyViewer extends ElementViewer{
 
     public EnemyViewer(Enemy enemy){
 
         setImage(new AnimatedImage());
-
-        if(enemy.getClass().equals(Zombie.class)){
-            getImage().load("Images/Enemies/Zombie.txt");
+        try {
+            getImage().load("Images/Enemies/" + enemy.getComponentName() + ".txt");
+        } catch (FileNotFoundException | URISyntaxException | NullPointerException e) {
+            e.printStackTrace();
         }
 
         FrameHandler frameHandler = ((AnimatedImage)getImage()).getFrameSpeed();

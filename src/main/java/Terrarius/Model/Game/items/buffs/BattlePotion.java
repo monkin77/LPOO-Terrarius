@@ -15,4 +15,9 @@ public class BattlePotion extends Buff {
         int attack = 2 + heroLevel / 5;
         this.setStats(new BuffStats(duration, 0, attack, 2, 0));
     }
+
+    @Override
+    public String getComponentName() {
+        return "BattlePotion";
+    }
 }
