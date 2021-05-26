@@ -146,8 +146,8 @@ public class LanternaGui implements GUI {
 
     @Override
     public void drawString(int x, int y, String message, String charColor, String bgColor) {
-        graphics.setForegroundColor(TextColor.Factory.fromString(DEFAULT_FOREGROUND_COLOR));
-        graphics.setBackgroundColor(TextColor.Factory.fromString(DEFAULT_BACKGROUND_COLOR));
+        graphics.setForegroundColor(TextColor.Factory.fromString(charColor));
+        graphics.setBackgroundColor(TextColor.Factory.fromString(bgColor));
         graphics.putString(x, y, message);
     }
 
