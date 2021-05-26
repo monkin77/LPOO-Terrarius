@@ -156,20 +156,14 @@ public class Arena {
     }
 
     public void heroAttack(Position targetPosition, Tool tool){
-
-        List<Enemy> enemyDelete = new ArrayList<>();
-
         for (Enemy enemy : this.enemies){
             if (Position.checkElementsCollision(enemy.getPosition(), enemy.getDimensions(), targetPosition, new Dimensions(1, 1))){
                 enemy.setHP(enemy.getStats().getHp() - hero.getStats().getPower() - tool.getStats().getFightingPower());
                 if (enemy.getStats().getHp() <= 0){
-                    enemyDelete.add(enemy);
                     hero.getStats().getLevel().increaseXP(enemy.getStats().getLevel().calcXpDrop());
                 }
             }
         }
-
-        for (Enemy enemy : enemyDelete) this.enemies.remove(enemy);
-
+        this.enemies.removeIf(n -> (n.getStats().getHp() <= 0));
     }
 }
