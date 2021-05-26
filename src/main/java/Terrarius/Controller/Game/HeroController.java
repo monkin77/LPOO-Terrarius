@@ -1,15 +1,13 @@
 package Terrarius.Controller.Game;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Position;
-import Terrarius.Model.arena.Arena;
-import Terrarius.Model.elements.Element;
-import Terrarius.Model.items.BlockPlacer;
-import Terrarius.Model.items.Item;
-import Terrarius.Model.items.food.Food;
-import Terrarius.Model.items.tools.Tool;
-
-import Terrarius.Model.items.Item;
+import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.arena.Arena;
+import Terrarius.Model.Game.elements.Element;
+import Terrarius.Model.Game.items.Item;
+import Terrarius.Model.Game.items.food.Food;
+import Terrarius.Model.Game.items.tools.Tool;
+import Terrarius.Model.Game.items.BlockPlacer;
 
 public class HeroController {
     private final Arena arena;

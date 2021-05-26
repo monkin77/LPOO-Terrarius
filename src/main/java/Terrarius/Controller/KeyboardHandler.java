@@ -10,10 +10,9 @@ public class KeyboardHandler {
     private final Map<Integer, Boolean> ignoreMap = new HashMap<>();
 
     public KeyboardHandler(){ //default
-
         List<Integer> keyCodes = Arrays.asList(
                 VK_ESCAPE,
-                VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT,
+                VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT, VK_ENTER,
                 VK_A, VK_S, VK_D, VK_W,
                 VK_0, VK_1, VK_2, VK_3, VK_4, VK_5, VK_6, VK_7, VK_8, VK_9);
 

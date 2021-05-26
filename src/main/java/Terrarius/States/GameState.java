@@ -2,7 +2,7 @@ package Terrarius.States;
 
 import Terrarius.Controller.Controller;
 import Terrarius.Controller.Game.GameController;
-import Terrarius.Model.arena.Arena;
+import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Viewer.Game.ArenaViewer;
 import Terrarius.Viewer.Viewer;
 

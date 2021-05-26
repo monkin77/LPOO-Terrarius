@@ -1,11 +1,11 @@
 package Terrarius.Viewer.Game;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.elements.Element;
-import Terrarius.Model.elements.blocks.Block;
-import Terrarius.Model.elements.blocks.DirtBlock;
-import Terrarius.Model.elements.blocks.StoneBlock;
-import Terrarius.Model.elements.blocks.WoodBlock;
+import Terrarius.Model.Game.elements.Element;
+import Terrarius.Model.Game.elements.blocks.Block;
+import Terrarius.Model.Game.elements.blocks.DirtBlock;
+import Terrarius.Model.Game.elements.blocks.StoneBlock;
+import Terrarius.Model.Game.elements.blocks.WoodBlock;
 import Terrarius.Viewer.Image.ColoredImage;
 
 public class BlockViewer extends ElementViewer{

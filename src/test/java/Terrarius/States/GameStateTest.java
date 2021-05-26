@@ -3,7 +3,7 @@ package Terrarius.States;
 import Terrarius.Controller.Game.GameController;
 import Terrarius.GUI.GUI;
 import Terrarius.Terrarius;
-import Terrarius.Model.arena.Arena;
+import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Viewer.Game.ArenaViewer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

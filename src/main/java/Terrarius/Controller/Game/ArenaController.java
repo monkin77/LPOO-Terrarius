@@ -1,7 +1,7 @@
 package Terrarius.Controller.Game;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Position;
+import Terrarius.Model.Game.Position;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +32,8 @@ public class ArenaController {
         this.updateCounter = 0;
     }
 
-    public void addActions(List<GUI.ACTION> newActions){
-        for (GUI.ACTION action : newActions)
-            if (!actionList.contains(action)) actionList.add(action);
+    public void addActions(List<GUI.ACTION> newActions) {
+        actionList = newActions;
     }
 
     public void setHeroTargetPosition(Position position){
@@ -55,7 +54,6 @@ public class ArenaController {
             for (GUI.ACTION action : actionList) {
                 this.heroController.doAction(action);
             }
-            actionList.clear();
         }
 
         updateCounter %= maxCounter;

@@ -2,10 +2,12 @@ package Terrarius;
 
 import Terrarius.GUI.GUI;
 import Terrarius.GUI.LanternaGui;
-import Terrarius.Model.arena.Arena;
-import Terrarius.Model.arena.LoaderArenaBuilder;
-import Terrarius.Model.items.tools.Axe;
+import Terrarius.Model.Game.arena.Arena;
+import Terrarius.Model.Game.arena.LoaderArenaBuilder;
+import Terrarius.Model.Game.items.tools.Axe;
+import Terrarius.Model.Menu.Menu;
 import Terrarius.States.GameState;
+import Terrarius.States.MenuState;
 import Terrarius.States.State;
 
 import java.awt.*;
@@ -24,11 +26,14 @@ public class Terrarius {
 
     public Terrarius(int width, int height) throws FontFormatException, IOException, URISyntaxException {
         this.gui = new LanternaGui(width, height);
-
+/*
         Arena arena = new LoaderArenaBuilder(1).createArena();
         arena.getHero().addItem(1, new Axe(arena.getHero()));
         arena.getHero().addItem(3, new Axe(arena.getHero()));
         this.state = new GameState(arena);
+
+ */
+        this.state = new MenuState(new Menu());
     }
 
     /*
@@ -39,7 +44,7 @@ public class Terrarius {
         long previous = System.currentTimeMillis();
         long lag = 0;
 
-        while (this.state != null) {
+        while (true) {
             long current = System.currentTimeMillis();
             long elapsed = current - previous;
             previous = current;
@@ -50,11 +55,15 @@ public class Terrarius {
             while (lag >= MS_PER_UPDATE) {
                 state.update(this);
                 lag -= MS_PER_UPDATE;
+
+                if (state == null) {
+                    gui.close();
+                    return;
+                }
             }
 
             state.draw(gui);
         }
-        gui.close();
     }
 
     public void setState(State state) {

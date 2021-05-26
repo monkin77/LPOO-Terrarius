@@ -1,8 +1,8 @@
 package Terrarius.Viewer.Image;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Position;
-import Terrarius.Model.elements.Element;
+import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.elements.Element;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
@@ -50,12 +50,12 @@ public class ColoredImage extends StillImage{
                 String charColor = DEFAULT_FOREGROUND_COLOR;
                 String bgColor = DEFAULT_BACKGROUND_COLOR;
 
-                if(orientation == Element.Orientation.RIGHT){
+                if(orientation == Element.Orientation.RIGHT) {
                     aspect_char = aspect[i][j];
                     bgColor = bgColorMap.get(bgColors[i][j]);
                     charColor = charColorMap.get(charColors[i][j]);
                 }
-                else{
+                else {
                     aspect_char = aspect[i][this.dimensions.getWidth() - 1 - j];
                     bgColor = bgColorMap.get(bgColors[i][this.dimensions.getWidth() - 1 - j]);
                     charColor = charColorMap.get(charColors[i][this.dimensions.getWidth() - 1 - j]);

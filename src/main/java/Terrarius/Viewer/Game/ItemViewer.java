@@ -1,15 +1,12 @@
 package Terrarius.Viewer.Game;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Position;
-import Terrarius.Model.elements.Element;
-import Terrarius.Model.elements.Hero;
-import Terrarius.Model.items.BlockPlacer;
-import Terrarius.Model.items.Item;
-import Terrarius.Model.items.tools.Axe;
+import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.elements.Element;
+import Terrarius.Model.Game.items.Item;
+import Terrarius.Model.Game.items.tools.Axe;
 import Terrarius.Viewer.Image.ColoredImage;
 import Terrarius.Viewer.Image.Image;
-import Terrarius.Viewer.Image.StillImage;
 
 public class ItemViewer {
     private Image image;

@@ -1,7 +1,7 @@
 package Terrarius.Viewer.Game;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.BlockPouch;
+import Terrarius.Model.Game.BlockPouch;
 
 import static Terrarius.Viewer.Game.GameViewerConstants.*;
 

@@ -2,12 +2,10 @@ package Terrarius.Controller.Game;
 
 import Terrarius.GUI.GUI;
 import Terrarius.GUI.LanternaGui;
-import Terrarius.Model.Position;
 import Terrarius.Terrarius;
-import Terrarius.Model.arena.Arena;
+import Terrarius.Model.Game.arena.Arena;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.io.IOException;
@@ -49,8 +47,6 @@ public class GameControllerTest {
             gameController.giveActions(terrarius, gui);
             Mockito.verify(arenaController, Mockito.never()).addActions(actions);
             Mockito.verify(terrarius, Mockito.times(1)).setState(null);
-
-
     }
 
     @Test
@@ -65,7 +61,7 @@ public class GameControllerTest {
 
         gameController.update(terrarius);
         Mockito.verify(arenaController, Mockito.times(2)).update();
-        Mockito.verify(terrarius, Mockito.times(1)).setState(null);
+        Mockito.verify(terrarius, Mockito.times(1)).setState(Mockito.any());
     }
     /*
     private Arena arena;

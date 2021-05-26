@@ -146,8 +146,8 @@ public class LanternaGui implements GUI {
 
     @Override
     public void drawString(int x, int y, String message, String charColor, String bgColor) {
-        graphics.setForegroundColor(TextColor.Factory.fromString(DEFAULT_FOREGROUND_COLOR));
-        graphics.setBackgroundColor(TextColor.Factory.fromString(DEFAULT_BACKGROUND_COLOR));
+        graphics.setForegroundColor(TextColor.Factory.fromString(charColor));
+        graphics.setBackgroundColor(TextColor.Factory.fromString(bgColor));
         graphics.putString(x, y, message);
     }
 
@@ -171,6 +171,16 @@ public class LanternaGui implements GUI {
         screen.close();
     }
 
+    @Override
+    public int getWidth() {
+        return screen.getTerminalSize().getColumns();
+    }
+
+    @Override
+    public int getHeight() {
+        return screen.getTerminalSize().getRows();
+    }
+
     public int getMouseX(){
         return mouseHandler.getX();
     }
@@ -187,7 +197,6 @@ public class LanternaGui implements GUI {
             actionList.add(ACTION.CLICK);
         }
 
-        if (keyboardHandler.isKeyPressed(VK_ESCAPE)) actionList.add(ACTION.QUIT);
         if (keyboardHandler.isKeyPressed(VK_UP) || keyboardHandler.isKeyPressed(VK_W)) actionList.add(ACTION.UP);
         if (keyboardHandler.isKeyPressed(VK_DOWN) || keyboardHandler.isKeyPressed(VK_S)) actionList.add(ACTION.DOWN);
         if (keyboardHandler.isKeyPressed(VK_LEFT) || keyboardHandler.isKeyPressed(VK_A)) actionList.add(ACTION.LEFT);
@@ -202,6 +211,8 @@ public class LanternaGui implements GUI {
         if (keyboardHandler.readKey(VK_7)) actionList.add(ACTION.SLOT7);
         if (keyboardHandler.readKey(VK_8)) actionList.add(ACTION.SLOT8);
         if (keyboardHandler.readKey(VK_9)) actionList.add(ACTION.SLOT9);
+        if (keyboardHandler.isKeyPressed(VK_ENTER)) actionList.add(ACTION.SELECT);
+        if (keyboardHandler.isKeyPressed(VK_ESCAPE)) actionList.add(ACTION.QUIT);
 
         return actionList;
     }

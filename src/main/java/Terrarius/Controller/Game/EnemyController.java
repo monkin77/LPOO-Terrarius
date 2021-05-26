@@ -1,10 +1,11 @@
 package Terrarius.Controller.Game;
 
-import Terrarius.Model.Position;
-import Terrarius.Model.arena.Arena;
-import Terrarius.Model.elements.Element;
-import Terrarius.Model.elements.enemies.Enemy;
 import Terrarius.Viewer.Game.GameViewerConstants;
+import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.arena.Arena;
+import Terrarius.Model.Game.elements.Element;
+import Terrarius.Model.Game.elements.Hero;
+import Terrarius.Model.Game.elements.enemies.Enemy;
 
 public class EnemyController {
     private final Arena arena;
@@ -13,15 +14,20 @@ public class EnemyController {
         this.arena = arena;
     }
 
-    // TODO: Make them only follow the hero when close
     public void moveEnemies() {
         for (Enemy enemy : arena.getEnemies()) {
-            if (enemy.getPosition().getX() < arena.getHero().getPosition().getX()) {
-                moveEnemy(enemy, enemy.getPosition().getRight());
+            if (!canFollowHero(enemy, arena.getHero()))
+                continue;
+
+            Position enemyPos = enemy.getPosition();
+            Position heroPos = arena.getHero().getPosition();
+
+            if (enemyPos.getX() < heroPos.getX()) {
+                moveEnemy(enemy, enemyPos.getRight());
                 enemy.setOrientation(Element.Orientation.RIGHT);
             }
-            else {
-                moveEnemy(enemy, enemy.getPosition().getLeft());
+            else if (enemyPos.getX() > heroPos.getX()) {
+                moveEnemy(enemy, enemyPos.getLeft());
                 enemy.setOrientation(Element.Orientation.LEFT);
             }
         }
@@ -44,11 +50,17 @@ public class EnemyController {
     }
 
     private boolean hasEnemy(Enemy enemy, Position position) {
-        for(Enemy currEnemy : arena.getEnemies()) {
+        for (Enemy currEnemy : arena.getEnemies()) {
             if (currEnemy.equals(enemy)) continue;
             if (Position.checkElementsCollision(position, enemy.getDimensions(), currEnemy.getPosition(), currEnemy.getDimensions()))
                 return true;
         }
         return false;
+    }
+
+    private boolean canFollowHero(Enemy enemy, Hero hero) {
+        return Math.abs(enemy.getPosition().getX() - hero.getPosition().getX()) <= enemy.getStats().getViewDistance()
+                && Math.abs(enemy.getPosition().getY() - hero.getPosition().getY()) <=
+                    Math.max(hero.getDimensions().getHeight(), enemy.getDimensions().getHeight());
     }
 }

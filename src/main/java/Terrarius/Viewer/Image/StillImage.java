@@ -1,19 +1,20 @@
 package Terrarius.Viewer.Image;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Position;
-import Terrarius.Model.elements.Element;
+import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.elements.Element;
+import Terrarius.Utils.Dimensions;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.util.Scanner;
 
 public class StillImage extends Image{
-    protected ImageDimensions dimensions;
+    protected Dimensions dimensions;
     protected char[][] aspect;
 
     public StillImage() {
-        dimensions = new ImageDimensions(0, 0);
+        dimensions = new Dimensions(0, 0);
     }
 
     public void load(String fname) {
@@ -49,7 +50,7 @@ public class StillImage extends Image{
     }
 
     protected void loadAspect(Scanner imageScanner, int width, int height) {
-        this.dimensions = new ImageDimensions(width, height);
+        this.dimensions = new Dimensions(height, width);
 
         aspect = new char[height][width];
 
