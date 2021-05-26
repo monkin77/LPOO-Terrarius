@@ -1,18 +1,15 @@
 package Terrarius.Controller.Game;
 
-import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Game.elements.Element;
-import Terrarius.Model.Game.elements.Hero;
+import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.elements.enemies.Enemy;
 import Terrarius.Model.Game.elements.enemies.EnemyStats;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EnemyControllerTest {

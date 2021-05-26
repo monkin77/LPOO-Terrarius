@@ -1,7 +1,7 @@
 package Terrarius.Model.Game.items.buffs;
 
 import Terrarius.Utils.Dimensions;
-import Terrarius.Model.Game.elements.Hero;
+import Terrarius.Model.Game.elements.hero.Hero;
 
 public class Banana extends Buff {
     public Banana(Hero hero) {
@@ -10,7 +10,8 @@ public class Banana extends Buff {
 
     @Override
     public void updateStats() {
-        int heroLevel = this.getHero().getLevel().getNumLevel();
-        this.setStats(new BuffStats(0, 5 + heroLevel / 5, 0, 0, 0));
+        int heroLevel = this.getHero().getStats().getCurrentLevel();
+        int hp = 5 + heroLevel / 5;
+        this.setStats(new BuffStats(hp / 2, hp, 0, 0, 0));
     }
 }

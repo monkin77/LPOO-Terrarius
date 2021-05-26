@@ -3,7 +3,7 @@ package Terrarius.Model.Game.items;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.Element;
 import Terrarius.Utils.Dimensions;
-import Terrarius.Model.Game.elements.Hero;
+import Terrarius.Model.Game.elements.hero.Hero;
 
 public abstract class Item {
     private final Hero hero;

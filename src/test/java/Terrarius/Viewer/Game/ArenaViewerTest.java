@@ -4,7 +4,7 @@ import Terrarius.GUI.GUI;
 import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.arena.Arena;
-import Terrarius.Model.Game.elements.Hero;
+import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.elements.blocks.Block;
 import Terrarius.Model.Game.elements.blocks.DirtBlock;
 import Terrarius.Model.Game.elements.blocks.StoneBlock;

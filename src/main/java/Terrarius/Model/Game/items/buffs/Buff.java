@@ -1,7 +1,7 @@
 package Terrarius.Model.Game.items.buffs;
 
 import Terrarius.Utils.Dimensions;
-import Terrarius.Model.Game.elements.Hero;
+import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.items.Item;
 
 public abstract class Buff extends Item {

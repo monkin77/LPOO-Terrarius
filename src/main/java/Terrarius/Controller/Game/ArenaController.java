@@ -11,6 +11,7 @@ public class ArenaController {
     private final int updatesPerGravityAction;
     private final int updatesPerInputAction;
     private final int maxCounter;
+    private final int timePerUpdate;
 
     private final HeroController heroController;
     private final EnemyController enemyController;
@@ -22,6 +23,7 @@ public class ArenaController {
     public ArenaController(HeroController heroController, EnemyController enemyController, int timePerUpdate) {
         this.heroController = heroController;
         this.enemyController = enemyController;
+        this.timePerUpdate = timePerUpdate;
         this.actionList = new ArrayList<>();
 
         this.updatesPerEnemyAction = Math.max(128 / timePerUpdate, 1);
@@ -56,6 +58,7 @@ public class ArenaController {
             }
         }
 
+        heroController.updateBuffs(timePerUpdate);
         updateCounter %= maxCounter;
     }
 

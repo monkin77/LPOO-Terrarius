@@ -1,7 +1,7 @@
 package Terrarius.Model.Game.items.tools;
 
 import Terrarius.Utils.Dimensions;
-import Terrarius.Model.Game.elements.Hero;
+import Terrarius.Model.Game.elements.hero.Hero;
 
 public class Axe extends Tool {
     public Axe(Hero hero) {
@@ -10,7 +10,7 @@ public class Axe extends Tool {
 
     @Override
     public void updateStats() {
-        int heroLevel = this.getHero().getLevel().getNumLevel();
+        int heroLevel = this.getHero().getStats().getCurrentLevel();
         this.setStats(new ToolStats(1 + heroLevel / 5, 10 + heroLevel / 5, 2));
     }
 }

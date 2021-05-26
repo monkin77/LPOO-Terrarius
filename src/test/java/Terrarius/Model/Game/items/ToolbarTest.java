@@ -1,5 +1,6 @@
 package Terrarius.Model.Game.items;
 
+import Terrarius.Model.Game.elements.hero.Hero;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,10 +9,12 @@ import org.mockito.Mockito;
 public class ToolbarTest {
     private Toolbar toolbar;
     private Item item;
+    private Hero hero;
 
     @BeforeEach
     public void setup() {
-        toolbar = new Toolbar();
+        hero = Mockito.mock(Hero.class);
+        toolbar = new Toolbar(hero);
         item = Mockito.mock(Item.class);
     }
 

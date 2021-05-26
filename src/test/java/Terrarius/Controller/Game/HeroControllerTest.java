@@ -6,7 +6,7 @@ import Terrarius.Model.Game.items.tools.Axe;
 import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.arena.Arena;
-import Terrarius.Model.Game.elements.Hero;
+import Terrarius.Model.Game.elements.hero.Hero;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

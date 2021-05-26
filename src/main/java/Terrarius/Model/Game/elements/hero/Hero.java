@@ -1,5 +1,6 @@
-package Terrarius.Model.Game.elements;
+package Terrarius.Model.Game.elements.hero;
 
+import Terrarius.Model.Game.elements.Element;
 import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.Position;
@@ -7,52 +8,14 @@ import Terrarius.Model.Game.items.Item;
 import Terrarius.Model.Game.items.Toolbar;
 
 public class Hero extends Element {
-    private static final double DEFAULT_RANGE = 24.0;
-
-    private Level level;
-    private int health;
     private Toolbar toolBar;
     private Position targetPosition;
-    private double range;
+    private HeroStats stats;
 
     public Hero(Position position) {
         super(position, new Dimensions(8, 4));
-        this.level = new Level(1, 0);
-        this.health = 100;
+        this.stats = new HeroStats();
         this.toolBar = new Toolbar(this);
-        setDefaultRange();
-    }
-
-    public Level getLevel() {
-        return level;
-    }
-
-    public int getHealth() {
-        return health;
-    }
-
-    public void setLevel(Level level) {
-        this.level = level;
-    }
-
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
-    public void setRange(double range) {
-        this.range = range;
-    }
-
-    public void setDefaultRange() {
-        setRange(DEFAULT_RANGE);
-    }
-
-    public Toolbar getToolBar() {
-        return toolBar;
-    }
-
-    public void setToolBar(Toolbar toolBar) {
-        this.toolBar = toolBar;
     }
 
     /**
@@ -82,19 +45,55 @@ public class Hero extends Element {
         return totalDimensions;
     }
 
+    public Boolean targetWithinRange(){ //TODO I forgot what I wanted to call this argument
+        double dist = Math.sqrt(
+                Math.pow((this.getPosition().getX() + this.getDimensions().getWidth()/2.0) - targetPosition.getX(), 2) +
+                Math.pow((this.getPosition().getY() + this.getDimensions().getHeight()/2.0) - targetPosition.getY(), 2));
+
+        return dist <= stats.getRange();
+    }
+
+    public HeroStats getStats() {
+        return stats;
+    }
+
+    public void setLevel(Level level) {
+        this.stats.setLevel(level);
+    }
+
+    public void setHealth(int health) {
+        this.stats.setHP(health);
+    }
+
+    public void setRange(double range) {
+        this.stats.setRange(range);
+    }
+
+    public void setPower(int power) {
+        this.stats.setPower(power);
+    }
+
+    public void setSpeed(int speed) {
+        this.stats.setSpeed(speed);
+    }
+
+    public void resetStats() {
+        this.stats = new HeroStats();
+    }
+
+    public Toolbar getToolBar() {
+        return toolBar;
+    }
+
+    public void setToolBar(Toolbar toolBar) {
+        this.toolBar = toolBar;
+    }
+
     public Position getTargetPosition() {
         return targetPosition;
     }
 
     public void setTargetPosition(Position targetPosition) {
         this.targetPosition = targetPosition;
-    }
-
-    public Boolean targetWithinRange(){ //TODO I forgot what I wanted to call this argument
-        double dist = Math.sqrt(
-                Math.pow((this.getPosition().getX() + this.getDimensions().getWidth()/2.0) - targetPosition.getX(), 2) +
-                Math.pow((this.getPosition().getY() + this.getDimensions().getHeight()/2.0) - targetPosition.getY(), 2));
-
-        return dist <= range;
     }
 }

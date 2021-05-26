@@ -1,7 +1,7 @@
 package Terrarius.Model.Game.items.buffs;
 
 import Terrarius.Utils.Dimensions;
-import Terrarius.Model.Game.elements.Hero;
+import Terrarius.Model.Game.elements.hero.Hero;
 
 public class Apple extends Buff {
     public Apple(Hero hero) {
@@ -10,6 +10,6 @@ public class Apple extends Buff {
 
     @Override
     public void updateStats() {
-        this.setStats(new BuffStats(0, 10, 0, 0, 0));
+        this.setStats(new BuffStats(5, 10, 0, 0, 0));
     }
 }

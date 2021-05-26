@@ -9,12 +9,16 @@ import Terrarius.Model.Game.items.buffs.Buff;
 import Terrarius.Model.Game.items.tools.Tool;
 import Terrarius.Model.Game.items.BlockPlacer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HeroController {
     private final Arena arena;
-
+    private final List<BuffController> buffList;
 
     public HeroController(Arena arena) {
         this.arena = arena;
+        buffList = new ArrayList<>();
     }
 
     private void moveHero(Position position) {
@@ -67,9 +71,9 @@ public class HeroController {
 
     public void useItem() {
         Item activeItem = this.arena.getHero().getToolBar().getActiveItem();
-        if (activeItem instanceof Tool)         this.useTool((Tool) activeItem);
-        if (activeItem instanceof Buff)         this.useFood((Buff) activeItem);
-        if (activeItem instanceof BlockPlacer)  this.useBlockPlacer();
+        if (activeItem instanceof Tool) this.useTool((Tool) activeItem);
+        if (activeItem instanceof Buff) this.useSelectedBuff();
+        if (activeItem instanceof BlockPlacer) this.useBlockPlacer();
     }
 
     private void useBlockPlacer(){
@@ -82,9 +86,15 @@ public class HeroController {
             arena.breakBlock(this.arena.getHero().getTargetPosition(), (Tool) arena.getHero().getToolBar().getActiveItem());
     }
 
-    private void useFood(Buff buff) {
-        // This part isn't done but we'd need something like active food that heal overtime.
-        // To simplify, we could just increase the HP and other stats and change the initial food model
+    private void useSelectedBuff() {
+        this.arena.getHero().getToolBar().removeItem(this.arena.getHero().getToolBar().getActiveItemIdx());
+
+        Buff buff = (Buff) this.arena.getHero().getToolBar().getActiveItem();
+        this.buffList.add(new BuffController(buff.getStats(), this.arena.getHero()));
+    }
+
+    public void updateBuffs(int timeSinceLastUpdate) {
+        buffList.removeIf(buffController -> buffController.updateAndCheckDuration(timeSinceLastUpdate));
     }
 
     public void changeHeroSlot(Integer slot) {
@@ -142,7 +152,7 @@ public class HeroController {
     }
 
     public boolean isHeroAlive() {
-        return arena.getHero().getHealth() > 0;
+        return arena.getHero().getStats().getHp() > 0;
     }
 
     public void setTargetPosition(Position targetPosition) {
