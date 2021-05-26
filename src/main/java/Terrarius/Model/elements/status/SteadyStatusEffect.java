@@ -18,21 +18,19 @@ public class SteadyStatusEffect extends StatusEffect{
         if (duration == 0){
             switch (super.effectType){
                 case POWER:
-                    statusBar.setPower(this.initalValue);
+                    statusBar.modifyPower(-super.power);
                     break;
                 case HEALTH:
-                    statusBar.setHealth(this.initalValue);
+                    statusBar.modifyHealth(-super.power);
                     break;
             }
         }
         else if(!applied){
             switch (super.effectType){
                 case POWER:
-                    this.initalValue = statusBar.getPower();
                     statusBar.modifyPower(super.power);
                     break;
                 case HEALTH:
-                    this.initalValue = statusBar.getHealth();
                     statusBar.modifyHealth(super.power);
                     break;
             }
