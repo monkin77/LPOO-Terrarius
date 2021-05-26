@@ -1,7 +1,7 @@
 package Terrarius.Model.Game.items.buffs;
 
 public class BuffStats {
-    private final int duration;
+    private int duration;
     private final int amountHP;
     private final int power;
     private final int speedUp;
@@ -33,5 +33,9 @@ public class BuffStats {
 
     public int getExtraRange() {
         return extraRange;
+    }
+
+    public void decreaseDuration() {
+        this.duration--;
     }
 }

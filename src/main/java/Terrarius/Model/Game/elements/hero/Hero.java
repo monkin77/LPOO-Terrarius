@@ -1,21 +1,28 @@
 package Terrarius.Model.Game.elements.hero;
 
 import Terrarius.Model.Game.elements.Element;
+import Terrarius.Model.Game.items.buffs.Buff;
 import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.items.Item;
 import Terrarius.Model.Game.items.Toolbar;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Hero extends Element {
     private Toolbar toolBar;
     private Position targetPosition;
     private HeroStats stats;
+    private final List<Buff> activeBuffs;
 
     public Hero(Position position) {
         super(position, new Dimensions(8, 4));
         this.stats = new HeroStats();
         this.toolBar = new Toolbar(this);
+        this.activeBuffs = new ArrayList<>();
     }
 
     /**
@@ -94,6 +101,22 @@ public class Hero extends Element {
 
     public void setTargetPosition(Position targetPosition) {
         this.targetPosition = targetPosition;
+    }
+
+    public void addBuff(Buff buff) {
+        int i = 0;
+        for (; i < activeBuffs.size(); i++){
+            if (activeBuffs.get(i).getStats().getDuration() >= buff.getStats().getDuration()) break;
+        }
+        this.activeBuffs.add(i, buff);
+    }
+
+    public void removeBuff(Buff buff) {
+        this.activeBuffs.remove(buff);
+    }
+
+    public List<Buff> getActiveBuffs() {
+        return activeBuffs;
     }
 
     @Override
