@@ -1,7 +1,16 @@
-package Model.map;
+package Terrarius.Model.Game.map;
 
+import Terrarius.Model.Game.Level;
+import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.arena.LoaderArenaBuilder;
+import Terrarius.Model.Game.elements.blocks.Block;
+import Terrarius.Model.Game.elements.blocks.DirtBlock;
+import Terrarius.Model.Game.elements.blocks.StoneBlock;
+import Terrarius.Model.Game.elements.blocks.WoodBlock;
+import Terrarius.Model.Game.elements.enemies.Enemy;
+import Terrarius.Model.Game.elements.enemies.Zombie;
 import Terrarius.Utils.Dimensions;
+import Terrarius.Model.Game.map.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,7 +36,7 @@ public class MapBuilder {
     }
 
     private Scanner getScannerFromFile(String fileName) throws URISyntaxException, FileNotFoundException {
-        URL resource = MultiMapArenaBuilder.classgetResource("/Maps/Level_" + level + "/Map_" + subLevel + "/" + fileName);
+        URL resource = MapBuilder.class.getResource("/Maps/Level_" + level + "/Map_" + subLevel + "/" + fileName);
         File file = new File(resource.toURI());
         return new Scanner(file);
     }

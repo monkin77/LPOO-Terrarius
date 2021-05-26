@@ -1,21 +1,13 @@
 package Terrarius.Model.Game.arena;
 
-<<<<<<< HEAD:src/main/java/Model/arena/Arena.java
-import Model.Dimensions;
-import Model.Position;
-import Model.elements.Hero;
-import Model.elements.blocks.Block;
-import Model.elements.enemies.Enemy;
-import Model.map.MapChooser;
-import Model.map.MapZone;
-=======
 import Terrarius.Model.Game.items.tools.Tool;
+import Terrarius.Model.Game.map.MapChooser;
+import Terrarius.Model.Game.map.MapZone;
 import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.elements.blocks.Block;
 import Terrarius.Model.Game.elements.enemies.Enemy;
->>>>>>> master:src/main/java/Terrarius/Model/Game/arena/Arena.java
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +37,7 @@ public class Arena {
             currentMapIndex++;
 
             if (currentMapIndex >= mapZoneList.size()){
-                mapZoneList.add(mapChooser.getMap(hero.getLevel().getNumLevel()));
+                mapZoneList.add(mapChooser.getMap(hero.getStats().getLevel().getNumLevel()));
             }
 
             this.enemies = mapZoneList.get(currentMapIndex).getEnemies();
@@ -55,7 +47,7 @@ public class Arena {
         else if(hero.getPosition().getX() < 0){
 
             if(currentMapIndex == 0){
-                mapZoneList.add(0, mapChooser.getMap(hero.getLevel().getNumLevel()));
+                mapZoneList.add(0, mapChooser.getMap(hero.getStats().getLevel().getNumLevel()));
             }
             else{
                 currentMapIndex--;

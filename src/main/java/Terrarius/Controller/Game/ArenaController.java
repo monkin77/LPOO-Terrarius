@@ -58,11 +58,6 @@ public class ArenaController {
             for (GUI.ACTION action : actionList) {
                 this.heroController.doAction(action);
             }
-<<<<<<< HEAD:src/main/java/Controller/ArenaController.java
-            actionList.clear();
-
-=======
->>>>>>> master:src/main/java/Terrarius/Controller/Game/ArenaController.java
         }
 
         if (updateCounter % updatesPerEnemyDamage == 0)

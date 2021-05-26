@@ -1,9 +1,9 @@
-package Model.map;
+package Terrarius.Model.Game.map;
 
-import Model.Dimensions;
-import Model.Position;
-import Model.elements.blocks.Block;
-import Model.elements.enemies.Enemy;
+import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.elements.blocks.Block;
+import Terrarius.Model.Game.elements.enemies.Enemy;
+import Terrarius.Utils.Dimensions;
 
 import java.util.ArrayList;
 import java.util.List;

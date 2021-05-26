@@ -1,7 +1,4 @@
-package Model.map;
-
-import Model.arena.LoaderArenaBuilder;
-import Model.elements.Hero;
+package Terrarius.Model.Game.map;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,7 +14,7 @@ public class MapChooser {
     public Map<Integer, Integer> levelMap = new HashMap<>();
 
     public MapChooser(){
-        URL resource = LoaderArenaBuilder.class.getResource("/Maps/MapChoices.txt");
+        URL resource = MapChooser.class.getResource("/Maps/MapChoices.txt");
         try {
             File file = new File(resource.toURI());
             Scanner fileScanner = new Scanner(file);

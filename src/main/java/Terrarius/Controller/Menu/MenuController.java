@@ -2,6 +2,7 @@ package Terrarius.Controller.Menu;
 
 import Terrarius.Controller.Controller;
 import Terrarius.GUI.GUI;
+import Terrarius.Model.Game.arena.MultiMapArenaBuilder;
 import Terrarius.Terrarius;
 import Terrarius.Model.Game.arena.LoaderArenaBuilder;
 import Terrarius.Model.Menu.Menu;
@@ -44,7 +45,7 @@ public class MenuController extends Controller<Menu> {
                     break;
                 case SELECT:
                     if (getModel().isPlaySelected())
-                        terrarius.setState(new GameState(new LoaderArenaBuilder(1).createArena()));
+                        terrarius.setState(new GameState(new MultiMapArenaBuilder().createArena()));
                     if (getModel().isQuitSelected())
                         terrarius.setState(null);
             }

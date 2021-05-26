@@ -1,14 +1,15 @@
+package Terrarius.Model.Game.arena;
 
-import Model.map.MapChooser;
-import Model.map.MapZone;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Game.elements.hero.Hero;
+import Terrarius.Model.Game.map.MapChooser;
+import Terrarius.Model.Game.map.MapZone;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MultiMapArenaBuilder{ //TODO temporary
+public class MultiMapArenaBuilder{
 
     public Arena createArena() {
 
