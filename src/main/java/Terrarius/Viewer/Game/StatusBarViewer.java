@@ -9,10 +9,9 @@ import Terrarius.Utils.Dimensions;
 
 import java.util.List;
 
-public class StatusBarViewer {
+import static Terrarius.Viewer.Game.GameViewerConstants.*;
 
-    private static final String STATUS_BAR_BACKGROUND_COLOR = "#AA5518";
-    private static final String STATUS_BAR_FOREGROUND_COLOR = "#FFFFFF";
+public class StatusBarViewer {
 
     public void draw(Hero hero, Dimensions dimensions, GUI gui){
         Position statusBarPos = new Position(2, dimensions.getHeight() + 1);
