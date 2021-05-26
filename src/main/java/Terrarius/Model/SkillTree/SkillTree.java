@@ -1,9 +1,21 @@
 package Terrarius.Model.SkillTree;
 
+import Terrarius.Model.SkillTree.Skills.AttackSkill;
+import Terrarius.Model.SkillTree.Skills.DefenseSkill;
+import Terrarius.Model.SkillTree.Skills.Skill;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class SkillTree {
     private int selected = 0;
 
-    public SkillTree() {};
+    List<Skill> skills;
+
+    public SkillTree() {
+        this.skills = Arrays.asList(new AttackSkill(), new DefenseSkill());
+    }
 
     public int getSelected() {
         return selected;
@@ -13,4 +25,11 @@ public class SkillTree {
         this.selected = selected;
     }
 
+    public List<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
+    }
 }
