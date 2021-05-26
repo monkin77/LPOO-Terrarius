@@ -5,6 +5,7 @@ import Terrarius.Model.Game.elements.Element;
 import Terrarius.Model.Game.elements.enemies.Enemy;
 import Terrarius.Viewer.FrameHandler;
 import Terrarius.Viewer.Image.AnimatedImage;
+import static Terrarius.Viewer.Game.GameViewerConstants.*;
 
 import static Terrarius.Viewer.Game.GameViewerConstants.*;
 
@@ -59,6 +60,8 @@ public class EnemyViewer extends ElementViewer{
         animatedImage.setFrameSpeed(frameHandler);
 
         this.getImage().draw(element.getPosition(), element.getOrientation(), gui);
+
+        if (! (element instanceof Enemy)) return;
 
         Enemy enemy = (Enemy) element;
         String hpDisplay = ((Integer) enemy.getStats().getHp()).toString();

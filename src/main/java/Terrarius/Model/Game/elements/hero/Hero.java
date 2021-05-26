@@ -55,7 +55,7 @@ public class Hero extends Element {
     public Boolean targetWithinRange(){ //TODO I forgot what I wanted to call this argument
         double dist = Math.sqrt(
                 Math.pow((this.getPosition().getX() + this.getDimensions().getWidth()/2.0) - targetPosition.getX(), 2) +
-                Math.pow((this.getPosition().getY() + this.getDimensions().getHeight()/2.0) - targetPosition.getY(), 2));
+                        Math.pow((this.getPosition().getY() + this.getDimensions().getHeight()/2.0) - targetPosition.getY(), 2));
         return dist <= stats.getRange();
     }
 

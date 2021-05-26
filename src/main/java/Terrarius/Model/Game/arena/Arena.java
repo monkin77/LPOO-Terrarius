@@ -7,6 +7,7 @@ import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.elements.blocks.Block;
 import Terrarius.Model.Game.elements.enemies.Enemy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -152,5 +153,17 @@ public class Arena {
 
         this.blocks.add(block);
         hero.getToolBar().getBlockPouch().decrementBlock(block);
+    }
+
+    public void heroAttack(Position targetPosition, Tool tool){
+        for (Enemy enemy : this.enemies){
+            if (Position.checkElementsCollision(enemy.getPosition(), enemy.getDimensions(), targetPosition, new Dimensions(1, 1))){
+                enemy.setHP(enemy.getStats().getHp() - hero.getStats().getPower() - tool.getStats().getFightingPower());
+                if (enemy.getStats().getHp() <= 0){
+                    hero.getStats().getLevel().increaseXP(enemy.getStats().getLevel().calcXpDrop());
+                }
+            }
+        }
+        this.enemies.removeIf(n -> (n.getStats().getHp() <= 0));
     }
 }

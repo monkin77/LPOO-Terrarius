@@ -7,6 +7,7 @@ public final class GameViewerConstants {
         public static final String SKY_COLOR = "#50a8cc";
         public static final String HEALTH_FOREGROUND_COLOR = "#CCCCCC";
         public static final String HEALTH_BACKGROUND_COLOR = "#f02e51";
+
         public static final String STATUS_BAR_BACKGROUND_COLOR = "#AA5518";
         public static final String STATUS_BAR_FOREGROUND_COLOR = "#FFFFFF";
 

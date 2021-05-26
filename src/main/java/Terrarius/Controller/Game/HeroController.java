@@ -102,6 +102,12 @@ public class HeroController {
         buffList.removeIf(buffController -> buffController.updateAndCheckDuration(timeSinceLastUpdate));
     }
 
+    private void heroAttack(){
+        Item item = arena.getHero().getToolBar().getActiveItem();
+        if (this.arena.getHero().targetWithinRange() && item instanceof Tool)
+            arena.heroAttack(this.arena.getHero().getTargetPosition(), (Tool) item);
+    }
+
     public void changeHeroSlot(Integer slot) {
         this.arena.getHero().getToolBar().setActiveItemIdx(slot);
     }
@@ -120,8 +126,11 @@ public class HeroController {
             case DOWN:
                 moveHeroDown();
                 break;
-            case CLICK:
+            case PRESS:
                 useItem();
+                break;
+            case CLICK:
+                heroAttack();
                 break;
             case SLOT0:
                 changeHeroSlot(0);

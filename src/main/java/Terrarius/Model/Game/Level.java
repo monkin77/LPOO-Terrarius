@@ -4,8 +4,8 @@ public class Level {
     private static final int XP_MULTIPLIER = 1000;
 
     private long currentXP;
-    private final long maxXP;
-    private final int numLevel;
+    private long maxXP;
+    private int numLevel;
 
     public Level(int numLevel, long startXP) {
         this.numLevel = numLevel;
@@ -29,8 +29,26 @@ public class Level {
         return numLevel;
     }
 
-    void increaseXP(int xp) {
+    public void increaseXP(long xp) {
         this.currentXP += xp;
+        this.tryLevelUp();
+    }
+
+    private void tryLevelUp(){
+        if (this.currentXP >= maxXP){
+            this.currentXP -= maxXP;
+            this.numLevel++;
+            this.maxXP = (long) numLevel * XP_MULTIPLIER;
+            this.tryLevelUp();
+        }
+    }
+
+    public long calcXpDrop(){
+        long res = currentXP;
+        for (int i = 1; i <= this.numLevel; i++){
+            res += (long) XP_MULTIPLIER * i;
+        }
+        return res;
     }
 
     @Override
