@@ -111,7 +111,7 @@ public class HeroController {
             case DOWN:
                 moveHeroDown();
                 break;
-            case CLICK:
+            case PRESS:
                 useItem();
                 break;
             case SLOT0:
