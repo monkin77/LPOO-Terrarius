@@ -1,22 +1,24 @@
 package Terrarius.Controller.Game;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Position;
-import Terrarius.Model.arena.Arena;
-import Terrarius.Model.elements.Element;
-import Terrarius.Model.items.BlockPlacer;
-import Terrarius.Model.items.Item;
-import Terrarius.Model.items.food.Food;
-import Terrarius.Model.items.tools.Tool;
+import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.arena.Arena;
+import Terrarius.Model.Game.elements.Element;
+import Terrarius.Model.Game.items.Item;
+import Terrarius.Model.Game.items.buffs.Buff;
+import Terrarius.Model.Game.items.tools.Tool;
+import Terrarius.Model.Game.items.BlockPlacer;
 
-import Terrarius.Model.items.Item;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HeroController {
     private final Arena arena;
-
+    private final List<BuffController> buffList;
 
     public HeroController(Arena arena) {
         this.arena = arena;
+        buffList = new ArrayList<>();
     }
 
     private void moveHero(Position position) {
@@ -50,32 +52,32 @@ public class HeroController {
     }
 
     public void moveHeroLeft() {
-        moveHero(arena.getHero().getPosition().getLeft());
+        for (int i = 0; i < arena.getHero().getStats().getSpeed(); ++i)
+            moveHero(arena.getHero().getPosition().getLeft());
         arena.getHero().setOrientation(Element.Orientation.LEFT);
     }
 
     public void moveHeroRight() {
-        moveHero(arena.getHero().getPosition().getRight());
+        for (int i = 0; i < arena.getHero().getStats().getSpeed(); ++i)
+            moveHero(arena.getHero().getPosition().getRight());
         arena.getHero().setOrientation(Element.Orientation.RIGHT);
     }
 
     public void moveHeroUp() {
-        climbHero(arena.getHero().getPosition().getUp());
+        for (int i = 0; i < arena.getHero().getStats().getSpeed(); ++i)
+            climbHero(arena.getHero().getPosition().getUp());
     }
 
     public void moveHeroDown() {
-        climbHero(arena.getHero().getPosition().getDown());
-    }
-
-    public void updateStatusEffects(){
-        this.arena.getHero().updateStatusEffects();
+        for (int i = 0; i < arena.getHero().getStats().getSpeed(); ++i)
+            climbHero(arena.getHero().getPosition().getDown());
     }
 
     public void useItem() {
         Item activeItem = this.arena.getHero().getToolBar().getActiveItem();
-        if (activeItem instanceof Tool)         this.useTool((Tool) activeItem);
-        if (activeItem instanceof Food)         this.useFood((Food) activeItem);
-        if (activeItem instanceof BlockPlacer)  this.useBlockPlacer();
+        if (activeItem instanceof Tool) this.useTool((Tool) activeItem);
+        if (activeItem instanceof Buff) this.useSelectedBuff();
+        if (activeItem instanceof BlockPlacer) this.useBlockPlacer();
     }
 
     private void useBlockPlacer(){
@@ -88,9 +90,16 @@ public class HeroController {
             arena.breakBlock(this.arena.getHero().getTargetPosition(), (Tool) arena.getHero().getToolBar().getActiveItem());
     }
 
-    private void useFood(Food food) {
-        // This part isn't done but we'd need something like active food that heal overtime.
-        // To simplify, we could just increase the HP and other stats and change the initial food model
+    private void useSelectedBuff() {
+        Buff buff = (Buff) this.arena.getHero().getToolBar().getActiveItem();
+        this.arena.getHero().getToolBar().removeItem(this.arena.getHero().getToolBar().getActiveItemIdx());
+        this.arena.getHero().addBuff(buff);
+
+        this.buffList.add(new BuffController(buff, this.arena.getHero()));
+    }
+
+    public void updateBuffs(int timeSinceLastUpdate) {
+        buffList.removeIf(buffController -> buffController.updateAndCheckDuration(timeSinceLastUpdate));
     }
 
     private void heroAttack(){
@@ -157,7 +166,7 @@ public class HeroController {
     }
 
     public boolean isHeroAlive() {
-        return arena.getHero().getHealth() > 0;
+        return arena.getHero().getStats().getHp() > 0;
     }
 
     public void setTargetPosition(Position targetPosition) {

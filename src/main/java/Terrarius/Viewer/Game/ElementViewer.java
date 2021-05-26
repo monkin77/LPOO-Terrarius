@@ -1,7 +1,7 @@
 package Terrarius.Viewer.Game;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.elements.Element;
+import Terrarius.Model.Game.elements.Element;
 import Terrarius.Viewer.FrameHandler;
 import Terrarius.Viewer.Image.Image;
 

@@ -3,8 +3,9 @@ package Terrarius.Controller;
 import Terrarius.GUI.GUI;
 import Terrarius.Terrarius;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
+import java.net.URISyntaxException;
 
 public abstract class Controller<T> {
     private final T model;
@@ -18,5 +19,5 @@ public abstract class Controller<T> {
     }
 
     public abstract void giveActions(Terrarius terrarius, GUI gui) throws IOException;
-    public abstract void update(Terrarius terrarius);
+    public abstract void update(Terrarius terrarius) throws FileNotFoundException, URISyntaxException;
 }

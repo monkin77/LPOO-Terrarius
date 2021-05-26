@@ -1,13 +1,16 @@
 package Terrarius.Viewer.Game;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Dimensions;
-import Terrarius.Model.Position;
-import Terrarius.Model.arena.Arena;
-import Terrarius.Model.elements.Element;
-import Terrarius.Model.items.Toolbar;
+import Terrarius.Utils.Dimensions;
+import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.arena.Arena;
+import Terrarius.Model.Game.elements.Element;
+import Terrarius.Model.Game.items.Toolbar;
 import Terrarius.Viewer.Image.Image;
 import Terrarius.Viewer.Image.ColoredImage;
+
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 
 public class ToolbarViewer {
     private Image image;
@@ -15,7 +18,11 @@ public class ToolbarViewer {
 
     public ToolbarViewer() {
         this.image = new ColoredImage();
-        this.image.load("Images/Toolbar/Toolbar.txt");
+        try {
+            this.image.load("Images/Toolbar/Toolbar.txt");
+        } catch (FileNotFoundException | URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setImage(Image image) {
@@ -30,7 +37,6 @@ public class ToolbarViewer {
 
         int iconX = toolbarStartingPositionWidth + iconIndexOffset;
         int iconY = arena.getHeight() + (toolbar.getDimensions().getHeight() - toolbar.getToolbarCellLength()) / 2 + 3;
-
 
         return new Position(iconX, iconY);
     }

@@ -1,11 +1,10 @@
 package Terrarius.Viewer.Game;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Dimensions;
-import Terrarius.Model.Position;
-import Terrarius.Model.elements.Element;
-import Terrarius.Model.items.Toolbar;
-import Terrarius.Viewer.Game.ToolbarViewer;
+import Terrarius.Utils.Dimensions;
+import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.elements.Element;
+import Terrarius.Model.Game.items.Toolbar;
 import Terrarius.Viewer.Image.Image;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

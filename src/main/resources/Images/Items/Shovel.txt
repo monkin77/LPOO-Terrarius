@@ -1,0 +1,22 @@
+5 3
+| |
+| |
+. .
+. .
+. .
+1
+S #888888
+SSS
+SSS
+SSS
+SSS
+SSS
+3
+S #50a8cc
+M #895300
+C #444444
+CCC
+CCC
+SMS
+SMS
+SMS

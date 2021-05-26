@@ -1,15 +1,21 @@
 package Terrarius.Viewer.Game;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.elements.Element;
-import Terrarius.Model.items.StatusBar;
+import Terrarius.Model.Game.elements.Element;
 import Terrarius.Viewer.Image.AnimatedImage;
+
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 
 public class HeroViewer extends ElementViewer{
 
     public HeroViewer(){
         setImage(new AnimatedImage());
-        getImage().load("Images/Hero/Hero.txt");
+        try {
+            getImage().load("Images/Hero/Hero.txt");
+        } catch (FileNotFoundException | URISyntaxException | NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

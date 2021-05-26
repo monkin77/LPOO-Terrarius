@@ -1,26 +1,22 @@
 package Terrarius.Viewer.Game;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.elements.Element;
-import Terrarius.Model.elements.blocks.Block;
-import Terrarius.Model.elements.blocks.DirtBlock;
-import Terrarius.Model.elements.blocks.StoneBlock;
-import Terrarius.Model.elements.blocks.WoodBlock;
+import Terrarius.Model.Game.elements.Element;
+import Terrarius.Model.Game.elements.blocks.Block;
 import Terrarius.Viewer.Image.ColoredImage;
+
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 
 public class BlockViewer extends ElementViewer{
 
     public BlockViewer(Block block){
-
         setImage(new ColoredImage());
-        if(block.getClass().equals(DirtBlock.class)){
-            getImage().load("Images/Blocks/Dirt.txt");
-        }
-        else if(block.getClass().equals(StoneBlock.class)){
-            getImage().load("Images/Blocks/Stone.txt");
-        }
-        else if(block.getClass().equals(WoodBlock.class)){
-            getImage().load("Images/Blocks/ColoredWood.txt");
+
+        try {
+            getImage().load("Images/Blocks/" + block.getComponentName() + ".txt");
+        } catch (FileNotFoundException | URISyntaxException | NullPointerException e) {
+            e.printStackTrace();
         }
     }
 

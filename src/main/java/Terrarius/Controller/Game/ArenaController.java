@@ -1,7 +1,7 @@
 package Terrarius.Controller.Game;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Position;
+import Terrarius.Model.Game.Position;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,7 @@ public class ArenaController {
     private final int updatesPerInputAction;
     private final int updatesPerEnemyDamage;
     private final int maxCounter;
+    private final int timePerUpdate;
 
     private final HeroController heroController;
     private final EnemyController enemyController;
@@ -23,6 +24,7 @@ public class ArenaController {
     public ArenaController(HeroController heroController, EnemyController enemyController, int timePerUpdate) {
         this.heroController = heroController;
         this.enemyController = enemyController;
+        this.timePerUpdate = timePerUpdate;
         this.actionList = new ArrayList<>();
 
         this.updatesPerEnemyMovement = Math.max(128 / timePerUpdate, 1);
@@ -34,9 +36,8 @@ public class ArenaController {
         this.updateCounter = 0;
     }
 
-    public void addActions(List<GUI.ACTION> newActions){
-        for (GUI.ACTION action : newActions)
-            if (!actionList.contains(action)) actionList.add(action);
+    public void addActions(List<GUI.ACTION> newActions) {
+        actionList = newActions;
     }
 
     public void setHeroTargetPosition(Position position){
@@ -57,12 +58,12 @@ public class ArenaController {
             for (GUI.ACTION action : actionList) {
                 this.heroController.doAction(action);
             }
-            actionList.clear();
         }
 
         if (updateCounter % updatesPerEnemyDamage == 0)
             enemyController.damageHero();
 
+        heroController.updateBuffs(timePerUpdate);
         updateCounter %= maxCounter;
     }
 

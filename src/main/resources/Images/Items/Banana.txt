@@ -1,0 +1,19 @@
+4 2
+.T
+.
+.
+.
+2
+Y #ffff00
+P #000000
+PP
+PY
+PY
+PY
+2
+Y #ffff00
+B #50a8cc
+BB
+BY
+BY
+BY

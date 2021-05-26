@@ -8,8 +8,11 @@ public final class GameViewerConstants {
         public static final String HEALTH_FOREGROUND_COLOR = "#CCCCCC";
         public static final String HEALTH_BACKGROUND_COLOR = "#f02e51";
 
+        public static final String STATUS_BAR_BACKGROUND_COLOR = "#AA5518";
+        public static final String STATUS_BAR_FOREGROUND_COLOR = "#FFFFFF";
+
         public static final int SCREEN_WIDTH = 128;
-        public static final int SCREEN_HEIGHT = 71;
+        public static final int SCREEN_HEIGHT = 74;
 
         // Toolbar constants
         public static final int TOOLBAR_HEIGHT = 7;

@@ -1,32 +1,28 @@
 package Terrarius.Viewer.Image;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Position;
-import Terrarius.Model.elements.Element;
+import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.elements.Element;
+import Terrarius.Utils.Dimensions;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.util.Scanner;
 
 public class StillImage extends Image{
-    protected ImageDimensions dimensions;
+    protected Dimensions dimensions;
     protected char[][] aspect;
 
     public StillImage() {
-        dimensions = new ImageDimensions(0, 0);
+        dimensions = new Dimensions(0, 0);
     }
 
-    public void load(String fname) {
-        try {
-            Scanner imageScanner = getScannerFromFile(fname);
-            int height = imageScanner.nextInt();
-            int width = imageScanner.nextInt();
+    public void load(String fname) throws FileNotFoundException, URISyntaxException {
+        Scanner imageScanner = getScannerFromFile(fname);
+        int height = imageScanner.nextInt();
+        int width = imageScanner.nextInt();
 
-            loadAspect(imageScanner, width, height);
-
-        } catch (FileNotFoundException | URISyntaxException e) {
-            //TODO handle exception
-        }
+        loadAspect(imageScanner, width, height);
     }
 
     public void draw(Position position, Element.Orientation orientation, GUI gui){
@@ -49,7 +45,7 @@ public class StillImage extends Image{
     }
 
     protected void loadAspect(Scanner imageScanner, int width, int height) {
-        this.dimensions = new ImageDimensions(width, height);
+        this.dimensions = new Dimensions(height, width);
 
         aspect = new char[height][width];
 

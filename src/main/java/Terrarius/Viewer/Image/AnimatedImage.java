@@ -1,8 +1,8 @@
 package Terrarius.Viewer.Image;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Position;
-import Terrarius.Model.elements.Element;
+import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.elements.Element;
 import Terrarius.Viewer.FrameHandler;
 
 import java.io.FileNotFoundException;
@@ -17,24 +17,19 @@ public class AnimatedImage extends Image {
     private final List<ColoredImage> images = new ArrayList<>();
 
     @Override
-    public void load(String fname) {
-        try {
-            Scanner imageScanner = getScannerFromFile(fname);
+    public void load(String fname) throws FileNotFoundException, URISyntaxException {
+        Scanner imageScanner = getScannerFromFile(fname);
 
-            int totalFrames = imageScanner.nextInt();
-            int totalSpeed = imageScanner.nextInt();
+        int totalFrames = imageScanner.nextInt();
+        int totalSpeed = imageScanner.nextInt();
 
-            this.frameHandler.setTotalFPI(totalSpeed);
-            this.frameHandler.setTotalImages(totalFrames);
+        this.frameHandler.setTotalFPI(totalSpeed);
+        this.frameHandler.setTotalImages(totalFrames);
 
-            imageScanner.nextLine(); //clears the /n
+        imageScanner.nextLine(); //clears the /n
 
-            for(int i = 0; i < totalFrames; i++)
-                addNextImage(imageScanner);
-
-        } catch (URISyntaxException | FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        for(int i = 0; i < totalFrames; i++)
+            addNextImage(imageScanner);
     }
 
     @Override
@@ -60,7 +55,7 @@ public class AnimatedImage extends Image {
         this.frameHandler = frameHandler;
     }
 
-    protected void addNextImage(Scanner imageScanner) {
+    protected void addNextImage(Scanner imageScanner) throws FileNotFoundException, URISyntaxException {
         ColoredImage image = new ColoredImage();
         String nFname = imageScanner.nextLine();
         image.load(nFname);

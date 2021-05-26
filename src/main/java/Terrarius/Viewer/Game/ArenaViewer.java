@@ -1,13 +1,13 @@
 package Terrarius.Viewer.Game;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Dimensions;
-import Terrarius.Model.Position;
-import Terrarius.Model.arena.Arena;
-import Terrarius.Model.elements.blocks.Block;
-import Terrarius.Model.elements.enemies.Enemy;
-import Terrarius.Model.items.Item;
-import Terrarius.Model.items.Toolbar;
+import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.arena.Arena;
+import Terrarius.Model.Game.elements.blocks.Block;
+import Terrarius.Model.Game.elements.enemies.Enemy;
+import Terrarius.Model.Game.items.Item;
+import Terrarius.Model.Game.items.Toolbar;
+import Terrarius.Utils.Dimensions;
 import Terrarius.Viewer.Viewer;
 
 import java.io.IOException;
@@ -23,7 +23,7 @@ public class ArenaViewer extends Viewer<Arena> {
     private Map<Class, ElementViewer> blockCache = new HashMap<>();
     private Map<Class, ItemViewer> itemCache = new HashMap<>();
     private ToolbarViewer toolbarViewer = new ToolbarViewer();
-    private StatusbarViewer statusbarViewer = new StatusbarViewer();
+    private StatusBarViewer statusBarViewer = new StatusBarViewer();
     private HeroViewer heroViewer = new HeroViewer();
 
     public void update() {
@@ -79,13 +79,10 @@ public class ArenaViewer extends Viewer<Arena> {
         }
     }
 
-    protected void drawStatusBar(GUI gui, Arena arena){
-        statusbarViewer.draw(arena.getHero().getStatusBar(), arena.getDimensions(), gui);
-    }
-
     protected void drawToolbar(GUI gui, Arena arena) {
         Toolbar toolbar = arena.getHero().getToolBar();
-        Dimensions tbvDimensions = new Dimensions(arena.getDimensions().getHeight()+3, arena.getDimensions().getWidth()); //TODO make this not hardcoded
+        Dimensions tbvDimensions = new Dimensions(arena.getDimensions().getHeight() + 3,
+                arena.getDimensions().getWidth()); // TODO make this not hardcoded
         toolbarViewer.draw(toolbar, tbvDimensions, gui);
         drawToolbarItems(gui, toolbar, arena);
     }
@@ -107,6 +104,11 @@ public class ArenaViewer extends Viewer<Arena> {
             viewer.drawIcon(iconPosition, gui);
         }
     }
+
+    protected void drawStatusBar(GUI gui, Arena arena) {
+        statusBarViewer.draw(arena.getHero(), arena.getDimensions(), gui);
+    }
+
 
     protected void setEnemyCache(Map<Class, ElementViewer> enemyCache) {
         this.enemyCache = enemyCache;

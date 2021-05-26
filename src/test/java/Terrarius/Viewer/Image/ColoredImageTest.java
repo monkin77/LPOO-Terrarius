@@ -1,8 +1,8 @@
 package Terrarius.Viewer.Image;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Position;
-import Terrarius.Model.elements.Element;
+import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.elements.Element;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -74,8 +74,8 @@ public class ColoredImageTest {
     }
 
     @Test
-    public void draw() {
-        coloredImage.load("Images/Blocks/ColoredWood.txt");
+    public void draw() throws FileNotFoundException, URISyntaxException {
+        coloredImage.load("Images/Blocks/Wood.txt");
         coloredImage.draw(new Position(10, 10), Element.Orientation.RIGHT, gui);
 
         Mockito.verify(gui, Mockito.times(16)).
