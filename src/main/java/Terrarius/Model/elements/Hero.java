@@ -8,21 +8,19 @@ import Terrarius.Model.items.StatusBar;
 import Terrarius.Model.items.Toolbar;
 
 public class Hero extends Element {
-    private Level level;
-    private StatusBar statusBar;
+    private final StatusBar statusBar;
     private Toolbar toolBar;
     private Position targetPosition;
     private static final Double RANGE = 24.0;
 
     public Hero(Position position) {
         super(position, new Dimensions(8, 4));
-        this.level = new Level(1, 0);
-        this.statusBar = new StatusBar(100, 100, 1);
+        this.statusBar = new StatusBar(100, 100, 1, new Level(1, 0));
         this.toolBar = new Toolbar(this);
     }
 
     public Level getLevel() {
-        return level;
+        return this.statusBar.getLevel();
     }
 
     public int getHealth() {
@@ -30,7 +28,7 @@ public class Hero extends Element {
     }
 
     public void setLevel(Level level) {
-        this.level = level;
+        this.statusBar.setLevel(level);
     }
 
     public void setHealth(int health) {

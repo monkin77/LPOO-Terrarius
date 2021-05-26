@@ -7,8 +7,8 @@ public class SteadyStatusEffect extends StatusEffect{
     private Boolean applied;
     private int initalValue;
 
-    public SteadyStatusEffect(int power, EffectType effectType, int duration) {
-        super(power, effectType, duration);
+    public SteadyStatusEffect(String name, EffectType effectType, int power,  int duration) {
+        super(name, effectType, power, duration);
         this.applied = false;
     }
 
@@ -27,9 +27,11 @@ public class SteadyStatusEffect extends StatusEffect{
         else if(!applied){
             switch (super.effectType){
                 case POWER:
+                    this.initalValue = statusBar.getPower();
                     statusBar.modifyPower(super.power);
                     break;
                 case HEALTH:
+                    this.initalValue = statusBar.getHealth();
                     statusBar.modifyHealth(super.power);
                     break;
             }

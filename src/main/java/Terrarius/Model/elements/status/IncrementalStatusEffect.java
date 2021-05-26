@@ -4,8 +4,8 @@ import Terrarius.Model.items.StatusBar;
 
 public class IncrementalStatusEffect extends StatusEffect{
 
-    public IncrementalStatusEffect(int power, EffectType effectType, int duration) {
-        super(power, effectType, duration);
+    public IncrementalStatusEffect(String name, EffectType effectType, int power,  int duration) {
+        super(name, effectType, power, duration);
     }
 
     @Override

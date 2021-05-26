@@ -1,18 +1,38 @@
 package Terrarius.Model.items;
 
+import Terrarius.Model.Level;
+import Terrarius.Model.elements.status.StatusEffect;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class StatusBar {
 
     private int health;
     private int maxHealth;
 
-    private int xpPoints;
+    private Level level;
 
     private int power;
 
-    public StatusBar(int health, int maxHealth, int power){
+    private final List<StatusEffect> statusEffects = new ArrayList<>();
+
+    public StatusBar(int health, int maxHealth, int power, Level level){
         this.health = health;
         this.maxHealth = maxHealth;
         this.power = power;
+        this.level = level;
+    }
+
+    public void addStatusEffect(StatusEffect statusEffect){
+        statusEffects.add(statusEffect);
+    }
+
+    public void applyStatusEffects(){ //TODO should this be done in a statusController or smt like that
+        for (StatusEffect statusEffect : statusEffects){
+            statusEffect.apply(this);
+            if (statusEffect.getDuration() <= 0) statusEffects.remove(statusEffect);
+        }
     }
 
     public void setHealth(int health){
@@ -56,5 +76,13 @@ public class StatusBar {
         this.power += increment;
         if (this.power < 0 ) this.power= 0;
         return this.power;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
     }
 }
