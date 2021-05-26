@@ -67,6 +67,10 @@ public class HeroController {
         climbHero(arena.getHero().getPosition().getDown());
     }
 
+    public void updateStatusEffects(){
+        this.arena.getHero().updateStatusEffects();
+    }
+
     public void useItem() {
         Item activeItem = this.arena.getHero().getToolBar().getActiveItem();
         if (activeItem instanceof Tool)         this.useTool((Tool) activeItem);

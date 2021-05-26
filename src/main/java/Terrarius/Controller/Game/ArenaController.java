@@ -10,6 +10,7 @@ public class ArenaController {
     private final int updatesPerEnemyAction;
     private final int updatesPerGravityAction;
     private final int updatesPerInputAction;
+    private final int updatesPerStatusEffect;
     private final int maxCounter;
 
     private final HeroController heroController;
@@ -27,8 +28,9 @@ public class ArenaController {
         this.updatesPerEnemyAction = Math.max(128 / timePerUpdate, 1);
         this.updatesPerGravityAction = Math.max(16 / timePerUpdate, 1);
         this.updatesPerInputAction = Math.max(16 / timePerUpdate, 1);
+        this.updatesPerStatusEffect = Math.max(1000 / timePerUpdate, 1);
 
-        this.maxCounter = updatesPerEnemyAction * updatesPerGravityAction * updatesPerInputAction;
+        this.maxCounter = updatesPerEnemyAction * updatesPerGravityAction * updatesPerInputAction * updatesPerStatusEffect;
         this.updateCounter = 0;
     }
 
@@ -56,6 +58,10 @@ public class ArenaController {
                 this.heroController.doAction(action);
             }
             actionList.clear();
+        }
+
+        if (updateCounter % updatesPerStatusEffect == 0){
+            heroController.updateStatusEffects();
         }
 
         updateCounter %= maxCounter;

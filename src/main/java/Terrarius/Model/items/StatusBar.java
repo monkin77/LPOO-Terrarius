@@ -33,9 +33,16 @@ public class StatusBar {
     }
 
     public void applyStatusEffects(){ //TODO should this be done in a statusController or smt like that
+
+        List<StatusEffect> removeStatusEffects = new ArrayList<>();
+
         for (StatusEffect statusEffect : statusEffects){
             statusEffect.apply(this);
-            if (statusEffect.getDuration() <= 0) statusEffects.remove(statusEffect);
+            if (statusEffect.getDuration() <= 0) removeStatusEffects.add(statusEffect);
+        }
+
+        for (StatusEffect statusEffect : removeStatusEffects){
+            statusEffects.remove(statusEffect);
         }
     }
 

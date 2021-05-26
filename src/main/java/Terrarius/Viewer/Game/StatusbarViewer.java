@@ -33,7 +33,7 @@ public class StatusbarViewer {
         for (StatusEffect statusEffect : statusBar.getStatusEffects()){
 
             if (statsString.length() > dimensions.getWidth() - 4){
-                statsString = statsString.substring(0, dimensions.getWidth() - 4);
+                statsString = statsString.substring(0, dimensions.getWidth() - 7) + "...";
                 break;
             }
             else if(statsString.length() == dimensions.getWidth() - 4){
