@@ -9,12 +9,19 @@ import java.io.IOException;
 public class SkillTreeViewer extends Viewer<SkillTree> {
 
     @Override
-    public void update() {
+    public void draw(GUI gui, SkillTree model) throws IOException {
+        // For now the screen is flickering too fast
 
+        gui.clear();
+
+        gui.drawString(20, 20, "Skill Tree", "#FFFFFF", "#000000");
+        gui.drawCharacter(1, 1, 'F');
+
+        gui.refresh();
     }
 
     @Override
-    public void draw(GUI gui, SkillTree model) throws IOException {
+    public void update() {
 
     }
 }

@@ -3,6 +3,10 @@ package Terrarius.Controller.Game;
 import Terrarius.Controller.Controller;
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.arena.LoaderArenaBuilder;
+import Terrarius.Model.SkillTree.SkillTree;
+import Terrarius.States.GameState;
+import Terrarius.States.SkillTreeState;
 import Terrarius.Terrarius;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Menu.Menu;
@@ -29,6 +33,8 @@ public class GameController extends Controller<Arena> {
         List<GUI.ACTION> actions = gui.getNextActions();
         if (actions.contains(GUI.ACTION.QUIT))
             terrarius.setState(new MenuState(new Menu()));
+        else if (actions.contains(GUI.ACTION.SKILL_TREE))
+                terrarius.setState(new SkillTreeState(new SkillTree()));
         else
             arenaController.addActions(actions);
         arenaController.setHeroTargetPosition(new Position(gui.getMouseX() / gui.getFontSize(), gui.getMouseY()/ gui.getFontSize()));

@@ -18,7 +18,7 @@ public class SkillTreeState extends State<SkillTree> {
 
     @Override
     protected Controller<SkillTree> getController() {
-        return new SkillTreeController();
+        return new SkillTreeController(getModel());
     }
 
 
