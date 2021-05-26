@@ -5,7 +5,7 @@ import Terrarius.Utils.Dimensions;
 
 public class BattlePotion extends Buff {
     public BattlePotion(Hero hero) {
-        super(hero, new Dimensions(2, 2));
+        super(hero, new Dimensions(4, 3));
     }
 
     @Override
@@ -13,7 +13,7 @@ public class BattlePotion extends Buff {
         int heroLevel = this.getHero().getStats().getCurrentLevel();
         int duration = 10 + heroLevel / 5;
         int attack = 2 + heroLevel / 5;
-        this.setStats(new BuffStats(duration, 0, attack, 2, 0));
+        this.setStats(new BuffStats(duration, 0, attack, 0, 0));
     }
 
     @Override

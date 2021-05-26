@@ -1,0 +1,22 @@
+5 5
+..M..
+.| |.
+.| |.
+.|_|.
+.....
+2
+P #000000
+R #0306b0
+PPPPP
+PPRPP
+PPRPP
+PPPPP
+PPPPP
+2
+R #0306b0
+B #AA5518
+BBBBB
+BRRRB
+BRRRB
+BRRRB
+BBBBB

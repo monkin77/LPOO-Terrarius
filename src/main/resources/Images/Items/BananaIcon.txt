@@ -1,0 +1,22 @@
+5 5
+..T..
+.. ..
+.. ..
+.. ..
+.....
+2
+Y #ffff00
+P #000000
+YYPYY
+YYYYY
+YYYYY
+YYYYY
+YYYYY
+2
+Y #ffff00
+B #AA5518
+BBBBB
+BBYBB
+BBYBB
+BBYBB
+BBBBB

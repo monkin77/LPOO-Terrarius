@@ -5,7 +5,7 @@ import Terrarius.Utils.Dimensions;
 
 public class ElasticPotion extends Buff {
     public ElasticPotion(Hero hero) {
-        super(hero, new Dimensions(2, 2));
+        super(hero, new Dimensions(4, 3));
     }
 
     @Override

@@ -5,7 +5,7 @@ import Terrarius.Utils.Dimensions;
 
 public class SwiftnessPotion extends Buff {
     public SwiftnessPotion(Hero hero) {
-        super(hero, new Dimensions(2, 2));
+        super(hero, new Dimensions(4, 3));
     }
 
     @Override

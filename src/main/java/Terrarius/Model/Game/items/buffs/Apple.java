@@ -5,7 +5,7 @@ import Terrarius.Model.Game.elements.hero.Hero;
 
 public class Apple extends Buff {
     public Apple(Hero hero) {
-        super(hero, new Dimensions(2, 2));
+        super(hero, new Dimensions(3, 3));
     }
 
     @Override

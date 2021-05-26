@@ -5,7 +5,7 @@ import Terrarius.Model.Game.elements.hero.Hero;
 
 public class Pickaxe extends Tool {
     public Pickaxe(Hero hero) {
-        super(hero, new Dimensions(4, 2));
+        super(hero, new Dimensions(5, 5));
     }
 
     @Override
