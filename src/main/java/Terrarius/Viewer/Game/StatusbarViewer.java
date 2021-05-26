@@ -15,8 +15,6 @@ public class StatusbarViewer {
     private static final String STATUS_BAR_BACKGROUND_COLOR = "#AA5518";
     private static final String STATUS_BAR_FOREGROUND_COLOR = "#FFFFFF";
 
-    //TODO maybe add images l8r
-
     public void draw(StatusBar statusBar, Dimensions dimensions, GUI gui){
         Position statusBarPos = new Position(2, dimensions.getHeight() + 1);
 
@@ -27,7 +25,8 @@ public class StatusbarViewer {
         }
 
         String statsString = "hp: " + statusBar.getHealth() + "/" + statusBar.getMaxHealth() +
-                " lvl: " + statusBar.getLevel().getNumLevel() + " xp: " + statusBar.getLevel().getCurrentXP() +
+                " lvl: " + statusBar.getLevel().getNumLevel() +
+                " xp: " + statusBar.getLevel().getCurrentXP() + "/" + statusBar.getLevel().getMaxXP() +
                 " PWR: " + statusBar.getPower();
 
         for (StatusEffect statusEffect : statusBar.getStatusEffects()){
