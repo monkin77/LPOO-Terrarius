@@ -28,7 +28,7 @@ public class GameController extends Controller<Arena> {
     public void giveActions(Terrarius terrarius, GUI gui) throws IOException {
         List<GUI.ACTION> actions = gui.getNextActions();
         if (actions.contains(GUI.ACTION.QUIT))
-            terrarius.setState(new MenuState(new Menu()));  //TODO: PUT MENU STATE HERE WHEN DONE
+            terrarius.setState(new MenuState(new Menu()));
         else
             arenaController.addActions(actions);
         arenaController.setHeroTargetPosition(new Position(gui.getMouseX() / gui.getFontSize(), gui.getMouseY()/ gui.getFontSize()));
