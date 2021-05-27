@@ -4,17 +4,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class MapChooser {
 
     public Map<Integer, Integer> levelMap = new HashMap<>();
 
     public MapChooser(){
-        URL resource = MapChooser.class.getResource("/Maps/MapChoices.txt");
+        URL resource = MapChooser.class.getResource("/Maps/MapPossibleChoices.txt");
         try {
             File file = new File(resource.toURI());
             Scanner fileScanner = new Scanner(file);
@@ -37,11 +34,14 @@ public class MapChooser {
     }
 
     public MapZone getMap(int heroLevel){ //Mayb
-        int level = 1;
+
+        List<Integer> possibleChoices = new ArrayList<>();
 
         for (Integer level1 : levelMap.keySet()){
-            if (heroLevel >= level1) level = level1;
+            if (heroLevel >= level1) possibleChoices.add(level1);
         }
+
+        int level = possibleChoices.get(new Random().nextInt(possibleChoices.size()));
 
         int subLevel = 1 + new Random().nextInt(levelMap.get(level));
 
