@@ -15,12 +15,10 @@ import java.util.List;
 
 public class MenuController extends Controller<Menu> {
     private List<GUI.ACTION> actions;
-    private GUI.ACTION lastAction;
 
     public MenuController(Menu menu) {
         super(menu);
         actions = new ArrayList<>();
-        lastAction = GUI.ACTION.NONE;
     }
 
     @Override
@@ -30,16 +28,12 @@ public class MenuController extends Controller<Menu> {
 
     @Override
     public void update(Terrarius terrarius) throws FileNotFoundException, URISyntaxException {
-        if (!actions.contains(lastAction)) lastAction = GUI.ACTION.NONE;
-
         for (GUI.ACTION action : this.actions) {
-            if (lastAction == action) continue;  // Menu shouldn't be spammable
-
             switch (action) {
-                case UP:
+                case UP_MENU:
                     getModel().previousOption();
                     break;
-                case DOWN:
+                case DOWN_MENU:
                     getModel().nextOption();
                     break;
                 case SELECT:
@@ -48,7 +42,6 @@ public class MenuController extends Controller<Menu> {
                     if (getModel().isQuitSelected())
                         terrarius.setState(null);
             }
-            lastAction = action;
         }
         actions.clear();
     }
