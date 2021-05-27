@@ -6,7 +6,7 @@ import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.Element;
 
 public abstract class Enemy extends Element {
-    private EnemyStats stats;
+    private final EnemyStats stats;
 
     public Enemy(Position position, Dimensions dimensions, Level level) {
         super(position, dimensions);

@@ -7,11 +7,18 @@ import Terrarius.Model.Game.elements.Element;
 import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.elements.enemies.Enemy;
 
+import java.util.HashMap;
+import java.util.Map;
+
+// TODO ENEMY GRAVITY. USE HASHMAPE BETWEEN ENEMY AND PAIR<INT, INT>?
 public class EnemyController {
     private final Arena arena;
+    private Map<Enemy, Integer> fallingVelocities;
+    private Map<Enemy, Integer> gravityFrameCounters;
 
     public EnemyController(Arena arena) {
         this.arena = arena;
+        this.updateEnemies();
     }
 
     public void moveEnemies() {
@@ -33,9 +40,22 @@ public class EnemyController {
         }
     }
 
-    public void fallEnemies(){
+    public void fallEnemies() {
         for (Enemy enemy : arena.getEnemies()) {
-            moveEnemy(enemy, enemy.getPosition().getDown());
+            Position lastPos = enemy.getPosition();
+            for (int i = 0; i < fallingVelocities.get(enemy); ++i)
+                moveEnemy(enemy, enemy.getPosition().getDown());
+
+            if (lastPos.equals(enemy.getPosition())) {
+                fallingVelocities.replace(enemy, 1);
+                gravityFrameCounters.replace(enemy, 0);
+                continue;
+            }
+
+            // TODO PUT GRAVITY IN GAME CONSTANTS ASWELL
+            gravityFrameCounters.replace(enemy, gravityFrameCounters.get(enemy) + 1);
+            if (gravityFrameCounters.get(enemy) % 10 == 0)
+                fallingVelocities.replace(enemy, fallingVelocities.get(enemy) + 1);
         }
     }
 
@@ -56,6 +76,16 @@ public class EnemyController {
             if (Position.checkElementsCollision(enemy.getPosition(), enemy.getDimensions(),
                     this.arena.getHero().getPosition(), this.arena.getHero().getDimensions()))
                 arena.getHero().setHealth(arena.getHero().getStats().getHp() - enemy.getStats().getPower());
+        }
+    }
+
+    public void updateEnemies() {
+        fallingVelocities = new HashMap<>();
+        gravityFrameCounters = new HashMap<>();
+
+        for (Enemy enemy : arena.getEnemies()) {
+            fallingVelocities.put(enemy, 1);
+            gravityFrameCounters.put(enemy, 0);
         }
     }
 
