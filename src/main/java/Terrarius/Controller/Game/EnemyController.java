@@ -1,6 +1,6 @@
 package Terrarius.Controller.Game;
 
-import Terrarius.Viewer.Game.GameViewerConstants;
+import static Terrarius.Viewer.Game.GameViewerConstants.*;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Game.elements.Element;
@@ -40,7 +40,12 @@ public class EnemyController {
     }
 
     private void moveEnemy(Enemy enemy, Position position) {
-        if(position.getX() < 0 || position.getX() + enemy.getDimensions().getWidth() >= GameViewerConstants.SCREEN_WIDTH) return;
+        if (position.getX() < 0
+                || position.getX() + enemy.getDimensions().getWidth() >= SCREEN_WIDTH
+                || position.getY() < 0
+                || position.getY() + enemy.getDimensions().getHeight() > SCREEN_HEIGHT - TOOLBAR_HEIGHT - 3)
+            return; // TODO Refactor so we have constants somewhere common
+
         if ( (!arena.collidesWithBlocks(position, enemy.getDimensions())) && (!hasEnemy(enemy, position)) ) {
             enemy.setPosition(position);
         }
