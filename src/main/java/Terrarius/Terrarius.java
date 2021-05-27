@@ -26,13 +26,6 @@ public class Terrarius {
 
     public Terrarius(int width, int height) throws FontFormatException, IOException, URISyntaxException {
         this.gui = new LanternaGui(width, height);
-/*
-        Arena arena = new LoaderArenaBuilder(1).createArena();
-        arena.getHero().addItem(1, new Axe(arena.getHero()));
-        arena.getHero().addItem(3, new Axe(arena.getHero()));
-        this.state = new GameState(arena);
-
- */
         this.state = new MenuState(new Menu());
     }
 
@@ -49,10 +42,9 @@ public class Terrarius {
             long elapsed = current - previous;
             previous = current;
             lag += elapsed;
-
-            state.readInput(this, gui);
-
+            
             while (lag >= MS_PER_UPDATE) {
+                state.readInput(this, gui);
                 state.update(this);
                 lag -= MS_PER_UPDATE;
 

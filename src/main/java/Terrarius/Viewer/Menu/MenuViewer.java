@@ -18,19 +18,23 @@ public class MenuViewer extends Viewer<Menu> {
         int yStart = gui.getWidth() / 8;
         int yDist = gui.getWidth() / 13;
 
-        // TODO: GET SCREEN DIMENSIONS AND DRAW BASED ON THEM
         gui.clear();
-        gui.drawString(xPos, yStart, "Terrarius", "#FFFFFF", "#000000");
+
+        for (int x = 0; x < gui.getWidth(); ++x)
+            for (int y = 0; y < gui.getHeight(); ++y)
+                gui.drawCharacter(x, y, ' ', "#0000FF", "#0a489c");
+
+        gui.drawString(xPos, yStart, "Terrarius", "#00ff00", "#0a489c");
 
         for (int i = 0; i < menu.getNumOptions(); ++i)
             gui.drawString(xPos, yStart + (i + 1) * yDist,
                             menu.getOption(i),
-                    menu.isSelected(i) ? "#FFD700" : "#FFFFFF", "#000000");
+                    menu.isSelected(i) ? "#ff9b02" : "#FFFFFF", "#0a489c");
         gui.refresh();
     }
 
     @Override
     public void update() {
-        // Future animations
+        // Menu is static
     }
 }

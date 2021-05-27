@@ -1,6 +1,8 @@
 package Terrarius.Model.Game.arena;
 
 import Terrarius.Model.Game.items.tools.Tool;
+import Terrarius.Model.Game.map.MapChooser;
+import Terrarius.Model.Game.map.MapZone;
 import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.hero.Hero;
@@ -16,11 +18,49 @@ public class Arena {
 
     private Hero hero;
 
+    private List<MapZone> mapZoneList = new ArrayList<>();
+    private Integer currentMapIndex;
+
     private List<Enemy> enemies;
     private List<Block> blocks;
 
+    private MapChooser mapChooser;
+
     public Arena(int width, int height) {
         this.dimensions = new Dimensions(height, width);
+        this.mapChooser = new MapChooser();
+        this.currentMapIndex = 0;
+    }
+
+    public void update(){
+        if (hero.getPosition().getX() + hero.getDimensions().getWidth() > getWidth()){
+            currentMapIndex++;
+
+            if (currentMapIndex >= mapZoneList.size()){
+                mapZoneList.add(mapChooser.getMap(hero.getStats().getLevel().getNumLevel()));
+            }
+
+            this.enemies = mapZoneList.get(currentMapIndex).getEnemies();
+            this.blocks = mapZoneList.get(currentMapIndex).getBlocks();
+            this.hero.setPosition(mapZoneList.get(currentMapIndex).getLeftSpawn());
+        }
+        else if(hero.getPosition().getX() < 0){
+
+            if(currentMapIndex == 0){
+                mapZoneList.add(0, mapChooser.getMap(hero.getStats().getLevel().getNumLevel()));
+            }
+            else{
+                currentMapIndex--;
+            }
+
+            this.enemies = mapZoneList.get(currentMapIndex).getEnemies();
+            this.blocks = mapZoneList.get(currentMapIndex).getBlocks();
+            this.hero.setPosition(mapZoneList.get(currentMapIndex).getRightSpawn());
+        }
+    }
+
+    public void addMap(int index, MapZone mapZone){
+        this.mapZoneList.add(index, mapZone);
     }
 
     public Hero getHero() {
@@ -166,4 +206,5 @@ public class Arena {
         }
         this.enemies.removeIf(n -> (n.getStats().getHp() <= 0));
     }
+
 }
