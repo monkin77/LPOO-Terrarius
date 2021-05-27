@@ -21,6 +21,9 @@ public class StatusBarViewer {
         for (int i = 0; i < dimensions.getWidth(); i++){
             for (int j = dimensions.getHeight(); j < dimensions.getHeight()+3; j++){
                 gui.drawCharacter(i, j, ' ', STATUS_BAR_FOREGROUND_COLOR, STATUS_BAR_BACKGROUND_COLOR);
+
+                if (i == 0 || i == dimensions.getWidth() - 1)
+                    gui.drawCharacter(i, j, '|', STATUS_BAR_FOREGROUND_COLOR, STATUS_BAR_BACKGROUND_COLOR);
             }
         }
 

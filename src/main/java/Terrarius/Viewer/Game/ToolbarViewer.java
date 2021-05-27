@@ -12,6 +12,9 @@ import Terrarius.Viewer.Image.ColoredImage;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 
+import static Terrarius.Viewer.Game.GameViewerConstants.STATUS_BAR_BACKGROUND_COLOR;
+import static Terrarius.Viewer.Game.GameViewerConstants.STATUS_BAR_FOREGROUND_COLOR;
+
 public class ToolbarViewer {
     private Image image;
     private final BlockPouchViewer blockPouchViewer = new BlockPouchViewer(); //TODO probably not a good idea to stay here, but this branch is focused more on the functionality than on the "beaty"
@@ -47,5 +50,11 @@ public class ToolbarViewer {
         this.image.draw(toolbarPos, Element.Orientation.RIGHT, gui);
 
         blockPouchViewer.draw(toolbar.getBlockPouch(), gui);
+
+        String activeItemName = toolbar.getActiveItem().getComponentName();
+        activeItemName = "Selected: " + activeItemName;
+
+        gui.drawString(toolbarPos.getX() + 8, toolbarPos.getY() + 1, activeItemName,
+                STATUS_BAR_FOREGROUND_COLOR, STATUS_BAR_BACKGROUND_COLOR);
     }
 }
