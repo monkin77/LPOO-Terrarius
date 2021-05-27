@@ -15,10 +15,14 @@ import java.util.List;
 public class HeroController {
     private final Arena arena;
     private final List<BuffController> buffList;
+    private int fallingVelocity;
+    private int gravityFrameCounter;
 
     public HeroController(Arena arena) {
         this.arena = arena;
-        buffList = new ArrayList<>();
+        this.fallingVelocity = 1;
+        this.gravityFrameCounter = 0;
+        this.buffList = new ArrayList<>();
     }
 
     private void moveHero(Position position) {
@@ -47,8 +51,21 @@ public class HeroController {
     }
 
     public void fallHero() {
-        if(!arena.hasAdjacentBlock(arena.getHero().getPosition(), arena.getHero().getDimensions()))
-            moveHero(arena.getHero().getPosition().getDown());
+        if(!arena.hasAdjacentBlock(arena.getHero().getPosition(), arena.getHero().getDimensions())) {
+            Position lasPos = arena.getHero().getPosition();
+            for (int i = 0; i < fallingVelocity; ++i)
+                moveHero(arena.getHero().getPosition().getDown());
+
+            if (lasPos.equals(arena.getHero().getPosition())) {
+                fallingVelocity = 1;
+                gravityFrameCounter = 0;
+                return;
+            }
+
+            gravityFrameCounter++;
+            if (gravityFrameCounter % 10 == 0)
+                fallingVelocity++;
+        }
     }
 
     public void moveHeroLeft() {
