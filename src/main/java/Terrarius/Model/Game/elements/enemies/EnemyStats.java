@@ -34,4 +34,17 @@ public class EnemyStats {
     public void setHp(int hp) {
         this.hp = hp;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || this.getClass() != obj.getClass())
+            return false;
+
+        EnemyStats stats = (EnemyStats) obj;
+        return this.level.equals(stats.getLevel())
+                && this.hp == stats.getHp()
+                && this.viewDistance == stats.getViewDistance()
+                && this.power == stats.getPower();
+    }
 }

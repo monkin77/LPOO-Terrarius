@@ -44,7 +44,6 @@ public class Terrarius {
             lag += elapsed;
 
             state.readInput(this, gui);
-            System.out.println(lag);
 
             while (lag >= MS_PER_UPDATE) {
                 state.update(this);
