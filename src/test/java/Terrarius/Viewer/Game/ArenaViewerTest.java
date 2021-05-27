@@ -162,11 +162,7 @@ public class ArenaViewerTest {
         Mockito.when(toolbar.getItem(2)).thenReturn(pickaxe);
         Mockito.when(toolbar.getActiveItemIdx()).thenReturn(1);
         Mockito.when(toolbar.getDimensions()).thenReturn(new Dimensions(5, 5));
-<<<<<<< HEAD:src/test/java/Viewer/ArenaViewerTest.java
-        //Mockito.when(toolbar.getToolbarCellWidth()).thenReturn(2); TODO isto partiu n sei pq
-=======
         Mockito.when(toolbar.getToolbarSeparatorWidth()).thenReturn(1);
->>>>>>> master:src/test/java/Terrarius/Viewer/Game/ArenaViewerTest.java
 
         Assertions.assertEquals(1, itemCache.size());
         arenaViewer.drawToolbarItems(gui, toolbar, arena);

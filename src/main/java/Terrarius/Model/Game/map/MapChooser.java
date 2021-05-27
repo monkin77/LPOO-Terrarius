@@ -33,7 +33,7 @@ public class MapChooser {
         }
     }
 
-    public MapZone getMap(int heroLevel){ //Mayb
+    public MapZone getMap(int heroLevel){
 
         List<Integer> possibleChoices = new ArrayList<>();
 
