@@ -17,6 +17,6 @@ public class BlockPlacer extends Item {
     public String getComponentName() {
         if (getHero().getToolBar().getBlockPouch().getCurrentBlockQuantity() > 0)
             return getHero().getToolBar().getBlockPouch().getCurrentBlockName();
-        return "NoBlocks";
+        return "BlockPlacer";
     }
 }
