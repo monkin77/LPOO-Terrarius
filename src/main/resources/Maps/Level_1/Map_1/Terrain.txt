@@ -1,0 +1,20 @@
+3
+d DirtBlock
+s StoneBlock
+w WoodBlock
+................................
+................................
+................................                               
+................................                                
+..............................w.
+..............................w.
+..............................w.
+..............................w.
+........dddd..................w.
+...dddddssssdddd..............w.
+dddsssssssssssssddddd.........w.
+sssssssssssssssssssssdddddd..ddd
+sssssssssssssssssssssssssss..sss
+sssssssssssssss..............sss
+sssssssssssssss..............sss
+ssssssssssssssssssssssssssssssss

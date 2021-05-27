@@ -11,15 +11,19 @@ challenging enemies will appear and the tools at the disposal of the hero will e
 image, represented by characters and saved in text files. Elements can be represented by static images 
 or with animations.
 
+<<<<<<< HEAD
+**Arena** - Has the mapZone, enemies and hero of our game.
+=======
 **Arena** - Has the map, enemies and hero of the game.
+>>>>>>> master
 
 **Arena Loading** - The composition of the arena is done by loading different files. These contain representation of 
-the terrain of the map, the enemies and the hero, allowing the modification of the arena to be easily done.
+the terrain of the mapZone, the enemies and the hero, allowing the modification of the arena to be easily done.
 
-**Hero movement** - The hero can move around the map, due to collision with blocks, according to the inputs from the 
+**Hero movement** - The hero can move around the mapZone, due to collision with blocks, according to the inputs from the 
 player, up, down, left and right arrows. These movements consist of lateral movements and vertical block climbing.
 
-**Enemy movement** - Enemies move towards the hero along the map but can't move up, just fall down, therefore they can 
+**Enemy movement** - Enemies move towards the hero along the mapZone but can't move up, just fall down, therefore they can 
 sometimes be trapped.
 
 **Tools** - Items that the hero can hold in his hand.
@@ -28,9 +32,9 @@ sometimes be trapped.
 
 ## Planned Features
 
-**Breaking blocks** - The hero, when equipped with the proper tool, will be able to break blocks from the map.
+**Breaking blocks** - The hero, when equipped with the proper tool, will be able to break blocks from the mapZone.
 
-**Placing blocks** - The hero will be able to place blocks, this way being able to modify the map.
+**Placing blocks** - The hero will be able to place blocks, this way being able to modify the mapZone.
 
 **Multiple maps** - The arena will be able to contain several maps, but will only display one at a time.
 These maps can have been already created or can be newly generated according to the hero's level. 
