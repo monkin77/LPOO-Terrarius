@@ -14,7 +14,7 @@ import java.net.URISyntaxException;
 
 public class ToolbarViewer {
     private Image image;
-    private final BlockPouchViewer blockPouchViewer = new BlockPouchViewer(); //TODO probably not a good idea to stay here, but this branch is focused more on the functionality than on the "beaty"
+    private final BlockPouchViewer blockPouchViewer = new BlockPouchViewer();
 
     public ToolbarViewer() {
         this.image = new ColoredImage();
