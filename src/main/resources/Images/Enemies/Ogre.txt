@@ -1,0 +1,5 @@
+4 30
+Images/Enemies/Ogre1.txt
+Images/Enemies/Ogre2.txt
+Images/Enemies/Ogre3.txt
+Images/Enemies/Ogre4.txt
