@@ -8,6 +8,7 @@ import Terrarius.Model.Game.elements.blocks.DirtBlock;
 import Terrarius.Model.Game.elements.blocks.StoneBlock;
 import Terrarius.Model.Game.elements.blocks.WoodBlock;
 import Terrarius.Model.Game.elements.enemies.Enemy;
+import Terrarius.Model.Game.elements.enemies.Goblin;
 import Terrarius.Model.Game.elements.enemies.Zombie;
 import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.map.*;
@@ -205,6 +206,8 @@ public class MapBuilder {
 
             if (class_s.equals("Zombie"))
                 enemies.add(new Zombie(new Position(x, y), new Level(level, xp_base)));
+            else if (class_s.equals("Goblin"))
+                enemies.add(new Goblin(new Position(x, y), new Level(level, xp_base)));
 
             fileScanner.nextLine();
         }

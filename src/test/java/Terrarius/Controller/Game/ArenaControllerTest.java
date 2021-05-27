@@ -1,6 +1,7 @@
 package Terrarius.Controller.Game;
 
 import Terrarius.GUI.GUI;
+import Terrarius.Model.Game.arena.Arena;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,12 +14,14 @@ public class ArenaControllerTest {
     private ArenaController arenaController;
     private HeroController heroController;
     private EnemyController enemyController;
+    private Arena arena;
 
     @BeforeEach
     public void setup() {
         enemyController = Mockito.mock(EnemyController.class);
         heroController = Mockito.mock(HeroController.class);
-        arenaController = new ArenaController(heroController, enemyController, 16);
+        arena = Mockito.mock(Arena.class);
+        arenaController = new ArenaController(arena, heroController, enemyController, 16);
     }
 
     @Test
