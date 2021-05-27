@@ -87,14 +87,13 @@ public class LoaderArenaBuilder extends ArenaBuilder {
             int y = fileScanner.nextInt();
 
             Hero hero = new Hero(new Position(x, y));
-            hero.addItem(1, new Axe(hero));  // TODO: CHANGE WHEN WE HAVE ITEM CRAFTING
-            hero.addItem(2, new Apple(hero));
-            hero.addItem(3, new Banana(hero));
-            hero.addItem(4, new BattlePotion(hero));
-            hero.addItem(5, new ElasticPotion(hero));
-            hero.addItem(6, new Pickaxe(hero));
-            hero.addItem(7, new Shovel(hero));
-            hero.addItem(8, new Sword(hero));
+            hero.addItem(2, new Axe(hero));  // TODO: CHANGE WHEN WE HAVE ITEM CRAFTING
+            hero.addItem(3, new Pickaxe(hero));
+            hero.addItem(4, new Shovel(hero));
+            hero.addItem(5, new Sword(hero));
+            hero.addItem(6, new Apple(hero));
+            hero.addItem(7, new BattlePotion(hero));
+            hero.addItem(8, new ElasticPotion(hero));
             hero.addItem(9, new SwiftnessPotion(hero));
 
             return hero;
