@@ -11,6 +11,7 @@ import Terrarius.Terrarius;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Menu.Menu;
 import Terrarius.States.MenuState;
+import Terrarius.Viewer.SkillTree.SkillTreeViewer;
 
 import java.io.IOException;
 import java.util.List;
@@ -33,8 +34,9 @@ public class GameController extends Controller<Arena> {
         List<GUI.ACTION> actions = gui.getNextActions();
         if (actions.contains(GUI.ACTION.QUIT))
             terrarius.setState(new MenuState(new Menu()));
-        else if (actions.contains(GUI.ACTION.SKILL_TREE))
-                terrarius.setState(new SkillTreeState(new SkillTree()));
+        else if (actions.contains(GUI.ACTION.SKILL_TREE)) {
+            terrarius.setState(terrarius.getSkillTreeState());
+        }
         else
             arenaController.addActions(actions);
         arenaController.setHeroTargetPosition(new Position(gui.getMouseX() / gui.getFontSize(), gui.getMouseY()/ gui.getFontSize()));

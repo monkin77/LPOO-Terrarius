@@ -2,9 +2,8 @@ package Terrarius.Controller.SkillTree;
 
 import Terrarius.Controller.Controller;
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Game.arena.LoaderArenaBuilder;
 import Terrarius.Model.SkillTree.SkillTree;
-import Terrarius.States.GameState;
+import Terrarius.States.SkillTreeState;
 import Terrarius.Terrarius;
 
 import java.io.FileNotFoundException;
@@ -23,6 +22,7 @@ public class SkillTreeController extends Controller<SkillTree> {
 
     @Override
     public void giveActions(Terrarius terrarius, GUI gui) throws IOException {
+        // Need to append since getNextActions is called more times than the state.update()
         this.actions.addAll(gui.getNextActions());
     }
 
@@ -31,7 +31,9 @@ public class SkillTreeController extends Controller<SkillTree> {
         for(GUI.ACTION action : this.actions) {
             switch (action) {
                 case SKILL_TREE:
-                    terrarius.setState(new GameState(new LoaderArenaBuilder(1).createArena()));
+                    this.actions.clear();
+                    ((SkillTreeState) terrarius.getSkillTreeState()).resetSkillTreeViewer();
+                    terrarius.setState(terrarius.getGameState());
                     return;
                 case SLOT0:
                     getModel().setSelected(getModel().getSelected()+1);
@@ -40,5 +42,13 @@ public class SkillTreeController extends Controller<SkillTree> {
         }
 
         this.actions.clear();
+    }
+
+    public List<GUI.ACTION> getActions() {
+        return actions;
+    }
+
+    public void setActions(List<GUI.ACTION> actions) {
+        this.actions = actions;
     }
 }

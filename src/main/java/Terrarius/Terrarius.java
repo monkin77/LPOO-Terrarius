@@ -6,8 +6,10 @@ import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Game.arena.LoaderArenaBuilder;
 import Terrarius.Model.Game.items.tools.Axe;
 import Terrarius.Model.Menu.Menu;
+import Terrarius.Model.SkillTree.SkillTree;
 import Terrarius.States.GameState;
 import Terrarius.States.MenuState;
+import Terrarius.States.SkillTreeState;
 import Terrarius.States.State;
 
 import java.awt.*;
@@ -18,7 +20,12 @@ public class Terrarius {
     private static final int MS_PER_UPDATE = 16;
 
     private final GUI gui;
+
+    // Possibly save the states inside another class ?
     private State state;
+
+    private State gameState;
+    private State skillTreeState;
 
     public static void main(String[] args) throws FontFormatException, IOException, URISyntaxException {
         new Terrarius(128, 74).start();
@@ -27,6 +34,8 @@ public class Terrarius {
     public Terrarius(int width, int height) throws FontFormatException, IOException, URISyntaxException {
         this.gui = new LanternaGui(width, height);
         this.state = new MenuState(new Menu());
+        this.gameState = new GameState(new LoaderArenaBuilder(1).createArena());
+        this.skillTreeState = new SkillTreeState(new SkillTree());
     }
 
     /*
@@ -43,7 +52,7 @@ public class Terrarius {
             // System.out.println(elapsed);
             previous = current;
             lag += elapsed;
-            
+
             while (lag >= MS_PER_UPDATE) {
                 state.readInput(this, gui);
                 state.update(this);
@@ -59,11 +68,27 @@ public class Terrarius {
         }
     }
 
+    public static int getMsPerUpdate() {
+        return MS_PER_UPDATE;
+    }
+
+    public State getState() {
+        return state;
+    }
+
     public void setState(State state) {
         this.state = state;
     }
 
-    public static int getMsPerUpdate() {
-        return MS_PER_UPDATE;
+    public State getGameState() {
+        return gameState;
+    }
+
+    public State getSkillTreeState() {
+        return skillTreeState;
+    }
+
+    public GUI getGui() {
+        return gui;
     }
 }

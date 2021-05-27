@@ -12,14 +12,16 @@ public class SkillTreeState extends State<SkillTree> {
     }
 
     @Override
-    protected Viewer<SkillTree> getViewer() {
+    protected Viewer<SkillTree> createViewer() {
         return new SkillTreeViewer();
     }
 
     @Override
-    protected Controller<SkillTree> getController() {
+    protected Controller<SkillTree> createController() {
         return new SkillTreeController(getModel());
     }
 
-
+    public void resetSkillTreeViewer() {
+        this.setViewer(createViewer());
+    }
 }

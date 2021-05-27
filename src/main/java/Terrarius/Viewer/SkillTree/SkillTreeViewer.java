@@ -1,30 +1,56 @@
 package Terrarius.Viewer.SkillTree;
 
 import Terrarius.GUI.GUI;
+import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.elements.Element;
 import Terrarius.Model.SkillTree.SkillTree;
 import Terrarius.Model.SkillTree.Skills.Skill;
+import Terrarius.Viewer.Game.GameViewerConstants;
+import Terrarius.Viewer.Image.ColoredImage;
+import Terrarius.Viewer.Image.Image;
 import Terrarius.Viewer.Viewer;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class SkillTreeViewer extends Viewer<SkillTree> {
+    private ColoredImage image;
     int previousSelected = -1;
+
+    public SkillTreeViewer() {
+        super();
+        image = new ColoredImage();
+        try {
+            image.load("Images/SkillTree/SkillTree.txt");
+        } catch (FileNotFoundException | URISyntaxException e) {
+            e.printStackTrace();
+            image = null;
+        }
+    }
 
     @Override
     public void draw(GUI gui, SkillTree model) throws IOException {
-        // System.out.println("drawing...");
-        if (previousSelected == 0) return;
-        previousSelected = 0;
+        if (previousSelected == model.getSelected()) return;
+        previousSelected = model.getSelected();
         // For now the screen is flickering too fast
 
         gui.clear();
 
-        gui.drawString(20, 20, "Skill Tree", "#FFFFFF", "#000000");
+        String title = "Skill Tree";
+        gui.drawString((GameViewerConstants.SCREEN_WIDTH - title.length()) /2, 5, title, "#FFFFFF", "#000000");
 
+        Position treePos = new Position(50, 10);
+        this.image.draw(treePos, Element.Orientation.RIGHT, gui);
 
+        int yOffset = 5;
         for(int i = 0; i < model.getSkills().size(); i++) {
             Skill skill = model.getSkills().get(i);
-            gui.drawString(20, 20 + (i + 1) * 10, skill.getName(), "#FFFFFF", "#000000");
+            String skillName = skill.getName() + ":";
+            String skillLevel = skill.getCurrLevel() + " / " + skill.getMaxLevel();
+
+            gui.drawString(10, 20 + (i + 1) * yOffset, skillName, "#FFFFFF", "#000000");
+            gui.drawString(10 + skillName.length() + 1, 20 + (i + 1) * yOffset, skillLevel, "#FFFFFF", "#000000");
         }
 
         gui.refresh();
@@ -33,5 +59,13 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
     @Override
     public void update() {
 
+    }
+
+    public int getPreviousSelected() {
+        return previousSelected;
+    }
+
+    public void setPreviousSelected(int previousSelected) {
+        this.previousSelected = previousSelected;
     }
 }

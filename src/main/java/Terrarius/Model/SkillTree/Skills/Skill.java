@@ -2,11 +2,12 @@ package Terrarius.Model.SkillTree.Skills;
 
 public abstract class Skill {
     private String name;
-    private int level;
+    private int currLevel;
+    private static int maxLevel = 10;
 
     public Skill(String name) {
         this.name = name;
-        this.level = 0;
+        this.currLevel = 0;
     }
 
     public String getName() {
@@ -17,11 +18,15 @@ public abstract class Skill {
         this.name = name;
     }
 
-    public int getLevel() {
-        return level;
+    public int getCurrLevel() {
+        return currLevel;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
+    public void setCurrLevel(int currLevel) {
+        this.currLevel = currLevel;
+    }
+
+    public static int getMaxLevel() {
+        return maxLevel;
     }
 }
