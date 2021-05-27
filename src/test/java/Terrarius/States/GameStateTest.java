@@ -33,11 +33,4 @@ public class GameStateTest {
         Assertions.assertTrue(state.getController() instanceof GameController);
         Assertions.assertTrue(state.getViewer() instanceof ArenaViewer);
     }
-
-    @Test
-    public void guiReadInput() throws IOException {
-        Terrarius terrarius = Mockito.mock(Terrarius.class);
-        state.readInput(terrarius, gui);
-        Mockito.verify(gui, Mockito.times(1)).getNextActions();
-    }
 }

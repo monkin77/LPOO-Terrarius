@@ -1,13 +1,14 @@
 package Terrarius.Controller.Game;
 
 import Terrarius.GUI.GUI;
+import Terrarius.Model.Game.Level;
+import Terrarius.Model.Game.elements.hero.HeroStats;
+import Terrarius.Model.Game.items.Item;
 import Terrarius.Model.Game.items.Toolbar;
-import Terrarius.Model.Game.items.tools.Axe;
 import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Game.elements.hero.Hero;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -16,23 +17,29 @@ public class HeroControllerTest {
     private HeroController heroController;
     private Hero hero;
     private Arena arena;
+    private Toolbar toolbar;
+    private Item item;
 
     @BeforeEach
     public void setup() {
-        /*
+        item = Mockito.mock(Item.class);
+
+        toolbar = Mockito.mock(Toolbar.class);
+        Mockito.when(toolbar.getActiveItem()).thenReturn(item);
+
         hero = Mockito.mock(Hero.class);
+        Mockito.when(hero.getToolBar()).thenReturn(toolbar);
         Mockito.when(hero.getDimensions()).thenReturn(new Dimensions(5, 5));
         Mockito.when(hero.getPosition()).thenReturn(new Position(10, 10));
+        Mockito.when(hero.getStats()).thenReturn(new HeroStats(new Level(5, 0), 100, 5, 1, 10));
 
         arena = Mockito.mock(Arena.class);
 
         Mockito.when(arena.getHeight()).thenReturn(100);
         Mockito.when(arena.getWidth()).thenReturn(100);
         Mockito.when(arena.getHero()).thenReturn(hero);
-        Mockito.when(arena.collides(Mockito.any(), (Dimensions) Mockito.any())).thenReturn(false);
 
         heroController = new HeroController(arena);
-         */
     }
 
     @Test
@@ -66,12 +73,10 @@ public class HeroControllerTest {
         Mockito.when(arena.getWidth()).thenReturn(10);
         Mockito.when(arena.getHeight()).thenReturn(10);
 
-        heroController.moveHeroRight();
         heroController.moveHeroDown();
 
         Mockito.when(hero.getPosition()).thenReturn(new Position(0, 0));
 
-        heroController.moveHeroLeft();
         heroController.moveHeroUp();
 
         Mockito.verify(hero, Mockito.never()).setPosition(Mockito.any());

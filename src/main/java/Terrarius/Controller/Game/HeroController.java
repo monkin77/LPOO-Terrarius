@@ -34,7 +34,6 @@ public class HeroController {
                 if(arena.collidesWithBlocks(copyPos, activeItem.getDimensions()))
                     return;
             }
-
             arena.getHero().setPosition(position);
         }
     }

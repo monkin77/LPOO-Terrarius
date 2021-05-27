@@ -43,25 +43,7 @@ public class ArenaTest {
 
         Assertions.assertFalse(this.arena.isEmpty(new Position(5, 5)));
     }
-/*
-    @Test
-    public void overlappedCollisions() {
-        Assertions.assertTrue(this.arena.collides(new Position(4, 4), new Dimensions(2, 2)));
-        Assertions.assertTrue(this.arena.collides(new Position(11, 11), new Dimensions(5, 5)));
-    }
 
-    @Test
-    public void embeddedCollisions() {
-        Assertions.assertTrue(this.arena.collides(new Position(9, 9), new Dimensions(6, 2)));
-        Assertions.assertTrue(this.arena.collides(new Position(6, 6), new Dimensions(1, 1)));
-    }
-
-    @Test
-    public void notColliding() {
-        Assertions.assertFalse(this.arena.collides(new Position(4, 4), new Dimensions(1, 1)));
-        Assertions.assertFalse(this.arena.collides(new Position(14, 14), new Dimensions(5, 5)));
-    }
-*/
     @Test
     public void hasAdjacent() {
         // Top right

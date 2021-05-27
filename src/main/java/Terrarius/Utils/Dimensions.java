@@ -38,4 +38,12 @@ public class Dimensions {
     public void incrementHeight(int incValue) {
         if(this.height + incValue > 0) this.height += incValue;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dimensions dim = (Dimensions) o;
+        return dim.getHeight() == this.height && dim.getWidth() == this.width;
+    }
 }

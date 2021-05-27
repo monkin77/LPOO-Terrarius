@@ -34,9 +34,10 @@ public class LanternaGui implements GUI {
     private KeyboardHandler keyboardHandler;
     private MouseHandler mouseHandler;
 
-    public LanternaGui(TerminalScreen screen, KeyboardHandler keyboardHandler) {
+    public LanternaGui(TerminalScreen screen, KeyboardHandler keyboardHandler, MouseHandler mouseHandler) {
         this.screen = screen;
         this.keyboardHandler = keyboardHandler;
+        this.mouseHandler = mouseHandler;
         graphics = screen.newTextGraphics();
     }
 
