@@ -33,4 +33,14 @@ public class SkillTree {
     public void setSkills(List<Skill> skills) {
         this.skills = skills;
     }
+
+    public void nextSkill() {
+        this.selected = (this.selected + 1) % skills.size();
+    }
+
+    public void previousSkill() {
+        int nextSel = this.selected - 1;
+        while(nextSel < 0) nextSel += skills.size();
+        this.selected = nextSel % skills.size();
+    }
 }

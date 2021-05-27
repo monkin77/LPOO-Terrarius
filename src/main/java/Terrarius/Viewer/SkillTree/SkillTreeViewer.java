@@ -99,10 +99,8 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
                     break;
             }
             String charColor = "#FFFFFF";
-            if(model.getSelected() == i) {
-                charColor = "#00FF00";
-            }
-
+            if(model.getSelected() == i) charColor = "#00FF00";
+            
             gui.drawString(textXPos, textYPos, skillLabel, charColor, "#000000");
         }
     }

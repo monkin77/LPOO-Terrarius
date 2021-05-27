@@ -35,8 +35,11 @@ public class SkillTreeController extends Controller<SkillTree> {
                     ((SkillTreeState) terrarius.getSkillTreeState()).resetSkillTreeViewer();
                     terrarius.setState(terrarius.getGameState());
                     return;
-                case SLOT0:
-                    getModel().setSelected(getModel().getSelected()+1);
+                case ST_LEFT:
+                    getModel().previousSkill();
+                    break;
+                case ST_RIGHT:
+                    getModel().nextSkill();
                     break;
             }
         }
