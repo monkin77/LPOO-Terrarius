@@ -89,17 +89,21 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
                     break;
                 case 2:
                     textXPos = startingPos.getX() + SkillTreeViewerConstants.LEFT_OFFSET + (SkillTreeViewerConstants.SKILL_CONTAINER_WIDTH - skillLabel.length()) / 2;
-                    textYPos = startingPos.getY() + this.image.getDimensions().getHeight() - SkillTreeViewerConstants.TOP_OFFSET - SkillTreeViewerConstants.SKILL_CONTAINER_HEIGHT / 2;
+                    textYPos = startingPos.getY() + this.image.getDimensions().getHeight() - SkillTreeViewerConstants.BOTTOM_OFFSET - SkillTreeViewerConstants.SKILL_CONTAINER_HEIGHT / 2 - 2;
                     break;
                 case 3:
                     textXPos = startingPos.getX() + this.image.getDimensions().getWidth() - SkillTreeViewerConstants.RIGHT_OFFSET - SkillTreeViewerConstants.SKILL_CONTAINER_WIDTH + skillLabel.length() / 2;
-                    textYPos = startingPos.getY() + this.image.getDimensions().getHeight() - SkillTreeViewerConstants.TOP_OFFSET - SkillTreeViewerConstants.SKILL_CONTAINER_HEIGHT / 2;
+                    textYPos = startingPos.getY() + this.image.getDimensions().getHeight() - SkillTreeViewerConstants.BOTTOM_OFFSET - SkillTreeViewerConstants.SKILL_CONTAINER_HEIGHT / 2 - 2;
                     break;
                 default:
                     break;
             }
+            String charColor = "#FFFFFF";
+            if(model.getSelected() == i) {
+                charColor = "#00FF00";
+            }
 
-            gui.drawString(textXPos, textYPos, skillLabel, "#FFFFFF", "#000000");
+            gui.drawString(textXPos, textYPos, skillLabel, charColor, "#000000");
         }
     }
 }
