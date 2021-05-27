@@ -49,7 +49,9 @@ public class Toolbar {
      * @return Active item. If there is no item attached to that slot, returns null
      */
     public Item getActiveItem() {
-        return this.toolBar.get(activeItemIdx);
+        Item item = this.toolBar.get(activeItemIdx);
+        if (item == null) return this.toolBar.get(0); // TODO REPLACE BY HAND
+        return item;
     }
 
     public Item getItem(Integer index) {
