@@ -8,7 +8,6 @@ import Terrarius.Viewer.Viewer;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.List;
 
 public abstract class State<T> {
     private final T model;
