@@ -5,7 +5,7 @@ import Terrarius.Utils.Dimensions;
 
 public class BlockPlacer extends Item {
     public BlockPlacer(Hero hero) {
-        super(hero, new Dimensions(0, 0));
+        super(hero, new Dimensions(3, 3));
     }
 
     @Override
@@ -15,6 +15,8 @@ public class BlockPlacer extends Item {
 
     @Override
     public String getComponentName() {
+        if (getHero().getToolBar().getBlockPouch().getCurrentBlockQuantity() > 0)
+            return getHero().getToolBar().getBlockPouch().getCurrentBlockName();
         return "BlockPlacer";
     }
 }

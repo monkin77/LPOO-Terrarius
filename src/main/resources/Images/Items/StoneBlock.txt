@@ -1,0 +1,16 @@
+3 3
+SSS
+SSS
+SSS
+2
+G #5c5c5c
+H #808080
+GHG
+GGH
+HGG
+2
+G #808080
+H #5c5c5c
+GGG
+GGH
+HGG

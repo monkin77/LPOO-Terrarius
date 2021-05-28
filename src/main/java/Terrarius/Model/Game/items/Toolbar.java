@@ -1,6 +1,7 @@
 package Terrarius.Model.Game.items;
 
 import Terrarius.Model.Game.elements.hero.Hero;
+import Terrarius.Model.Game.items.tools.Hand;
 import Terrarius.Utils.Dimensions;
 
 import Terrarius.Model.Game.BlockPouch;
@@ -20,15 +21,19 @@ public class Toolbar {
     private final int toolbarSeparatorWidth;
 
     private final BlockPouch blockPouch;
+    private final Hand hand;
 
     public Toolbar(Hero hero) {
         this.toolBar = new HashMap<>();
-        this.activeItemIdx = 1;  // Just for testing. Should change this to 0 (unarmed) and change when pressing the numbers on the keyboard
+        this.activeItemIdx = 1;
         this.maxSlots = TOOLBAR_SLOTS;
+
         this.dimensions = new Dimensions(TOOLBAR_HEIGHT, SCREEN_WIDTH);
         this.toolbarCellLength = TOOLBAR_CELL_LENGTH;
         this.toolbarSeparatorWidth = TOOLBAR_SEPARATOR_THICKNESS;
+
         this.blockPouch = new BlockPouch();
+        this.hand = new Hand(hero);
         this.toolBar.put(0, new BlockPlacer(hero));
     }
 
@@ -49,7 +54,9 @@ public class Toolbar {
      * @return Active item. If there is no item attached to that slot, returns null
      */
     public Item getActiveItem() {
-        return this.toolBar.get(activeItemIdx);
+        Item item = this.toolBar.get(activeItemIdx);
+        if (item == null) return hand;
+        return item;
     }
 
     public Item getItem(Integer index) {
