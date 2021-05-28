@@ -1,6 +1,7 @@
 package Terrarius.Viewer.ItemShop;
 
 import Terrarius.GUI.GUI;
+import Terrarius.Model.Game.items.Item;
 import Terrarius.Model.ItemShop.ItemShop;
 import Terrarius.Viewer.Viewer;
 
@@ -20,7 +21,8 @@ public class ItemShopViewer extends Viewer<ItemShop> {
 
         String availablePoints = "Available points: " + model.getCurrentPoints();
         String selectedItem = "Selected item: " + model.getItemName(model.getSelectedItem()) + " Price: " + model.getItemPrice(model.getSelectedItem());
-        String selectedSlot = "Selected slot: " + model.getSelectedSlot();
+        Item activeItem = model.getHero().getToolBar().getItem(model.getSelectedSlot());
+        String selectedSlot = "Selected slot: " + model.getSelectedSlot() + " Current Item: " + (activeItem == null ? "Empty" : activeItem.getComponentName());
 
         gui.drawString(1,1,
                 availablePoints,

@@ -15,12 +15,16 @@ public class ItemShop {
 
     private final List<ItemListing> itemListingList = new ArrayList<>();
 
-    private Hero hero;
+    private final Hero hero;
 
     public ItemShop(Hero hero){
         this.hero = hero;
         this.itemListingList.add(new ItemListing("Apple", 5));
         this.itemListingList.add(new ItemListing("Banana", 5));
+    }
+
+    public Hero getHero() {
+        return hero;
     }
 
     public int getSelectedItem() {
