@@ -190,6 +190,10 @@ public class LanternaGui implements GUI {
         return mouseHandler.getY();
     }
 
+    public void forceReleaseKey(int key) {
+        keyboardHandler.releaseKey(key);
+    }
+
     public List<ACTION> getNextActions() {
 
         List<ACTION> actionList = new ArrayList<>();
@@ -218,7 +222,14 @@ public class LanternaGui implements GUI {
         if (keyboardHandler.readKey(VK_9)) actionList.add(ACTION.SLOT9);
         if (keyboardHandler.readKey(VK_ENTER)) actionList.add(ACTION.SELECT);
         if (keyboardHandler.readKey(VK_ESCAPE)) actionList.add(ACTION.QUIT);
+        if (keyboardHandler.isKeyPressed(VK_ESCAPE)) actionList.add(ACTION.QUIT);
+        if (keyboardHandler.readKey(VK_TAB)) actionList.add(ACTION.SKILL_TREE);
+
 
         return actionList;
+    }
+
+    public void forceKeysRelease() {
+        keyboardHandler.releaseKey(VK_TAB);
     }
 }

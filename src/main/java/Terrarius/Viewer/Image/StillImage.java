@@ -70,4 +70,8 @@ public class StillImage extends Image{
     public void reset() {
         //Not doing anything for now
     }
+
+    public Dimensions getDimensions() {
+        return dimensions;
+    }
 }

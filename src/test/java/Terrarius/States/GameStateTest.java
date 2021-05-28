@@ -30,7 +30,7 @@ public class GameStateTest {
     @Test
     public void arenaSpecifiers() {
         Assertions.assertTrue(state.getModel() instanceof Arena);
-        Assertions.assertTrue(state.getController() instanceof GameController);
-        Assertions.assertTrue(state.getViewer() instanceof ArenaViewer);
+        Assertions.assertTrue(state.createController() instanceof GameController);
+        Assertions.assertTrue(state.createViewer() instanceof ArenaViewer);
     }
 }
