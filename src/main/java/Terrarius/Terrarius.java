@@ -53,7 +53,6 @@ public class Terrarius {
         while (true) {
             long current = System.currentTimeMillis();
             long elapsed = current - previous;
-            // System.out.println(elapsed);
             previous = current;
             lag += elapsed;
 

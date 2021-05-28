@@ -5,7 +5,7 @@ import Terrarius.Model.Game.elements.hero.HeroStats;
 public abstract class Skill {
     private String name;
     private int currLevel;
-    private static int maxLevel = 10;
+    private static final int maxLevel = 10;
     private int upgradeCost;
 
     public Skill(String name, int upgradeCost) {

@@ -98,7 +98,7 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
                     textYPos = startingPos.getY() + SkillTreeViewerConstants.TOP_OFFSET + SkillTreeViewerConstants.SKILL_CONTAINER_HEIGHT / 2;
                     break;
                 case 1:
-                    textXPos = startingPos.getX() + this.image.getDimensions().getWidth() - SkillTreeViewerConstants.RIGHT_OFFSET - SkillTreeViewerConstants.SKILL_CONTAINER_WIDTH + skillLabel.length() / 2 + 1;
+                    textXPos = startingPos.getX() + this.image.getDimensions().getWidth() - SkillTreeViewerConstants.RIGHT_OFFSET - (SkillTreeViewerConstants.SKILL_CONTAINER_WIDTH + skillLabel.length()) / 2;
                     textYPos = startingPos.getY() + SkillTreeViewerConstants.TOP_OFFSET + SkillTreeViewerConstants.SKILL_CONTAINER_HEIGHT / 2;
                     break;
                 case 2:
@@ -106,7 +106,7 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
                     textYPos = startingPos.getY() + this.image.getDimensions().getHeight() - SkillTreeViewerConstants.BOTTOM_OFFSET - SkillTreeViewerConstants.SKILL_CONTAINER_HEIGHT / 2 - 2;
                     break;
                 case 3:
-                    textXPos = startingPos.getX() + this.image.getDimensions().getWidth() - SkillTreeViewerConstants.RIGHT_OFFSET - SkillTreeViewerConstants.SKILL_CONTAINER_WIDTH + skillLabel.length() / 2 + 1;
+                    textXPos = startingPos.getX() + this.image.getDimensions().getWidth() - SkillTreeViewerConstants.RIGHT_OFFSET - (SkillTreeViewerConstants.SKILL_CONTAINER_WIDTH + skillLabel.length()) / 2;
                     textYPos = startingPos.getY() + this.image.getDimensions().getHeight() - SkillTreeViewerConstants.BOTTOM_OFFSET - SkillTreeViewerConstants.SKILL_CONTAINER_HEIGHT / 2 - 2;
                     break;
                 default:
