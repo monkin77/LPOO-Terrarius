@@ -8,6 +8,7 @@ import Terrarius.Model.Game.items.Item;
 import Terrarius.Model.Game.items.buffs.Buff;
 import Terrarius.Model.Game.items.tools.Tool;
 import Terrarius.Model.Game.items.BlockPlacer;
+import Terrarius.Utils.Dimensions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -124,7 +125,16 @@ public class HeroController {
     }
 
     public void changeHeroSlot(Integer slot) {
-        this.arena.getHero().getToolBar().setActiveItemIdx(slot);
+        Item item = arena.getHero().getToolBar().getItem(slot);
+
+        if (item != null) {
+            Position itemPos = item.getPosition(arena.getHero().getPosition());
+            Dimensions itemDimensions = item.getDimensions();
+
+            if (arena.collidesWithBlocks(itemPos, itemDimensions)) return;
+        }
+
+            arena.getHero().getToolBar().setActiveItemIdx(slot);
     }
 
     public void doAction(GUI.ACTION action) {
