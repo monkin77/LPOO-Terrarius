@@ -69,21 +69,19 @@ public class ArenaController {
         if (updateCounter % updatesPerEnemyMovement == 0)
             enemyController.moveEnemies();
 
-        if (updateCounter % updatesPerGravityAction == 0){
+        if (updateCounter % updatesPerGravityAction == 0) {
             heroController.fallHero();
             enemyController.fallEnemies();
         }
 
-        if (updateCounter % updatesPerInputAction == 0) {
-            for (GUI.ACTION action : actionList) {
+        if (updateCounter % updatesPerInputAction == 0)
+            for (GUI.ACTION action : actionList)
                 heroController.doAction(action);
-            }
-        }
 
         if (updateCounter % updatesPerEnemyDamage == 0)
             enemyController.damageHero();
 
-        heroController.updateBuffs(timePerUpdate);
+        heroController.update(timePerUpdate);
         this.updateMapZone();
         updateCounter %= maxCounter;
     }

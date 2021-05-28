@@ -84,6 +84,10 @@ public class Toolbar {
         return -1;
     }
 
+    public void updateItems() {
+        toolBar.forEach((slot, item) -> item.updateStats());
+    }
+
     public Dimensions getDimensions() {
         return dimensions;
     }

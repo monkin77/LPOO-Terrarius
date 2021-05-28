@@ -114,8 +114,9 @@ public class HeroController {
         this.buffList.add(new BuffController(buff, this.arena.getHero()));
     }
 
-    public void updateBuffs(int timeSinceLastUpdate) {
+    public void update(int timeSinceLastUpdate) {
         buffList.removeIf(buffController -> buffController.updateAndCheckDuration(timeSinceLastUpdate));
+        arena.getHero().getToolBar().updateItems();
     }
 
     private void heroAttack(){
