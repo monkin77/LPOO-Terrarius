@@ -26,6 +26,7 @@ public class ArenaViewer extends Viewer<Arena> {
     private final StatusBarViewer statusBarViewer = new StatusBarViewer();
     private HeroViewer heroViewer = new HeroViewer();
 
+    @Override
     public void update() {
         for (ElementViewer elementViewer : blockCache.values()){
             elementViewer.update();
@@ -38,6 +39,7 @@ public class ArenaViewer extends Viewer<Arena> {
         heroViewer.update();
     }
 
+    @Override
     public void draw(GUI gui, Arena arena) throws IOException {
         gui.clear();
 
