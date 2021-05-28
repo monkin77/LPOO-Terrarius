@@ -10,7 +10,6 @@ import Terrarius.Model.Game.elements.enemies.Enemy;
 import java.util.HashMap;
 import java.util.Map;
 
-// TODO ENEMY GRAVITY. USE HASHMAPE BETWEEN ENEMY AND PAIR<INT, INT>?
 public class EnemyController {
     private final Arena arena;
     private Map<Enemy, Integer> fallingVelocities;
