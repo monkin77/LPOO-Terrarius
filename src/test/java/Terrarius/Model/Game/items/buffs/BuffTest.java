@@ -15,20 +15,20 @@ public class BuffTest {
     @BeforeEach
     public void createHero() {
         hero = Mockito.mock(Hero.class);
-        Mockito.when(hero.getStats().getCurrentLevel()).thenReturn(6);
+        Mockito.when(hero.getStats()).thenReturn(new HeroStats(new Level(6, 0), 100, 5, 1, 10));
     }
 
     @Test
     public void apple() {
         buff = new Apple(hero);
         Assertions.assertEquals(10, buff.getStats().getAmountHP());
-        Assertions.assertEquals(9, buff.getStats().getDuration());
+        Assertions.assertEquals(5, buff.getStats().getDuration());
     }
 
     @Test
     public void banana() {
         buff = new Banana(hero);
-        Assertions.assertEquals(30, buff.getStats().getAmountHP());
-        Assertions.assertEquals(20, buff.getStats().getDuration());
+        Assertions.assertEquals(6, buff.getStats().getAmountHP());
+        Assertions.assertEquals(3, buff.getStats().getDuration());
     }
 }

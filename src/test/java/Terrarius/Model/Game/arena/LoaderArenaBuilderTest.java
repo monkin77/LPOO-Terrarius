@@ -30,7 +30,7 @@ public class LoaderArenaBuilderTest {
     @Test
     public void createBlocks() {
         List<Block> blocks = loaderArenaBuilder.createBlocks();
-        Assertions.assertEquals(173, blocks.size());
+        Assertions.assertEquals(162, blocks.size());
 
         Block firstBlock = blocks.get(0);
         Assertions.assertTrue(firstBlock instanceof WoodBlock);

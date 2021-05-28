@@ -41,6 +41,7 @@ public class ItemViewerTest {
     @Test
     public void drawRightOrientation() {
         Mockito.when(hero.getOrientation()).thenReturn(Element.Orientation.RIGHT);
+        Mockito.when(item.getPosition(hero.getPosition())).thenReturn(new Position(15, 8));
 
         itemViewer.draw(item, gui);
         Mockito.verify(image, Mockito.times(1))
@@ -51,6 +52,7 @@ public class ItemViewerTest {
     @Test
     public void drawLeftOrientation() {
         Mockito.when(hero.getOrientation()).thenReturn(Element.Orientation.LEFT);
+        Mockito.when(item.getPosition(hero.getPosition())).thenReturn(new Position(8, 8));
 
         itemViewer.draw(item, gui);
         Mockito.verify(image, Mockito.times(1))

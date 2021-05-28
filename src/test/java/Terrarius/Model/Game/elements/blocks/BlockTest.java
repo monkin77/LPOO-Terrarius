@@ -39,7 +39,7 @@ public class BlockTest {
     @Test
     public void WoodBlock() {
         WoodBlock wood = (WoodBlock) blocks.get(1);
-        Assertions.assertEquals(20, wood.getHP());
+        Assertions.assertEquals(200, wood.getHP());
         Assertions.assertEquals(2, wood.getHardness());
     }
 
