@@ -9,11 +9,6 @@ import Terrarius.Model.Game.elements.blocks.StoneBlock;
 import Terrarius.Model.Game.elements.blocks.WoodBlock;
 import Terrarius.Model.Game.elements.enemies.Enemy;
 import Terrarius.Model.Game.elements.enemies.Zombie;
-import Terrarius.Model.Game.items.buffs.*;
-import Terrarius.Model.Game.items.tools.Axe;
-import Terrarius.Model.Game.items.tools.Pickaxe;
-import Terrarius.Model.Game.items.tools.Shovel;
-import Terrarius.Model.Game.items.tools.Sword;
 
 import java.io.File;
 import java.io.FileNotFoundException;

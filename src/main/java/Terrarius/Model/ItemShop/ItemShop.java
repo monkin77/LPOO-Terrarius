@@ -2,10 +2,16 @@ package Terrarius.Model.ItemShop;
 
 import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.items.Item;
+import Terrarius.Model.Game.items.tools.Tool;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class ItemShop {
 
@@ -17,17 +23,9 @@ public class ItemShop {
 
     private final Hero hero;
 
-    public ItemShop(Hero hero){
+    public ItemShop(Hero hero) throws FileNotFoundException, URISyntaxException {
         this.hero = hero;
-        this.itemListingList.add(new ItemListing("Apple", 10));
-        this.itemListingList.add(new ItemListing("Banana", 10));
-        this.itemListingList.add(new ItemListing("BattlePotion", 15));
-        this.itemListingList.add(new ItemListing("ElasticPotion", 15));
-        this.itemListingList.add(new ItemListing("SwiftnessPotion", 15));
-        this.itemListingList.add(new ItemListing("Shovel", 10));
-        this.itemListingList.add(new ItemListing("Axe", 20));
-        this.itemListingList.add(new ItemListing("Sword", 25));
-        this.itemListingList.add(new ItemListing("Pickaxe", 30));
+        loadItems();
     }
 
     public Hero getHero() {
@@ -36,10 +34,6 @@ public class ItemShop {
 
     public int getSelectedItem() {
         return selectedItem;
-    }
-
-    public void setSelectedItem(int selectedItem) {
-        this.selectedItem = selectedItem;
     }
 
     public void nextItem(){
@@ -75,8 +69,35 @@ public class ItemShop {
     public void buyItem(){
         int availablePoints = this.getCurrentPoints();
         ItemListing itemListing = itemListingList.get(selectedItem);
-        if (availablePoints < itemListing.getPrice() || itemListing == null) return;
+        if (itemListing == null || availablePoints < itemListing.getPrice()) return;
         this.usedPoints += itemListing.getPrice();
-        this.hero.getToolBar().setItem(selectedSlot, itemListing.generateNew(this.hero));
+
+        try {
+            this.hero.getToolBar().setItem(selectedSlot, itemListing.generateNew(this.hero));
+        } catch (FileNotFoundException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadItems() throws URISyntaxException, FileNotFoundException {
+        URL resource = ItemShop.class.getResource("/assets/tools/Shop.txt");
+        Scanner scanner = new Scanner(new File(resource.toURI()));
+
+        String itemName;
+        int itemPrice;
+        while (scanner.hasNext()) {
+            itemName = scanner.next();
+            itemPrice = scanner.nextInt();
+            itemListingList.add(new ItemListing(itemName, itemPrice, ItemListing.ITEM_TYPE.TOOL));
+        }
+
+        resource = ItemShop.class.getResource("/assets/buffs/Shop.txt");
+        scanner = new Scanner(new File(resource.toURI()));
+
+        while (scanner.hasNext()) {
+            itemName = scanner.next();
+            itemPrice = scanner.nextInt();
+            itemListingList.add(new ItemListing(itemName, itemPrice, ItemListing.ITEM_TYPE.BUFF));
+        }
     }
 }

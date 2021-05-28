@@ -58,7 +58,7 @@ public class GameController extends Controller<Arena> {
             this.exitCurrentGame(terrarius);
     }
 
-    public void resetGameState(Terrarius terrarius) {
+    public void resetGameState(Terrarius terrarius) throws FileNotFoundException, URISyntaxException {
         terrarius.setGameState(new GameState(new MultiMapArenaBuilder().createArena()));
 
         HeroStats heroStats = ((Arena) terrarius.getGameState().getModel()).getHero().getStats();
@@ -68,6 +68,10 @@ public class GameController extends Controller<Arena> {
 
     public void exitCurrentGame(Terrarius terrarius) {
         terrarius.setState(new MenuState(new Menu()));
-        this.resetGameState(terrarius);
+        try {
+            this.resetGameState(terrarius);
+        } catch (FileNotFoundException | URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 }

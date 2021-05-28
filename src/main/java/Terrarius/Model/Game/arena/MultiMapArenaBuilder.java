@@ -1,11 +1,6 @@
 package Terrarius.Model.Game.arena;
 
 import Terrarius.Model.Game.elements.hero.Hero;
-import Terrarius.Model.Game.items.buffs.*;
-import Terrarius.Model.Game.items.tools.Axe;
-import Terrarius.Model.Game.items.tools.Pickaxe;
-import Terrarius.Model.Game.items.tools.Shovel;
-import Terrarius.Model.Game.items.tools.Sword;
 import Terrarius.Model.Game.map.MapChooser;
 import Terrarius.Model.Game.map.MapZone;
 
@@ -21,7 +16,6 @@ public class MultiMapArenaBuilder{
         Arena arena = new Arena(mapZone.getDimensions().getWidth(), mapZone.getDimensions().getHeight());
 
         Hero hero = new Hero(mapZone.getLeftSpawn());
-
 
         arena.setHero(hero);
         arena.setEnemies(mapZone.getEnemies());

@@ -6,13 +6,18 @@ import Terrarius.Model.Game.elements.Element;
 import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.elements.hero.Hero;
 
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+
 public abstract class Item implements NamedComponent {
     private final Hero hero;
     private Dimensions dimensions;
+    private final String name;
 
-    public Item(Hero hero, Dimensions dimensions) {
+    public Item(Hero hero, String name) throws FileNotFoundException, URISyntaxException {
         this.hero = hero;
-        this.dimensions = dimensions;
+        this.name = name;
+        loadItem();
         updateStats();
     }
 
@@ -39,9 +44,17 @@ public abstract class Item implements NamedComponent {
         return itemPos;
     }
 
-    // Item stats should be updated when hero level/stats are increased
-    public abstract void updateStats();
+    protected int calcStat(int base, int divider) {
+        if (divider == 0) return base;
+        return base + hero.getStats().getCurrentLevel() / divider;
+    }
 
     @Override
-    public abstract String getComponentName();
+    public String getComponentName() {
+        return this.name;
+    }
+
+    protected abstract void loadItem() throws URISyntaxException, FileNotFoundException;
+
+    public abstract void updateStats();
 }

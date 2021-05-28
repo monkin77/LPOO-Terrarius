@@ -1,11 +1,15 @@
 package Terrarius.Model.Game.items;
 
 import Terrarius.Model.Game.elements.hero.Hero;
-import Terrarius.Model.Game.items.tools.Hand;
+import Terrarius.Model.Game.items.BlockPlacer;
+import Terrarius.Model.Game.items.Item;
+import Terrarius.Model.Game.items.tools.Tool;
 import Terrarius.Utils.Dimensions;
 
 import Terrarius.Model.Game.BlockPouch;
 
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +25,7 @@ public class Toolbar {
     private final int toolbarSeparatorWidth;
 
     private final BlockPouch blockPouch;
-    private final Hand hand;
+    private Tool hand;
 
     public Toolbar(Hero hero) {
         this.toolBar = new HashMap<>();
@@ -33,8 +37,13 @@ public class Toolbar {
         this.toolbarSeparatorWidth = TOOLBAR_SEPARATOR_THICKNESS;
 
         this.blockPouch = new BlockPouch();
-        this.hand = new Hand(hero);
-        this.toolBar.put(0, new BlockPlacer(hero));
+
+        try {
+            this.hand = new Tool(hero, "Hand");
+            this.toolBar.put(0, new BlockPlacer(hero));
+        } catch (FileNotFoundException | URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 
     public Integer getActiveItemIdx() {

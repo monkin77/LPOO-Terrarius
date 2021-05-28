@@ -1,0 +1,5 @@
+Apple 10
+Banana 10
+BattlePotion 15
+ElasticPotion 15
+SwiftnessPotion 15

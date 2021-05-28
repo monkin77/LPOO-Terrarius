@@ -2,13 +2,9 @@ package Terrarius;
 
 import Terrarius.GUI.GUI;
 import Terrarius.GUI.LanternaGui;
-import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.arena.Arena;
-import Terrarius.Model.Game.arena.LoaderArenaBuilder;
 import Terrarius.Model.Game.arena.MultiMapArenaBuilder;
 import Terrarius.Model.Game.elements.hero.HeroStats;
-import Terrarius.Model.Game.items.Item;
-import Terrarius.Model.Game.items.tools.Axe;
 import Terrarius.Model.ItemShop.ItemShop;
 import Terrarius.Model.Menu.Menu;
 import Terrarius.Model.SkillTree.SkillTree;
