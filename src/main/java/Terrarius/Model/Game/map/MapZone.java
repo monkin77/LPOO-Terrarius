@@ -1,7 +1,7 @@
 package Terrarius.Model.Game.map;
 
 import Terrarius.Model.Game.Position;
-import Terrarius.Model.Game.elements.blocks.Block;
+import Terrarius.Model.Game.elements.Block;
 import Terrarius.Model.Game.elements.enemies.Enemy;
 import Terrarius.Utils.Dimensions;
 

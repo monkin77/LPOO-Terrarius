@@ -75,7 +75,7 @@ public class ColoredImageTest {
 
     @Test
     public void draw() throws FileNotFoundException, URISyntaxException {
-        coloredImage.load("Images/Blocks/Wood.txt");
+        coloredImage.load("Images/Blocks/WoodBlock.txt");
         coloredImage.draw(new Position(10, 10), Element.Orientation.RIGHT, gui);
 
         Mockito.verify(gui, Mockito.times(16)).

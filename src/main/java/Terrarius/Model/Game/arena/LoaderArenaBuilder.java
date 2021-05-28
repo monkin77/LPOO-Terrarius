@@ -3,10 +3,7 @@ package Terrarius.Model.Game.arena;
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.hero.Hero;
-import Terrarius.Model.Game.elements.blocks.Block;
-import Terrarius.Model.Game.elements.blocks.DirtBlock;
-import Terrarius.Model.Game.elements.blocks.StoneBlock;
-import Terrarius.Model.Game.elements.blocks.WoodBlock;
+import Terrarius.Model.Game.elements.Block;
 import Terrarius.Model.Game.elements.enemies.Enemy;
 import Terrarius.Model.Game.elements.enemies.Zombie;
 
@@ -128,12 +125,11 @@ public class LoaderArenaBuilder extends ArenaBuilder {
                 else
                     continue;
 
-                if (class_s.equals("DirtBlock"))
-                    blockList.add(new DirtBlock(new Position(i * 4, j * 4)));
-                else if (class_s.equals("StoneBlock"))
-                    blockList.add(new StoneBlock(new Position(i * 4, j * 4)));
-                else if (class_s.equals("WoodBlock"))
-                    blockList.add(new WoodBlock(new Position(i * 4, j * 4)));
+                try {
+                    blockList.add(new Block(new Position(i * 4, j * 4), class_s));
+                } catch (FileNotFoundException | URISyntaxException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return blockList;

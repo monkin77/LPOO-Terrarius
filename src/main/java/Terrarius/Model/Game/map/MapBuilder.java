@@ -2,17 +2,12 @@ package Terrarius.Model.Game.map;
 
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.Position;
-import Terrarius.Model.Game.arena.LoaderArenaBuilder;
-import Terrarius.Model.Game.elements.blocks.Block;
-import Terrarius.Model.Game.elements.blocks.DirtBlock;
-import Terrarius.Model.Game.elements.blocks.StoneBlock;
-import Terrarius.Model.Game.elements.blocks.WoodBlock;
+import Terrarius.Model.Game.elements.Block;
 import Terrarius.Model.Game.elements.enemies.Enemy;
 import Terrarius.Model.Game.elements.enemies.Goblin;
 import Terrarius.Model.Game.elements.enemies.Ogre;
 import Terrarius.Model.Game.elements.enemies.Zombie;
 import Terrarius.Utils.Dimensions;
-import Terrarius.Model.Game.map.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -64,9 +59,7 @@ public class MapBuilder {
             x = fileScanner.nextInt();
             y = fileScanner.nextInt();
 
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
+        } catch (URISyntaxException | FileNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -83,9 +76,7 @@ public class MapBuilder {
             x = fileScanner.nextInt();
             y = fileScanner.nextInt();
 
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
+        } catch (URISyntaxException | FileNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -131,9 +122,7 @@ public class MapBuilder {
             width = fileScanner.nextInt();
             height = fileScanner.nextInt();
 
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
+        } catch (URISyntaxException | FileNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -174,12 +163,11 @@ public class MapBuilder {
                 else
                     continue;
 
-                if (class_s.equals("DirtBlock"))
-                    blockList.add(new DirtBlock(new Position(i * 4, j * 4)));
-                else if (class_s.equals("StoneBlock"))
-                    blockList.add(new StoneBlock(new Position(i * 4, j * 4)));
-                else if (class_s.equals("WoodBlock"))
-                    blockList.add(new WoodBlock(new Position(i * 4, j * 4)));
+                try {
+                    blockList.add(new Block(new Position(i * 4, j * 4), class_s));
+                } catch (FileNotFoundException | URISyntaxException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return blockList;

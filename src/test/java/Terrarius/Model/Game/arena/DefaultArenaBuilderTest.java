@@ -2,7 +2,7 @@ package Terrarius.Model.Game.arena;
 
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.hero.Hero;
-import Terrarius.Model.Game.elements.blocks.Block;
+import Terrarius.Model.Game.elements.Block;
 import Terrarius.Model.Game.elements.enemies.Enemy;
 import Terrarius.Model.Game.elements.enemies.Zombie;
 import org.junit.jupiter.api.Assertions;

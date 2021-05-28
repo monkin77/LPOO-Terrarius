@@ -7,7 +7,7 @@ import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Game.elements.hero.Hero;
-import Terrarius.Model.Game.elements.blocks.Block;
+import Terrarius.Model.Game.elements.Block;
 import Terrarius.Model.Game.elements.blocks.DirtBlock;
 import Terrarius.Model.Game.elements.blocks.StoneBlock;
 import Terrarius.Model.Game.elements.blocks.WoodBlock;
@@ -33,7 +33,7 @@ import static Terrarius.Viewer.Game.GameViewerConstants.SKY_COLOR;
 public class ArenaViewerTest {
     private ArenaViewer arenaViewer;
     private Map<Class, ElementViewer> enemyCache = new HashMap<>();
-    private Map<Class, ElementViewer> blockCache = new HashMap<>();
+    private Map<String, ElementViewer> blockCache = new HashMap<>();
     private Map<String, ItemViewer> itemCache = new HashMap<>();
     private ToolbarViewer toolbarViewer = new ToolbarViewer();
     private HeroViewer heroViewer = new HeroViewer();
@@ -56,8 +56,8 @@ public class ArenaViewerTest {
         Block block2 = Mockito.mock(StoneBlock.class);
         BlockViewer blockViewer1 = Mockito.mock(BlockViewer.class);
         BlockViewer blockViewer2 = Mockito.mock(BlockViewer.class);
-        blockCache.put(block1.getClass(), blockViewer1);
-        blockCache.put(block2.getClass(), blockViewer2);
+        blockCache.put(block1.getComponentName(), blockViewer1);
+        blockCache.put(block2.getComponentName(), blockViewer2);
         arenaViewer.setBlockCache(blockCache);
 
         Item item = Mockito.mock(Axe.class);

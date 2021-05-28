@@ -6,7 +6,7 @@ import Terrarius.Model.Game.map.MapZone;
 import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.hero.Hero;
-import Terrarius.Model.Game.elements.blocks.Block;
+import Terrarius.Model.Game.elements.Block;
 import Terrarius.Model.Game.elements.enemies.Enemy;
 
 import java.util.ArrayList;

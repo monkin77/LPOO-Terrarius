@@ -3,12 +3,12 @@ package Terrarius.Model.Game.arena;
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.hero.Hero;
-import Terrarius.Model.Game.elements.blocks.Block;
-import Terrarius.Model.Game.elements.blocks.StoneBlock;
-import Terrarius.Model.Game.elements.blocks.WoodBlock;
+import Terrarius.Model.Game.elements.Block;
 import Terrarius.Model.Game.elements.enemies.Enemy;
 import Terrarius.Model.Game.elements.enemies.Zombie;
 
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,19 +34,22 @@ public class DefaultArenaBuilder extends ArenaBuilder{
     @Override
     protected List<Block> createBlocks() {
         List<Block> blocks = new ArrayList<>();
+        try {
+            for (int x = 0; x < this.width / 4; x++) {
+                blocks.add(new Block(new Position(x * 4, 0), "StoneBlock"));
+                blocks.add(new Block(new Position(x * 4, this.height - 4), "StoneBlock"));
+            }
 
-        for(int x = 0; x < this.width/4; x++){
-            blocks.add( new StoneBlock( new Position(x * 4, 0) ) );
-            blocks.add( new StoneBlock( new Position(x * 4, this.height - 4) ) );
-        }
+            for (int y = 1; y < height / 4; y++) {
+                blocks.add(new Block(new Position(0, y * 4), "StoneBlock"));
+                blocks.add(new Block(new Position(this.width - 4, y * 4), "StoneBlock"));
+            }
 
-        for(int y = 1; y < height/4; y++){
-            blocks.add( new StoneBlock( new Position(0, y * 4) ) );
-            blocks.add( new StoneBlock( new Position(this.width - 4, y * 4) ) );
-        }
-
-        for (int y = height/4 - 2; y >= height/4 - 4; y--){
-            blocks.add(new WoodBlock( new Position(16, y*4)));
+            for (int y = height / 4 - 2; y >= height / 4 - 4; y--) {
+                blocks.add(new Block(new Position(16, y * 4), "WoodBlock"));
+            }
+        } catch (FileNotFoundException | URISyntaxException e) {
+            e.printStackTrace();
         }
 
         return blocks;

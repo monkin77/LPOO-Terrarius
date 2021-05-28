@@ -3,9 +3,8 @@ package Terrarius.Viewer.Game;
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.arena.Arena;
-import Terrarius.Model.Game.elements.blocks.Block;
+import Terrarius.Model.Game.elements.Block;
 import Terrarius.Model.Game.elements.enemies.Enemy;
-import Terrarius.Model.Game.items.BlockPlacer;
 import Terrarius.Model.Game.items.Item;
 import Terrarius.Model.Game.items.Toolbar;
 import Terrarius.Utils.Dimensions;
@@ -21,7 +20,7 @@ import static Terrarius.Viewer.Game.GameViewerConstants.SKY_COLOR;
 public class ArenaViewer extends Viewer<Arena> {
 
     private Map<Class, ElementViewer> enemyCache = new HashMap<>();
-    private Map<Class, ElementViewer> blockCache = new HashMap<>();
+    private Map<String, ElementViewer> blockCache = new HashMap<>();
     private Map<String, ItemViewer> itemCache = new HashMap<>();
     private ToolbarViewer toolbarViewer = new ToolbarViewer();
     private StatusBarViewer statusBarViewer = new StatusBarViewer();
@@ -61,10 +60,10 @@ public class ArenaViewer extends Viewer<Arena> {
     protected void drawBlocks(GUI gui, Arena arena) {
         for(Block block : arena.getBlocks()) {
 
-            if (!blockCache.containsKey(block.getClass()))
-                blockCache.put(block.getClass(), new BlockViewer(block));
+            if (!blockCache.containsKey(block.getComponentName()))
+                blockCache.put(block.getComponentName(), new BlockViewer(block));
 
-            ElementViewer viewer = blockCache.get(block.getClass());
+            ElementViewer viewer = blockCache.get(block.getComponentName());
             viewer.draw(block, gui);
         }
     }
@@ -115,7 +114,7 @@ public class ArenaViewer extends Viewer<Arena> {
         this.enemyCache = enemyCache;
     }
 
-    protected void setBlockCache(Map<Class, ElementViewer> blockCache) {
+    protected void setBlockCache(Map<String, ElementViewer> blockCache) {
         this.blockCache = blockCache;
     }
 

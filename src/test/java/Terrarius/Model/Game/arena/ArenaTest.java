@@ -2,7 +2,7 @@ package Terrarius.Model.Game.arena;
 
 import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Position;
-import Terrarius.Model.Game.elements.blocks.Block;
+import Terrarius.Model.Game.elements.Block;
 import Terrarius.Model.Game.elements.blocks.DirtBlock;
 import Terrarius.Model.Game.elements.blocks.StoneBlock;
 import org.junit.jupiter.api.Assertions;

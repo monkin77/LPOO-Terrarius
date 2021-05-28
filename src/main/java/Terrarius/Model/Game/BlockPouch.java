@@ -1,8 +1,15 @@
 package Terrarius.Model.Game;
 
-import Terrarius.Model.Game.elements.blocks.*;
+import Terrarius.Model.Game.elements.Block;
+import Terrarius.Model.Game.items.tools.Tool;
 
-import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class BlockPouch {
 
@@ -11,30 +18,18 @@ public class BlockPouch {
     private int currentBlock;
 
     public BlockPouch(){
-        blockNames.add("DirtBlock");
-        blockNames.add("StoneBlock");
-        blockNames.add("WoodBlock");
-        currentBlock = 0;
+        loadBlocks();
+        this.currentBlock = 0;
         for (int i = 0; i < blockNames.size(); i++) blockQuantities.add(0);
     }
 
-    public void setBlock(Block block, int val){
-        int index = blockNames.indexOf(block.getName());
-        blockQuantities.set(index, val);
-    }
-
-    public int getBlock(Block block){
-        int index = blockNames.indexOf(block.getName());
-        return blockQuantities.get(index);
-    }
-
     public void incrementBlock(Block block){
-        int index = blockNames.indexOf(block.getName());
+        int index = blockNames.indexOf(block.getComponentName());
         blockQuantities.set(index, blockQuantities.get(index) + 1);
     }
 
     public void decrementBlock(Block block){
-        int index = blockNames.indexOf(block.getName());
+        int index = blockNames.indexOf(block.getComponentName());
         blockQuantities.set(index, blockQuantities.get(index) - 1);
     }
 
@@ -50,13 +45,26 @@ public class BlockPouch {
         return blockQuantities.get(currentBlock);
     }
 
-    public Block generateCurrentBlock(Position position){
-        switch (this.blockNames.get(this.currentBlock)) {
-            case "DirtBlock":  return new DirtBlock(position);
-            case "StoneBlock": return new StoneBlock(position);
-            case "WoodBlock":  return new WoodBlock(position);
-            default: return null;
+    public Block generateCurrentBlock(Position position) {
+        try {
+            return new Block(position, this.blockNames.get(this.currentBlock));
+        } catch (FileNotFoundException | URISyntaxException e) {
+            e.printStackTrace();
         }
+        return null;
     }
 
+    void loadBlocks() {
+        try {
+            URL resource = Tool.class.getResource("/assets/blocks/Names.txt");
+            Scanner scanner = new Scanner(new File(resource.toURI()));
+
+            while (scanner.hasNext()) {
+                blockNames.add(scanner.next());
+            }
+
+        } catch (FileNotFoundException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
 }

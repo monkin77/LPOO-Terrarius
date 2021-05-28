@@ -26,9 +26,7 @@ public class MapChooser {
                 levelMap.put(level, noMaps);
             }
 
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
+        } catch (URISyntaxException | FileNotFoundException e) {
             e.printStackTrace();
         }
     }
