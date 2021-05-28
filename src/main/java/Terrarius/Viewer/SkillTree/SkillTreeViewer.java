@@ -110,12 +110,19 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
                     textYPos = startingPos.getY() + this.image.getDimensions().getHeight() - SkillTreeViewerConstants.BOTTOM_OFFSET - SkillTreeViewerConstants.SKILL_CONTAINER_HEIGHT / 2 - 2;
                     break;
                 default:
-                    break;
+                    return;
             }
             String charColor = "#FFFFFF";
             if(model.getSelected() == i) charColor = "#00FF00";
 
             gui.drawString(textXPos, textYPos, skillLabel, charColor, "#000000");
+
+            int costPosY;
+            if(i == 0 || i == 1) costPosY = textYPos - (SkillTreeViewerConstants.SKILL_CONTAINER_HEIGHT/2 + 3);
+            else costPosY = textYPos + (SkillTreeViewerConstants.SKILL_CONTAINER_HEIGHT/2 + 3);
+
+            String costInfo = "Cost: " + currSkill.getUpgradeCost();
+            gui.drawString(textXPos, costPosY, costInfo, "#FFFFFF", "#000000");
         }
     }
 }
