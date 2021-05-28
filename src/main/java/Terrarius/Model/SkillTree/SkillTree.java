@@ -14,10 +14,10 @@ public class SkillTree {
     private int usedPoints = 0;
 
     List<Skill> skills;
-    Level heroLevel;
+    int heroLevel;
 
     public SkillTree(Level heroLevel) {
-        this.heroLevel = heroLevel;
+        this.heroLevel = heroLevel.getNumLevel();
         this.skills = Arrays.asList(new AttackSkill(), new DefenseSkill(), new SpeedSkill());
     }
 
@@ -55,12 +55,12 @@ public class SkillTree {
         this.usedPoints = usedPoints;
     }
 
-    public Level getHeroLevel() {
+    public int getHeroLevel() {
         return heroLevel;
     }
 
     public int getAvailablePoints() {
-        return this.heroLevel.getNumLevel() - this.usedPoints;
+        return this.heroLevel - this.usedPoints;
     }
 
 
