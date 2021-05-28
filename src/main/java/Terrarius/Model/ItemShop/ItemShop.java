@@ -19,8 +19,15 @@ public class ItemShop {
 
     public ItemShop(Hero hero){
         this.hero = hero;
-        this.itemListingList.add(new ItemListing("Apple", 5));
-        this.itemListingList.add(new ItemListing("Banana", 5));
+        this.itemListingList.add(new ItemListing("Apple", 10));
+        this.itemListingList.add(new ItemListing("Banana", 10));
+        this.itemListingList.add(new ItemListing("BattlePotion", 15));
+        this.itemListingList.add(new ItemListing("ElasticPotion", 15));
+        this.itemListingList.add(new ItemListing("SwiftnessPotion", 15));
+        this.itemListingList.add(new ItemListing("Shovel", 10));
+        this.itemListingList.add(new ItemListing("Axe", 20));
+        this.itemListingList.add(new ItemListing("Sword", 25));
+        this.itemListingList.add(new ItemListing("Pickaxe", 30));
     }
 
     public Hero getHero() {
