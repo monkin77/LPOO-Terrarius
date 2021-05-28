@@ -11,7 +11,7 @@ public class SkillTree {
     private int usedPoints = 0;
 
     private List<Skill> skills;
-    private HeroStats heroStats;
+    private final HeroStats heroStats;
 
     public SkillTree(HeroStats heroStats) {
         this.heroStats = heroStats;
@@ -22,16 +22,8 @@ public class SkillTree {
         return selected;
     }
 
-    public void setSelected(int selected) {
-        this.selected = selected;
-    }
-
     public List<Skill> getSkills() {
         return skills;
-    }
-
-    public void setSkills(List<Skill> skills) {
-        this.skills = skills;
     }
 
     public void nextSkill() {

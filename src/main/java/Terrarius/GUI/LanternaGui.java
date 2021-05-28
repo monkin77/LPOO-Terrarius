@@ -52,8 +52,6 @@ public class LanternaGui implements GUI {
         mouseHandler = new MouseHandler();
         screen = createScreen(terminal);
         graphics = screen.newTextGraphics();
-
-
     }
 
     private void addMouseListener(Terminal terminal) {
@@ -101,7 +99,6 @@ public class LanternaGui implements GUI {
         final TerminalScreen screen;
         screen = new TerminalScreen(terminal);
 
-        screen.setCursorPosition(null);  // maybe we'll use mouse later
         screen.startScreen();
         screen.doResizeIfNecessary();
         return screen;
@@ -113,8 +110,7 @@ public class LanternaGui implements GUI {
                 .setInitialTerminalSize(terminalSize);
         terminalFactory.setForceAWTOverSwing(true);
         terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
-        Terminal terminal = terminalFactory.createTerminal();
-        return terminal;
+        return terminalFactory.createTerminal();
     }
 
     private AWTTerminalFontConfiguration loadSquareFont() throws URISyntaxException, FontFormatException, IOException {
@@ -126,13 +122,11 @@ public class LanternaGui implements GUI {
         ge.registerFont(font);
 
         Font loadedFont = font.deriveFont(Font.PLAIN, FONT_SIZE);
-        AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
-        return fontConfig;
+        return AWTTerminalFontConfiguration.newInstance(loadedFont);
     }
 
     @Override
     public void drawCharacter(int x, int y, char c, String charColor, String bgColor) {
-
         graphics.setForegroundColor(TextColor.Factory.fromString(charColor));
         graphics.setBackgroundColor(TextColor.Factory.fromString(bgColor));
         graphics.setCharacter(x, y, c);
@@ -190,10 +184,6 @@ public class LanternaGui implements GUI {
         return mouseHandler.getY();
     }
 
-    public void forceReleaseKey(int key) {
-        keyboardHandler.releaseKey(key);
-    }
-
     public List<ACTION> getNextActions() {
 
         List<ACTION> actionList = new ArrayList<>();
@@ -227,9 +217,5 @@ public class LanternaGui implements GUI {
 
 
         return actionList;
-    }
-
-    public void forceKeysRelease() {
-        keyboardHandler.releaseKey(VK_TAB);
     }
 }

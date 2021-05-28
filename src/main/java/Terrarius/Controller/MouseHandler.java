@@ -29,7 +29,7 @@ public class MouseHandler {
 
     public boolean isClick(){
         if (!pressed) return false;
-        boolean res = pressed && !ignore;
+        boolean res = !ignore;
         ignore = true;
         return res;
     }

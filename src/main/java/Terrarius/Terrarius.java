@@ -77,10 +77,6 @@ public class Terrarius {
         return MS_PER_UPDATE;
     }
 
-    public State getState() {
-        return state;
-    }
-
     public void setState(State state) {
         this.state = state;
     }

@@ -25,6 +25,6 @@ public class BlockPlacer extends Item {
 
     @Override
     public void updateStats() {
-
+        // No Stats
     }
 }

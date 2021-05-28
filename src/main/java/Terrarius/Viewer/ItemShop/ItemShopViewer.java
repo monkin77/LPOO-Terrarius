@@ -9,10 +9,6 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class ItemShopViewer extends Viewer<ItemShop> {
-    @Override
-    public void update() {
-
-    }
 
     @Override
     public void draw(GUI gui, ItemShop model) throws IOException {
@@ -47,5 +43,10 @@ public class ItemShopViewer extends Viewer<ItemShop> {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public void update() {
+        // No animations
     }
 }

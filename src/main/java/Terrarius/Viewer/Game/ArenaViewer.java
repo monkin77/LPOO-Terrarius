@@ -23,7 +23,7 @@ public class ArenaViewer extends Viewer<Arena> {
     private Map<String, ElementViewer> blockCache = new HashMap<>();
     private Map<String, ItemViewer> itemCache = new HashMap<>();
     private ToolbarViewer toolbarViewer = new ToolbarViewer();
-    private StatusBarViewer statusBarViewer = new StatusBarViewer();
+    private final StatusBarViewer statusBarViewer = new StatusBarViewer();
     private HeroViewer heroViewer = new HeroViewer();
 
     public void update() {

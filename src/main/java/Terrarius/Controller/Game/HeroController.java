@@ -27,15 +27,15 @@ public class HeroController {
     }
 
     private void moveHero(Position position) {
-        // Can't move outside of arena boundaries
         if (position.getY() < 0 || position.getY() + arena.getHero().getDimensions().getHeight() > arena.getHeight())
             return;
 
         if (!arena.collidesWithBlocks(position, arena.getHero().getDimensions())) {
 
-            if(arena.getHero().getToolBar().getActiveItem() != null) {
+            if (arena.getHero().getToolBar().getActiveItem() != null) {
                 Item activeItem = arena.getHero().getToolBar().getActiveItem();
                 Position copyPos = activeItem.getPosition(position);
+
                 if(arena.collidesWithBlocks(copyPos, activeItem.getDimensions()))
                     return;
             }
@@ -101,7 +101,7 @@ public class HeroController {
             arena.placeBlock((this.arena.getHero().getTargetPosition()));
     }
 
-    private void useTool(Tool tool) { //TODO incomplete
+    private void useTool(Tool tool) {
         if (this.arena.getHero().targetWithinRange())
             arena.breakBlock(this.arena.getHero().getTargetPosition(), (Tool) arena.getHero().getToolBar().getActiveItem());
     }

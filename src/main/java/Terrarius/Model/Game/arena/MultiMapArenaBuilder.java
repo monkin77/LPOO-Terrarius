@@ -7,7 +7,6 @@ import Terrarius.Model.Game.map.MapZone;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 
-// TODO: Repeated in LoaderArenaBuilder
 public class MultiMapArenaBuilder{
 
     public Arena createArena() {

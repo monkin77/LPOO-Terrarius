@@ -32,7 +32,7 @@ public class ItemShopController extends Controller<ItemShop> {
             switch (action) {
                 case ITEM_SHOP:
                     this.actions.clear();
-                    ((ItemShopState) terrarius.getItemShopState()).resetItemShopViewer(); //TODO FINISH THIS
+                    ((ItemShopState) terrarius.getItemShopState()).resetItemShopViewer();
                     terrarius.setState(terrarius.getGameState());
                     return;
                 case LEFT_MENU:
@@ -73,13 +73,5 @@ public class ItemShopController extends Controller<ItemShop> {
                     break;
             }
         }
-    }
-
-    public List<GUI.ACTION> getActions() {
-        return actions;
-    }
-
-    public void setActions(List<GUI.ACTION> actions) {
-        this.actions = actions;
     }
 }

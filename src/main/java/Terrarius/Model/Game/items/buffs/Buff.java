@@ -33,10 +33,6 @@ public class Buff extends Item {
         return stats;
     }
 
-    public void setStats(BuffStats stats) {
-        this.stats = stats;
-    }
-
     @Override
     public void updateStats() {
         this.stats = new BuffStats(

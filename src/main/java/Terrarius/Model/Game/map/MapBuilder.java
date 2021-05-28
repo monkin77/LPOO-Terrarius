@@ -35,51 +35,32 @@ public class MapBuilder {
         return new Scanner(file);
     }
 
-    public MapZone createMap() {
+    private void createSpawns(MapZone mapZone) throws FileNotFoundException, URISyntaxException {
+        Scanner fileScanner = getScannerFromFile("LeftSpawn.txt");
+        int x = fileScanner.nextInt();
+        int y = fileScanner.nextInt();
+        mapZone.setLeftSpawn(new Position(x, y));
 
+        fileScanner = getScannerFromFile("RightSpawn.txt");
+        x = fileScanner.nextInt();
+        y = fileScanner.nextInt();
+        mapZone.setRightSpawn(new Position(x, y));
+    }
+
+    public MapZone createMap() {
         MapZone mapZone = new MapZone(dimensions.getWidth(), dimensions.getHeight());
 
         mapZone.setBlocks(this.createBlocks());
         mapZone.setEnemies(this.createEnemies());
-        mapZone.setLeftSpawn(this.createLeftSpawn());
-        mapZone.setRightSpawn(this.createRightSpawn());
+
+        try {
+            this.createSpawns(mapZone);
+        } catch (FileNotFoundException | URISyntaxException e) {
+            e.printStackTrace();
+        }
 
         return mapZone;
     }
-
-    public Position createLeftSpawn(){ //TODO both right and left in the same func
-        int x = 0, y = 0;
-
-        try {
-            Scanner fileScanner = getScannerFromFile("LeftSpawn.txt");
-
-            x = fileScanner.nextInt();
-            y = fileScanner.nextInt();
-
-        } catch (URISyntaxException | FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return new Position(x, y);
-
-    }
-
-    public Position createRightSpawn(){ //TODO both right and left in the same func (I would like pairs)
-        int x = 0, y = 0;
-
-        try {
-            Scanner fileScanner = getScannerFromFile("RightSpawn.txt");
-
-            x = fileScanner.nextInt();
-            y = fileScanner.nextInt();
-
-        } catch (URISyntaxException | FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return new Position(x, y);
-    }
-
 
     public List<Block> createBlocks(){
         List<Block> blockList = new ArrayList<>();
@@ -144,9 +125,6 @@ public class MapBuilder {
 
     private List<Block> createBlockList(java.util.Map<Character, String> characterClassMap, Scanner fileScanner) {
         List<Block> blockList = new ArrayList<>();
-
-
-        int val = dimensions.getHeight();
 
         for (int j = 0; j < dimensions.getHeight() / 4; j++) {
             String line = fileScanner.nextLine();

@@ -1,8 +1,6 @@
 package Terrarius.Model.Game.items;
 
 import Terrarius.Model.Game.elements.hero.Hero;
-import Terrarius.Model.Game.items.BlockPlacer;
-import Terrarius.Model.Game.items.Item;
 import Terrarius.Model.Game.items.tools.Tool;
 import Terrarius.Utils.Dimensions;
 

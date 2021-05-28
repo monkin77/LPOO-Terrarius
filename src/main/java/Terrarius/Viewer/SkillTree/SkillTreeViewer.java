@@ -55,7 +55,7 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
             Skill skill = model.getSkills().get(i);
             String skillInfoPrefix = skill.getName() + ": ";
             String skillInfoHighlighted = Integer.toString(skill.getCurrLevel() );
-            String skillInfoSuffix = " / " + skill.getMaxLevel();
+            String skillInfoSuffix = " / " + Skill.getMaxLevel();
             String highlightColor = skill.getCurrLevel() > 0 ? "#00FF00" : "#FFFFFF";
 
             gui.drawString(10, 20 + (i + 1) * yOffset, skillInfoPrefix, "#FFFFFF", "#000000");
@@ -68,7 +68,7 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
 
     @Override
     public void update() {
-
+        // No animations
     }
 
     /**
@@ -78,14 +78,6 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
      */
     public boolean needsUpdate(SkillTree model) {
         return ( previousSelected != model.getSelected() || previousUsedPoints != model.getUsedPoints() );
-    }
-
-    public int getPreviousSelected() {
-        return previousSelected;
-    }
-
-    public void setPreviousSelected(int previousSelected) {
-        this.previousSelected = previousSelected;
     }
 
     public void drawSkillsLabels(Position startingPos, GUI gui, SkillTree model) {

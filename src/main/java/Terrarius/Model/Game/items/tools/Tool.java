@@ -26,10 +26,6 @@ public class Tool extends Item {
         return stats;
     }
 
-    public void setStats(ToolStats stats) {
-        this.stats = stats;
-    }
-
     @Override
     public void updateStats() {
         this.stats = new ToolStats(

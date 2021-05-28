@@ -9,7 +9,6 @@ public class RangeSkill extends Skill {
 
     @Override
     public void applyEffect(HeroStats stats) {
-        // Temporary since we don't have defense stat
         stats.setRange(stats.getRange() + 1);
     }
 }

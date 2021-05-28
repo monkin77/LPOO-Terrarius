@@ -9,7 +9,7 @@ public class KeyboardHandler {
     private final Map<Integer, Boolean> keyMap = new HashMap<>();
     private final Map<Integer, Boolean> ignoreMap = new HashMap<>();
 
-    public KeyboardHandler(){ //default
+    public KeyboardHandler(){
         List<Integer> keyCodes = Arrays.asList(
                 VK_ESCAPE,
                 VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT, VK_ENTER,
@@ -42,13 +42,9 @@ public class KeyboardHandler {
         return keyMap.get(keyCode);
     }
 
-    public boolean readKey(int keyCode){ //reads the key and then blocks it
+    public boolean readKey(int keyCode){ // reads the key and then blocks it
         if (!keyMap.containsKey(keyCode) || !keyMap.get(keyCode) || ignoreMap.get(keyCode)) return false;
         ignoreMap.put(keyCode, true);
         return true;
-    }
-
-    public Map<Integer, Boolean> getKeys(){
-        return keyMap;
     }
 }

@@ -121,7 +121,6 @@ public class Arena {
                     position.getY() + dimensions.getHeight() - 1 >= block.getPosition().getY() &&
                             position.getY() + dimensions.getHeight() - 1 <= block.getPosition().getY() + block.getDimensions().getHeight() - 1;
 
-            //Just the Y is "inside" not the X
             boolean element_inside_block =
                     position.getY() >= block.getPosition().getY() &&
                             position.getY() + dimensions.getHeight() <= block.getPosition().getY() + block.getDimensions().getHeight() - 1;

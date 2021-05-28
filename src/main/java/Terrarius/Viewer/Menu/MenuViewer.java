@@ -35,6 +35,6 @@ public class MenuViewer extends Viewer<Menu> {
 
     @Override
     public void update() {
-        // Menu is static
+        // No animations
     }
 }

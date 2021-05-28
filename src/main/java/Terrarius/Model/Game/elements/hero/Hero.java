@@ -84,10 +84,6 @@ public class Hero extends Element {
         this.stats.setSpeed(speed);
     }
 
-    public void resetStats() {
-        this.stats = new HeroStats();
-    }
-
     public Toolbar getToolBar() {
         return toolBar;
     }

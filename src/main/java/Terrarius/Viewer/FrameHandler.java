@@ -3,7 +3,7 @@ package Terrarius.Viewer;
 public class FrameHandler {
     private int currentImage;
     private int totalImages;
-    private int currentFPI; //FPI -> frames per image
+    private int currentFPI; // FPI -> frames per image
     private int totalFPI;
 
     public FrameHandler(int currentImage, int totalImages, int currentFPI, int totalFPI){
