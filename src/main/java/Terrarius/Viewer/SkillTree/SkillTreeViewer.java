@@ -53,8 +53,14 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
 
         for(int i = 0; i < model.getSkills().size(); i++) {
             Skill skill = model.getSkills().get(i);
-            String skillInfo = skill.getName() + ": " + skill.getCurrLevel() + " / " + skill.getMaxLevel();;
-            gui.drawString(10, 20 + (i + 1) * yOffset, skillInfo, "#FFFFFF", "#000000");
+            String skillInfoPrefix = skill.getName() + ": ";
+            String skillInfoHighlighted = Integer.toString(skill.getCurrLevel() );
+            String skillInfoSuffix = " / " + skill.getMaxLevel();
+            String highlightColor = skill.getCurrLevel() > 0 ? "#00FF00" : "#FFFFFF";
+
+            gui.drawString(10, 20 + (i + 1) * yOffset, skillInfoPrefix, "#FFFFFF", "#000000");
+            gui.drawString(10 + skillInfoPrefix.length(), 20 + (i + 1) * yOffset, skillInfoHighlighted, highlightColor, "#000000");
+            gui.drawString(10 + skillInfoPrefix.length() + skillInfoHighlighted.length(), 20 + (i + 1) * yOffset, skillInfoSuffix, "#FFFFFF", "#000000");
         }
 
         gui.refresh();
