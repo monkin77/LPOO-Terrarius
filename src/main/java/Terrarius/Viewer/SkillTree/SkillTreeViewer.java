@@ -53,11 +53,8 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
 
         for(int i = 0; i < model.getSkills().size(); i++) {
             Skill skill = model.getSkills().get(i);
-            String skillName = skill.getName() + ":";
-            String skillLevel = skill.getCurrLevel() + " / " + skill.getMaxLevel();
-
-            gui.drawString(10, 20 + (i + 1) * yOffset, skillName, "#FFFFFF", "#000000");
-            gui.drawString(10 + skillName.length() + 1, 20 + (i + 1) * yOffset, skillLevel, "#FFFFFF", "#000000");
+            String skillInfo = skill.getName() + ": " + skill.getCurrLevel() + " / " + skill.getMaxLevel();;
+            gui.drawString(10, 20 + (i + 1) * yOffset, skillInfo, "#FFFFFF", "#000000");
         }
 
         gui.refresh();
@@ -101,7 +98,7 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
                     textYPos = startingPos.getY() + SkillTreeViewerConstants.TOP_OFFSET + SkillTreeViewerConstants.SKILL_CONTAINER_HEIGHT / 2;
                     break;
                 case 1:
-                    textXPos = startingPos.getX() + this.image.getDimensions().getWidth() - SkillTreeViewerConstants.RIGHT_OFFSET - SkillTreeViewerConstants.SKILL_CONTAINER_WIDTH + skillLabel.length() / 2;
+                    textXPos = startingPos.getX() + this.image.getDimensions().getWidth() - SkillTreeViewerConstants.RIGHT_OFFSET - SkillTreeViewerConstants.SKILL_CONTAINER_WIDTH + skillLabel.length() / 2 + 1;
                     textYPos = startingPos.getY() + SkillTreeViewerConstants.TOP_OFFSET + SkillTreeViewerConstants.SKILL_CONTAINER_HEIGHT / 2;
                     break;
                 case 2:
@@ -109,7 +106,7 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
                     textYPos = startingPos.getY() + this.image.getDimensions().getHeight() - SkillTreeViewerConstants.BOTTOM_OFFSET - SkillTreeViewerConstants.SKILL_CONTAINER_HEIGHT / 2 - 2;
                     break;
                 case 3:
-                    textXPos = startingPos.getX() + this.image.getDimensions().getWidth() - SkillTreeViewerConstants.RIGHT_OFFSET - SkillTreeViewerConstants.SKILL_CONTAINER_WIDTH + skillLabel.length() / 2;
+                    textXPos = startingPos.getX() + this.image.getDimensions().getWidth() - SkillTreeViewerConstants.RIGHT_OFFSET - SkillTreeViewerConstants.SKILL_CONTAINER_WIDTH + skillLabel.length() / 2 + 1;
                     textYPos = startingPos.getY() + this.image.getDimensions().getHeight() - SkillTreeViewerConstants.BOTTOM_OFFSET - SkillTreeViewerConstants.SKILL_CONTAINER_HEIGHT / 2 - 2;
                     break;
                 default:

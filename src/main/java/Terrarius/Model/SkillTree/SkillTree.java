@@ -2,10 +2,7 @@ package Terrarius.Model.SkillTree;
 
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.elements.hero.HeroStats;
-import Terrarius.Model.SkillTree.Skills.AttackSkill;
-import Terrarius.Model.SkillTree.Skills.DefenseSkill;
-import Terrarius.Model.SkillTree.Skills.Skill;
-import Terrarius.Model.SkillTree.Skills.SpeedSkill;
+import Terrarius.Model.SkillTree.Skills.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +16,7 @@ public class SkillTree {
 
     public SkillTree(HeroStats heroStats) {
         this.heroStats = heroStats;
-        this.skills = Arrays.asList(new AttackSkill(), new DefenseSkill(), new SpeedSkill());
+        this.skills = Arrays.asList(new AttackSkill(), new DefenseSkill(), new SpeedSkill(), new HealthSkill());
     }
 
     public int getSelected() {

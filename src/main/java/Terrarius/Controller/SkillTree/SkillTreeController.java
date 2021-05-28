@@ -25,8 +25,7 @@ public class SkillTreeController extends Controller<SkillTree> {
 
     @Override
     public void giveActions(Terrarius terrarius, GUI gui) throws IOException {
-        // Need to append since getNextActions is called more times than the state.update()
-        this.actions.addAll(gui.getNextActions());
+        this.actions = gui.getNextActions();
     }
 
     @Override
