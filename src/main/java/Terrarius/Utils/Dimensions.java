@@ -1,5 +1,7 @@
 package Terrarius.Utils;
 
+import Terrarius.Model.Game.elements.enemies.Enemy;
+
 public class Dimensions {
 
     private int height;
@@ -40,10 +42,11 @@ public class Dimensions {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Dimensions dim = (Dimensions) o;
-        return dim.getHeight() == this.height && dim.getWidth() == this.width;
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || this.getClass() != obj.getClass()) return false;
+
+        Dimensions d2 = (Dimensions) obj;
+        return this.height == d2.getHeight() && this.width == d2.getWidth();
     }
 }

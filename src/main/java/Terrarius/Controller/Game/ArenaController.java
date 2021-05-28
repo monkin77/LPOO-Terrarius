@@ -21,7 +21,7 @@ public class ArenaController {
     private int updateCounter;
     private List<GUI.ACTION> actionList;
 
-    private Arena arena;
+    private final Arena arena;
 
 
     public ArenaController(Arena arena, HeroController heroController, EnemyController enemyController, int timePerUpdate) {
@@ -49,6 +49,21 @@ public class ArenaController {
         this.heroController.setTargetPosition(position);
     }
 
+    public void updateMapZone() {
+        Arena.BOUNDARY boundary = arena.checkMapZoneAndUpdate();
+        if (boundary == Arena.BOUNDARY.MAP_LEFT || boundary == Arena.BOUNDARY.MAP_RIGHT) {
+            arena.setEnemies(arena.getMapZoneList().get(arena.getCurrentMapIndex()).getEnemies());
+            arena.setBlocks(arena.getMapZoneList().get(arena.getCurrentMapIndex()).getBlocks());
+
+            if (boundary == Arena.BOUNDARY.MAP_LEFT)
+                arena.getHero().setPosition(arena.getMapZoneList().get(arena.getCurrentMapIndex()).getRightSpawn());
+            else
+                arena.getHero().setPosition(arena.getMapZoneList().get(arena.getCurrentMapIndex()).getLeftSpawn());
+
+            enemyController.updateEnemies();
+        }
+    }
+
     public void update() {
         updateCounter++;
         if (updateCounter % updatesPerEnemyMovement == 0)
@@ -61,7 +76,7 @@ public class ArenaController {
 
         if (updateCounter % updatesPerInputAction == 0) {
             for (GUI.ACTION action : actionList) {
-                this.heroController.doAction(action);
+                heroController.doAction(action);
             }
         }
 
@@ -69,7 +84,7 @@ public class ArenaController {
             enemyController.damageHero();
 
         heroController.updateBuffs(timePerUpdate);
-        arena.update();
+        this.updateMapZone();
         updateCounter %= maxCounter;
     }
 
