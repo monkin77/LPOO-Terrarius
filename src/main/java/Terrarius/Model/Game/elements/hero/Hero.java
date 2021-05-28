@@ -8,6 +8,8 @@ import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.items.Item;
 import Terrarius.Model.Game.items.Toolbar;
 
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +19,8 @@ public class Hero extends Element {
     private HeroStats stats;
     private final List<Buff> activeBuffs;
 
-    public Hero(Position position) {
-        super(position, new Dimensions(8, 4));
+    public Hero(Position position) throws FileNotFoundException, URISyntaxException {
+        super(position, "Hero");
         this.stats = new HeroStats();
         this.toolBar = new Toolbar(this);
         this.activeBuffs = new ArrayList<>();
@@ -119,7 +121,7 @@ public class Hero extends Element {
     }
 
     @Override
-    public String getComponentName() {
-        return "Hero";
+    protected void loadElement() {
+        this.setDimensions(new Dimensions(8, 4));
     }
 }

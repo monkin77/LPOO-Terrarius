@@ -5,7 +5,6 @@ import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.elements.Block;
 import Terrarius.Model.Game.elements.enemies.Enemy;
-import Terrarius.Model.Game.elements.enemies.Zombie;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
@@ -59,16 +58,25 @@ public class DefaultArenaBuilder extends ArenaBuilder{
     protected List<Enemy> createEnemies() {
         List<Enemy> enemies = new ArrayList<>();
 
-        enemies.add(new Zombie(new Position(this.width/4, this.height/4), new Level(1, 10)));
-        enemies.add(new Zombie(new Position(this.width/4 + 8, this.height/4 + 4), new Level(1, 10)));
-        enemies.add(new Zombie(new Position(4, 4), new Level(1, 0)));
-        enemies.add(new Zombie(new Position(this.width - 8, this.height - 12), new Level(5, 10)));
+        try {
+            enemies.add(new Enemy(new Position(this.width/4 + 8, this.height/4 + 4), new Level(1, 10), "Zombie"));
+            enemies.add(new Enemy(new Position(4, 4), new Level(1, 0), "Zombie"));
+            enemies.add(new Enemy(new Position(this.width - 8, this.height - 12), new Level(5, 10), "Zombie"));
+            enemies.add(new Enemy(new Position(this.width/4, this.height/4), new Level(1, 10), "Zombie"));
+        } catch (FileNotFoundException | URISyntaxException e) {
+            e.printStackTrace();
+        }
 
         return enemies;
     }
 
     @Override
     protected Hero createHero() {
-        return new Hero(new Position(this.width/2, this.height/2));
+        try {
+            return new Hero(new Position(this.width/2, this.height/2));
+        } catch (FileNotFoundException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

@@ -4,9 +4,6 @@ import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.Block;
 import Terrarius.Model.Game.elements.enemies.Enemy;
-import Terrarius.Model.Game.elements.enemies.Goblin;
-import Terrarius.Model.Game.elements.enemies.Ogre;
-import Terrarius.Model.Game.elements.enemies.Zombie;
 import Terrarius.Utils.Dimensions;
 
 import java.io.File;
@@ -193,12 +190,11 @@ public class MapBuilder {
             int level = fileScanner.nextInt();
             int xp_base = fileScanner.nextInt();
 
-            if (class_s.equals("Zombie"))
-                enemies.add(new Zombie(new Position(x, y), new Level(level, xp_base)));
-            else if (class_s.equals("Goblin"))
-                enemies.add(new Goblin(new Position(x, y), new Level(level, xp_base)));
-            else if (class_s.equals("Ogre"))
-                enemies.add(new Ogre(new Position(x, y), new Level(level, xp_base)));
+            try {
+                enemies.add(new Enemy(new Position(x, y), new Level(level, xp_base), class_s));
+            } catch (FileNotFoundException | URISyntaxException e) {
+                e.printStackTrace();
+            }
 
             fileScanner.nextLine();
         }

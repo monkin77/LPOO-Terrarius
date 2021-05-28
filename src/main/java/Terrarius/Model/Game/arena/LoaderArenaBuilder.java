@@ -5,7 +5,6 @@ import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.elements.Block;
 import Terrarius.Model.Game.elements.enemies.Enemy;
-import Terrarius.Model.Game.elements.enemies.Zombie;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -155,8 +154,13 @@ public class LoaderArenaBuilder extends ArenaBuilder {
             int level = fileScanner.nextInt();
             int xp_base = fileScanner.nextInt();
 
-            if (class_s.equals("Zombie"))
-                enemies.add(new Zombie(new Position(x, y), new Level(level, xp_base)));
+            if (class_s.equals("Zombie")) {
+                try {
+                    enemies.add(new Enemy(new Position(x, y), new Level(level, xp_base), "Zombie"));
+                } catch (FileNotFoundException | URISyntaxException e) {
+                    e.printStackTrace();
+                }
+            }
 
             fileScanner.nextLine();
         }

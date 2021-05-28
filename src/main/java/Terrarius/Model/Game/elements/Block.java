@@ -13,11 +13,9 @@ import java.util.Scanner;
 public class Block extends Element {
     private int hp;
     private int hardness;
-    private final String name;
 
     public Block(Position position, String name) throws FileNotFoundException, URISyntaxException {
-        super(position, new Dimensions(4, 4));
-        this.name = name;
+        super(position, name);
         loadBlock();
     }
 
@@ -42,7 +40,7 @@ public class Block extends Element {
     }
 
     @Override
-    public String getComponentName() {
-        return this.name;
+    protected void loadElement() {
+        this.setDimensions(new Dimensions(4, 4));
     }
 }
