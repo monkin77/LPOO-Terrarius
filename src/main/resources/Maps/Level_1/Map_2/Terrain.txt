@@ -9,8 +9,8 @@ w WoodBlock
 .........ww..w..................
 .........wwww...................
 .........ww.....................
-.............................ddd
-.........................ddddsss
+.........ww.................dddd
+........www.............ddddssss
 ...dddddddddddddd....ddddsssssss
 dddsssssssssssssdddddsssssssssss
 ssss.......sssssssssssssssssssss

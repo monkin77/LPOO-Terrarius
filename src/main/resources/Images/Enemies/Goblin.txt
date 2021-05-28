@@ -1,0 +1,3 @@
+2 15
+Images/Enemies/Goblin1.txt
+Images/Enemies/Goblin2.txt
