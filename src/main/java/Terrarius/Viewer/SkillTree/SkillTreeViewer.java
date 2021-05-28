@@ -127,8 +127,13 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
             if(i == 0 || i == 1) costPosY = textYPos - (SkillTreeViewerConstants.SKILL_CONTAINER_HEIGHT/2 + 3);
             else costPosY = textYPos + (SkillTreeViewerConstants.SKILL_CONTAINER_HEIGHT/2 + 3);
 
-            String costInfo = "Cost: " + currSkill.getUpgradeCost();
+            String highlightColor = model.getAvailablePoints() - currSkill.getUpgradeCost() >= 0 ? "#00FF00" : "#FF0000";
+
+            String costInfo = "Cost: ";
             gui.drawString(textXPos, costPosY, costInfo, "#FFFFFF", "#000000");
+
+            String costValue = Integer.toString(currSkill.getUpgradeCost());
+            gui.drawString(textXPos + costInfo.length(), costPosY, costValue, highlightColor, "#000000");
         }
     }
 }
