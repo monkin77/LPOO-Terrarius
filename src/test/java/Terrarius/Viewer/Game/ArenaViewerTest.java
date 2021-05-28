@@ -32,7 +32,7 @@ import static Terrarius.Viewer.Game.GameViewerConstants.SKY_COLOR;
 
 public class ArenaViewerTest {
     private ArenaViewer arenaViewer;
-    private Map<Class, ElementViewer> enemyCache = new HashMap<>();
+    private Map<String, ElementViewer> enemyCache = new HashMap<>();
     private Map<String, ElementViewer> blockCache = new HashMap<>();
     private Map<String, ItemViewer> itemCache = new HashMap<>();
     private ToolbarViewer toolbarViewer = new ToolbarViewer();
@@ -49,7 +49,7 @@ public class ArenaViewerTest {
 
         Enemy enemy = Mockito.mock(Zombie.class);
         EnemyViewer enemyViewer = Mockito.mock(EnemyViewer.class);
-        enemyCache.put(enemy.getClass(), enemyViewer);
+        enemyCache.put(enemy.getComponentName(), enemyViewer);
         arenaViewer.setEnemyCache(enemyCache);
 
         Block block1 = Mockito.mock(WoodBlock.class);

@@ -19,7 +19,7 @@ import static Terrarius.Viewer.Game.GameViewerConstants.SKY_COLOR;
 
 public class ArenaViewer extends Viewer<Arena> {
 
-    private Map<Class, ElementViewer> enemyCache = new HashMap<>();
+    private Map<String, ElementViewer> enemyCache = new HashMap<>();
     private Map<String, ElementViewer> blockCache = new HashMap<>();
     private Map<String, ItemViewer> itemCache = new HashMap<>();
     private ToolbarViewer toolbarViewer = new ToolbarViewer();
@@ -71,10 +71,10 @@ public class ArenaViewer extends Viewer<Arena> {
     protected void drawEnemies(GUI gui, Arena arena) {
         for(Enemy enemy : arena.getEnemies()) {
 
-            if (!enemyCache.containsKey(enemy.getClass()))
-                enemyCache.put(enemy.getClass(), new EnemyViewer(enemy));
+            if (!enemyCache.containsKey(enemy.getComponentName()))
+                enemyCache.put(enemy.getComponentName(), new EnemyViewer(enemy));
 
-            ElementViewer viewer = enemyCache.get(enemy.getClass());
+            ElementViewer viewer = enemyCache.get(enemy.getComponentName());
             viewer.draw(enemy, gui);
         }
     }
@@ -110,7 +110,7 @@ public class ArenaViewer extends Viewer<Arena> {
     }
 
 
-    protected void setEnemyCache(Map<Class, ElementViewer> enemyCache) {
+    protected void setEnemyCache(Map<String, ElementViewer> enemyCache) {
         this.enemyCache = enemyCache;
     }
 
