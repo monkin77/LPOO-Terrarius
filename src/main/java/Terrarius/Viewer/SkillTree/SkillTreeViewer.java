@@ -72,12 +72,15 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
     }
 
     public void drawSkillsLabels(Position startingPos, GUI gui, SkillTree model) {
+        String skillLabel = "Skills";
+        int textXPos = startingPos.getX() + SkillTreeViewerConstants.CENTER_CONTAINER_X - skillLabel.length() / 2;
+        int textYPos = startingPos.getY() + SkillTreeViewerConstants.CENTER_CONTAINER_Y - 1;
+        gui.drawString(textXPos, textYPos, skillLabel, "#FFFFFF", "#000000");
+
         for(int i = 0; i < model.getSkills().size(); i++) {
             Skill currSkill = model.getSkills().get(i);
-            String skillLabel = currSkill.getName();
+            skillLabel = currSkill.getName();
 
-            int textXPos = 0;
-            int textYPos = 0;
             switch (i) {
                 case 0:
                     textXPos = startingPos.getX() + SkillTreeViewerConstants.LEFT_OFFSET + (SkillTreeViewerConstants.SKILL_CONTAINER_WIDTH - skillLabel.length()) / 2;
@@ -100,7 +103,7 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
             }
             String charColor = "#FFFFFF";
             if(model.getSelected() == i) charColor = "#00FF00";
-            
+
             gui.drawString(textXPos, textYPos, skillLabel, charColor, "#000000");
         }
     }

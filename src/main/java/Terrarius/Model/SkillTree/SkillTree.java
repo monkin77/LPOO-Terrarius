@@ -11,6 +11,7 @@ import java.util.List;
 
 public class SkillTree {
     private int selected = 0;
+    private int numUpgrades = 0;
 
     List<Skill> skills;
 
@@ -42,5 +43,13 @@ public class SkillTree {
         int nextSel = this.selected - 1;
         while(nextSel < 0) nextSel += skills.size();
         this.selected = nextSel % skills.size();
+    }
+
+    public int getNumUpgrades() {
+        return numUpgrades;
+    }
+
+    public void setNumUpgrades(int numUpgrades) {
+        this.numUpgrades = numUpgrades;
     }
 }

@@ -38,4 +38,12 @@ public abstract class Skill {
     public void setUpgradeCost(int upgradeCost) {
         this.upgradeCost = upgradeCost;
     }
+
+    public boolean upgrade() {
+        if(currLevel == maxLevel) {
+            return false;
+        }
+        currLevel++;
+        return true;
+    }
 }

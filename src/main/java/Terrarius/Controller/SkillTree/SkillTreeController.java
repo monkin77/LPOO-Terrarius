@@ -2,7 +2,10 @@ package Terrarius.Controller.SkillTree;
 
 import Terrarius.Controller.Controller;
 import Terrarius.GUI.GUI;
+import Terrarius.Model.Game.arena.Arena;
+import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.SkillTree.SkillTree;
+import Terrarius.Model.SkillTree.Skills.Skill;
 import Terrarius.States.SkillTreeState;
 import Terrarius.Terrarius;
 
@@ -41,10 +44,25 @@ public class SkillTreeController extends Controller<SkillTree> {
                 case ST_RIGHT:
                     getModel().nextSkill();
                     break;
+                case SELECT:
+                    this.upgradeSkill(terrarius, getModel().getSelected());
+                    break;
             }
         }
 
         this.actions.clear();
+    }
+
+    public void upgradeSkill(Terrarius terrarius, int selectedSkill) {
+        Skill selSkill = this.getModel().getSkills().get(selectedSkill);
+        Hero hero = ((Arena) terrarius.getGameState().getModel()).getHero();
+        int heroLevel = hero.getStats().getCurrentLevel();
+        if( heroLevel - this.getModel().getNumUpgrades() > 0) {
+            if (selSkill.upgrade()) {
+                this.getModel().setNumUpgrades(getModel().getNumUpgrades() + 1);
+                // Need to reload the viewer?
+            }
+        }
     }
 
     public List<GUI.ACTION> getActions() {

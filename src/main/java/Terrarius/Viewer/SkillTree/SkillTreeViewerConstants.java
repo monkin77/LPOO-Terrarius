@@ -9,4 +9,6 @@ public final class SkillTreeViewerConstants {
     public static final int SKILL_CONTAINER_HEIGHT = 9;
     public static final int SKILL_CONTAINER_WIDTH = 14;
 
+    public static final int CENTER_CONTAINER_X = 25;
+    public static final int CENTER_CONTAINER_Y = 27;
 }

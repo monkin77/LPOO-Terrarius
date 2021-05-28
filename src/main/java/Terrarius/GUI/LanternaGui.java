@@ -220,7 +220,6 @@ public class LanternaGui implements GUI {
         if (keyboardHandler.readKey(VK_9)) actionList.add(ACTION.SLOT9);
         if (keyboardHandler.readKey(VK_ENTER)) actionList.add(ACTION.SELECT);
         if (keyboardHandler.readKey(VK_ESCAPE)) actionList.add(ACTION.QUIT);
-        if (keyboardHandler.isKeyPressed(VK_ENTER)) actionList.add(ACTION.SELECT);
         if (keyboardHandler.isKeyPressed(VK_ESCAPE)) actionList.add(ACTION.QUIT);
         if (keyboardHandler.readKey(VK_TAB)) actionList.add(ACTION.SKILL_TREE);
         if (keyboardHandler.readKey(VK_LEFT)) actionList.add(ACTION.ST_LEFT);
