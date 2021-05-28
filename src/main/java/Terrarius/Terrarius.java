@@ -4,9 +4,13 @@ import Terrarius.GUI.GUI;
 import Terrarius.GUI.LanternaGui;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Game.arena.LoaderArenaBuilder;
+import Terrarius.Model.Game.arena.MultiMapArenaBuilder;
+import Terrarius.Model.Game.items.Item;
 import Terrarius.Model.Game.items.tools.Axe;
+import Terrarius.Model.ItemShop.ItemShop;
 import Terrarius.Model.Menu.Menu;
 import Terrarius.States.GameState;
+import Terrarius.States.ItemShopState;
 import Terrarius.States.MenuState;
 import Terrarius.States.State;
 
@@ -20,6 +24,9 @@ public class Terrarius {
     private final GUI gui;
     private State state;
 
+    private State gameState;
+    private State itemShopState;
+
     public static void main(String[] args) throws FontFormatException, IOException, URISyntaxException {
         new Terrarius(128, 74).start();
     }
@@ -27,6 +34,8 @@ public class Terrarius {
     public Terrarius(int width, int height) throws FontFormatException, IOException, URISyntaxException {
         this.gui = new LanternaGui(width, height);
         this.state = new MenuState(new Menu());
+        this.gameState = new GameState(new MultiMapArenaBuilder().createArena());
+        this.itemShopState = new ItemShopState(new ItemShop(((Arena) gameState.getModel()).getHero()));
     }
 
     /*
@@ -58,11 +67,36 @@ public class Terrarius {
         }
     }
 
+    public static int getMsPerUpdate() {
+        return MS_PER_UPDATE;
+    }
+
+    public State getState() {
+        return state;
+    }
+
     public void setState(State state) {
         this.state = state;
     }
 
-    public static int getMsPerUpdate() {
-        return MS_PER_UPDATE;
+    public State getGameState() {
+        return gameState;
+    }
+
+    public State getItemShopState() {
+        return itemShopState;
+    }
+
+    public GUI getGui() {
+        return gui;
+    }
+
+    public void setGameState(State gameState) {
+        this.gameState = gameState;
+    }
+
+    public void setItemShopState(State itemShopState) {
+        this.itemShopState = itemShopState;
     }
 }
+

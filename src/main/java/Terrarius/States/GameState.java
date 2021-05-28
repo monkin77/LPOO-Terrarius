@@ -12,12 +12,13 @@ public class GameState extends State<Arena> {
     }
 
     @Override
-    protected Viewer<Arena> getViewer() {
+    protected Viewer<Arena> createViewer() {
         return new ArenaViewer();
     }
 
     @Override
-    protected Controller<Arena> getController() {
+    protected Controller<Arena> createController() {
         return new GameController(getModel());
     }
 }
+

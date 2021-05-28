@@ -13,7 +13,7 @@ public class KeyboardHandler {
         List<Integer> keyCodes = Arrays.asList(
                 VK_ESCAPE,
                 VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT, VK_ENTER,
-                VK_A, VK_S, VK_D, VK_W,
+                VK_A, VK_S, VK_D, VK_W, VK_B,
                 VK_0, VK_1, VK_2, VK_3, VK_4, VK_5, VK_6, VK_7, VK_8, VK_9);
 
         for (Integer keyCode : keyCodes){

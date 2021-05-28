@@ -39,7 +39,7 @@ public class MenuController extends Controller<Menu> {
                     break;
                 case SELECT:
                     if (getModel().isPlaySelected())
-                        terrarius.setState(new GameState(new MultiMapArenaBuilder().createArena()));
+                        terrarius.setState(terrarius.getGameState());
                     if (getModel().isQuitSelected())
                         terrarius.setState(null);
             }
