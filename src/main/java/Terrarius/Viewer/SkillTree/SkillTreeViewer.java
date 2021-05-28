@@ -16,7 +16,8 @@ import java.net.URISyntaxException;
 
 public class SkillTreeViewer extends Viewer<SkillTree> {
     private ColoredImage image;
-    int previousSelected = -1;
+    int previousSelected;
+    int previousNumUpgrades;
 
     public SkillTreeViewer() {
         super();
@@ -27,13 +28,15 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
             e.printStackTrace();
             image = null;
         }
+        previousSelected = -1;
+        previousNumUpgrades = -1;
     }
 
     @Override
     public void draw(GUI gui, SkillTree model) throws IOException {
-        if (previousSelected == model.getSelected()) return;
+        if (!this.needsUpdate(model)) return;
         previousSelected = model.getSelected();
-        // For now the screen is flickering too fast
+        previousNumUpgrades = model.getNumUpgrades();
 
         gui.clear();
 
@@ -61,6 +64,15 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
     @Override
     public void update() {
 
+    }
+
+    /**
+     * This function checks if the viewer should update
+     * @param model
+     * @return true if it needs to update. False otherwise.
+     */
+    public boolean needsUpdate(SkillTree model) {
+        return ( previousSelected != model.getSelected() || previousNumUpgrades != model.getNumUpgrades() );
     }
 
     public int getPreviousSelected() {
