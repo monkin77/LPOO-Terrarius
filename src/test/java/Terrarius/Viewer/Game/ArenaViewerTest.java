@@ -1,6 +1,8 @@
 package Terrarius.Viewer.Game;
 
 import Terrarius.GUI.GUI;
+import Terrarius.Model.Game.Level;
+import Terrarius.Model.Game.elements.hero.HeroStats;
 import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.arena.Arena;
@@ -70,6 +72,7 @@ public class ArenaViewerTest {
         arenaViewer.setHeroViewer(heroViewer);
 
         hero = Mockito.mock(Hero.class);
+        Mockito.when(hero.getStats()).thenReturn(new HeroStats(new Level(5, 0), 100, 5, 1, 10));
 
         arena = Mockito.mock(Arena.class);
         Mockito.when(arena.getHero()).thenReturn(hero);
@@ -140,7 +143,9 @@ public class ArenaViewerTest {
         arenaViewer = Mockito.spy(arenaViewer);
         arenaViewer.drawToolbar(gui, arena);
 
-        Mockito.verify(toolbarViewer, Mockito.times(1)).draw(toolbar, arena.getDimensions(), gui);
+        Dimensions tbvDimension = new Dimensions(arena.getHeight() + 3, arena.getWidth());
+        Mockito.verify(toolbarViewer, Mockito.times(1)).draw(Mockito.eq(toolbar),
+                Mockito.argThat(dim -> dim.equals(tbvDimension)), Mockito.eq(gui));
         Mockito.verify(arenaViewer, Mockito.times(1)).drawToolbarItems(gui, toolbar, arena);
     }
 

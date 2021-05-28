@@ -21,8 +21,8 @@ public class EnemyTest {
     public void zombie() {
         enemy = new Zombie(new Position(10, 10), level);
 
-        Assertions.assertEquals(16, enemy.getStats().getHp());
-        Assertions.assertEquals(3, enemy.getStats().getPower());
+        Assertions.assertEquals(26, enemy.getStats().getHp());
+        Assertions.assertEquals(16, enemy.getStats().getPower());
         Assertions.assertEquals(6, enemy.getStats().getLevel().getNumLevel());
     }
 }

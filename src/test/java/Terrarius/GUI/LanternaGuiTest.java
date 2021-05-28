@@ -1,6 +1,7 @@
 package Terrarius.GUI;
 
 import Terrarius.Controller.KeyboardHandler;
+import Terrarius.Controller.MouseHandler;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
@@ -23,20 +24,24 @@ public class LanternaGuiTest {
     private TerminalScreen screen;
     private TextGraphics textGraphics;
     private KeyboardHandler keyboardHandler;
+    private MouseHandler mouseHandler;
 
     @BeforeEach
     public void setup() {
         screen = Mockito.mock(TerminalScreen.class);
         textGraphics = Mockito.mock(TextGraphics.class);
         keyboardHandler = Mockito.mock(KeyboardHandler.class);
+        mouseHandler = Mockito.mock(MouseHandler.class);
 
         Mockito.when(screen.newTextGraphics()).thenReturn(textGraphics);
 
         Mockito.when(keyboardHandler.isKeyPressed(Mockito.anyInt())).thenReturn(false);
+        Mockito.when(mouseHandler.isPressed()).thenReturn(false);
+        Mockito.when(mouseHandler.isClick()).thenReturn(false);
         Mockito.when(keyboardHandler.isKeyPressed(VK_UP)).thenReturn(true);
         Mockito.when(keyboardHandler.isKeyPressed(VK_RIGHT)).thenReturn(true);
 
-        gui = new LanternaGui(screen, keyboardHandler);
+        gui = new LanternaGui(screen, keyboardHandler, mouseHandler);
     }
 
     @Test
@@ -85,6 +90,8 @@ public class LanternaGuiTest {
 
     @Test
     public void getNextActions() {
+        Mockito.when(mouseHandler.isClick()).thenReturn(true);
+
         List<GUI.ACTION> actionList = gui.getNextActions();
         List<GUI.ACTION> expected = Arrays.asList(GUI.ACTION.CLICK, GUI.ACTION.UP, GUI.ACTION.RIGHT);
 

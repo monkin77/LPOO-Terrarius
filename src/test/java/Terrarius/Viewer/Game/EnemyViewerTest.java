@@ -1,16 +1,22 @@
 package Terrarius.Viewer.Game;
 
 import Terrarius.GUI.GUI;
+import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.Element;
 import Terrarius.Model.Game.elements.enemies.Enemy;
+import Terrarius.Model.Game.elements.enemies.EnemyStats;
+import Terrarius.Utils.Dimensions;
 import Terrarius.Viewer.FrameHandler;
 import Terrarius.Viewer.Image.AnimatedImage;
+import Terrarius.Viewer.Image.Image;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,14 +29,19 @@ public class EnemyViewerTest {
     private Enemy enemy;
 
     @BeforeEach
-    public void setup() {
+    public void setup() throws FileNotFoundException, URISyntaxException {
         frameHandler = Mockito.mock(FrameHandler.class);
 
         enemy = Mockito.mock(Enemy.class);
         Mockito.when(enemy.getPosition()).thenReturn(new Position(10, 10));
+        Mockito.when(enemy.getDimensions()).thenReturn(new Dimensions(5, 5));
         Mockito.when(enemy.getOrientation()).thenReturn(Element.Orientation.RIGHT);
+        Mockito.when(enemy.getComponentName()).thenReturn("Zombie");
+        Mockito.when(enemy.getStats()).thenReturn(new EnemyStats(20, 2, 5, new Level(3, 0)));
 
         image = Mockito.mock(AnimatedImage.class);
+        Mockito.doNothing().when(image).load(Mockito.anyString());
+
         gui = Mockito.mock(GUI.class);
         elementFrameSpeedMap = new HashMap<>();
 
@@ -65,6 +76,10 @@ public class EnemyViewerTest {
         Mockito.when(image.getFrameSpeed()).thenReturn(handler2);
 
         Enemy enemy2 = Mockito.mock(Enemy.class);
+        Mockito.when(enemy2.getStats()).thenReturn(new EnemyStats(20, 2, 5, new Level(3, 0)));
+        Mockito.when(enemy2.getPosition()).thenReturn(new Position(10, 10));
+        Mockito.when(enemy2.getDimensions()).thenReturn(new Dimensions(5, 5));
+        Mockito.when(enemy2.getOrientation()).thenReturn(Element.Orientation.RIGHT);
         enemyViewer.draw(enemy2, gui);
 
         Assertions.assertEquals(2, enemyViewer.getElementFrameSpeedMap().size());
