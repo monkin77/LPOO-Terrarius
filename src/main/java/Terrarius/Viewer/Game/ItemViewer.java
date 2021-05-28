@@ -19,9 +19,13 @@ public class ItemViewer {
         icon = new ColoredImage();
         try {
             image.load("Images/Items/" + item.getComponentName() + ".txt");
-            icon.load("Images/Items/" + item.getComponentName() + "Icon.txt");
         } catch (FileNotFoundException | URISyntaxException | NullPointerException e) {
             image = null;
+        }
+
+        try {
+            icon.load("Images/Items/" + item.getComponentName() + "Icon.txt");
+        } catch (FileNotFoundException | URISyntaxException | NullPointerException e) {
             icon = null;
         }
     }

@@ -5,6 +5,7 @@ import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Game.elements.blocks.Block;
 import Terrarius.Model.Game.elements.enemies.Enemy;
+import Terrarius.Model.Game.items.BlockPlacer;
 import Terrarius.Model.Game.items.Item;
 import Terrarius.Model.Game.items.Toolbar;
 import Terrarius.Utils.Dimensions;
@@ -90,6 +91,12 @@ public class ArenaViewer extends Viewer<Arena> {
     protected void drawToolbarItems(GUI gui, Toolbar toolbar, Arena arena) {
         for(Integer itemKey : toolbar.getToolBar().keySet()) {
             Item item = toolbar.getItem(itemKey);
+
+            if (item instanceof BlockPlacer && itemKey.equals(toolbar.getActiveItemIdx())) {
+                // BlockPlacer changes images
+                new ItemViewer(item).draw(item, gui);
+                continue;
+            }
 
             if (!itemCache.containsKey(item.getClass()))
                 itemCache.put(item.getClass(), new ItemViewer(item));

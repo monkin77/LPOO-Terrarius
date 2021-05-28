@@ -9,7 +9,6 @@ import Terrarius.Model.Game.items.Item;
 import Terrarius.Model.Game.items.Toolbar;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Hero extends Element {

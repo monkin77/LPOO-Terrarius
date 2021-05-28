@@ -1,0 +1,28 @@
+6 3
+)-(
+ogo
+ - 
+| |
++_+
+|..
+2
+P #000000
+G #96c914
+PPP
+GPG
+PPP
+PPP
+PPP
+PPP
+5
+O #ecf23d
+P #57c959
+S #4749d1
+C #824b30
+B #f5c000
+PPP
+OPO
+PPP
+SPS
+BCB
+CCC
