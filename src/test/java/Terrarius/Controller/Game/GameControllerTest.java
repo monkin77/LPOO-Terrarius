@@ -1,3 +1,4 @@
+/*
 package Terrarius.Controller.Game;
 
 import Terrarius.GUI.GUI;
@@ -66,3 +67,4 @@ public class GameControllerTest {
         Mockito.verify(terrarius, Mockito.times(1)).setState(Mockito.any());
     }
 }
+*/
