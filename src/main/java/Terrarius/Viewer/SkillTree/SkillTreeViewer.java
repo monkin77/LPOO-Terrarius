@@ -53,8 +53,14 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
 
         for(int i = 0; i < model.getSkills().size(); i++) {
             Skill skill = model.getSkills().get(i);
-            String skillInfo = skill.getName() + ": " + skill.getCurrLevel() + " / " + skill.getMaxLevel();;
-            gui.drawString(10, 20 + (i + 1) * yOffset, skillInfo, "#FFFFFF", "#000000");
+            String skillInfoPrefix = skill.getName() + ": ";
+            String skillInfoHighlighted = Integer.toString(skill.getCurrLevel() );
+            String skillInfoSuffix = " / " + skill.getMaxLevel();
+            String highlightColor = skill.getCurrLevel() > 0 ? "#00FF00" : "#FFFFFF";
+
+            gui.drawString(10, 20 + (i + 1) * yOffset, skillInfoPrefix, "#FFFFFF", "#000000");
+            gui.drawString(10 + skillInfoPrefix.length(), 20 + (i + 1) * yOffset, skillInfoHighlighted, highlightColor, "#000000");
+            gui.drawString(10 + skillInfoPrefix.length() + skillInfoHighlighted.length(), 20 + (i + 1) * yOffset, skillInfoSuffix, "#FFFFFF", "#000000");
         }
 
         gui.refresh();
@@ -121,8 +127,13 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
             if(i == 0 || i == 1) costPosY = textYPos - (SkillTreeViewerConstants.SKILL_CONTAINER_HEIGHT/2 + 3);
             else costPosY = textYPos + (SkillTreeViewerConstants.SKILL_CONTAINER_HEIGHT/2 + 3);
 
-            String costInfo = "Cost: " + currSkill.getUpgradeCost();
+            String highlightColor = model.getAvailablePoints() - currSkill.getUpgradeCost() >= 0 ? "#00FF00" : "#FF0000";
+
+            String costInfo = "Cost: ";
             gui.drawString(textXPos, costPosY, costInfo, "#FFFFFF", "#000000");
+
+            String costValue = Integer.toString(currSkill.getUpgradeCost());
+            gui.drawString(textXPos + costInfo.length(), costPosY, costValue, highlightColor, "#000000");
         }
     }
 }
