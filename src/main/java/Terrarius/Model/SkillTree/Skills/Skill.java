@@ -1,5 +1,7 @@
 package Terrarius.Model.SkillTree.Skills;
 
+import Terrarius.Model.Game.elements.hero.HeroStats;
+
 public abstract class Skill {
     private String name;
     private int currLevel;
@@ -47,4 +49,6 @@ public abstract class Skill {
         currLevel++;
         return true;
     }
+
+    public abstract void applyEffect(HeroStats stats);
 }

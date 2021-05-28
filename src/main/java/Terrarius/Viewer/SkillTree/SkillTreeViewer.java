@@ -16,7 +16,7 @@ import java.net.URISyntaxException;
 public class SkillTreeViewer extends Viewer<SkillTree> {
     private ColoredImage image;
     int previousSelected;
-    int previousNumUpgrades;
+    int previousUsedPoints;
 
     public SkillTreeViewer() {
         super();
@@ -28,14 +28,14 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
             image = null;
         }
         previousSelected = -1;
-        previousNumUpgrades = -1;
+        previousUsedPoints = -1;
     }
 
     @Override
     public void draw(GUI gui, SkillTree model) throws IOException {
         if (!this.needsUpdate(model)) return;
         previousSelected = model.getSelected();
-        previousNumUpgrades = model.getUsedPoints();
+        previousUsedPoints = model.getUsedPoints();
 
         gui.clear();
 
@@ -74,7 +74,7 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
      * @return true if it needs to update. False otherwise.
      */
     public boolean needsUpdate(SkillTree model) {
-        return ( previousSelected != model.getSelected() || previousNumUpgrades != model.getUsedPoints() );
+        return ( previousSelected != model.getSelected() || previousUsedPoints != model.getUsedPoints() );
     }
 
     public int getPreviousSelected() {

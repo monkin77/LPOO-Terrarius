@@ -1,6 +1,7 @@
 package Terrarius.Model.SkillTree;
 
 import Terrarius.Model.Game.Level;
+import Terrarius.Model.Game.elements.hero.HeroStats;
 import Terrarius.Model.SkillTree.Skills.AttackSkill;
 import Terrarius.Model.SkillTree.Skills.DefenseSkill;
 import Terrarius.Model.SkillTree.Skills.Skill;
@@ -13,11 +14,11 @@ public class SkillTree {
     private int selected = 0;
     private int usedPoints = 0;
 
-    List<Skill> skills;
-    int heroLevel;
+    private List<Skill> skills;
+    private HeroStats heroStats;
 
-    public SkillTree(Level heroLevel) {
-        this.heroLevel = heroLevel.getNumLevel();
+    public SkillTree(HeroStats heroStats) {
+        this.heroStats = heroStats;
         this.skills = Arrays.asList(new AttackSkill(), new DefenseSkill(), new SpeedSkill());
     }
 
@@ -56,12 +57,19 @@ public class SkillTree {
     }
 
     public int getHeroLevel() {
-        return heroLevel;
+        return this.heroStats.getCurrentLevel();
     }
 
     public int getAvailablePoints() {
-        return this.heroLevel - this.usedPoints;
+        return this.getHeroLevel() - this.usedPoints;
     }
 
-
+    public void upgradeSkill(Skill selSkill) {
+        if( this.getAvailablePoints() >= selSkill.getUpgradeCost()) {
+            if (selSkill.upgrade()) {
+                this.setUsedPoints(this.getUsedPoints() + selSkill.getUpgradeCost());
+                selSkill.applyEffect(this.heroStats);
+            }
+        }
+    }
 }

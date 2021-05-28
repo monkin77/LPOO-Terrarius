@@ -55,11 +55,7 @@ public class SkillTreeController extends Controller<SkillTree> {
 
     public void upgradeSkill(int selectedSkill) {
         Skill selSkill = this.getModel().getSkills().get(selectedSkill);
-        if( this.getModel().getAvailablePoints() >= selSkill.getUpgradeCost()) {
-            if (selSkill.upgrade()) {
-                this.getModel().setUsedPoints(getModel().getUsedPoints() + selSkill.getUpgradeCost());
-            }
-        }
+        this.getModel().upgradeSkill(selSkill);
     }
 
     public List<GUI.ACTION> getActions() {
