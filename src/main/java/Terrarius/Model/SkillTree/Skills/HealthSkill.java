@@ -4,7 +4,7 @@ import Terrarius.Model.Game.elements.hero.HeroStats;
 
 public class HealthSkill extends Skill{
     public HealthSkill() {
-        super("Health", 1);
+        super("Health", 2);
     }
 
     @Override

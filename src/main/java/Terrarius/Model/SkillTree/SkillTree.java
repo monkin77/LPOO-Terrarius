@@ -15,7 +15,7 @@ public class SkillTree {
 
     public SkillTree(HeroStats heroStats) {
         this.heroStats = heroStats;
-        this.skills = Arrays.asList(new AttackSkill(), new RangeSkill(), new SpeedSkill(), new HealthSkill());
+        this.skills = Arrays.asList(new AttackSkill(), new HealthSkill(), new RangeSkill(), new SpeedSkill());
     }
 
     public int getSelected() {

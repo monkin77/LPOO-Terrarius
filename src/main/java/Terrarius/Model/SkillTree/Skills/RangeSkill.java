@@ -4,7 +4,7 @@ import Terrarius.Model.Game.elements.hero.HeroStats;
 
 public class RangeSkill extends Skill {
     public RangeSkill() {
-        super("Range", 1);
+        super("Range", 5);
     }
 
     @Override
