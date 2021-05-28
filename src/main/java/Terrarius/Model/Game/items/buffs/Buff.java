@@ -11,6 +11,10 @@ public abstract class Buff extends Item implements Comparable<Buff> {
         super(hero, dimensions);
     }
 
+    public Buff(Buff buff){
+        super(buff.getHero(), buff.getDimensions());
+    }
+
     public BuffStats getStats() {
         return stats;
     }

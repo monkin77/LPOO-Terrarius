@@ -13,12 +13,12 @@ import java.util.List;
 public abstract class State<T> {
     private final T model;
     private final Controller<T> controller;
-    private final Viewer<T> viewer;
+    private Viewer<T> viewer;
 
     public State(T model) {
         this.model = model;
-        this.controller = getController();
-        this.viewer = getViewer();
+        this.controller = createController();
+        this.viewer = createViewer();
     }
 
     public T getModel() {
@@ -43,6 +43,18 @@ public abstract class State<T> {
         viewer.draw(gui, model);
     }
 
-    protected abstract Viewer<T> getViewer();
-    protected abstract Controller<T> getController();
+    protected abstract Viewer<T> createViewer();
+    protected abstract Controller<T> createController();
+
+    public Viewer<T> getViewer() {
+        return viewer;
+    }
+
+    public Controller<T> getController() {
+        return controller;
+    }
+
+    public void setViewer(Viewer<T> viewer) {
+        this.viewer = viewer;
+    }
 }
