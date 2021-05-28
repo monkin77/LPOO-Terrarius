@@ -7,10 +7,13 @@ import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Game.arena.LoaderArenaBuilder;
 import Terrarius.Model.Game.arena.MultiMapArenaBuilder;
 import Terrarius.Model.Game.elements.hero.HeroStats;
+import Terrarius.Model.Game.items.Item;
 import Terrarius.Model.Game.items.tools.Axe;
+import Terrarius.Model.ItemShop.ItemShop;
 import Terrarius.Model.Menu.Menu;
 import Terrarius.Model.SkillTree.SkillTree;
 import Terrarius.States.GameState;
+import Terrarius.States.ItemShopState;
 import Terrarius.States.MenuState;
 import Terrarius.States.SkillTreeState;
 import Terrarius.States.State;
@@ -29,6 +32,7 @@ public class Terrarius {
 
     private State gameState;
     private State skillTreeState;
+    private State itemShopState;
 
     public static void main(String[] args) throws FontFormatException, IOException, URISyntaxException {
         new Terrarius(128, 74).start();
@@ -41,6 +45,7 @@ public class Terrarius {
 
         HeroStats heroStats = ((Arena) gameState.getModel()).getHero().getStats();
         this.skillTreeState = new SkillTreeState(new SkillTree(heroStats));
+        this.itemShopState = new ItemShopState(new ItemShop(((Arena) gameState.getModel()).getHero()));
     }
 
     /*
@@ -92,6 +97,10 @@ public class Terrarius {
         return skillTreeState;
     }
 
+    public State getItemShopState() {
+        return itemShopState;
+    }
+
     public GUI getGui() {
         return gui;
     }
@@ -103,4 +112,9 @@ public class Terrarius {
     public void setSkillTreeState(State skillTreeState) {
         this.skillTreeState = skillTreeState;
     }
+
+    public void setItemShopState(State itemShopState) {
+        this.itemShopState = itemShopState;
+    }
 }
+

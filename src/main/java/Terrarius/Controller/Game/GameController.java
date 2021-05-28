@@ -9,6 +9,10 @@ import Terrarius.Model.Game.elements.hero.HeroStats;
 import Terrarius.Model.SkillTree.SkillTree;
 import Terrarius.States.GameState;
 import Terrarius.States.SkillTreeState;
+import Terrarius.Model.Game.arena.MultiMapArenaBuilder;
+import Terrarius.Model.ItemShop.ItemShop;
+import Terrarius.States.GameState;
+import Terrarius.States.ItemShopState;
 import Terrarius.Terrarius;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Menu.Menu;
@@ -38,9 +42,10 @@ public class GameController extends Controller<Arena> {
         List<GUI.ACTION> actions = gui.getNextActions();
         if (actions.contains(GUI.ACTION.QUIT))
             this.exitCurrentGame(terrarius);
-        else if (actions.contains(GUI.ACTION.SKILL_TREE)) {
+        else if (actions.contains(GUI.ACTION.SKILL_TREE))
             terrarius.setState(terrarius.getSkillTreeState());
-        }
+        else if (actions.contains(GUI.ACTION.ITEM_SHOP))
+            terrarius.setState(terrarius.getItemShopState());
         else
             arenaController.addActions(actions);
         arenaController.setHeroTargetPosition(new Position(gui.getMouseX() / gui.getFontSize(), gui.getMouseY()/ gui.getFontSize()));
@@ -58,6 +63,7 @@ public class GameController extends Controller<Arena> {
 
         HeroStats heroStats = ((Arena) terrarius.getGameState().getModel()).getHero().getStats();
         terrarius.setSkillTreeState( new SkillTreeState(new SkillTree(heroStats)) );
+        terrarius.setItemShopState( new ItemShopState(new ItemShop(((Arena) terrarius.getGameState().getModel()).getHero())));
     }
 
     public void exitCurrentGame(Terrarius terrarius) {

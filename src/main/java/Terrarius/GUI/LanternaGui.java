@@ -206,8 +206,10 @@ public class LanternaGui implements GUI {
         if (keyboardHandler.isKeyPressed(VK_LEFT) || keyboardHandler.isKeyPressed(VK_A)) actionList.add(ACTION.LEFT);
         if (keyboardHandler.isKeyPressed(VK_RIGHT) || keyboardHandler.isKeyPressed(VK_D)) actionList.add(ACTION.RIGHT);
         if (keyboardHandler.readKey(VK_UP)) actionList.add(ACTION.UP_MENU);
-        if (keyboardHandler.readKey(VK_DOWN))
-            actionList.add(ACTION.DOWN_MENU);
+        if (keyboardHandler.readKey(VK_DOWN)) actionList.add(ACTION.DOWN_MENU);
+        if (keyboardHandler.readKey(VK_LEFT)) actionList.add(ACTION.LEFT_MENU);
+        if (keyboardHandler.readKey(VK_RIGHT)) actionList.add(ACTION.RIGHT_MENU);
+        if (keyboardHandler.readKey(VK_B)) actionList.add(ACTION.ITEM_SHOP);
         if (keyboardHandler.readKey(VK_0)) actionList.add(ACTION.SLOT0);
         if (keyboardHandler.readKey(VK_1)) actionList.add(ACTION.SLOT1);
         if (keyboardHandler.readKey(VK_2)) actionList.add(ACTION.SLOT2);
@@ -222,8 +224,6 @@ public class LanternaGui implements GUI {
         if (keyboardHandler.readKey(VK_ESCAPE)) actionList.add(ACTION.QUIT);
         if (keyboardHandler.isKeyPressed(VK_ESCAPE)) actionList.add(ACTION.QUIT);
         if (keyboardHandler.readKey(VK_TAB)) actionList.add(ACTION.SKILL_TREE);
-        if (keyboardHandler.readKey(VK_LEFT)) actionList.add(ACTION.ST_LEFT);
-        if (keyboardHandler.readKey(VK_RIGHT)) actionList.add(ACTION.ST_RIGHT);
 
 
         return actionList;
