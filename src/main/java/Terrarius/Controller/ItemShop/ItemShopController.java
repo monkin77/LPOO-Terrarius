@@ -31,8 +31,6 @@ public class ItemShopController extends Controller<ItemShop> {
         for(GUI.ACTION action : this.actions) {
             switch (action) {
                 case ITEM_SHOP:
-                    this.actions.clear();
-                    ((ItemShopState) terrarius.getItemShopState()).resetItemShopViewer();
                     terrarius.setState(terrarius.getGameState());
                     return;
                 case LEFT_MENU:

@@ -36,11 +36,11 @@ public class GameController extends Controller<Arena> {
     public void giveActions(Terrarius terrarius, GUI gui) throws IOException {
         List<GUI.ACTION> actions = gui.getNextActions();
         if (actions.contains(GUI.ACTION.QUIT))
-            this.exitCurrentGame(terrarius);
+            terrarius.setState(terrarius.createMenuState());
         else if (actions.contains(GUI.ACTION.SKILL_TREE))
-            terrarius.setState(terrarius.getSkillTreeState());
+            terrarius.setState(terrarius.createSkillTreeState());
         else if (actions.contains(GUI.ACTION.ITEM_SHOP))
-            terrarius.setState(terrarius.getItemShopState());
+            terrarius.setState(terrarius.createItemShopState());
         else
             arenaController.addActions(actions);
         arenaController.setHeroTargetPosition(new Position(gui.getMouseX() / gui.getFontSize(), gui.getMouseY()/ gui.getFontSize()));
@@ -55,10 +55,6 @@ public class GameController extends Controller<Arena> {
 
     public void resetGameState(Terrarius terrarius) throws FileNotFoundException, URISyntaxException {
         terrarius.setGameState(new GameState(new Arena()));
-
-        HeroStats heroStats = ((Arena) terrarius.getGameState().getModel()).getHero().getStats();
-        terrarius.setSkillTreeState( new SkillTreeState(new SkillTree(heroStats)) );
-        terrarius.setItemShopState( new ItemShopState(new ItemShop(((Arena) terrarius.getGameState().getModel()).getHero())));
     }
 
     public void exitCurrentGame(Terrarius terrarius) {

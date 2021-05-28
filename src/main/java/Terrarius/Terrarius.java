@@ -24,10 +24,7 @@ public class Terrarius {
 
     // Possibly save the states inside another class ?
     private State state;
-
     private State gameState;
-    private State skillTreeState;
-    private State itemShopState;
 
     public static void main(String[] args) throws FontFormatException, IOException, URISyntaxException {
         new Terrarius(128, 74).start();
@@ -35,12 +32,8 @@ public class Terrarius {
 
     public Terrarius(int width, int height) throws FontFormatException, IOException, URISyntaxException {
         this.gui = new LanternaGui(width, height);
-        this.state = new MenuState(new Menu());
+        this.state = this.createMenuState();
         this.gameState = new GameState(new Arena());
-
-        HeroStats heroStats = ((Arena) gameState.getModel()).getHero().getStats();
-        this.skillTreeState = new SkillTreeState(new SkillTree(heroStats));
-        this.itemShopState = new ItemShopState(new ItemShop(((Arena) gameState.getModel()).getHero()));
     }
 
     /*
@@ -84,14 +77,6 @@ public class Terrarius {
         return gameState;
     }
 
-    public State getSkillTreeState() {
-        return skillTreeState;
-    }
-
-    public State getItemShopState() {
-        return itemShopState;
-    }
-
     public GUI getGui() {
         return gui;
     }
@@ -100,12 +85,21 @@ public class Terrarius {
         this.gameState = gameState;
     }
 
-    public void setSkillTreeState(State skillTreeState) {
-        this.skillTreeState = skillTreeState;
+    public State createSkillTreeState() {
+        HeroStats heroStats = ((Arena) gameState.getModel()).getHero().getStats();
+        return new SkillTreeState(new SkillTree(heroStats));
     }
 
-    public void setItemShopState(State itemShopState) {
-        this.itemShopState = itemShopState;
+    public State createItemShopState() {
+        return new ItemShopState(new ItemShop(((Arena) gameState.getModel()).getHero()));
+    }
+
+    public State createMenuState() {
+        return new MenuState(new Menu());
+    }
+
+    public State createGameState() {
+        return new GameState(new Arena());
     }
 }
 
