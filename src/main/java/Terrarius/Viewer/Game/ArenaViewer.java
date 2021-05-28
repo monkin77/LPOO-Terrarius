@@ -22,7 +22,7 @@ public class ArenaViewer extends Viewer<Arena> {
 
     private Map<Class, ElementViewer> enemyCache = new HashMap<>();
     private Map<Class, ElementViewer> blockCache = new HashMap<>();
-    private Map<Class, ItemViewer> itemCache = new HashMap<>();
+    private Map<String, ItemViewer> itemCache = new HashMap<>();
     private ToolbarViewer toolbarViewer = new ToolbarViewer();
     private StatusBarViewer statusBarViewer = new StatusBarViewer();
     private HeroViewer heroViewer = new HeroViewer();
@@ -92,16 +92,10 @@ public class ArenaViewer extends Viewer<Arena> {
         for(Integer itemKey : toolbar.getToolBar().keySet()) {
             Item item = toolbar.getItem(itemKey);
 
-            if (item instanceof BlockPlacer && itemKey.equals(toolbar.getActiveItemIdx())) {
-                // BlockPlacer changes images
-                new ItemViewer(item).draw(item, gui);
-                continue;
-            }
+            if (!itemCache.containsKey(item.getComponentName()))
+                itemCache.put(item.getComponentName(), new ItemViewer(item));
 
-            if (!itemCache.containsKey(item.getClass()))
-                itemCache.put(item.getClass(), new ItemViewer(item));
-
-            ItemViewer viewer = itemCache.get(item.getClass());
+            ItemViewer viewer = itemCache.get(item.getComponentName());
 
             if (itemKey.equals(toolbar.getActiveItemIdx()))
                 viewer.draw(item, gui);
@@ -125,7 +119,7 @@ public class ArenaViewer extends Viewer<Arena> {
         this.blockCache = blockCache;
     }
 
-    protected void setItemCache(Map<Class, ItemViewer> itemCache) {
+    protected void setItemCache(Map<String, ItemViewer> itemCache) {
         this.itemCache = itemCache;
     }
 

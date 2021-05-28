@@ -34,7 +34,7 @@ public class ArenaViewerTest {
     private ArenaViewer arenaViewer;
     private Map<Class, ElementViewer> enemyCache = new HashMap<>();
     private Map<Class, ElementViewer> blockCache = new HashMap<>();
-    private Map<Class, ItemViewer> itemCache = new HashMap<>();
+    private Map<String, ItemViewer> itemCache = new HashMap<>();
     private ToolbarViewer toolbarViewer = new ToolbarViewer();
     private HeroViewer heroViewer = new HeroViewer();
 
@@ -62,7 +62,7 @@ public class ArenaViewerTest {
 
         Item item = Mockito.mock(Axe.class);
         ItemViewer itemViewer = Mockito.mock(ItemViewer.class);
-        itemCache.put(item.getClass(), itemViewer);
+        itemCache.put(item.getComponentName(), itemViewer);
         arenaViewer.setItemCache(itemCache);
 
         toolbarViewer = Mockito.mock(ToolbarViewer.class);
