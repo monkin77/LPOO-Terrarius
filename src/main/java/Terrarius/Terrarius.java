@@ -95,4 +95,12 @@ public class Terrarius {
     public GUI getGui() {
         return gui;
     }
+
+    public void setGameState(State gameState) {
+        this.gameState = gameState;
+    }
+
+    public void setSkillTreeState(State skillTreeState) {
+        this.skillTreeState = skillTreeState;
+    }
 }
