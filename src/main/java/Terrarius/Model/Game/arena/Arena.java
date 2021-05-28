@@ -18,45 +18,40 @@ public class Arena {
 
     private Hero hero;
 
-    private List<MapZone> mapZoneList = new ArrayList<>();
+    private final List<MapZone> mapZoneList;
+    private final MapChooser mapChooser;
     private Integer currentMapIndex;
 
     private List<Enemy> enemies;
     private List<Block> blocks;
 
-    private MapChooser mapChooser;
+    public enum BOUNDARY {MAP_LEFT, MAP_RIGHT, MAP_SAME};
 
     public Arena(int width, int height) {
         this.dimensions = new Dimensions(height, width);
         this.mapChooser = new MapChooser();
+        this.mapZoneList= new ArrayList<>();
         this.currentMapIndex = 0;
     }
 
-    public void update(){
-        if (hero.getPosition().getX() + hero.getDimensions().getWidth() > getWidth()){
+    public BOUNDARY checkMapZoneAndUpdate() {
+        if (hero.getPosition().getX() + hero.getDimensions().getWidth() > getWidth()) {
             currentMapIndex++;
 
-            if (currentMapIndex >= mapZoneList.size()){
+            if (currentMapIndex >= mapZoneList.size())
                 mapZoneList.add(mapChooser.getMap(hero.getStats().getLevel().getNumLevel()));
-            }
 
-            this.enemies = mapZoneList.get(currentMapIndex).getEnemies();
-            this.blocks = mapZoneList.get(currentMapIndex).getBlocks();
-            this.hero.setPosition(mapZoneList.get(currentMapIndex).getLeftSpawn());
+            return BOUNDARY.MAP_RIGHT;
         }
-        else if(hero.getPosition().getX() < 0){
+        else if (hero.getPosition().getX() < 0) {
 
-            if(currentMapIndex == 0){
+            if(currentMapIndex == 0)
                 mapZoneList.add(0, mapChooser.getMap(hero.getStats().getLevel().getNumLevel()));
-            }
-            else{
+            else
                 currentMapIndex--;
-            }
-
-            this.enemies = mapZoneList.get(currentMapIndex).getEnemies();
-            this.blocks = mapZoneList.get(currentMapIndex).getBlocks();
-            this.hero.setPosition(mapZoneList.get(currentMapIndex).getRightSpawn());
+            return BOUNDARY.MAP_LEFT;
         }
+        return BOUNDARY.MAP_SAME;
     }
 
     public void addMap(int index, MapZone mapZone){
@@ -97,6 +92,14 @@ public class Arena {
 
     public Dimensions getDimensions() {
         return dimensions;
+    }
+
+    public List<MapZone> getMapZoneList() {
+        return mapZoneList;
+    }
+
+    public Integer getCurrentMapIndex() {
+        return currentMapIndex;
     }
 
     public boolean isEmpty(Position position){

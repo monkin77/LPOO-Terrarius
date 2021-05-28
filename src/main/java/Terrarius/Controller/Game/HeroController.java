@@ -8,6 +8,7 @@ import Terrarius.Model.Game.items.Item;
 import Terrarius.Model.Game.items.buffs.Buff;
 import Terrarius.Model.Game.items.tools.Tool;
 import Terrarius.Model.Game.items.BlockPlacer;
+import Terrarius.Utils.Dimensions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +16,14 @@ import java.util.List;
 public class HeroController {
     private final Arena arena;
     private final List<BuffController> buffList;
+    private int fallingVelocity;
+    private int gravityFrameCounter;
 
     public HeroController(Arena arena) {
         this.arena = arena;
-        buffList = new ArrayList<>();
+        this.fallingVelocity = 1;
+        this.gravityFrameCounter = 0;
+        this.buffList = new ArrayList<>();
     }
 
     private void moveHero(Position position) {
@@ -34,7 +39,6 @@ public class HeroController {
                 if(arena.collidesWithBlocks(copyPos, activeItem.getDimensions()))
                     return;
             }
-
             arena.getHero().setPosition(position);
         }
     }
@@ -46,8 +50,21 @@ public class HeroController {
     }
 
     public void fallHero() {
-        if(!arena.hasAdjacentBlock(arena.getHero().getPosition(), arena.getHero().getDimensions()))
-            moveHero(arena.getHero().getPosition().getDown());
+        if(!arena.hasAdjacentBlock(arena.getHero().getPosition(), arena.getHero().getDimensions())) {
+            Position lasPos = arena.getHero().getPosition();
+            for (int i = 0; i < fallingVelocity; ++i)
+                moveHero(arena.getHero().getPosition().getDown());
+
+            if (lasPos.equals(arena.getHero().getPosition())) {
+                fallingVelocity = 1;
+                gravityFrameCounter = 0;
+                return;
+            }
+
+            gravityFrameCounter++;
+            if (gravityFrameCounter % 10 == 0)
+                fallingVelocity++;
+        }
     }
 
     public void moveHeroLeft() {
@@ -108,7 +125,16 @@ public class HeroController {
     }
 
     public void changeHeroSlot(Integer slot) {
-        this.arena.getHero().getToolBar().setActiveItemIdx(slot);
+        Item item = arena.getHero().getToolBar().getItem(slot);
+
+        if (item != null) {
+            Position itemPos = item.getPosition(arena.getHero().getPosition());
+            Dimensions itemDimensions = item.getDimensions();
+
+            if (arena.collidesWithBlocks(itemPos, itemDimensions)) return;
+        }
+
+            arena.getHero().getToolBar().setActiveItemIdx(slot);
     }
 
     public void doAction(GUI.ACTION action) {

@@ -10,7 +10,7 @@ public class Hand extends Tool {
 
     @Override
     public void updateStats() {
-        this.setStats(new ToolStats(1, 1, 1));
+        this.setStats(new ToolStats(0, 1, 1));
     }
 
     @Override

@@ -1,7 +1,7 @@
 package Terrarius.Controller.Game;
 
 import Terrarius.GUI.GUI;
-import Terrarius.GUI.LanternaGui;
+import Terrarius.States.MenuState;
 import Terrarius.Terrarius;
 import Terrarius.Model.Game.arena.Arena;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,9 +17,15 @@ public class GameControllerTest {
     private ArenaController arenaController;
     private Terrarius terrarius;
     private Arena arena;
+    private GUI gui;
 
     @BeforeEach
     public void setup() {
+        gui = Mockito.mock(GUI.class);
+        Mockito.when(gui.getMouseX()).thenReturn(10);
+        Mockito.when(gui.getMouseY()).thenReturn(20);
+        Mockito.when(gui.getFontSize()).thenReturn(10);
+
         arenaController = Mockito.mock(ArenaController.class);
         arena = Mockito.mock(Arena.class);
         terrarius = Mockito.mock(Terrarius.class);
@@ -28,25 +34,21 @@ public class GameControllerTest {
 
     @Test
     public void giveActions() throws IOException {
-        GUI gui = Mockito.mock(LanternaGui.class);
 
         List<GUI.ACTION> actions= Arrays.asList(GUI.ACTION.RIGHT, GUI.ACTION.UP);
-            Mockito.when(gui.getNextActions()).thenReturn(actions);
+        Mockito.when(gui.getNextActions()).thenReturn(actions);
 
+        gameController.giveActions(terrarius, gui);
+        Mockito.verify(arenaController, Mockito.times(1)).addActions(actions);
+        Mockito.verify(arenaController, Mockito.times(1)).setHeroTargetPosition(Mockito.any());
 
-            Mockito.when(gui.getMouseX()).thenReturn(0);
-            Mockito.when(gui.getMouseY()).thenReturn(0);
+        actions = Arrays.asList(GUI.ACTION.QUIT);
+        Mockito.when(gui.getNextActions()).thenReturn(actions);
 
-            gameController.giveActions(terrarius, gui);
-            Mockito.verify(arenaController, Mockito.times(1)).addActions(actions);
-            Mockito.verify(arena.getHero(), Mockito.times(1)).setTargetPosition(Mockito.any());
-
-            actions = Arrays.asList(GUI.ACTION.QUIT);
-            Mockito.when(gui.getNextActions()).thenReturn(actions);
-
-            gameController.giveActions(terrarius, gui);
-            Mockito.verify(arenaController, Mockito.never()).addActions(actions);
-            Mockito.verify(terrarius, Mockito.times(1)).setState(null);
+        gameController.giveActions(terrarius, gui);
+        Mockito.verify(arenaController, Mockito.never()).addActions(actions);
+        Mockito.verify(terrarius, Mockito.times(1)).
+                setState(Mockito.argThat(state -> state instanceof MenuState));
     }
 
     @Test
@@ -63,62 +65,4 @@ public class GameControllerTest {
         Mockito.verify(arenaController, Mockito.times(2)).update();
         Mockito.verify(terrarius, Mockito.times(1)).setState(Mockito.any());
     }
-    /*
-    private Arena arena;
-    private GUI gui;
-
-    @BeforeEach
-    public void setup() {
-        arena = Mockito.mock(Arena.class);
-        gui = Mockito.mock(GUI.class);
-        gameController = new GameController(arena);
-    }
-
-    @Test
-    public void readInputFromGUI() throws IOException {
-        Assertions.assertFalse(gameController.readInputAndCheckExit());
-        Mockito.verify(gui, Mockito.times(1)).getNextActions();
-    }
-
-    @Test
-    public void checkExit() throws IOException {
-        Mockito.when(gui.getNextActions()).thenReturn(Arrays.asList(GUI.ACTION.QUIT));
-
-        Assertions.assertTrue(gameController.readInputAndCheckExit());
-        Mockito.verify(gui, Mockito.times(1)).getNextActions();
-    }
-
-    @Test
-    public void start() throws IOException {
-        Mockito.doAnswer(new Answer() {
-            private boolean first = true;
-            private long start;
-            private long current;
-
-            @Override
-            public Object answer(InvocationOnMock invocation) {
-                if (first) {
-                    start = System.currentTimeMillis();
-                    first = false;
-                }
-
-                current = System.currentTimeMillis();
-                if (current - start > 30)
-                    return Arrays.asList(GUI.ACTION.QUIT);
-
-                return Arrays.asList();
-            }
-        }).when(gui).getNextActions();
-
-        gameController = Mockito.spy(gameController);
-        Mockito.doReturn(false).when(gameController).updateAndCheckEnd();
-        Mockito.doNothing().when(gameController).draw();
-
-        gameController.start();
-
-        Mockito.verify(gameController, Mockito.atLeastOnce()).readInputAndCheckExit();
-        Mockito.verify(gameController, Mockito.atLeastOnce()).draw();
-        Mockito.verify(gameController, Mockito.atLeastOnce()).updateAndCheckEnd();
-    }
-     */
 }

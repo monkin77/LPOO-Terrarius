@@ -20,6 +20,7 @@ public class BlockViewerTest {
         block = Mockito.mock(Block.class);
         Mockito.when(block.getPosition()).thenReturn(new Position(10, 10));
         Mockito.when(block.getOrientation()).thenReturn(Element.Orientation.RIGHT);
+        Mockito.when(block.getComponentName()).thenReturn("Wood");
 
         image = Mockito.mock(Image.class);
         gui = Mockito.mock(GUI.class);

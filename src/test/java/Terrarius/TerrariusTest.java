@@ -44,7 +44,7 @@ public class TerrariusTest {
                     terrarius.setState(null);
                 return new Object();
             }
-        }).when(state).draw(Mockito.any());
+        }).when(state).update(Mockito.any());
 
         terrarius.start();
 
