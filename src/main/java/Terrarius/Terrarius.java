@@ -2,6 +2,7 @@ package Terrarius;
 
 import Terrarius.GUI.GUI;
 import Terrarius.GUI.LanternaGui;
+import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Game.arena.LoaderArenaBuilder;
 import Terrarius.Model.Game.items.tools.Axe;
@@ -35,7 +36,9 @@ public class Terrarius {
         this.gui = new LanternaGui(width, height);
         this.state = new MenuState(new Menu());
         this.gameState = new GameState(new LoaderArenaBuilder(1).createArena());
-        this.skillTreeState = new SkillTreeState(new SkillTree());
+
+        Level heroLevel = ((Arena) gameState.getModel()).getHero().getStats().getLevel();
+        this.skillTreeState = new SkillTreeState(new SkillTree(heroLevel));
     }
 
     /*

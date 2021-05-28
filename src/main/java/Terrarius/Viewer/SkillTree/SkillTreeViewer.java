@@ -7,7 +7,6 @@ import Terrarius.Model.SkillTree.SkillTree;
 import Terrarius.Model.SkillTree.Skills.Skill;
 import Terrarius.Viewer.Game.GameViewerConstants;
 import Terrarius.Viewer.Image.ColoredImage;
-import Terrarius.Viewer.Image.Image;
 import Terrarius.Viewer.Viewer;
 
 import java.io.FileNotFoundException;
@@ -36,7 +35,7 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
     public void draw(GUI gui, SkillTree model) throws IOException {
         if (!this.needsUpdate(model)) return;
         previousSelected = model.getSelected();
-        previousNumUpgrades = model.getNumUpgrades();
+        previousNumUpgrades = model.getUsedPoints();
 
         gui.clear();
 
@@ -49,6 +48,9 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
         this.drawSkillsLabels(treePos, gui, model);
 
         int yOffset = 5;
+        String availablePointsString = "Available Points: " + model.getAvailablePoints();
+        gui.drawString(10, 20, availablePointsString, "#FFFFFF", "#000000");
+
         for(int i = 0; i < model.getSkills().size(); i++) {
             Skill skill = model.getSkills().get(i);
             String skillName = skill.getName() + ":";
@@ -72,7 +74,7 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
      * @return true if it needs to update. False otherwise.
      */
     public boolean needsUpdate(SkillTree model) {
-        return ( previousSelected != model.getSelected() || previousNumUpgrades != model.getNumUpgrades() );
+        return ( previousSelected != model.getSelected() || previousNumUpgrades != model.getUsedPoints() );
     }
 
     public int getPreviousSelected() {

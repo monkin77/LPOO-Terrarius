@@ -1,21 +1,23 @@
 package Terrarius.Model.SkillTree;
 
+import Terrarius.Model.Game.Level;
 import Terrarius.Model.SkillTree.Skills.AttackSkill;
 import Terrarius.Model.SkillTree.Skills.DefenseSkill;
 import Terrarius.Model.SkillTree.Skills.Skill;
 import Terrarius.Model.SkillTree.Skills.SpeedSkill;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class SkillTree {
     private int selected = 0;
-    private int numUpgrades = 0;
+    private int usedPoints = 0;
 
     List<Skill> skills;
+    Level heroLevel;
 
-    public SkillTree() {
+    public SkillTree(Level heroLevel) {
+        this.heroLevel = heroLevel;
         this.skills = Arrays.asList(new AttackSkill(), new DefenseSkill(), new SpeedSkill());
     }
 
@@ -45,11 +47,21 @@ public class SkillTree {
         this.selected = nextSel % skills.size();
     }
 
-    public int getNumUpgrades() {
-        return numUpgrades;
+    public int getUsedPoints() {
+        return usedPoints;
     }
 
-    public void setNumUpgrades(int numUpgrades) {
-        this.numUpgrades = numUpgrades;
+    public void setUsedPoints(int usedPoints) {
+        this.usedPoints = usedPoints;
     }
+
+    public Level getHeroLevel() {
+        return heroLevel;
+    }
+
+    public int getAvailablePoints() {
+        return this.heroLevel.getNumLevel() - this.usedPoints;
+    }
+
+
 }

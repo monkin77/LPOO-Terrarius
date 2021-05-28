@@ -45,7 +45,7 @@ public class SkillTreeController extends Controller<SkillTree> {
                     getModel().nextSkill();
                     break;
                 case SELECT:
-                    this.upgradeSkill(terrarius, getModel().getSelected());
+                    this.upgradeSkill(getModel().getSelected());
                     break;
             }
         }
@@ -53,14 +53,11 @@ public class SkillTreeController extends Controller<SkillTree> {
         this.actions.clear();
     }
 
-    public void upgradeSkill(Terrarius terrarius, int selectedSkill) {
+    public void upgradeSkill(int selectedSkill) {
         Skill selSkill = this.getModel().getSkills().get(selectedSkill);
-        Hero hero = ((Arena) terrarius.getGameState().getModel()).getHero();
-        int heroLevel = hero.getStats().getCurrentLevel();
-        if( heroLevel - this.getModel().getNumUpgrades() > 0) {
+        if( this.getModel().getAvailablePoints() >= selSkill.getUpgradeCost()) {
             if (selSkill.upgrade()) {
-                this.getModel().setNumUpgrades(getModel().getNumUpgrades() + 1);
-                // Need to reload the viewer?
+                this.getModel().setUsedPoints(getModel().getUsedPoints() + selSkill.getUpgradeCost());
             }
         }
     }

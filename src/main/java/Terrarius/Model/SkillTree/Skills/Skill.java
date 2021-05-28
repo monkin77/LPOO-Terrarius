@@ -6,8 +6,9 @@ public abstract class Skill {
     private static int maxLevel = 10;
     private int upgradeCost;
 
-    public Skill(String name) {
+    public Skill(String name, int upgradeCost) {
         this.name = name;
+        this.upgradeCost = upgradeCost;
         this.currLevel = 0;
     }
 
