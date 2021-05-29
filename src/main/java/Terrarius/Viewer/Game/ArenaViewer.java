@@ -26,7 +26,6 @@ public class ArenaViewer extends Viewer<Arena> {
     private final StatusBarViewer statusBarViewer = new StatusBarViewer();
     private HeroViewer heroViewer = new HeroViewer();
 
-    @Override
     public void update() {
         for (EnemyViewer enemyViewer : enemyCache.values()){
             enemyViewer.update();

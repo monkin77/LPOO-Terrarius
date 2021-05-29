@@ -3,6 +3,7 @@ package Terrarius.States;
 import Terrarius.Controller.Controller;
 import Terrarius.Controller.Game.GameController;
 import Terrarius.Model.Game.arena.Arena;
+import Terrarius.Terrarius;
 import Terrarius.Viewer.Game.ArenaViewer;
 import Terrarius.Viewer.Viewer;
 
@@ -20,5 +21,10 @@ public class GameState extends State<Arena> {
     protected Controller<Arena> createController() {
         return new GameController(getModel());
     }
-}
 
+    @Override
+    public void update(Terrarius terrarius) {
+        super.update(terrarius);
+        ((ArenaViewer) getViewer()).update();
+    }
+}

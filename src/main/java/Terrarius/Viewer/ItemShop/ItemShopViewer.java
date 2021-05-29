@@ -44,9 +44,4 @@ public class ItemShopViewer extends Viewer<ItemShop> {
         }
 
     }
-
-    @Override
-    public void update() {
-        // No animations
-    }
 }

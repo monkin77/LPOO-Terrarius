@@ -66,11 +66,6 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
         gui.refresh();
     }
 
-    @Override
-    public void update() {
-        // No animations
-    }
-
     /**
      * This function checks if the viewer should update
      * @param model
