@@ -11,11 +11,7 @@ challenging enemies will appear and the tools at the disposal of the hero will e
 image, represented by characters and saved in text files. Elements can be represented by static images 
 or with animations.
 
-<<<<<<< HEAD
-**Arena** - Has the mapZone, enemies and hero of our game.
-=======
 **Arena** - Has the map, enemies and hero of the game.
->>>>>>> master
 
 **Arena Loading** - The composition of the arena is done by loading different files. These contain representation of 
 the terrain of the mapZone, the enemies and the hero, allowing the modification of the arena to be easily done.

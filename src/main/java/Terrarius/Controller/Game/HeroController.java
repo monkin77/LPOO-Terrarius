@@ -26,9 +26,9 @@ public class HeroController {
         this.buffList = new ArrayList<>();
     }
 
-    private void moveHero(Position position) {
+    private Boolean moveHero(Position position) {
         if (position.getY() < 0 || position.getY() + arena.getHero().getDimensions().getHeight() > arena.getHeight())
-            return;
+            return false;
 
         if (!arena.collidesWithBlocks(position, arena.getHero().getDimensions())) {
 
@@ -37,10 +37,11 @@ public class HeroController {
                 Position copyPos = activeItem.getPosition(position);
 
                 if(arena.collidesWithBlocks(copyPos, activeItem.getDimensions()))
-                    return;
+                    return false;
             }
             arena.getHero().setPosition(position);
         }
+        return true;
     }
 
     private void climbHero(Position position) {
@@ -68,15 +69,20 @@ public class HeroController {
     }
 
     public void moveHeroLeft() {
+        Element.Orientation old_orientation = arena.getHero().getOrientation();
         for (int i = 0; i < arena.getHero().getStats().getSpeed(); ++i)
-            moveHero(arena.getHero().getPosition().getLeft());
-        arena.getHero().setOrientation(Element.Orientation.LEFT);
+            arena.getHero().setOrientation(Element.Orientation.LEFT);
+            if(!moveHero(arena.getHero().getPosition().getLeft()))
+                arena.getHero().setOrientation(old_orientation);
+
     }
 
     public void moveHeroRight() {
+        Element.Orientation old_orientation = arena.getHero().getOrientation();
         for (int i = 0; i < arena.getHero().getStats().getSpeed(); ++i)
-            moveHero(arena.getHero().getPosition().getRight());
-        arena.getHero().setOrientation(Element.Orientation.RIGHT);
+            arena.getHero().setOrientation(Element.Orientation.RIGHT);
+            if(!moveHero(arena.getHero().getPosition().getRight()))
+                arena.getHero().setOrientation(old_orientation);
     }
 
     public void moveHeroUp() {
