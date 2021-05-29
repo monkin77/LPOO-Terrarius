@@ -34,7 +34,7 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
     @Override
     public void draw(GUI gui, SkillTree model) throws IOException {
         if (!this.needsUpdate(model)) return;
-        previousSelected = model.getSelected();
+        previousSelected = model.getSelectedIndex();
         previousUsedPoints = model.getUsedPoints();
 
         gui.clear();
@@ -51,8 +51,8 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
         String availablePointsString = "Available Points: " + model.getAvailablePoints();
         gui.drawString(10, 20, availablePointsString, "#FFFFFF", "#000000");
 
-        for(int i = 0; i < model.getSkills().size(); i++) {
-            Skill skill = model.getSkills().get(i);
+        for(int i = 0; i < model.getOptions().size(); i++) {
+            Skill skill = model.getOptions().get(i);
             String skillInfoPrefix = skill.getName() + ": ";
             String skillInfoHighlighted = Integer.toString(skill.getCurrLevel() );
             String skillInfoSuffix = " / " + Skill.getMaxLevel();
@@ -72,7 +72,7 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
      * @return true if it needs to update. False otherwise.
      */
     public boolean needsUpdate(SkillTree model) {
-        return ( previousSelected != model.getSelected() || previousUsedPoints != model.getUsedPoints() );
+        return ( previousSelected != model.getSelectedIndex() || previousUsedPoints != model.getUsedPoints() );
     }
 
     public void drawSkillsLabels(Position startingPos, GUI gui, SkillTree model) {
@@ -81,8 +81,8 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
         int textYPos = startingPos.getY() + SkillTreeViewerConstants.CENTER_CONTAINER_Y - 1;
         gui.drawString(textXPos, textYPos, skillLabel, "#FFFFFF", "#000000");
 
-        for(int i = 0; i < model.getSkills().size(); i++) {
-            Skill currSkill = model.getSkills().get(i);
+        for(int i = 0; i < model.getOptions().size(); i++) {
+            Skill currSkill = model.getOptions().get(i);
             skillLabel = currSkill.getName();
 
             switch (i) {
@@ -106,7 +106,7 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
                     return;
             }
             String charColor = "#FFFFFF";
-            if(model.getSelected() == i) charColor = "#00FF00";
+            if (model.getSelectedIndex() == i) charColor = "#00FF00";
 
             gui.drawString(textXPos, textYPos, skillLabel, charColor, "#000000");
 

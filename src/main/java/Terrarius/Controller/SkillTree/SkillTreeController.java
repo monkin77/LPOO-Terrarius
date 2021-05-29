@@ -36,13 +36,13 @@ public class SkillTreeController extends Controller<SkillTree> {
                     terrarius.setState(terrarius.getGameState());
                     return;
                 case LEFT_MENU:
-                    getModel().previousSkill();
+                    getModel().previousOption();
                     break;
                 case RIGHT_MENU:
-                    getModel().nextSkill();
+                    getModel().nextOption();
                     break;
                 case SELECT:
-                    this.upgradeSkill(getModel().getSelected());
+                    this.upgradeSkill(getModel().getSelectedIndex());
                     break;
             }
         }
@@ -51,7 +51,7 @@ public class SkillTreeController extends Controller<SkillTree> {
     }
 
     public void upgradeSkill(int selectedSkill) {
-        Skill selSkill = this.getModel().getSkills().get(selectedSkill);
+        Skill selSkill = this.getModel().getOption(selectedSkill);
         this.getModel().upgradeSkill(selSkill);
     }
 }

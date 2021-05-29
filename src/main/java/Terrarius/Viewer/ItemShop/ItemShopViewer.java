@@ -16,7 +16,7 @@ public class ItemShopViewer extends Viewer<ItemShop> {
         gui.clear();
 
         String availablePoints = "Available points: " + model.getCurrentPoints();
-        String selectedItem = "Selected item: " + model.getItemName(model.getSelectedItem()) + " Price: " + model.getItemPrice(model.getSelectedItem());
+        String selectedItem = "Selected item: " + model.getItemName(model.getSelectedIndex()) + " Price: " + model.getItemPrice(model.getSelectedIndex());
         Item activeItem = model.getHero().getToolBar().getItem(model.getSelectedSlot());
         String selectedSlot = "Selected slot: " + model.getSelectedSlot() + " Current Item: " + (activeItem == null ? "Empty" : activeItem.getComponentName());
 
