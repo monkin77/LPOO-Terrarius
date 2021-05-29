@@ -52,8 +52,6 @@ public class ArenaController {
     public void updateMapZone() {
         Arena.BOUNDARY boundary = arena.checkMapZoneAndUpdate();
         if (boundary == Arena.BOUNDARY.MAP_LEFT || boundary == Arena.BOUNDARY.MAP_RIGHT) {
-            arena.setEnemies(arena.getMapZoneList().get(arena.getCurrentMapIndex()).getEnemies());
-            arena.setBlocks(arena.getMapZoneList().get(arena.getCurrentMapIndex()).getBlocks());
 
             if (boundary == Arena.BOUNDARY.MAP_LEFT)
                 arena.getHero().setPosition(arena.getMapZoneList().get(arena.getCurrentMapIndex()).getRightSpawn());

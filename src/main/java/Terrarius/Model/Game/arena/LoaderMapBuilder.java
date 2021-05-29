@@ -1,4 +1,4 @@
-package Terrarius.Model.Game.map;
+package Terrarius.Model.Game.arena;
 
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.Position;
@@ -17,56 +17,40 @@ import java.util.Scanner;
 
 import static java.lang.Math.min;
 
-public class MapBuilder {
+public class LoaderMapBuilder extends MapBuilder {
 
     private final int level;
     private final int subLevel;
-    private final Dimensions dimensions;
 
-    MapBuilder(int level, int subLevel){ //TODO maybe not hero just the level
+    LoaderMapBuilder(int level, int subLevel){
+        super();
         this.level = level;
         this.subLevel = subLevel;
-        this.dimensions = this.createDimensions();
     }
 
-    private Scanner getScannerFromFile(String fileName) throws URISyntaxException, FileNotFoundException {
-        URL resource = MapBuilder.class.getResource("/Maps/Level_" + level + "/Map_" + subLevel + "/" + fileName);
-        File file = new File(resource.toURI());
-        return new Scanner(file);
-    }
-
-    private void createSpawns(MapZone mapZone) throws FileNotFoundException, URISyntaxException {
-        Scanner fileScanner = getScannerFromFile("LeftSpawn.txt");
-        int x = fileScanner.nextInt();
-        int y = fileScanner.nextInt();
-        mapZone.setLeftSpawn(new Position(x, y));
-
-        fileScanner = getScannerFromFile("RightSpawn.txt");
-        x = fileScanner.nextInt();
-        y = fileScanner.nextInt();
-        mapZone.setRightSpawn(new Position(x, y));
-    }
-
-    public MapZone createMap() {
-        MapZone mapZone = new MapZone(dimensions.getWidth(), dimensions.getHeight());
-
-        mapZone.setBlocks(this.createBlocks());
-        mapZone.setEnemies(this.createEnemies());
-
+    @Override
+    protected void createSpawns(MapZone mapZone) {
         try {
-            this.createSpawns(mapZone);
+            Scanner fileScanner = getScannerFromLevelFile("LeftSpawn.txt");
+            int x = fileScanner.nextInt();
+            int y = fileScanner.nextInt();
+            mapZone.setLeftSpawn(new Position(x, y));
+
+            fileScanner = getScannerFromLevelFile("RightSpawn.txt");
+            x = fileScanner.nextInt();
+            y = fileScanner.nextInt();
+            mapZone.setRightSpawn(new Position(x, y));
         } catch (FileNotFoundException | URISyntaxException e) {
             e.printStackTrace();
         }
-
-        return mapZone;
     }
 
-    public List<Block> createBlocks(){
+    @Override
+    protected List<Block> createBlocks() {
         List<Block> blockList = new ArrayList<>();
 
         try {
-            Scanner fileScanner = getScannerFromFile("Terrain.txt");
+            Scanner fileScanner = getScannerFromLevelFile("Terrain.txt");
             java.util.Map<Character, String> characterClassMap = createCharacterClassMap(fileScanner);
             blockList = createBlockList(characterClassMap, fileScanner);
 
@@ -76,11 +60,12 @@ public class MapBuilder {
         return blockList;
     }
 
-    public List<Enemy> createEnemies(){
+    @Override
+    protected List<Enemy> createEnemies(){
         List<Enemy> enemies = new ArrayList<>();
 
         try {
-            Scanner fileScanner = getScannerFromFile("Enemies.txt");
+            Scanner fileScanner = getScannerFromLevelFile("Enemies.txt");
             java.util.Map<Character, String> characterClassMap = createCharacterClassMap(fileScanner);
             enemies = createEnemyList(characterClassMap, fileScanner);
 
@@ -90,12 +75,14 @@ public class MapBuilder {
         return enemies;
     }
 
-    public Dimensions createDimensions(){
+    @Override
+    protected Dimensions createDimensions() {
         int width = 0;
         int height = 0;
 
         try {
-            Scanner fileScanner = getScannerFromFile("Dimensions.txt");
+            URL resource = LoaderMapBuilder.class.getResource("/Maps/Dimensions.txt");
+            Scanner fileScanner = new Scanner(new File(resource.toURI()));
 
             width = fileScanner.nextInt();
             height = fileScanner.nextInt();
@@ -126,10 +113,10 @@ public class MapBuilder {
     private List<Block> createBlockList(java.util.Map<Character, String> characterClassMap, Scanner fileScanner) {
         List<Block> blockList = new ArrayList<>();
 
-        for (int j = 0; j < dimensions.getHeight() / 4; j++) {
+        for (int j = 0; j < getDimensions().getHeight() / 4; j++) {
             String line = fileScanner.nextLine();
 
-            for (int i = 0; i < min(dimensions.getWidth() / 4, line.length()); i++) {
+            for (int i = 0; i < min(getDimensions().getWidth() / 4, line.length()); i++) {
                 Character key = line.charAt(i);
                 String class_s;
 
@@ -177,5 +164,11 @@ public class MapBuilder {
             fileScanner.nextLine();
         }
         return enemies;
+    }
+
+    private Scanner getScannerFromLevelFile(String fileName) throws URISyntaxException, FileNotFoundException {
+        URL resource = LoaderMapBuilder.class.getResource("/Maps/Level_" + level + "/Map_" + subLevel + "/" + fileName);
+        File file = new File(resource.toURI());
+        return new Scanner(file);
     }
 }

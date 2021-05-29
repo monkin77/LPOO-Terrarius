@@ -1,37 +1,39 @@
 package Terrarius.Model.Game.arena;
 
 import Terrarius.Model.Game.items.tools.Tool;
-import Terrarius.Model.Game.map.MapChooser;
-import Terrarius.Model.Game.map.MapZone;
 import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.elements.Block;
 import Terrarius.Model.Game.elements.enemies.Enemy;
 
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class Arena {
-    private final Dimensions dimensions;
-
     private Hero hero;
 
     private final List<MapZone> mapZoneList;
     private final MapChooser mapChooser;
     private Integer currentMapIndex;
 
-    private List<Enemy> enemies;
-    private List<Block> blocks;
-
     public enum BOUNDARY {MAP_LEFT, MAP_RIGHT, MAP_SAME};
 
-    public Arena(int width, int height) {
-        this.dimensions = new Dimensions(height, width);
+    public Arena() {
         this.mapChooser = new MapChooser();
-        this.mapZoneList= new ArrayList<>();
+        this.mapZoneList = new ArrayList<>();
+
+        mapZoneList.add(mapChooser.getMap(1));
         this.currentMapIndex = 0;
+
+        try {
+            this.hero = new Hero(mapZoneList.get(0).getLeftSpawn());
+        } catch (FileNotFoundException | URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 
     public BOUNDARY checkMapZoneAndUpdate() {
@@ -67,31 +69,23 @@ public class Arena {
     }
 
     public List<Enemy> getEnemies() {
-        return enemies;
-    }
-
-    public void setEnemies(List<Enemy> enemies) {
-        this.enemies = enemies;
+        return mapZoneList.get(currentMapIndex).getEnemies();
     }
 
     public List<Block> getBlocks() {
-        return blocks;
-    }
-
-    public void setBlocks(List<Block> blocks) {
-        this.blocks = blocks;
+        return mapZoneList.get(currentMapIndex).getBlocks();
     }
 
     public int getWidth() {
-        return this.dimensions.getWidth();
+        return mapZoneList.get(currentMapIndex).getDimensions().getWidth();
     }
 
     public int getHeight() {
-        return this.dimensions.getHeight();
+        return mapZoneList.get(currentMapIndex).getDimensions().getHeight();
     }
 
     public Dimensions getDimensions() {
-        return dimensions;
+        return mapZoneList.get(currentMapIndex).getDimensions();
     }
 
     public List<MapZone> getMapZoneList() {
@@ -103,7 +97,7 @@ public class Arena {
     }
 
     public boolean isEmpty(Position position){
-        for(Block block : this.blocks){
+        for(Block block : this.getBlocks()) {
             if(block.getPosition().equals(position))
                 return false;
         }
@@ -111,7 +105,7 @@ public class Arena {
     }
 
     public boolean hasAdjacentBlock(Position position, Dimensions dimensions) {
-        for (Block block : this.blocks){
+        for (Block block : this.getBlocks()) {
 
             boolean top_side_touches =
                     position.getY() >= block.getPosition().getY() &&
@@ -143,7 +137,7 @@ public class Arena {
 
     public boolean collidesWithBlocks(Position position, Dimensions dimensions){
         if (dimensions.getWidth() <= 0 || dimensions.getHeight() <= 0) return false;
-        for (Block block : this.blocks) {
+        for (Block block : this.getBlocks()) {
             if (Position.checkElementsCollision(position, dimensions, block.getPosition(), block.getDimensions()))
                 return true;
         }
@@ -155,7 +149,7 @@ public class Arena {
 
         Position gridPosition = new Position(position.getX()/4 * 4, position.getY()/4 * 4); //Make this better somehow
 
-        for (Block block1 : blocks){
+        for (Block block1 : getBlocks()){
             if (block1.getPosition().equals(gridPosition)){
                 block = block1;
                 break;
@@ -169,7 +163,7 @@ public class Arena {
 
             if (block.getHP() <= 0){
                 hero.getToolBar().getBlockPouch().incrementBlock(block);
-                blocks.remove(block);
+                getBlocks().remove(block);
             }
         }
     }
@@ -183,7 +177,7 @@ public class Arena {
 
         Block block = this.hero.getToolBar().getBlockPouch().generateCurrentBlock(gridPosition);
 
-        for (Enemy enemy : this.enemies){
+        for (Enemy enemy : this.getEnemies()){
             if (Position.checkElementsCollision(enemy.getPosition(), enemy.getDimensions(),
                     block.getPosition(), block.getDimensions()))
                 return;
@@ -193,12 +187,12 @@ public class Arena {
                 block.getPosition(), block.getDimensions()))
             return;
 
-        this.blocks.add(block);
+        this.getBlocks().add(block);
         hero.getToolBar().getBlockPouch().decrementBlock(block);
     }
 
     public void heroAttack(Position targetPosition, Tool tool){
-        for (Enemy enemy : this.enemies){
+        for (Enemy enemy : this.getEnemies()){
             if (Position.checkElementsCollision(enemy.getPosition(), enemy.getDimensions(), targetPosition, new Dimensions(1, 1))){
                 enemy.setHP(enemy.getStats().getHp() - hero.getStats().getPower() - tool.getStats().getFightingPower());
                 if (enemy.getStats().getHp() <= 0){
@@ -206,7 +200,7 @@ public class Arena {
                 }
             }
         }
-        this.enemies.removeIf(n -> (n.getStats().getHp() <= 0));
+        this.getEnemies().removeIf(n -> (n.getStats().getHp() <= 0));
     }
 
 }

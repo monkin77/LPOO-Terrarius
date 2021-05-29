@@ -1,5 +1,5 @@
 package Terrarius.Model.Game.arena;
-
+/*
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.elements.Block;
@@ -42,3 +42,4 @@ public class DefaultArenaBuilderTest {
         Assertions.assertEquals(new Position(50, 50), hero.getPosition());
     }
 }
+*/
