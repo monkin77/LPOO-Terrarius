@@ -3,11 +3,13 @@ package Terrarius.Model.Game.elements.blocks;
 import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Position;
 
+import static Terrarius.Utils.GameConstants.DEFAULT_BLOCK_DIMENSIONS;
+
 public class StoneBlock extends Block {
     private static final int STONE_BLOCK_HARDNESS = 3;
 
     public StoneBlock(Position position) {
-        super(position, new Dimensions(4, 4), "StoneBlock");
+        super(position, new Dimensions(DEFAULT_BLOCK_DIMENSIONS), "StoneBlock");
     }
 
     @Override

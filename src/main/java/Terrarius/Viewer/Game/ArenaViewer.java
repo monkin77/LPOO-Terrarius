@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static Terrarius.Viewer.Game.GameViewerConstants.SKY_COLOR;
+import static Terrarius.Utils.GameConstants.SKY_COLOR;
 
 
 public class ArenaViewer extends Viewer<Arena> {

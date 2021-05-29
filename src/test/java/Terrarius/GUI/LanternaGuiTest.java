@@ -14,8 +14,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import static Terrarius.Viewer.Game.GameViewerConstants.DEFAULT_BACKGROUND_COLOR;
-import static Terrarius.Viewer.Game.GameViewerConstants.DEFAULT_FOREGROUND_COLOR;
+import static Terrarius.Utils.GameConstants.DEFAULT_BACKGROUND_COLOR;
+import static Terrarius.Utils.GameConstants.DEFAULT_FOREGROUND_COLOR;
 import static java.awt.event.KeyEvent.VK_RIGHT;
 import static java.awt.event.KeyEvent.VK_UP;
 

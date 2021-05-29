@@ -23,8 +23,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import static Terrarius.Viewer.Game.GameViewerConstants.DEFAULT_BACKGROUND_COLOR;
-import static Terrarius.Viewer.Game.GameViewerConstants.DEFAULT_FOREGROUND_COLOR;
+import static Terrarius.Utils.GameConstants.DEFAULT_BACKGROUND_COLOR;
+import static Terrarius.Utils.GameConstants.DEFAULT_FOREGROUND_COLOR;
 import static java.awt.event.KeyEvent.*;
 
 public class LanternaGui implements GUI {

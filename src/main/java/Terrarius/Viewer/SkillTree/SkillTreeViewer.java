@@ -5,13 +5,14 @@ import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.Element;
 import Terrarius.Model.SkillTree.SkillTree;
 import Terrarius.Model.SkillTree.Skills.Skill;
-import Terrarius.Viewer.Game.GameViewerConstants;
 import Terrarius.Viewer.Image.ColoredImage;
 import Terrarius.Viewer.Viewer;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
+
+import static Terrarius.Utils.GameConstants.*;
 
 public class SkillTreeViewer extends Viewer<SkillTree> {
     private ColoredImage image;
@@ -40,7 +41,7 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
         gui.clear();
 
         String title = "Skill Tree";
-        gui.drawString((GameViewerConstants.SCREEN_WIDTH - title.length()) /2, 5, title, "#FFFFFF", "#000000");
+        gui.drawString((SCREEN_WIDTH - title.length()) /2, 5, title, "#FFFFFF", "#000000");
 
         Position treePos = new Position(50, 10);
         this.image.draw(treePos, Element.Orientation.RIGHT, gui);

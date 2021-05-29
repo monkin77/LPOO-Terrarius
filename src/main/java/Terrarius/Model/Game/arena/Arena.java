@@ -12,6 +12,8 @@ import Terrarius.Model.Game.elements.enemies.Enemy;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Terrarius.Utils.GameConstants.DEFAULT_BLOCK_DIMENSIONS;
+
 
 public class Arena {
     private final Dimensions dimensions;
@@ -178,7 +180,7 @@ public class Arena {
     public void placeBlock(Position position){
         Position gridPosition = new Position(position.getX()/4*4, position.getY()/4*4);
 
-        if (this.collidesWithBlocks(gridPosition, new Dimensions(4, 4)) //TODO make a constant for the default block dimensions
+        if (this.collidesWithBlocks(gridPosition, new Dimensions(DEFAULT_BLOCK_DIMENSIONS)) //TODO make a constant for the default block dimensions
                 || hero.getToolBar().getBlockPouch().getCurrentBlockQuantity() <= 0)
             return;
 
