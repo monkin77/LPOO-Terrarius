@@ -12,20 +12,13 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EnemyViewer implements ElementViewer<Enemy> {
-    private final AnimatedImage image;
+public class EnemyViewer extends ElementViewer<Enemy, AnimatedImage> {
     private Map<Element, FrameHandler> elementFrameSpeedMap;
 
     public EnemyViewer(Enemy enemy){
+        super(enemy.getComponentName());
+
         setElementFrameSpeedMap(new HashMap<>());
-        image = new AnimatedImage();
-
-        try {
-            image.load("Images/Enemies/" + enemy.getComponentName() + ".txt");
-        } catch (FileNotFoundException | URISyntaxException | NullPointerException e) {
-            e.printStackTrace();
-        }
-
         FrameHandler frameHandler = image.getFrameSpeed();
 
         this.elementFrameSpeedMap.put(enemy, new FrameHandler(
@@ -65,6 +58,18 @@ public class EnemyViewer implements ElementViewer<Enemy> {
 
         gui.drawString(enemy.getPosition().getX() + enemy.getDimensions().getWidth()/2 - hpDisplay.length()/2,
                 enemy.getPosition().getY() - 2, hpDisplay, HEALTH_FOREGROUND_COLOR, HEALTH_BACKGROUND_COLOR);
+    }
+
+    @Override
+    public AnimatedImage createImage() {
+        AnimatedImage image = new AnimatedImage();
+
+        try {
+            image.load("Images/Enemies/" + this.getComponentName() + ".txt");
+        } catch (FileNotFoundException | URISyntaxException | NullPointerException e) {
+            e.printStackTrace();
+        }
+        return image;
     }
 
     protected void setElementFrameSpeedMap(Map<Element, FrameHandler> elementFrameSpeedMap) {

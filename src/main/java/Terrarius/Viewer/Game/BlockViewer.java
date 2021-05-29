@@ -7,21 +7,25 @@ import Terrarius.Viewer.Image.ColoredImage;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 
-public class BlockViewer implements ElementViewer<Block> {
-    ColoredImage image;
-
+public class BlockViewer extends ElementViewer<Block, ColoredImage> {
     public BlockViewer(Block block){
-        image = new ColoredImage();
-
-        try {
-            image.load("Images/Blocks/" + block.getComponentName() + ".txt");
-        } catch (FileNotFoundException | URISyntaxException | NullPointerException e) {
-            e.printStackTrace();
-        }
+        super(block.getComponentName());
     }
 
     @Override
     public void draw(Block block, GUI gui) {
         image.draw(block.getPosition(), block.getOrientation(), gui);
+    }
+
+    @Override
+    protected ColoredImage createImage() {
+        ColoredImage image = new ColoredImage();
+
+        try {
+            image.load("Images/Blocks/" + this.getComponentName() + ".txt");
+        } catch (FileNotFoundException | URISyntaxException | NullPointerException e) {
+            e.printStackTrace();
+        }
+        return image;
     }
 }
