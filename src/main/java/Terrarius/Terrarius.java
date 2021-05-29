@@ -33,7 +33,6 @@ public class Terrarius {
     public Terrarius(int width, int height) throws FontFormatException, IOException, URISyntaxException {
         this.gui = new LanternaGui(width, height);
         this.state = this.createMenuState();
-        this.gameState = new GameState(new Arena());
     }
 
     /*
