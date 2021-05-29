@@ -61,16 +61,6 @@ public class StillImage extends Image{
         }
     }
 
-    @Override
-    public void update() {
-        // Image is still
-    }
-
-    @Override
-    public void reset() {
-        // Image is still
-    }
-
     public Dimensions getDimensions() {
         return dimensions;
     }

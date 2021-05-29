@@ -32,14 +32,8 @@ public class AnimatedImage extends Image {
             addNextImage(imageScanner);
     }
 
-    @Override
     public void update() {
         frameHandler.update();
-    }
-
-    @Override
-    public void reset() {
-        frameHandler.reset();
     }
 
     @Override

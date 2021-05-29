@@ -32,8 +32,8 @@ import static Terrarius.Viewer.Game.GameViewerConstants.SKY_COLOR;
 
 public class ArenaViewerTest {
     private ArenaViewer arenaViewer;
-    private Map<String, ElementViewer> enemyCache = new HashMap<>();
-    private Map<String, ElementViewer> blockCache = new HashMap<>();
+    private Map<String, EnemyViewer> enemyCache = new HashMap<>();
+    private Map<String, BlockViewer> blockCache = new HashMap<>();
     private Map<String, ItemViewer> itemCache = new HashMap<>();
     private ToolbarViewer toolbarViewer = new ToolbarViewer();
     private HeroViewer heroViewer = new HeroViewer();
