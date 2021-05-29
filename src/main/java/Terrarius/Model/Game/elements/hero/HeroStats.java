@@ -1,6 +1,10 @@
 package Terrarius.Model.Game.elements.hero;
 
 import Terrarius.Model.Game.Level;
+import Terrarius.Model.SkillTree.Skills.*;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class HeroStats {
     private static final double DEFAULT_RANGE = 24.0;
@@ -15,6 +19,9 @@ public class HeroStats {
     private int speed;
     private double range;
 
+    private int usedPoints;
+    private List<Skill> skills;
+
     public HeroStats() {
         this.level = new Level(1, 0);
         this.hp = START_HP;
@@ -22,6 +29,8 @@ public class HeroStats {
         this.power = DEFAULT_POWER;
         this.speed = DEFAULT_SPEED;
         this.range = DEFAULT_RANGE;
+        this.usedPoints = 0;
+        this.skills = Arrays.asList(new AttackSkill(), new HealthSkill(), new RangeSkill(), new SpeedSkill());
     }
 
     public HeroStats(Level level, int hp, int power, int speed, double range) {
@@ -31,6 +40,8 @@ public class HeroStats {
         this.power = power;
         this.speed = speed;
         this.range = range;
+        this.usedPoints = 0;
+        this.skills = Arrays.asList(new AttackSkill(), new HealthSkill(), new RangeSkill(), new SpeedSkill());
     }
 
     public Level getLevel() {
@@ -84,5 +95,21 @@ public class HeroStats {
 
     public void setMaxHP(int maxHP) {
         this.maxHP = maxHP;
+    }
+
+    public int getUsedPoints() {
+        return usedPoints;
+    }
+
+    public void setUsedPoints(int usedPoints) {
+        this.usedPoints = usedPoints;
+    }
+
+    public List<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
     }
 }

@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SkillTree extends MenuTemplate<Skill> {
-    private int usedPoints = 0;
     private final HeroStats heroStats;
 
     public SkillTree(HeroStats heroStats) {
@@ -17,11 +16,11 @@ public class SkillTree extends MenuTemplate<Skill> {
     }
 
     public int getUsedPoints() {
-        return usedPoints;
+        return this.heroStats.getUsedPoints();
     }
 
     public void setUsedPoints(int usedPoints) {
-        this.usedPoints = usedPoints;
+        this.heroStats.setUsedPoints(usedPoints);
     }
 
     public int getHeroLevel() {
@@ -29,7 +28,7 @@ public class SkillTree extends MenuTemplate<Skill> {
     }
 
     public int getAvailablePoints() {
-        return this.getHeroLevel() - this.usedPoints;
+        return this.getHeroLevel() - this.getUsedPoints();
     }
 
     public void upgradeSkill(Skill selSkill) {
