@@ -280,7 +280,7 @@ The use of the Builder Pattern allows the following benefits:
 - Single Responsibility Principle. Isolate complex construction code from the logic of the Arena.
 
 [CHANGE]
-### Component viewers and images
+### Element viewers and images
 
 #### Problem in context
 
