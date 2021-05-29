@@ -49,7 +49,7 @@ public class SkillTreeController extends Controller<SkillTree> {
     }
 
     public void upgradeSkill(int selectedSkill) {
-        Skill selSkill = this.getModel().getOption(selectedSkill);
+        Skill selSkill = this.getModel().getSkills().get(selectedSkill);
         this.getModel().upgradeSkill(selSkill);
     }
 }

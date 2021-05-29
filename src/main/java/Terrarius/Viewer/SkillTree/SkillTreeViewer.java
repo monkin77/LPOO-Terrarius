@@ -52,8 +52,8 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
         String availablePointsString = "Available Points: " + model.getHeroStats().getCurrentPoints();
         gui.drawString(10, 20, availablePointsString, "#FFFFFF", "#000000");
 
-        for(int i = 0; i < model.getOptions().size(); i++) {
-            Skill skill = model.getOptions().get(i);
+        for(int i = 0; i < model.getHeroStats().getSkills().size(); i++) {
+            Skill skill = model.getHeroStats().getSkills().get(i);
             String skillInfoPrefix = skill.getName() + ": ";
             String skillInfoHighlighted = Integer.toString(skill.getCurrLevel() );
             String skillInfoSuffix = " / " + Skill.getMaxLevel();
@@ -82,8 +82,8 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
         int textYPos = startingPos.getY() + SkillTreeViewerConstants.CENTER_CONTAINER_Y - 1;
         gui.drawString(textXPos, textYPos, skillLabel, "#FFFFFF", "#000000");
 
-        for(int i = 0; i < model.getOptions().size(); i++) {
-            Skill currSkill = model.getOptions().get(i);
+        for(int i = 0; i < model.getHeroStats().getSkills().size(); i++) {
+            Skill currSkill = model.getHeroStats().getSkills().get(i);
             skillLabel = currSkill.getName();
 
             switch (i) {
