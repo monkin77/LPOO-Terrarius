@@ -103,7 +103,7 @@ public class HeroController {
 
     private void useTool(Tool tool) {
         if (this.arena.getHero().targetWithinRange())
-            arena.breakBlock(this.arena.getHero().getTargetPosition(), (Tool) arena.getHero().getToolBar().getActiveItem());
+            arena.breakBlock(this.arena.getHero().getTargetPosition(), tool);
     }
 
     private void useSelectedBuff() {
