@@ -3,7 +3,6 @@ package Terrarius;
 import Terrarius.GUI.GUI;
 import Terrarius.GUI.LanternaGui;
 import Terrarius.Model.Game.arena.Arena;
-import Terrarius.Model.Game.arena.MultiMapArenaBuilder;
 import Terrarius.Model.Game.elements.hero.HeroStats;
 import Terrarius.Model.ItemShop.ItemShop;
 import Terrarius.Model.Menu.Menu;
@@ -37,7 +36,7 @@ public class Terrarius {
     public Terrarius(int width, int height) throws FontFormatException, IOException, URISyntaxException {
         this.gui = new LanternaGui(width, height);
         this.state = new MenuState(new Menu());
-        this.gameState = new GameState(new MultiMapArenaBuilder().createArena());
+        this.gameState = new GameState(new Arena());
 
         HeroStats heroStats = ((Arena) gameState.getModel()).getHero().getStats();
         this.skillTreeState = new SkillTreeState(new SkillTree(heroStats));

@@ -6,13 +6,11 @@ import Terrarius.Model.ItemShop.ItemShop;
 import Terrarius.Viewer.Viewer;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 public class ItemShopViewer extends Viewer<ItemShop> {
 
     @Override
     public void draw(GUI gui, ItemShop model) throws IOException {
-
         gui.clear();
 
         String availablePoints = "Available points: " + model.getCurrentPoints();
@@ -37,11 +35,10 @@ public class ItemShopViewer extends Viewer<ItemShop> {
 
         gui.refresh();
 
-        try { //TODO for the flickering
-            TimeUnit.MILLISECONDS.sleep(10);
+        try {
+            Thread.sleep(10);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
 }
