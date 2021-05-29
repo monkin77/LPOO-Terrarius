@@ -112,4 +112,13 @@ public class HeroStats {
     public void setSkills(List<Skill> skills) {
         this.skills = skills;
     }
+
+    /**
+     * Fetch the available points to use
+     * @return available points
+     */
+    public int getCurrentPoints(){
+        return this.getCurrentLevel() * 10 - this.usedPoints;
+    }
+
 }

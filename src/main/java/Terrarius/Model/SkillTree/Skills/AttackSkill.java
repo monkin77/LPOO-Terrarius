@@ -4,7 +4,7 @@ import Terrarius.Model.Game.elements.hero.HeroStats;
 
 public class AttackSkill extends Skill {
     public AttackSkill() {
-        super("Attack", 1);
+        super("Attack", 10);
     }
 
     @Override

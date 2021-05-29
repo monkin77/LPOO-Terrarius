@@ -27,12 +27,12 @@ public class SkillTree extends MenuTemplate<Skill> {
         return this.heroStats.getCurrentLevel();
     }
 
-    public int getAvailablePoints() {
-        return this.getHeroLevel() - this.getUsedPoints();
+    public HeroStats getHeroStats() {
+        return heroStats;
     }
 
     public void upgradeSkill(Skill selSkill) {
-        if( this.getAvailablePoints() >= selSkill.getUpgradeCost()) {
+        if( this.heroStats.getCurrentPoints() >= selSkill.getUpgradeCost()) {
             if (selSkill.upgrade()) {
                 this.setUsedPoints(this.getUsedPoints() + selSkill.getUpgradeCost());
                 selSkill.applyEffect(this.heroStats);

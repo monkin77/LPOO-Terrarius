@@ -4,7 +4,7 @@ import Terrarius.Model.Game.elements.hero.HeroStats;
 
 public class SpeedSkill extends Skill {
     public SpeedSkill() {
-        super("Speed", 10);
+        super("Speed", 100);
     }
 
     @Override
