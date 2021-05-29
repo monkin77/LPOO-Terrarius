@@ -8,17 +8,9 @@ import Terrarius.Viewer.Viewer;
 import java.io.IOException;
 
 public class ItemShopViewer extends Viewer<ItemShop> {
-    private int previousIndex = -1;
-    private int previousSlot = -1;
 
     @Override
     public void draw(GUI gui, ItemShop model) throws IOException {
-        if (model.getSelectedIndex() == previousIndex
-            && model.getSelectedSlot() == previousSlot) return;
-
-        previousIndex = model.getSelectedIndex();
-        previousSlot = model.getSelectedSlot();
-
         gui.clear();
 
         String availablePoints = "Available points: " + model.getCurrentPoints();
@@ -42,5 +34,11 @@ public class ItemShopViewer extends Viewer<ItemShop> {
                 "#000000");
 
         gui.refresh();
+
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
