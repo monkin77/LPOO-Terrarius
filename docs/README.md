@@ -89,7 +89,7 @@ the others
 We needed a way to alter the program's behaviour mid-game, while executing the main loop
 continuously. Additionally, we sometimes needed to come back to a previous state of the program.
 
-### The Pattern
+#### The Pattern
 For this, we used the **State Pattern**, which suggests the creation of new classes for
 every possible state of the game, and extract all specific behaviours into those classes.
 
@@ -279,7 +279,7 @@ The use of the Builder Pattern allows the following benefits:
 - Reuse the same construction code
 - Single Responsibility Principle. Isolate complex construction code from the logic of the Arena.
 
-[CHANGE]
+
 ### Element viewers and images
 
 #### Problem in context
@@ -327,6 +327,45 @@ Advantages:
 Disadvantages:
 
  - In order to create a Concrete Product object, the Factory class might have to be subclassed.
+
+
+### Named Components and Loading Files
+
+#### Problem in Context
+
+We needed a way to effectively link the components' models (items, enemies, etc.) to their respective
+viewers and files, in order to draw and create them, without falling into massive switch statements.
+
+#### The Patterns
+
+To solve this problem, we created an interface '*NamedComponent*' and implemented it in all classes which
+need to be drawn and/or loaded from a file. This way, this classes must offer their name, which is used
+to find them in the resources folder and to give information to the player (e.g. Toolbar). The name can
+be given any way the class wants, like a constant (e.g. Hero) or read in another file (e.g. Items created by the shop).
+
+#### Implementation
+
+Since this pattern is used throughout the whole project, we'll give an example in the diagram below (simplified):
+
+![NamedComponent](img/componentName.png)
+
+Relevant classes:
+
+- [NamedComponent](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius/Model/Game/NamedComponent.java)
+- [Element](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius/Model/Game/elements/Element.java)
+. [Enemy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius/Model/Game/elements/enemies/Enemy.java)
+- [EnemyViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius/Viewer/Game/EnemyViewer.java)
+
+#### Consequences
+
+- We can have a way to easily load models and images from files without having to know or compare the
+classes of the objects we want to manage
+- We are able to easily draw strings on the screen, giving useful information to the player. For example,
+putting the item the hero is holding in the toolbar and displaying items in the shop
+- In the classes that expect multiple types of objects and load them from a file (e.g. enemies and items), it's possible to create new
+types by only creating/modifying text files, without having to even look at the source code.
+
+
    
 ## Known Code Smells and Refactoring Suggestions
 
