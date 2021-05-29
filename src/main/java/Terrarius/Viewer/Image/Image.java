@@ -12,8 +12,6 @@ import java.util.Scanner;
 
 public abstract class Image{
     public abstract void load(String string) throws FileNotFoundException, URISyntaxException;
-    public abstract void update();
-    public abstract void reset();
     public abstract void draw(Position position, Element.Orientation orientation, GUI gui);
 
     protected Scanner getScannerFromFile(String fname) throws FileNotFoundException, URISyntaxException {

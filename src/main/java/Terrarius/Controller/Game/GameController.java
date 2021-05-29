@@ -3,7 +3,6 @@ package Terrarius.Controller.Game;
 import Terrarius.Controller.Controller;
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Game.Position;
-import Terrarius.Model.Game.arena.MultiMapArenaBuilder;
 import Terrarius.Model.Game.elements.hero.HeroStats;
 import Terrarius.Model.SkillTree.SkillTree;
 import Terrarius.States.GameState;
@@ -55,7 +54,7 @@ public class GameController extends Controller<Arena> {
     }
 
     public void resetGameState(Terrarius terrarius) throws FileNotFoundException, URISyntaxException {
-        terrarius.setGameState(new GameState(new MultiMapArenaBuilder().createArena()));
+        terrarius.setGameState(new GameState(new Arena()));
 
         HeroStats heroStats = ((Arena) terrarius.getGameState().getModel()).getHero().getStats();
         terrarius.setSkillTreeState( new SkillTreeState(new SkillTree(heroStats)) );

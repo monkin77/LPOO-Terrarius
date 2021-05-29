@@ -1,4 +1,4 @@
-package Terrarius.Model.Game.map;
+package Terrarius.Model.Game.arena;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,10 +8,12 @@ import java.util.*;
 
 public class MapChooser {
 
-    public Map<Integer, Integer> levelMap = new HashMap<>();
+    private final Map<Integer, Integer> levelMap;
 
     public MapChooser(){
+        this.levelMap = new HashMap<>();
         URL resource = MapChooser.class.getResource("/Maps/MapChoices.txt");
+
         try {
             File file = new File(resource.toURI());
             Scanner fileScanner = new Scanner(file);
@@ -43,7 +45,7 @@ public class MapChooser {
 
         int subLevel = 1 + new Random().nextInt(levelMap.get(level));
 
-        MapBuilder mapBuilder = new MapBuilder(level, subLevel);
+        MapBuilder mapBuilder = new LoaderMapBuilder(level, subLevel);
         return  mapBuilder.createMap();
     }
 }

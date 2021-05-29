@@ -77,6 +77,7 @@ public class ColoredImage extends StillImage {
             value = imageScanner.next();
 
             charColorMap.put(key, value);
+            imageScanner.nextLine();
         }
 
         for(int i = 0; i < height; i++){
@@ -104,8 +105,7 @@ public class ColoredImage extends StillImage {
             value = imageScanner.next();
 
             bgColorMap.put(key, value);
-
-            String trash = imageScanner.nextLine();
+            imageScanner.nextLine();
         }
 
         for(int i = 0; i < height; i++) {

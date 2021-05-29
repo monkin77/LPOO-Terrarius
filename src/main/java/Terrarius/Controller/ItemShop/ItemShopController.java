@@ -36,10 +36,10 @@ public class ItemShopController extends Controller<ItemShop> {
                     terrarius.setState(terrarius.getGameState());
                     return;
                 case LEFT_MENU:
-                    getModel().previousItem();
+                    getModel().previousOption();
                     break;
                 case RIGHT_MENU:
-                    getModel().nextItem();
+                    getModel().nextOption();
                     break;
                 case SELECT:
                     getModel().buyItem();

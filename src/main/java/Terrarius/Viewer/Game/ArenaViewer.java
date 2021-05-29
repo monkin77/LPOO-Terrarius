@@ -19,21 +19,16 @@ import static Terrarius.Viewer.Game.GameViewerConstants.SKY_COLOR;
 
 public class ArenaViewer extends Viewer<Arena> {
 
-    private Map<String, ElementViewer> enemyCache = new HashMap<>();
-    private Map<String, ElementViewer> blockCache = new HashMap<>();
+    private Map<String, EnemyViewer> enemyCache = new HashMap<>();
+    private Map<String, BlockViewer> blockCache = new HashMap<>();
     private Map<String, ItemViewer> itemCache = new HashMap<>();
     private ToolbarViewer toolbarViewer = new ToolbarViewer();
     private final StatusBarViewer statusBarViewer = new StatusBarViewer();
     private HeroViewer heroViewer = new HeroViewer();
 
-    @Override
     public void update() {
-        for (ElementViewer elementViewer : blockCache.values()){
-            elementViewer.update();
-        }
-
-        for (ElementViewer elementViewer : enemyCache.values()){
-            elementViewer.update();
+        for (EnemyViewer enemyViewer : enemyCache.values()){
+            enemyViewer.update();
         }
 
         heroViewer.update();
@@ -65,7 +60,7 @@ public class ArenaViewer extends Viewer<Arena> {
             if (!blockCache.containsKey(block.getComponentName()))
                 blockCache.put(block.getComponentName(), new BlockViewer(block));
 
-            ElementViewer viewer = blockCache.get(block.getComponentName());
+            BlockViewer viewer = blockCache.get(block.getComponentName());
             viewer.draw(block, gui);
         }
     }
@@ -76,7 +71,7 @@ public class ArenaViewer extends Viewer<Arena> {
             if (!enemyCache.containsKey(enemy.getComponentName()))
                 enemyCache.put(enemy.getComponentName(), new EnemyViewer(enemy));
 
-            ElementViewer viewer = enemyCache.get(enemy.getComponentName());
+            EnemyViewer viewer = enemyCache.get(enemy.getComponentName());
             viewer.draw(enemy, gui);
         }
     }
@@ -112,11 +107,11 @@ public class ArenaViewer extends Viewer<Arena> {
     }
 
 
-    protected void setEnemyCache(Map<String, ElementViewer> enemyCache) {
+    protected void setEnemyCache(Map<String, EnemyViewer> enemyCache) {
         this.enemyCache = enemyCache;
     }
 
-    protected void setBlockCache(Map<String, ElementViewer> blockCache) {
+    protected void setBlockCache(Map<String, BlockViewer> blockCache) {
         this.blockCache = blockCache;
     }
 

@@ -1,4 +1,4 @@
-package Terrarius.Model.Game.map;
+package Terrarius.Model.Game.arena;
 
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.Block;
@@ -12,11 +12,24 @@ public class MapZone {
     private final Dimensions dimensions;
     private Position leftSpawn;
     private Position rightSpawn;
-    private List<Enemy> enemies = new ArrayList<>();
-    private List<Block> blocks = new ArrayList<>();
+    private List<Enemy> enemies;
+    private List<Block> blocks;
 
-    public MapZone(int width, int height){
-        this.dimensions = new Dimensions(height ,width);
+    public MapZone(int width, int height) {
+        this.enemies = new ArrayList<>();
+        this.blocks = new ArrayList<>();
+        this.dimensions = new Dimensions(height, width);
+    }
+
+    protected Block getBlockInPosition(Position pos) {
+        Block block = null;
+        for (Block block1 : getBlocks()){
+            if (block1.getPosition().equals(pos)){
+                block = block1;
+                break;
+            }
+        }
+        return block;
     }
 
     public void setLeftSpawn(Position position){

@@ -32,9 +32,4 @@ public class MenuViewer extends Viewer<Menu> {
                     menu.isSelected(i) ? "#ff9b02" : "#FFFFFF", "#0a489c");
         gui.refresh();
     }
-
-    @Override
-    public void update() {
-        // No animations
-    }
 }

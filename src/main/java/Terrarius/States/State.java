@@ -31,7 +31,6 @@ public abstract class State<T> {
     public void update(Terrarius terrarius) {
         try {
             controller.update(terrarius);
-            viewer.update();
         } catch (FileNotFoundException | URISyntaxException e) {
             e.printStackTrace();
             terrarius.setState(null);

@@ -1,8 +1,7 @@
 package Terrarius.Model.ItemShop;
 
 import Terrarius.Model.Game.elements.hero.Hero;
-import Terrarius.Model.Game.items.Item;
-import Terrarius.Model.Game.items.tools.Tool;
+import Terrarius.Model.MenuTemplate;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,48 +9,28 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
-public class ItemShop {
-
+public class ItemShop extends MenuTemplate<ItemListing> {
     private int usedPoints = 0;
-    private int selectedItem = 0;
     private int selectedSlot = 1;
-
-    private final List<ItemListing> itemListingList = new ArrayList<>();
-
     private final Hero hero;
 
-    public ItemShop(Hero hero) throws FileNotFoundException, URISyntaxException {
+    public ItemShop(Hero hero) {
+        super();
         this.hero = hero;
-        loadItems();
     }
 
     public Hero getHero() {
         return hero;
     }
 
-    public int getSelectedItem() {
-        return selectedItem;
-    }
-
-    public void nextItem(){
-        this.selectedItem = (selectedItem + 1) % this.itemListingList.size();
-    }
-
     public String getItemName(int index){
-        return this.itemListingList.get(index).getItem();
+        return this.getOption(index).getItem();
     }
 
     public int getItemPrice(int index){
-        return this.itemListingList.get(index).getPrice();
-    }
-
-    public void previousItem(){
-        int nextSel = this.selectedItem - 1;
-        while(nextSel < 0) nextSel += itemListingList.size();
-        this.selectedItem = nextSel % itemListingList.size();
+        return this.getOption(index).getPrice();
     }
 
     public void setSelectedSlot(int selectedSlot){
@@ -68,8 +47,8 @@ public class ItemShop {
 
     public void buyItem(){
         int availablePoints = this.getCurrentPoints();
-        ItemListing itemListing = itemListingList.get(selectedItem);
-        if (itemListing == null || availablePoints < itemListing.getPrice()) return;
+        ItemListing itemListing = getSelectedOption();
+        if (availablePoints < itemListing.getPrice()) return;
         this.usedPoints += itemListing.getPrice();
 
         try {
@@ -79,25 +58,35 @@ public class ItemShop {
         }
     }
 
-    private void loadItems() throws URISyntaxException, FileNotFoundException {
-        URL resource = ItemShop.class.getResource("/assets/tools/Shop.txt");
-        Scanner scanner = new Scanner(new File(resource.toURI()));
+    @Override
+    protected List<ItemListing> initOptions() {
+       List<ItemListing> itemListingList = new ArrayList<>();
 
-        String itemName;
-        int itemPrice;
-        while (scanner.hasNext()) {
-            itemName = scanner.next();
-            itemPrice = scanner.nextInt();
-            itemListingList.add(new ItemListing(itemName, itemPrice, ItemListing.ITEM_TYPE.TOOL));
-        }
+       try {
+           URL resource = ItemShop.class.getResource("/assets/tools/Shop.txt");
+           Scanner scanner = new Scanner(new File(resource.toURI()));
 
-        resource = ItemShop.class.getResource("/assets/buffs/Shop.txt");
-        scanner = new Scanner(new File(resource.toURI()));
+           String itemName;
+           int itemPrice;
+           while (scanner.hasNext()) {
+               itemName = scanner.next();
+               itemPrice = scanner.nextInt();
+               itemListingList.add(new ItemListing(itemName, itemPrice, ItemListing.ITEM_TYPE.TOOL));
+           }
 
-        while (scanner.hasNext()) {
-            itemName = scanner.next();
-            itemPrice = scanner.nextInt();
-            itemListingList.add(new ItemListing(itemName, itemPrice, ItemListing.ITEM_TYPE.BUFF));
-        }
+           resource = ItemShop.class.getResource("/assets/buffs/Shop.txt");
+
+           scanner = new Scanner(new File(resource.toURI()));
+
+           while (scanner.hasNext()) {
+               itemName = scanner.next();
+               itemPrice = scanner.nextInt();
+               itemListingList.add(new ItemListing(itemName, itemPrice, ItemListing.ITEM_TYPE.BUFF));
+           }
+       } catch (FileNotFoundException | URISyntaxException e) {
+           e.printStackTrace();
+       }
+
+       return itemListingList;
     }
 }

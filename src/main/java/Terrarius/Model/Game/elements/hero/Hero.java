@@ -16,7 +16,7 @@ import java.util.List;
 public class Hero extends Element {
     private Toolbar toolBar;
     private Position targetPosition;
-    private HeroStats stats;
+    private final HeroStats stats;
     private final List<Buff> activeBuffs;
 
     public Hero(Position position) throws FileNotFoundException, URISyntaxException {
