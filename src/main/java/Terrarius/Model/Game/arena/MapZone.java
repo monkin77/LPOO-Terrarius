@@ -21,6 +21,17 @@ public class MapZone {
         this.dimensions = new Dimensions(height, width);
     }
 
+    protected Block getBlockInPosition(Position pos) {
+        Block block = null;
+        for (Block block1 : getBlocks()){
+            if (block1.getPosition().equals(pos)){
+                block = block1;
+                break;
+            }
+        }
+        return block;
+    }
+
     public void setLeftSpawn(Position position){
         this.leftSpawn = position;
     }
@@ -56,5 +67,4 @@ public class MapZone {
     public void setBlocks(List<Block> blocks) {
         this.blocks = blocks;
     }
-
 }

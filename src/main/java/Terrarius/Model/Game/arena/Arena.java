@@ -20,7 +20,7 @@ public class Arena {
     private final MapChooser mapChooser;
     private Integer currentMapIndex;
 
-    public enum BOUNDARY {MAP_LEFT, MAP_RIGHT, MAP_SAME};
+    public enum BOUNDARY {MAP_LEFT, MAP_RIGHT, MAP_SAME}
 
     public Arena() {
         this.mapChooser = new MapChooser();
@@ -54,10 +54,6 @@ public class Arena {
             return BOUNDARY.MAP_LEFT;
         }
         return BOUNDARY.MAP_SAME;
-    }
-
-    public void addMap(int index, MapZone mapZone){
-        this.mapZoneList.add(index, mapZone);
     }
 
     public Hero getHero() {
@@ -94,14 +90,6 @@ public class Arena {
 
     public Integer getCurrentMapIndex() {
         return currentMapIndex;
-    }
-
-    public boolean isEmpty(Position position){
-        for(Block block : this.getBlocks()) {
-            if(block.getPosition().equals(position))
-                return false;
-        }
-        return true;
     }
 
     public boolean hasAdjacentBlock(Position position, Dimensions dimensions) {
@@ -145,17 +133,9 @@ public class Arena {
     }
 
     public void breakBlock(Position position, Tool tool){
-        Block block = null;
+        Position gridPosition = new Position(position.getX()/4 * 4, position.getY()/4 * 4);
 
-        Position gridPosition = new Position(position.getX()/4 * 4, position.getY()/4 * 4); //Make this better somehow
-
-        for (Block block1 : getBlocks()){
-            if (block1.getPosition().equals(gridPosition)){
-                block = block1;
-                break;
-            }
-        }
-
+        Block block = mapZoneList.get(currentMapIndex).getBlockInPosition(gridPosition);
         if (block == null) return;
 
         if (tool.getStats().getMiningHardness() >= block.getHardness()) {
@@ -202,5 +182,4 @@ public class Arena {
         }
         this.getEnemies().removeIf(n -> (n.getStats().getHp() <= 0));
     }
-
 }
