@@ -52,6 +52,15 @@ The tree can be open by pressing 'Tab'.
 **Menu** - The game has some interactive menus, including the main menu presented at the start
 of the game.
 
+## Planned Features
+
+Some features that would have been good to implement but weren't for time reasons:
+
+- **Losing and pause screens**
+- **Attack animations**
+- **Improvements to ItemShop viewer**
+- **More maps, items and enemies**
+
 ## Design
 
 ### Model-View-Controller
@@ -370,7 +379,7 @@ types by only creating/modifying text files, without having to even look at the 
 ## Known Code Smells and Refactoring Suggestions
 
 ### Data Classes
-Like said above, the classes made for Element Stats are Data Classes. This could be
+Like said above, the classes made for stats are Data Classes. This could be
 a problem since they can't independently interact with their data and don't add 
 operation power.
 
@@ -383,68 +392,64 @@ the Item class and creating a new Item Stats instance, we could use the Item Sta
 to update its primitives. This, however, would decrease the importance of the Item class,
 making it almost obsolete and falling in another code smell: **Lazy Class**
 
+Another way would be to just store all the primitives in the original classes. However, this would
+create the **Primitive Obsession** smell, which is, in our opinion, worse.
+
 ### Refused Bequest
 
-Right now, the Image class has two abstract methods (*update* and *reset*) 
-which are not used by one of its subclasses, StillImage
-(technically, it is using them, but the methods don't do anything). This is happening
-for two reasons:
+This was a smell that used to appear a few items in our code and we refactored most of them.
+However, there's still one class that falls under this smell: **BlockPlacer**.
 
-- So classes using images can benefit from polymorphism, by calling
-those methods without having to think about what type of image they have.
+This is a subclass of an **Item**, so it can be used like a regular one, mainly in the **Toolbar** class.
+Still, this is not a regular item since it has no stats, meaning that they don't need to updated like other ones,
+hence the empty method.
+
+We decided to leave it this way because it's significantly easier to work with the BlockPlacer assuming
+it is a regular item. So, in the end, this smell felt like a low cost against a big benefit.
+
+### Primitive Obsession
+
+There are currently 3 classes ([Tool](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius/Model/Game/items/tools/Tool.java), 
+[Enemy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius/Model/Game/elements/enemies/Enemy.java) 
+and [Buff](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius/Model/Game/items/buffs/Buff.java))
+which need to load a few values from the resources, which are all primitives (around 5) being stored in the
+classes themselves. Below, we present possible solutions for this smell and a justification
+of why they weren't implemented:
+
+- **Replace data with Object**: We could move all the primitives to a separate class, like we did with the stats,
+but that felt like just moving the problem rather than solving, while also increasing the number of classes in the project.
+Since these 3 classes are all already pretty small, we would be creating two additional smells: a lot
+of **lazy classes** and tree **Data classes**.
+
+- **Replace it with Subclasses**: Instead of reading the values of each type from files, we could create
+subclasses for all of them. This was what we tried initially but we ended up with a high density of classes,
+which an **Object-Orientation Abuser** and prevented us from creating new types of objects without changing
+or creating code.
   
-- StillImage might use these methods for something, in the future.
-This also falls a bit into the Speculative Generality smell.
+### Switch Statements
 
-A way to fix this smell would be to remove these two methods from the
-Image abstract class and only implement them in the subclasses which use them.
-However, this means that classes using images need to know the type of
-image they're working with.
+Since the game involves reading many keys and converting them into actions, there are switch statements
+which grew fairly big, link in this GUI's [method](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/fb979303e5ae9a055003ca9b86e4b36a71d55071/src/main/java/Terrarius/GUI/LanternaGui.java#L197)
+Also, since the actions represent different operations in different states, there's a need to compare them,
+resulting in big switch statements in states that use many of them. For example, this HeroController's
+[method](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/fb979303e5ae9a055003ca9b86e4b36a71d55071/src/main/java/Terrarius/Controller/Game/HeroController.java#L148).
 
-Here are the relevant classes:
+This is a smell that is very hard (or even impossible in the first case) to eliminate because we always need a place
+to have a conversion table between keys and actions. If not done with a switch statement, it'd need to be done
+some other way, creating a table nonetheless.
 
-- [Image](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/Image/Image.java)
-- [StillImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/Image/StillImage.java)
-- [AnimatedImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/Image/AnimatedImage.java)
+Nevertheless, a good way to combat the smell is to isolate it as much as possible, putting it in its
+own method or even class.
 
-### Comments
+### Long Method
 
-Since the project is in mid-development, there are some comments throughout the code reminding us
-of something or explaining that some feature is still under changes (like TODOs). Here are some examples:
+This Arena's [method](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/8aee477a922e9e8b823b8874a79aaee2f6844ce7/src/main/java/Terrarius/Model/Game/arena/Arena.java#L97)
+is fairly long (around 20 lines of code), which already raises questions as to whether it should stay this way.
 
-- [TODO](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/d6a706003ecfb1c35a176f74305885d62cc7b7e2/src/main/java/Terrarius.Controller/EnemyController.java#L15)
+An easy way to fix this smell would be to split the method into smaller parts and **extract methods** from those parts.
+However, we decided not to do this since the function seemed clear (even if it was long) and more methods
+could start overloading the Arena class, falling into the **Large Class** smell.
 
-- [Explanation Comment](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/d6a706003ecfb1c35a176f74305885d62cc7b7e2/src/main/java/Terrarius.Model/items/Toolbar.java#L19)
-
-This smell will be fixed when the features are properly implemented and the comments are removed.
-
-### Duplicate Code
-
-Currently, there are two classes who serve almost the same purpose: Dimensions and ImageDimensions.
- The difference between them is almost uniquely the package in which they act (Model and Viewer).
-
-This could be fixed by defining a Dimensions class which both packaged can use (possibly, in a
-common *Utils* package).
-
-Here are the relevant classes:
-- [Dimensions](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/Dimensions.java)
-- [ImageDimensions](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/Image/ImageDimensions.java)
-
-### Speculative Generality
-
-Since the project is in mid-development, there are currently methods, classes and fields
-which are not being used. These are usually methods/fields which were
-thought useful when creating their respective classes but weren't put in execution right away,
-probably because they'll serve a purpose in a feature that's yet to be implemented.
-
-Here are some examples:
-
-- [Toolbar item selection](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/items/Toolbar.java)
-- [CLICK action](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/d6a706003ecfb1c35a176f74305885d62cc7b7e2/src/main/java/Terrarius.Controller/HeroController.java#L68)
-- Most of the [items](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java/Terrarius.Model/items), with the exception of the Axe
-
-This code smell can be fixed by either implementing features which use these methods/classes or
-removed them altogether, if they're not useful in the end.
 
 ## Testing
 ![Test Coverage](img/test.png)
