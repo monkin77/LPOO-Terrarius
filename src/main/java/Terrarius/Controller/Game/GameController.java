@@ -11,6 +11,8 @@ import Terrarius.States.MenuState;
 import java.io.IOException;
 import java.util.List;
 
+import static Terrarius.Utils.GameConstants.MS_PER_UPDATE;
+
 public class GameController extends Controller<Arena> {
     private final ArenaController arenaController;
 
@@ -21,7 +23,7 @@ public class GameController extends Controller<Arena> {
 
     public GameController(Arena arena) {
         super(arena);
-        this.arenaController = new ArenaController(arena, new HeroController(arena), new EnemyController(arena), Terrarius.getMsPerUpdate());
+        this.arenaController = new ArenaController(arena, new HeroController(arena), new EnemyController(arena), MS_PER_UPDATE);
     }
 
     @Override

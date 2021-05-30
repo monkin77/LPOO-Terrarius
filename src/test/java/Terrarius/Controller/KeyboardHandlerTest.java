@@ -43,4 +43,11 @@ public class KeyboardHandlerTest {
         keyboardHandler.releaseKey(VK_DOWN);
         Assertions.assertFalse(keyboardHandler.isKeyPressed(VK_DOWN));
     }
+
+    @Test
+    public void readKey() {
+        keyboardHandler.pressKey(VK_DOWN);
+        Assertions.assertTrue(keyboardHandler.readKey(VK_DOWN));
+        Assertions.assertFalse(keyboardHandler.readKey(VK_DOWN));
+    }
 }

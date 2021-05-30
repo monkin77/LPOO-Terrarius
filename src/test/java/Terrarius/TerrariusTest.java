@@ -1,5 +1,6 @@
 package Terrarius;
-
+/*
+TODO LAST IF THERE'S TIME
 import Terrarius.States.State;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,8 +12,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-// TODO: This tests opens the terminal. Try to make it better
-// TODO: BIG, FIX ALL THE TESTS WHEN FEATURES ARE DONE
+
 public class TerrariusTest {
     private Terrarius terrarius;
     private State state;
@@ -53,3 +53,4 @@ public class TerrariusTest {
         Mockito.verify(state, Mockito.atLeastOnce()).update(Mockito.same(terrarius));
     }
 }
+*/

@@ -7,13 +7,10 @@ import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.items.Item;
 import Terrarius.Model.ItemShop.ItemListing;
 import Terrarius.Model.ItemShop.ItemShop;
-import Terrarius.Viewer.Game.ItemViewer;
 import Terrarius.Viewer.Image.ColoredImage;
-import Terrarius.Viewer.Image.Image;
 import Terrarius.Viewer.Image.StillImage;
 import Terrarius.Viewer.Viewer;
 
-import static Terrarius.Utils.GameConstants.*;
 import static Terrarius.Viewer.ItemShop.ItemShopViewerConstants.*;
 
 import java.io.FileNotFoundException;
@@ -166,10 +163,6 @@ public class ItemShopViewer extends Viewer<ItemShop> {
             gui.drawCharacter(SIDEBAR_WIDTH, i, '|');
         }
 
-    }
-
-    public void setListingNeedsUpdate(Boolean bool){
-        this.listingNeedsUpdate = bool;
     }
 
     @Override

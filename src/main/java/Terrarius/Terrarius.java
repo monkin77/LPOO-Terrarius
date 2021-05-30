@@ -17,8 +17,9 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+import static Terrarius.Utils.GameConstants.MS_PER_UPDATE;
+
 public class Terrarius {
-    private static final int MS_PER_UPDATE = 16;
 
     private final GUI gui;
 
@@ -60,10 +61,6 @@ public class Terrarius {
 
             state.draw(gui);
         }
-    }
-
-    public static int getMsPerUpdate() {
-        return MS_PER_UPDATE;
     }
 
     public State getState() {
