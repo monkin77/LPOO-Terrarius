@@ -1,7 +1,5 @@
 package Terrarius.Viewer.Game;
 
-
-/*
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.elements.hero.HeroStats;
@@ -10,21 +8,17 @@ import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.elements.Block;
-import Terrarius.Model.Game.elements.blocks.DirtBlock;
-import Terrarius.Model.Game.elements.blocks.StoneBlock;
-import Terrarius.Model.Game.elements.blocks.WoodBlock;
 import Terrarius.Model.Game.elements.enemies.Enemy;
-import Terrarius.Model.Game.elements.enemies.Zombie;
 import Terrarius.Model.Game.items.Item;
 import Terrarius.Model.Game.items.Toolbar;
-import Terrarius.Model.Game.items.tools.Axe;
-import Terrarius.Model.Game.items.tools.Pickaxe;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -49,25 +43,30 @@ public class ArenaViewerTest {
         gui = Mockito.mock(GUI.class);
         arenaViewer = new ArenaViewer();
 
-        Enemy enemy = Mockito.mock(Zombie.class);
+        Enemy enemy = Mockito.mock(Enemy.class);
+        Mockito.when(enemy.getComponentName()).thenReturn("Zombie");
         EnemyViewer enemyViewer = Mockito.mock(EnemyViewer.class);
         enemyCache.put(enemy.getComponentName(), enemyViewer);
         arenaViewer.setEnemyCache(enemyCache);
 
-        Block block1 = Mockito.mock(WoodBlock.class);
-        Block block2 = Mockito.mock(StoneBlock.class);
+        Block block1 = Mockito.mock(Block.class);
+        Mockito.when(block1.getComponentName()).thenReturn("WoodBlock");
+        Block block2 = Mockito.mock(Block.class);
+        Mockito.when(block2.getComponentName()).thenReturn("StoneBlock");
         BlockViewer blockViewer1 = Mockito.mock(BlockViewer.class);
         BlockViewer blockViewer2 = Mockito.mock(BlockViewer.class);
         blockCache.put(block1.getComponentName(), blockViewer1);
         blockCache.put(block2.getComponentName(), blockViewer2);
         arenaViewer.setBlockCache(blockCache);
 
-        Item item = Mockito.mock(Axe.class);
+        Item item = Mockito.mock(Item.class);
+        Mockito.when(item.getComponentName()).thenReturn("Axe");
         ItemViewer itemViewer = Mockito.mock(ItemViewer.class);
         itemCache.put(item.getComponentName(), itemViewer);
         arenaViewer.setItemCache(itemCache);
 
         toolbarViewer = Mockito.mock(ToolbarViewer.class);
+        Mockito.when(toolbarViewer.calculateIconPosition(Mockito.any(), Mockito.any(), Mockito.any())).thenReturn(new Position(1, 1));
         arenaViewer.setToolbarViewer(toolbarViewer);
 
         heroViewer = Mockito.mock(HeroViewer.class);
@@ -87,11 +86,8 @@ public class ArenaViewerTest {
     public void update() {
         arenaViewer.update();
 
-        for (ElementViewer elementViewer : enemyCache.values())
-            Mockito.verify(elementViewer, Mockito.times(1)).update();
-
-        for (ElementViewer elementViewer : blockCache.values())
-            Mockito.verify(elementViewer, Mockito.times(1)).update();
+        for (EnemyViewer enemyViewer : enemyCache.values())
+            Mockito.verify(enemyViewer, Mockito.times(1)).update();
 
         Mockito.verify(heroViewer, Mockito.times(1)).update();
     }
@@ -126,15 +122,15 @@ public class ArenaViewerTest {
     }
 
     @Test
-    public void drawBlocks() {
-        Block wood = new WoodBlock(new Position(5, 5));
-        List<Block> blocks = Arrays.asList(wood, new DirtBlock(new Position(1, 1)));
+    public void drawBlocks() throws FileNotFoundException, URISyntaxException {
+        Block wood = new Block(new Position(5, 5), "WoodBlock");
+        List<Block> blocks = Arrays.asList(wood, new Block(new Position(1, 1), "DirtBlock") );
         Mockito.when(arena.getBlocks()).thenReturn(blocks);
 
         Assertions.assertEquals(2, blockCache.size());
         arenaViewer.drawBlocks(gui, arena);
         Assertions.assertEquals(3, blockCache.size());
-        Mockito.verify(blockCache.get(WoodBlock.class), Mockito.times(1)).draw(wood, gui);
+        Mockito.verify(blockCache.get("WoodBlock"), Mockito.times(1)).draw(wood, gui);
     }
 
     @Test
@@ -157,8 +153,11 @@ public class ArenaViewerTest {
 
         Map<Integer, Item> toolbarMap = new HashMap<>();
 
-        Item axe = Mockito.mock(Axe.class);
-        Item pickaxe = Mockito.mock(Pickaxe.class);
+        Item axe = Mockito.mock(Item.class);
+        Mockito.when(axe.getComponentName()).thenReturn("Axe");
+        Item pickaxe = Mockito.mock(Item.class);
+        Mockito.when(pickaxe.getComponentName()).thenReturn("Pickaxe");
+
         Mockito.when(axe.getHero()).thenReturn(hero);
 
         toolbarMap.put(1, axe);
@@ -170,23 +169,27 @@ public class ArenaViewerTest {
         Mockito.when(toolbar.getActiveItemIdx()).thenReturn(1);
         Mockito.when(toolbar.getDimensions()).thenReturn(new Dimensions(5, 5));
         Mockito.when(toolbar.getToolbarSeparatorWidth()).thenReturn(1);
+        Mockito.when(toolbar.getToolbarSeparatorWidth()).thenReturn(1);
+        Mockito.when(toolbar.getToolbarCellLength()).thenReturn(5);
+        Mockito.when(toolbar.getMaxSlots()).thenReturn(9);
 
         Assertions.assertEquals(1, itemCache.size());
         arenaViewer.drawToolbarItems(gui, toolbar, arena);
         Assertions.assertEquals(2, itemCache.size());
 
-        ItemViewer viewer = itemCache.get(Axe.class);
+        ItemViewer viewer = itemCache.get("Axe");
         Mockito.verify(viewer, Mockito.times(1)).draw(axe, gui);
         Mockito.verify(viewer, Mockito.times(1)).drawIcon(Mockito.any(), Mockito.eq(gui));
     }
 
     @Test
     public void drawEnemies() {
-        Enemy zombie = Mockito.mock(Zombie.class);
+        Enemy zombie = Mockito.mock(Enemy.class);
+        Mockito.when(zombie.getComponentName()).thenReturn("Zombie");
         List<Enemy> enemies = Arrays.asList(zombie);
         Mockito.when(arena.getEnemies()).thenReturn(enemies);
 
-        ElementViewer viewer = enemyCache.get(zombie.getClass());
+        ElementViewer viewer = enemyCache.get("Zombie");
 
         Assertions.assertEquals(1, enemyCache.size());
         arenaViewer.drawEnemies(gui, arena);
@@ -194,4 +197,4 @@ public class ArenaViewerTest {
 
         Mockito.verify(viewer, Mockito.times(1)).draw(zombie, gui);
     }
-}*/
+}
