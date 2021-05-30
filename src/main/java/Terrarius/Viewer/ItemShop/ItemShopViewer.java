@@ -55,7 +55,7 @@ public class ItemShopViewer extends Viewer<ItemShop> {
 
             if(i > MAX_LISTINGS_PER_PAGE) break; //Shop can't have more than 16 items, we could have added pages
 
-            Position position = new Position( (i % MAX_LISTINGS_PER_LINE) + 1, (i / MAX_LISTINGS_PER_ROW));
+            Position position = new Position( (i % MAX_LISTINGS_PER_LINE) + 1, (i / MAX_LISTINGS_PER_ROW)+1);
 
             itemListingPositionMap.put(itemListing, position);
 
@@ -73,12 +73,16 @@ public class ItemShopViewer extends Viewer<ItemShop> {
 
     private void drawItemListing(GUI gui, ItemListing itemListing, Boolean selected){
 
+        ColoredImage iconImage = itemListingIconMap.get(itemListing.getItem());
+
         Position screen_position = new Position(
                 LISTINGS_X + LISTINGS_WIDTH/(MAX_LISTINGS_PER_LINE + 1) * itemListingPositionMap.get(itemListing).getX(),
                 LISTINGS_Y + LISTINGS_HEIGHT/(MAX_LISTINGS_PER_ROW + 1) * itemListingPositionMap.get(itemListing).getY()
+                        - (iconImage.getDimension().getHeight()+4)/2
         );
 
-        gui.drawString(screen_position.getX() - itemListing.getItem().length()/2, screen_position.getY(),
+        gui.drawString(
+                screen_position.getX() - itemListing.getItem().length()/2, screen_position.getY(),
                 itemListing.getItem(),
                 "#FFFFFF",
                 "#000000");
@@ -89,8 +93,6 @@ public class ItemShopViewer extends Viewer<ItemShop> {
                     screen_position.getY(),
                     '>');
         }
-
-        ColoredImage iconImage = itemListingIconMap.get(itemListing.getItem());
 
         iconImage.draw(new Position(
                 screen_position.getX() - iconImage.getDimension().getWidth()/2,

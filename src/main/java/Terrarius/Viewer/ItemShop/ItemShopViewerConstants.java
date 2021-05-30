@@ -15,7 +15,7 @@ public class ItemShopViewerConstants {
     public static int TITLE_X = SIDEBAR_WIDTH + 1;
     public static int TITLE_Y = 0;
 
-    public static int TITLE_HEIGHT = 12;
+    public static int TITLE_HEIGHT = 10;
     public static int TITLE_WIDTH = SCREEN_WIDTH - SIDEBAR_WIDTH - 1;
 
     public static int LISTINGS_X = SIDEBAR_WIDTH + 1;
