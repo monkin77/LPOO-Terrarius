@@ -51,8 +51,4 @@ public abstract class State<T> {
     public Controller<T> getController() {
         return controller;
     }
-
-    public void setViewer(Viewer<T> viewer) {
-        this.viewer = viewer;
-    }
 }

@@ -46,8 +46,4 @@ public abstract class MenuTemplate<T> {
     }
 
     protected abstract List<T> initOptions();
-
-    public void setSelectedOption(int selectedOption) {
-        this.selectedOption = selectedOption;
-    }
 }
