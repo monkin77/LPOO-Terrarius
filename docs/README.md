@@ -363,7 +363,7 @@ Relevant classes:
 
 - [NamedComponent](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/model/game/NamedComponent.java)
 - [Element](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/model/game/elements/Element.java)
-. [Enemy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/model/game/elements/Enemy.java)
+- [Enemy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/model/game/elements/Enemy.java)
 - [EnemyViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/viewer/game/EnemyViewer.java)
 
 #### Consequences
