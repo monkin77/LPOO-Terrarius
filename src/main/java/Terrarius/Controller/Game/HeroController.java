@@ -29,15 +29,15 @@ public class HeroController {
     }
 
     private Boolean moveHero(Position position) {
-        // Can't move outside of arena boundaries
         if (position.getY() < 0 || position.getY() + arena.getHero().getDimensions().getHeight() > arena.getHeight())
             return false;
 
         if (!arena.collidesWithBlocks(position, arena.getHero().getDimensions())) {
 
-            if(arena.getHero().getToolBar().getActiveItem() != null) {
+            if (arena.getHero().getToolBar().getActiveItem() != null) {
                 Item activeItem = arena.getHero().getToolBar().getActiveItem();
                 Position copyPos = activeItem.getPosition(position);
+
                 if(arena.collidesWithBlocks(copyPos, activeItem.getDimensions()))
                     return false;
             }
@@ -111,7 +111,7 @@ public class HeroController {
 
     private void useTool(Tool tool) {
         if (this.arena.getHero().targetWithinRange())
-            arena.breakBlock(this.arena.getHero().getTargetPosition(), (Tool) arena.getHero().getToolBar().getActiveItem());
+            arena.breakBlock(this.arena.getHero().getTargetPosition(), tool);
     }
 
     private void useSelectedBuff() {
@@ -122,8 +122,9 @@ public class HeroController {
         this.buffList.add(new BuffController(buff, this.arena.getHero()));
     }
 
-    public void updateBuffs(int timeSinceLastUpdate) {
+    public void update(int timeSinceLastUpdate) {
         buffList.removeIf(buffController -> buffController.updateAndCheckDuration(timeSinceLastUpdate));
+        arena.getHero().getToolBar().updateItems();
     }
 
     private void heroAttack(){

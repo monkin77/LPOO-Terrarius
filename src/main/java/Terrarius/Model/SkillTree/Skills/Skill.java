@@ -6,7 +6,7 @@ public abstract class Skill {
     private String name;
     private int currLevel;
     private static final int maxLevel = 10;
-    private int upgradeCost;
+    private final int upgradeCost;
 
     public Skill(String name, int upgradeCost) {
         this.name = name;
@@ -18,16 +18,8 @@ public abstract class Skill {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getCurrLevel() {
         return currLevel;
-    }
-
-    public void setCurrLevel(int currLevel) {
-        this.currLevel = currLevel;
     }
 
     public static int getMaxLevel() {
@@ -36,10 +28,6 @@ public abstract class Skill {
 
     public int getUpgradeCost() {
         return upgradeCost;
-    }
-
-    public void setUpgradeCost(int upgradeCost) {
-        this.upgradeCost = upgradeCost;
     }
 
     public boolean upgrade() {

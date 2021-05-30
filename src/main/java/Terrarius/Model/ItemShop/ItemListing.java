@@ -2,27 +2,26 @@ package Terrarius.Model.ItemShop;
 
 import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.items.Item;
-import Terrarius.Model.Game.items.buffs.*;
-import Terrarius.Model.Game.items.tools.Axe;
-import Terrarius.Model.Game.items.tools.Pickaxe;
-import Terrarius.Model.Game.items.tools.Shovel;
-import Terrarius.Model.Game.items.tools.Sword;
+import Terrarius.Model.Game.items.buffs.Buff;
+import Terrarius.Model.Game.items.tools.Tool;
+
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 
 public class ItemListing {
     private String item;
-    private int price;
+    private final int price;
+    private final ITEM_TYPE type;
+    enum ITEM_TYPE {TOOL, BUFF};
 
-    public ItemListing(String item, int price) {
+    public ItemListing(String item, int price, ITEM_TYPE type) {
         this.item = item;
         this.price = price;
+        this.type = type;
     }
 
     public int getPrice() {
         return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     public String  getItem() {
@@ -33,19 +32,13 @@ public class ItemListing {
         this.item = item;
     }
 
-    public Item generateNew(Hero hero){
-        switch (item){
-            case "Apple": return new Apple(hero);
-            case "Banana": return new Banana(hero);
-            case "BattlePotion": return new BattlePotion(hero);
-            case "ElasticPotion": return new ElasticPotion(hero);
-            case "SwiftnessPotion": return new SwiftnessPotion(hero);
-            case "Axe": return new Axe(hero);
-            case "Pickaxe": return new Pickaxe(hero);
-            case "Shovel": return new Shovel(hero);
-            case "Sword": return new Sword(hero);
+    public Item generateNew(Hero hero) throws FileNotFoundException, URISyntaxException {
+        switch (type) {
+            case TOOL:
+                return new Tool(hero, item);
+            case BUFF:
+                return new Buff(hero, item);
         }
         return null;
     }
-
 }

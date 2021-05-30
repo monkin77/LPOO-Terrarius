@@ -1,0 +1,2 @@
+<height> <width>
+<baseHP> <multiplierHP> <basePower> <multiplierPower> <viewDistance>

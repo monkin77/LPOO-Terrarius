@@ -2,11 +2,8 @@ package Terrarius.Controller.Menu;
 
 import Terrarius.Controller.Controller;
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Game.arena.MultiMapArenaBuilder;
 import Terrarius.Terrarius;
-import Terrarius.Model.Game.arena.LoaderArenaBuilder;
 import Terrarius.Model.Menu.Menu;
-import Terrarius.States.GameState;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

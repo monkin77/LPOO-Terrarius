@@ -10,11 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import static Terrarius.Utils.GameConstants.DEFAULT_BACKGROUND_COLOR;
-import static Terrarius.Utils.GameConstants.DEFAULT_FOREGROUND_COLOR;
-
-public class ColoredImage extends StillImage{
-
+public class ColoredImage extends StillImage {
     private final Map<Character, String> charColorMap;
     private char[][] charColors;
     private final Map<Character, String> bgColorMap;
@@ -42,10 +38,10 @@ public class ColoredImage extends StillImage{
             for (int j = 0; j < this.dimensions.getWidth(); j++){
 
                 char aspect_char = ' ';
-                String charColor = DEFAULT_FOREGROUND_COLOR;
-                String bgColor = DEFAULT_BACKGROUND_COLOR;
+                String charColor;
+                String bgColor;
 
-                if(orientation == Element.Orientation.RIGHT) {
+                if (orientation == Element.Orientation.RIGHT) {
                     aspect_char = aspect[i][j];
                     bgColor = bgColorMap.get(bgColors[i][j]);
                     charColor = charColorMap.get(charColors[i][j]);
@@ -72,16 +68,15 @@ public class ColoredImage extends StillImage{
 
         imageScanner.nextLine();
 
-        for (int i = 0; i < noCharColors; i++){
-            Character key;
+        for (int i = 0; i < noCharColors; i++) {
+            char key;
             key = imageScanner.next().charAt(0);
 
             String value;
             value = imageScanner.next();
 
             charColorMap.put(key, value);
-
-            String trash = imageScanner.nextLine();
+            imageScanner.nextLine();
         }
 
         for(int i = 0; i < height; i++){
@@ -102,15 +97,14 @@ public class ColoredImage extends StillImage{
         imageScanner.nextLine();
 
         for (int i = 0; i < noBgColors; i++) {
-            Character key;
+            char key;
             key = imageScanner.next().charAt(0);
 
             String value;
             value = imageScanner.next();
 
             bgColorMap.put(key, value);
-
-            String trash = imageScanner.nextLine();
+            imageScanner.nextLine();
         }
 
         for(int i = 0; i < height; i++) {

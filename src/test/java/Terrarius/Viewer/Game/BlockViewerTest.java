@@ -3,7 +3,7 @@ package Terrarius.Viewer.Game;
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.Element;
-import Terrarius.Model.Game.elements.blocks.Block;
+import Terrarius.Model.Game.elements.Block;
 import Terrarius.Viewer.Image.Image;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

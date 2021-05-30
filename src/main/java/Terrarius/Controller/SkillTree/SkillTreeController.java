@@ -2,8 +2,6 @@ package Terrarius.Controller.SkillTree;
 
 import Terrarius.Controller.Controller;
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Game.arena.Arena;
-import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.SkillTree.SkillTree;
 import Terrarius.Model.SkillTree.Skills.Skill;
 import Terrarius.States.SkillTreeState;
@@ -38,13 +36,13 @@ public class SkillTreeController extends Controller<SkillTree> {
                     terrarius.setState(terrarius.getGameState());
                     return;
                 case LEFT_MENU:
-                    getModel().previousSkill();
+                    getModel().previousOption();
                     break;
                 case RIGHT_MENU:
-                    getModel().nextSkill();
+                    getModel().nextOption();
                     break;
                 case SELECT:
-                    this.upgradeSkill(getModel().getSelected());
+                    this.upgradeSkill(getModel().getSelectedIndex());
                     break;
             }
         }
@@ -53,15 +51,7 @@ public class SkillTreeController extends Controller<SkillTree> {
     }
 
     public void upgradeSkill(int selectedSkill) {
-        Skill selSkill = this.getModel().getSkills().get(selectedSkill);
+        Skill selSkill = this.getModel().getOption(selectedSkill);
         this.getModel().upgradeSkill(selSkill);
-    }
-
-    public List<GUI.ACTION> getActions() {
-        return actions;
-    }
-
-    public void setActions(List<GUI.ACTION> actions) {
-        this.actions = actions;
     }
 }

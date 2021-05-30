@@ -4,14 +4,19 @@ import Terrarius.Model.Game.NamedComponent;
 import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Position;
 
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+
 public abstract class Element implements NamedComponent {
     private Position position;
     private Dimensions dimensions;
+    private String name;
     private Orientation orientation = Orientation.RIGHT;
 
-    public Element(Position position, Dimensions dimensions) {
+    public Element(Position position, String name) throws FileNotFoundException, URISyntaxException {
         this.position = position;
-        this.dimensions = dimensions;
+        this.name = name;
+        loadElement();
     }
 
     public Position getPosition() {
@@ -39,5 +44,9 @@ public abstract class Element implements NamedComponent {
     public enum Orientation {LEFT, RIGHT}
 
     @Override
-    public abstract String getComponentName();
+    public String getComponentName() {
+        return this.name;
+    }
+
+    protected abstract void loadElement() throws FileNotFoundException, URISyntaxException;
 }

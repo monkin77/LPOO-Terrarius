@@ -1,7 +1,5 @@
 package Terrarius.Utils;
 
-import Terrarius.Model.Game.elements.enemies.Enemy;
-
 public class Dimensions {
 
     private int height;

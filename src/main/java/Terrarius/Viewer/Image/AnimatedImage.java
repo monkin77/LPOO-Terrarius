@@ -26,20 +26,14 @@ public class AnimatedImage extends Image {
         this.frameHandler.setTotalFPI(totalSpeed);
         this.frameHandler.setTotalImages(totalFrames);
 
-        imageScanner.nextLine(); //clears the /n
+        imageScanner.nextLine();
 
         for(int i = 0; i < totalFrames; i++)
             addNextImage(imageScanner);
     }
 
-    @Override
     public void update() {
         frameHandler.update();
-    }
-
-    @Override
-    public void reset() {
-        frameHandler.reset();
     }
 
     @Override

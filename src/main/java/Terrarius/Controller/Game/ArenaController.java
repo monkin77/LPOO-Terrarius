@@ -52,8 +52,6 @@ public class ArenaController {
     public void updateMapZone() {
         Arena.BOUNDARY boundary = arena.checkMapZoneAndUpdate();
         if (boundary == Arena.BOUNDARY.MAP_LEFT || boundary == Arena.BOUNDARY.MAP_RIGHT) {
-            arena.setEnemies(arena.getMapZoneList().get(arena.getCurrentMapIndex()).getEnemies());
-            arena.setBlocks(arena.getMapZoneList().get(arena.getCurrentMapIndex()).getBlocks());
 
             if (boundary == Arena.BOUNDARY.MAP_LEFT)
                 arena.getHero().setPosition(arena.getMapZoneList().get(arena.getCurrentMapIndex()).getRightSpawn());
@@ -69,21 +67,19 @@ public class ArenaController {
         if (updateCounter % updatesPerEnemyMovement == 0)
             enemyController.moveEnemies();
 
-        if (updateCounter % updatesPerGravityAction == 0){
+        if (updateCounter % updatesPerGravityAction == 0) {
             heroController.fallHero();
             enemyController.fallEnemies();
         }
 
-        if (updateCounter % updatesPerInputAction == 0) {
-            for (GUI.ACTION action : actionList) {
+        if (updateCounter % updatesPerInputAction == 0)
+            for (GUI.ACTION action : actionList)
                 heroController.doAction(action);
-            }
-        }
 
         if (updateCounter % updatesPerEnemyDamage == 0)
             enemyController.damageHero();
 
-        heroController.updateBuffs(timePerUpdate);
+        heroController.update(timePerUpdate);
         this.updateMapZone();
         updateCounter %= maxCounter;
     }

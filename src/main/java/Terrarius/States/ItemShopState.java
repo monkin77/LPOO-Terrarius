@@ -2,12 +2,11 @@ package Terrarius.States;
 
 import Terrarius.Controller.Controller;
 import Terrarius.Controller.ItemShop.ItemShopController;
-import Terrarius.Model.Game.items.Item;
 import Terrarius.Model.ItemShop.ItemShop;
 import Terrarius.Viewer.ItemShop.ItemShopViewer;
 import Terrarius.Viewer.Viewer;
 
-public class ItemShopState extends State<ItemShop>{
+public class ItemShopState extends State<ItemShop> {
     public ItemShopState(ItemShop itemShop) {
         super(itemShop);
     }

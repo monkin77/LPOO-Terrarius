@@ -1,47 +1,19 @@
 package Terrarius.Model.SkillTree;
 
 import Terrarius.Model.Game.elements.hero.HeroStats;
+import Terrarius.Model.MenuTemplate;
 import Terrarius.Model.SkillTree.Skills.*;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class SkillTree {
-    private int selected = 0;
+public class SkillTree extends MenuTemplate<Skill> {
     private int usedPoints = 0;
-
-    private List<Skill> skills;
-    private HeroStats heroStats;
+    private final HeroStats heroStats;
 
     public SkillTree(HeroStats heroStats) {
+        super();
         this.heroStats = heroStats;
-        this.skills = Arrays.asList(new AttackSkill(), new HealthSkill(), new RangeSkill(), new SpeedSkill());
-    }
-
-    public int getSelected() {
-        return selected;
-    }
-
-    public void setSelected(int selected) {
-        this.selected = selected;
-    }
-
-    public List<Skill> getSkills() {
-        return skills;
-    }
-
-    public void setSkills(List<Skill> skills) {
-        this.skills = skills;
-    }
-
-    public void nextSkill() {
-        this.selected = (this.selected + 1) % skills.size();
-    }
-
-    public void previousSkill() {
-        int nextSel = this.selected - 1;
-        while(nextSel < 0) nextSel += skills.size();
-        this.selected = nextSel % skills.size();
     }
 
     public int getUsedPoints() {
@@ -67,5 +39,10 @@ public class SkillTree {
                 selSkill.applyEffect(this.heroStats);
             }
         }
+    }
+
+    @Override
+    protected List<Skill> initOptions() {
+        return Arrays.asList(new AttackSkill(), new HealthSkill(), new RangeSkill(), new SpeedSkill());
     }
 }

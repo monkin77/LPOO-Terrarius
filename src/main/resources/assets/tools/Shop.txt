@@ -1,0 +1,4 @@
+Shovel 10
+Axe 20
+Sword 25
+Pickaxe 30

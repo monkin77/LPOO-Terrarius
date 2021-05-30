@@ -3,21 +3,16 @@ package Terrarius.Controller.Game;
 import Terrarius.Controller.Controller;
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Game.Position;
-import Terrarius.Model.Game.arena.LoaderArenaBuilder;
-import Terrarius.Model.Game.arena.MultiMapArenaBuilder;
 import Terrarius.Model.Game.elements.hero.HeroStats;
 import Terrarius.Model.SkillTree.SkillTree;
 import Terrarius.States.GameState;
 import Terrarius.States.SkillTreeState;
-import Terrarius.Model.Game.arena.MultiMapArenaBuilder;
 import Terrarius.Model.ItemShop.ItemShop;
-import Terrarius.States.GameState;
 import Terrarius.States.ItemShopState;
 import Terrarius.Terrarius;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Menu.Menu;
 import Terrarius.States.MenuState;
-import Terrarius.Viewer.SkillTree.SkillTreeViewer;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -54,12 +49,12 @@ public class GameController extends Controller<Arena> {
     @Override
     public void update(Terrarius terrarius) {
         arenaController.update();
-        if (arenaController.checkEnd())         //TODO: LOSING/WINNING SCREEN
+        if (arenaController.checkEnd())
             this.exitCurrentGame(terrarius);
     }
 
-    public void resetGameState(Terrarius terrarius) {
-        terrarius.setGameState(new GameState(new MultiMapArenaBuilder().createArena()));
+    public void resetGameState(Terrarius terrarius) throws FileNotFoundException, URISyntaxException {
+        terrarius.setGameState(new GameState(new Arena()));
 
         HeroStats heroStats = ((Arena) terrarius.getGameState().getModel()).getHero().getStats();
         terrarius.setSkillTreeState( new SkillTreeState(new SkillTree(heroStats)) );
@@ -68,6 +63,10 @@ public class GameController extends Controller<Arena> {
 
     public void exitCurrentGame(Terrarius terrarius) {
         terrarius.setState(new MenuState(new Menu()));
-        this.resetGameState(terrarius);
+        try {
+            this.resetGameState(terrarius);
+        } catch (FileNotFoundException | URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 }

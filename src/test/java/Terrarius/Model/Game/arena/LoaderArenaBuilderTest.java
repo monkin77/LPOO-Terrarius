@@ -1,7 +1,7 @@
 package Terrarius.Model.Game.arena;
-
+/*
 import Terrarius.Model.Game.elements.hero.Hero;
-import Terrarius.Model.Game.elements.blocks.Block;
+import Terrarius.Model.Game.elements.Block;
 import Terrarius.Model.Game.elements.blocks.WoodBlock;
 import Terrarius.Model.Game.elements.enemies.Enemy;
 import Terrarius.Model.Game.elements.enemies.Zombie;
@@ -56,3 +56,4 @@ public class LoaderArenaBuilderTest {
         Assertions.assertEquals(24, hero.getPosition().getY());
     }
 }
+*/

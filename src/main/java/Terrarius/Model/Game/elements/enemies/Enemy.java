@@ -1,25 +1,44 @@
 package Terrarius.Model.Game.elements.enemies;
 
-import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.Element;
+import Terrarius.Utils.Dimensions;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Objects;
+import java.util.Scanner;
 
-public abstract class Enemy extends Element {
+public class Enemy extends Element {
     private final EnemyStats stats;
 
-    public Enemy(Position position, Dimensions dimensions, Level level) {
-        super(position, dimensions);
-        this.stats = calculateStats(level);
+    private int baseHP;
+    private int multiplierHP;
+    private int basePower;
+    private int multiplierPower;
+    private int viewDist;
+
+    public Enemy(Position position, Level level, String name) throws FileNotFoundException, URISyntaxException {
+        super(position, name);
+
+        this.stats = new EnemyStats(
+            calcStat(baseHP, multiplierHP, level),
+            calcStat(basePower, multiplierPower, level),
+            viewDist,
+            level
+        );
     }
 
     public EnemyStats getStats() {
         return stats;
     }
-    abstract EnemyStats calculateStats(Level level);
-    public void setHP(int hp) {this.stats.setHp(hp);}
+
+    public void setHP(int hp) {
+        this.stats.setHp(hp);
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -37,6 +56,26 @@ public abstract class Enemy extends Element {
     @Override
     public int hashCode() {
         return Objects.hash(stats.getLevel(), stats.getPower(), stats.getViewDistance(),
-                            getComponentName(), getDimensions());
+                getComponentName(), getDimensions());
+    }
+
+    private int calcStat(int base, int multiplier, Level level) {
+        return base + multiplier * level.getNumLevel();
+    }
+
+    @Override
+    protected void loadElement() throws FileNotFoundException, URISyntaxException {
+        URL resource = Enemy.class.getResource("/assets/enemies/" + getComponentName() + ".txt");
+        Scanner scanner = new Scanner(new File(resource.toURI()));
+
+        int height = scanner.nextInt();
+        int width = scanner.nextInt();
+        this.setDimensions(new Dimensions(height, width));
+
+        this.baseHP = scanner.nextInt();
+        this.multiplierHP = scanner.nextInt();
+        this.basePower = scanner.nextInt();
+        this.multiplierPower = scanner.nextInt();
+        this.viewDist = scanner.nextInt();
     }
 }

@@ -3,9 +3,8 @@ package Terrarius.Viewer.Game;
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.arena.Arena;
-import Terrarius.Model.Game.elements.blocks.Block;
+import Terrarius.Model.Game.elements.Block;
 import Terrarius.Model.Game.elements.enemies.Enemy;
-import Terrarius.Model.Game.items.BlockPlacer;
 import Terrarius.Model.Game.items.Item;
 import Terrarius.Model.Game.items.Toolbar;
 import Terrarius.Utils.Dimensions;
@@ -20,25 +19,22 @@ import static Terrarius.Utils.GameConstants.SKY_COLOR;
 
 public class ArenaViewer extends Viewer<Arena> {
 
-    private Map<Class, ElementViewer> enemyCache = new HashMap<>();
-    private Map<Class, ElementViewer> blockCache = new HashMap<>();
-    private Map<Class, ItemViewer> itemCache = new HashMap<>();
+    private Map<String, EnemyViewer> enemyCache = new HashMap<>();
+    private Map<String, BlockViewer> blockCache = new HashMap<>();
+    private Map<String, ItemViewer> itemCache = new HashMap<>();
     private ToolbarViewer toolbarViewer = new ToolbarViewer();
-    private StatusBarViewer statusBarViewer = new StatusBarViewer();
+    private final StatusBarViewer statusBarViewer = new StatusBarViewer();
     private HeroViewer heroViewer = new HeroViewer();
 
     public void update() {
-        for (ElementViewer elementViewer : blockCache.values()){
-            elementViewer.update();
-        }
-
-        for (ElementViewer elementViewer : enemyCache.values()){
-            elementViewer.update();
+        for (EnemyViewer enemyViewer : enemyCache.values()){
+            enemyViewer.update();
         }
 
         heroViewer.update();
     }
 
+    @Override
     public void draw(GUI gui, Arena arena) throws IOException {
         gui.clear();
 
@@ -61,10 +57,10 @@ public class ArenaViewer extends Viewer<Arena> {
     protected void drawBlocks(GUI gui, Arena arena) {
         for(Block block : arena.getBlocks()) {
 
-            if (!blockCache.containsKey(block.getClass()))
-                blockCache.put(block.getClass(), new BlockViewer(block));
+            if (!blockCache.containsKey(block.getComponentName()))
+                blockCache.put(block.getComponentName(), new BlockViewer(block));
 
-            ElementViewer viewer = blockCache.get(block.getClass());
+            BlockViewer viewer = blockCache.get(block.getComponentName());
             viewer.draw(block, gui);
         }
     }
@@ -72,10 +68,10 @@ public class ArenaViewer extends Viewer<Arena> {
     protected void drawEnemies(GUI gui, Arena arena) {
         for(Enemy enemy : arena.getEnemies()) {
 
-            if (!enemyCache.containsKey(enemy.getClass()))
-                enemyCache.put(enemy.getClass(), new EnemyViewer(enemy));
+            if (!enemyCache.containsKey(enemy.getComponentName()))
+                enemyCache.put(enemy.getComponentName(), new EnemyViewer(enemy));
 
-            ElementViewer viewer = enemyCache.get(enemy.getClass());
+            EnemyViewer viewer = enemyCache.get(enemy.getComponentName());
             viewer.draw(enemy, gui);
         }
     }
@@ -92,16 +88,10 @@ public class ArenaViewer extends Viewer<Arena> {
         for(Integer itemKey : toolbar.getToolBar().keySet()) {
             Item item = toolbar.getItem(itemKey);
 
-            if (item instanceof BlockPlacer && itemKey.equals(toolbar.getActiveItemIdx())) {
-                // BlockPlacer changes images
-                new ItemViewer(item).draw(item, gui);
-                continue;
-            }
+            if (!itemCache.containsKey(item.getComponentName()))
+                itemCache.put(item.getComponentName(), new ItemViewer(item));
 
-            if (!itemCache.containsKey(item.getClass()))
-                itemCache.put(item.getClass(), new ItemViewer(item));
-
-            ItemViewer viewer = itemCache.get(item.getClass());
+            ItemViewer viewer = itemCache.get(item.getComponentName());
 
             if (itemKey.equals(toolbar.getActiveItemIdx()))
                 viewer.draw(item, gui);
@@ -117,15 +107,15 @@ public class ArenaViewer extends Viewer<Arena> {
     }
 
 
-    protected void setEnemyCache(Map<Class, ElementViewer> enemyCache) {
+    protected void setEnemyCache(Map<String, EnemyViewer> enemyCache) {
         this.enemyCache = enemyCache;
     }
 
-    protected void setBlockCache(Map<Class, ElementViewer> blockCache) {
+    protected void setBlockCache(Map<String, BlockViewer> blockCache) {
         this.blockCache = blockCache;
     }
 
-    protected void setItemCache(Map<Class, ItemViewer> itemCache) {
+    protected void setItemCache(Map<String, ItemViewer> itemCache) {
         this.itemCache = itemCache;
     }
 

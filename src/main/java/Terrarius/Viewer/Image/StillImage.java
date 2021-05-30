@@ -49,7 +49,7 @@ public class StillImage extends Image{
 
         aspect = new char[height][width];
 
-        imageScanner.nextLine(); //clears the /n
+        imageScanner.nextLine();
 
         for(int i = 0; i < height; i++) {
 
@@ -59,16 +59,6 @@ public class StillImage extends Image{
                 aspect[i][j] = j >= data.length() ? ' ' : data.charAt(j);
             }
         }
-    }
-
-    @Override
-    public void update() {
-        //Not doing anything for now
-    }
-
-    @Override
-    public void reset() {
-        //Not doing anything for now
     }
 
     public Dimensions getDimensions() {

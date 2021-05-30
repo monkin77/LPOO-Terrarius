@@ -1,32 +1,27 @@
 package Terrarius.Viewer.Game;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Game.elements.Element;
-import Terrarius.Model.Game.elements.blocks.Block;
+import Terrarius.Model.Game.elements.Block;
 import Terrarius.Viewer.Image.ColoredImage;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 
-public class BlockViewer extends ElementViewer{
+public class BlockViewer implements ElementViewer<Block> {
+    ColoredImage image;
 
     public BlockViewer(Block block){
-        setImage(new ColoredImage());
+        image = new ColoredImage();
 
         try {
-            getImage().load("Images/Blocks/" + block.getComponentName() + ".txt");
+            image.load("Images/Blocks/" + block.getComponentName() + ".txt");
         } catch (FileNotFoundException | URISyntaxException | NullPointerException e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public void update() {
-        getImage().update();
-    }
-
-    @Override
-    public void draw(Element element, GUI gui) {
-        getImage().draw(element.getPosition(), element.getOrientation(), gui);
+    public void draw(Block block, GUI gui) {
+        image.draw(block.getPosition(), block.getOrientation(), gui);
     }
 }

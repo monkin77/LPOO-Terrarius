@@ -1,63 +1,36 @@
 package Terrarius.Model.ItemShop;
 
 import Terrarius.Model.Game.elements.hero.Hero;
-import Terrarius.Model.Game.items.Item;
+import Terrarius.Model.MenuTemplate;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.Scanner;
 
-public class ItemShop {
-
+public class ItemShop extends MenuTemplate<ItemListing> {
     private int usedPoints = 0;
-    private int selectedItem = 0;
     private int selectedSlot = 1;
-
-    private final List<ItemListing> itemListingList = new ArrayList<>();
-
     private final Hero hero;
 
-    public ItemShop(Hero hero){
+    public ItemShop(Hero hero) {
+        super();
         this.hero = hero;
-        this.itemListingList.add(new ItemListing("Apple", 10));
-        this.itemListingList.add(new ItemListing("Banana", 10));
-        this.itemListingList.add(new ItemListing("BattlePotion", 15));
-        this.itemListingList.add(new ItemListing("ElasticPotion", 15));
-        this.itemListingList.add(new ItemListing("SwiftnessPotion", 15));
-        this.itemListingList.add(new ItemListing("Shovel", 10));
-        this.itemListingList.add(new ItemListing("Axe", 20));
-        this.itemListingList.add(new ItemListing("Sword", 25));
-        this.itemListingList.add(new ItemListing("Pickaxe", 30));
     }
 
     public Hero getHero() {
         return hero;
     }
 
-    public int getSelectedItem() {
-        return selectedItem;
-    }
-
-    public void setSelectedItem(int selectedItem) {
-        this.selectedItem = selectedItem;
-    }
-
-    public void nextItem(){
-        this.selectedItem = (selectedItem + 1) % this.itemListingList.size();
-    }
-
     public String getItemName(int index){
-        return this.itemListingList.get(index).getItem();
+        return this.getOption(index).getItem();
     }
 
     public int getItemPrice(int index){
-        return this.itemListingList.get(index).getPrice();
-    }
-
-    public void previousItem(){
-        int nextSel = this.selectedItem - 1;
-        while(nextSel < 0) nextSel += itemListingList.size();
-        this.selectedItem = nextSel % itemListingList.size();
+        return this.getOption(index).getPrice();
     }
 
     public void setSelectedSlot(int selectedSlot){
@@ -74,9 +47,46 @@ public class ItemShop {
 
     public void buyItem(){
         int availablePoints = this.getCurrentPoints();
-        ItemListing itemListing = itemListingList.get(selectedItem);
-        if (availablePoints < itemListing.getPrice() || itemListing == null) return;
+        ItemListing itemListing = getSelectedOption();
+        if (availablePoints < itemListing.getPrice()) return;
         this.usedPoints += itemListing.getPrice();
-        this.hero.getToolBar().setItem(selectedSlot, itemListing.generateNew(this.hero));
+
+        try {
+            this.hero.getToolBar().setItem(selectedSlot, itemListing.generateNew(this.hero));
+        } catch (FileNotFoundException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected List<ItemListing> initOptions() {
+       List<ItemListing> itemListingList = new ArrayList<>();
+
+       try {
+           URL resource = ItemShop.class.getResource("/assets/tools/Shop.txt");
+           Scanner scanner = new Scanner(new File(resource.toURI()));
+
+           String itemName;
+           int itemPrice;
+           while (scanner.hasNext()) {
+               itemName = scanner.next();
+               itemPrice = scanner.nextInt();
+               itemListingList.add(new ItemListing(itemName, itemPrice, ItemListing.ITEM_TYPE.TOOL));
+           }
+
+           resource = ItemShop.class.getResource("/assets/buffs/Shop.txt");
+
+           scanner = new Scanner(new File(resource.toURI()));
+
+           while (scanner.hasNext()) {
+               itemName = scanner.next();
+               itemPrice = scanner.nextInt();
+               itemListingList.add(new ItemListing(itemName, itemPrice, ItemListing.ITEM_TYPE.BUFF));
+           }
+       } catch (FileNotFoundException | URISyntaxException e) {
+           e.printStackTrace();
+       }
+
+       return itemListingList;
     }
 }
