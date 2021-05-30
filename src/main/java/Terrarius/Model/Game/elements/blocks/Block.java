@@ -9,7 +9,7 @@ public abstract class Block extends Element {
     private final String name;
 
     public Block(Position position, Dimensions dimensions, String name) {
-        super(position, dimensions); //TODO MAYBE USE DEFAULT DIMENSIONS
+        super(position, dimensions);
         this.hp = initHP();
         this.name = name;
     }

@@ -5,7 +5,7 @@ import Terrarius.Model.Game.items.buffs.Buff;
 
 public class BuffController {
 
-    private static final int TICKS_PER_BUFF_EFFECT = 1000;
+    private static final int TIME_PER_BUFF_EFFECT = 1000;
 
     private final Buff buff;
     private final Hero hero;
@@ -24,7 +24,7 @@ public class BuffController {
     public boolean updateAndCheckDuration(int timeSinceLastUpdate) {
         timePassed += timeSinceLastUpdate;
 
-        if (timePassed >= TICKS_PER_BUFF_EFFECT) {
+        if (timePassed >= TIME_PER_BUFF_EFFECT) {
             hero.setHealth(hero.getStats().getHp() + hpPerSecond);
             buff.getStats().decreaseDuration();
             timePassed = 0;
