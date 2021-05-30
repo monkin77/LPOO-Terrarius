@@ -37,7 +37,7 @@ public abstract class State<T> {
         }
     }
 
-    public void draw(GUI gui) throws IOException {
+    public void draw(GUI gui) throws IOException, URISyntaxException {
         viewer.draw(gui, model);
     }
 

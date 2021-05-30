@@ -3,6 +3,7 @@ package Terrarius.Viewer.Image;
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.Element;
+import Terrarius.Utils.Dimensions;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
@@ -19,6 +20,10 @@ public class ColoredImage extends StillImage {
     public ColoredImage() {
         charColorMap = new HashMap<>();
         bgColorMap = new HashMap<>();
+    }
+
+    public Dimensions getDimension(){
+        return super.getDimensions();
     }
 
     @Override
