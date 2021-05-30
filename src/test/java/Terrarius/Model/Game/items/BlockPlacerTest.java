@@ -1,7 +1,10 @@
 package Terrarius.Model.Game.items;
 
 import Terrarius.Model.Game.BlockPouch;
+import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.elements.Element;
 import Terrarius.Model.Game.elements.hero.Hero;
+import Terrarius.Utils.Dimensions;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,6 +29,9 @@ public class BlockPlacerTest {
         blockPouch = Mockito.mock(BlockPouch.class);
 
         Mockito.when(hero.getToolBar()).thenReturn(toolbar);
+        Mockito.when(hero.getOrientation()).thenReturn(Element.Orientation.RIGHT);
+        Mockito.when(hero.getDimensions()).thenReturn(new Dimensions(8, 4));
+
         Mockito.when(toolbar.getBlockPouch()).thenReturn(blockPouch);
         Mockito.when(blockPouch.getCurrentBlockName()).thenReturn("TestBlock");
 
@@ -44,4 +50,13 @@ public class BlockPlacerTest {
         Assertions.assertEquals("TestBlock", blockPlacer.getComponentName());
     }
 
+    @Test
+    public void getPosition() {
+        Position pos = blockPlacer.getPosition(new Position(5, 5));
+        Assertions.assertTrue(pos.equals(new Position(9, 4)));
+
+        Mockito.when(hero.getOrientation()).thenReturn(Element.Orientation.LEFT);
+        pos = blockPlacer.getPosition(new Position(5, 5));
+        Assertions.assertTrue(pos.equals(new Position(2, 4)));
+    }
 }
