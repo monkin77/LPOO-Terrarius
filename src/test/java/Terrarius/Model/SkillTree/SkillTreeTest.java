@@ -2,13 +2,11 @@ package Terrarius.Model.SkillTree;
 
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.elements.hero.HeroStats;
-import Terrarius.Model.SkillTree.Skills.AttackSkill;
 import Terrarius.Model.SkillTree.Skills.HealthSkill;
 import Terrarius.Model.SkillTree.Skills.Skill;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 public class SkillTreeTest {
