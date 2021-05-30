@@ -1,0 +1,41 @@
+<number of pairs to be read>
+<unlock level> <number of maps>
+...
+
+How the file system works
+
+Example:
+
+- MapChoices.txt
+	2
+	1 2
+	5 3
+
+- Level_1
+	- Map_1
+		- Enemies.txt
+		- Hero.txt
+		- LeftSpawn.txt
+		- RightSpawn.txt
+	- Map_2
+		- Enemies.txt
+		- Hero.txt
+		- LeftSpawn.txt
+		- RightSpawn.txt
+
+- Level_5
+	- Map_1
+		- Enemies.txt
+		- Hero.txt
+		- LeftSpawn.txt
+		- RightSpawn.txt
+	- Map_2
+		- Enemies.txt
+		- Hero.txt
+		- LeftSpawn.txt
+		- RightSpawn.txt
+	- Map_3
+		- Enemies.txt
+		- Hero.txt
+		- LeftSpawn.txt
+		- RightSpawn.txt
