@@ -43,7 +43,7 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
         String title = "Skill Tree";
         gui.drawString((SCREEN_WIDTH - title.length()) /2, 5, title, "#FFFFFF", "#000000");
 
-        Position treePos = new Position(50, 10);
+        Position treePos = new Position(SkillTreeViewerConstants.START_POS_X, SkillTreeViewerConstants.START_POS_Y);
         this.image.draw(treePos, Element.Orientation.RIGHT, gui);
 
         this.drawSkillsLabels(treePos, gui, model);
@@ -123,5 +123,13 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
             String costValue = Integer.toString(currSkill.getUpgradeCost());
             gui.drawString(textXPos + costInfo.length(), costPosY, costValue, highlightColor, "#000000");
         }
+    }
+
+    public ColoredImage getImage() {
+        return image;
+    }
+
+    public void setImage(ColoredImage image) {
+        this.image = image;
     }
 }
