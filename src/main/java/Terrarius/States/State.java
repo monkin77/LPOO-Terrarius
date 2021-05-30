@@ -12,7 +12,7 @@ import java.net.URISyntaxException;
 public abstract class State<T> {
     private final T model;
     private final Controller<T> controller;
-    private Viewer<T> viewer;
+    private final Viewer<T> viewer;
 
     public State(T model) {
         this.model = model;

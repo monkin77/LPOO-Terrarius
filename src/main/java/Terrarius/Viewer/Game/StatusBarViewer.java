@@ -9,7 +9,8 @@ import Terrarius.Utils.Dimensions;
 
 import java.util.List;
 
-import static Terrarius.Utils.GameConstants.*;
+import static Terrarius.Utils.GameConstants.STATUS_BAR_BACKGROUND_COLOR;
+import static Terrarius.Utils.GameConstants.STATUS_BAR_FOREGROUND_COLOR;
 
 public class StatusBarViewer {
 

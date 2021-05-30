@@ -4,7 +4,6 @@ import Terrarius.Controller.Controller;
 import Terrarius.GUI.GUI;
 import Terrarius.Model.SkillTree.SkillTree;
 import Terrarius.Model.SkillTree.Skills.Skill;
-import Terrarius.States.SkillTreeState;
 import Terrarius.States.TransitionState;
 import Terrarius.Terrarius;
 

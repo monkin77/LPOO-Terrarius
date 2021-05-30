@@ -3,8 +3,8 @@ package Terrarius.Model.Game.items;
 import Terrarius.Model.Game.NamedComponent;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.Element;
-import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.elements.hero.Hero;
+import Terrarius.Utils.Dimensions;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;

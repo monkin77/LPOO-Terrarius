@@ -4,10 +4,10 @@ import Terrarius.GUI.GUI;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Game.elements.Element;
+import Terrarius.Model.Game.items.BlockPlacer;
 import Terrarius.Model.Game.items.Item;
 import Terrarius.Model.Game.items.buffs.Buff;
 import Terrarius.Model.Game.items.tools.Tool;
-import Terrarius.Model.Game.items.BlockPlacer;
 import Terrarius.Utils.Dimensions;
 
 import java.util.ArrayList;

@@ -1,8 +1,8 @@
 package Terrarius.Model.Game.elements;
 
 import Terrarius.Model.Game.NamedComponent;
-import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Position;
+import Terrarius.Utils.Dimensions;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
@@ -10,7 +10,7 @@ import java.net.URISyntaxException;
 public abstract class Element implements NamedComponent {
     private Position position;
     private Dimensions dimensions;
-    private String name;
+    private final String name;
     private Orientation orientation = Orientation.RIGHT;
 
     public Element(Position position, String name) throws FileNotFoundException, URISyntaxException {

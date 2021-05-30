@@ -1,13 +1,13 @@
 package Terrarius.Viewer.Game;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Game.elements.Element;
 import Terrarius.Model.Game.items.Toolbar;
-import Terrarius.Viewer.Image.Image;
+import Terrarius.Utils.Dimensions;
 import Terrarius.Viewer.Image.ColoredImage;
+import Terrarius.Viewer.Image.Image;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;

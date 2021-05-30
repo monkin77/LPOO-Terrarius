@@ -5,12 +5,14 @@ import Terrarius.Model.Game.elements.Element;
 import Terrarius.Model.Game.elements.enemies.Enemy;
 import Terrarius.Viewer.FrameHandler;
 import Terrarius.Viewer.Image.AnimatedImage;
-import static Terrarius.Utils.GameConstants.*;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
+
+import static Terrarius.Utils.GameConstants.HEALTH_BACKGROUND_COLOR;
+import static Terrarius.Utils.GameConstants.HEALTH_FOREGROUND_COLOR;
 
 public class EnemyViewer extends ElementViewer<Enemy, AnimatedImage> {
     private Map<Element, FrameHandler> elementFrameSpeedMap;

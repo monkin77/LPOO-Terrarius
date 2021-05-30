@@ -3,7 +3,6 @@ package Terrarius.Controller.ItemShop;
 import Terrarius.Controller.Controller;
 import Terrarius.GUI.GUI;
 import Terrarius.Model.ItemShop.ItemShop;
-import Terrarius.States.ItemShopState;
 import Terrarius.States.TransitionState;
 import Terrarius.Terrarius;
 

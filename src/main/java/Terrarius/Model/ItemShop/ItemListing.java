@@ -12,7 +12,7 @@ public class ItemListing {
     private String item;
     private final int price;
     private final ITEM_TYPE type;
-    enum ITEM_TYPE {TOOL, BUFF};
+    enum ITEM_TYPE {TOOL, BUFF}
 
     public ItemListing(String item, int price, ITEM_TYPE type) {
         this.item = item;

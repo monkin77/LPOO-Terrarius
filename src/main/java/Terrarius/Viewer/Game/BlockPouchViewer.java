@@ -3,7 +3,8 @@ package Terrarius.Viewer.Game;
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Game.BlockPouch;
 
-import static Terrarius.Utils.GameConstants.*;
+import static Terrarius.Utils.GameConstants.DEFAULT_FOREGROUND_COLOR;
+import static Terrarius.Utils.GameConstants.STATUS_BAR_BACKGROUND_COLOR;
 
 public class BlockPouchViewer {
 

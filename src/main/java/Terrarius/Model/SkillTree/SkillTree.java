@@ -2,13 +2,13 @@ package Terrarius.Model.SkillTree;
 
 import Terrarius.Model.Game.elements.hero.HeroStats;
 import Terrarius.Model.MenuTemplate;
-import Terrarius.Model.SkillTree.Skills.*;
+import Terrarius.Model.SkillTree.Skills.Skill;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SkillTree extends MenuTemplate<Skill> {
-    private HeroStats heroStats;
+    private final HeroStats heroStats;
 
     public SkillTree(HeroStats heroStats) {
         super();

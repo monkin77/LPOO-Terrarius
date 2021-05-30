@@ -1,14 +1,15 @@
 package Terrarius.Controller.Game;
 
-import static Terrarius.Utils.GameConstants.*;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Game.elements.Element;
-import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.elements.enemies.Enemy;
+import Terrarius.Model.Game.elements.hero.Hero;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static Terrarius.Utils.GameConstants.*;
 
 public class EnemyController {
 

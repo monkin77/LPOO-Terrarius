@@ -1,12 +1,12 @@
 package Terrarius.Model.Game.elements.hero;
 
-import Terrarius.Model.Game.elements.Element;
-import Terrarius.Model.Game.items.buffs.Buff;
-import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.Position;
+import Terrarius.Model.Game.elements.Element;
 import Terrarius.Model.Game.items.Item;
 import Terrarius.Model.Game.items.Toolbar;
+import Terrarius.Model.Game.items.buffs.Buff;
+import Terrarius.Utils.Dimensions;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;

@@ -1,10 +1,9 @@
 package Terrarius.Model.Game.items;
 
+import Terrarius.Model.Game.BlockPouch;
 import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.items.tools.Tool;
 import Terrarius.Utils.Dimensions;
-
-import Terrarius.Model.Game.BlockPouch;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;

@@ -11,13 +11,13 @@ import Terrarius.Viewer.Image.ColoredImage;
 import Terrarius.Viewer.Image.StillImage;
 import Terrarius.Viewer.Viewer;
 
-import static Terrarius.Viewer.ItemShop.ItemShopViewerConstants.*;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
+
+import static Terrarius.Viewer.ItemShop.ItemShopViewerConstants.*;
 
 public class ItemShopViewer extends Viewer<ItemShop> {
 

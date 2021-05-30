@@ -2,8 +2,8 @@ package Terrarius.Controller.Menu;
 
 import Terrarius.Controller.Controller;
 import Terrarius.GUI.GUI;
-import Terrarius.Terrarius;
 import Terrarius.Model.Menu.Menu;
+import Terrarius.Terrarius;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

@@ -30,9 +30,9 @@ import static java.awt.event.KeyEvent.*;
 public class LanternaGui implements GUI {
     private final TerminalScreen screen;
     private final int FONT_SIZE = 10;
-    private TextGraphics graphics;
-    private KeyboardHandler keyboardHandler;
-    private MouseHandler mouseHandler;
+    private final TextGraphics graphics;
+    private final KeyboardHandler keyboardHandler;
+    private final MouseHandler mouseHandler;
 
     public LanternaGui(TerminalScreen screen, KeyboardHandler keyboardHandler, MouseHandler mouseHandler) {
         this.screen = screen;

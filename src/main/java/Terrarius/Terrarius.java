@@ -7,11 +7,7 @@ import Terrarius.Model.Game.elements.hero.HeroStats;
 import Terrarius.Model.ItemShop.ItemShop;
 import Terrarius.Model.Menu.Menu;
 import Terrarius.Model.SkillTree.SkillTree;
-import Terrarius.States.GameState;
-import Terrarius.States.ItemShopState;
-import Terrarius.States.MenuState;
-import Terrarius.States.SkillTreeState;
-import Terrarius.States.State;
+import Terrarius.States.*;
 
 import java.awt.*;
 import java.io.IOException;

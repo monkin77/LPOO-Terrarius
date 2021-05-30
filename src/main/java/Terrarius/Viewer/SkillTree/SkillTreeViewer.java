@@ -12,7 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import static Terrarius.Utils.GameConstants.*;
+import static Terrarius.Utils.GameConstants.SCREEN_WIDTH;
 
 public class SkillTreeViewer extends Viewer<SkillTree> {
     private ColoredImage image;

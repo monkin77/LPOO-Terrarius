@@ -1,8 +1,8 @@
 package Terrarius.Model.Game.elements;
 
+import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.items.tools.Tool;
 import Terrarius.Utils.Dimensions;
-import Terrarius.Model.Game.Position;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -1,6 +1,7 @@
 package Terrarius.Viewer.ItemShop;
 
-import static Terrarius.Utils.GameConstants.*;
+import static Terrarius.Utils.GameConstants.SCREEN_HEIGHT;
+import static Terrarius.Utils.GameConstants.SCREEN_WIDTH;
 
 public class ItemShopViewerConstants {
 

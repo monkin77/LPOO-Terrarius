@@ -3,7 +3,7 @@ package Terrarius.Model.SkillTree.Skills;
 import Terrarius.Model.Game.elements.hero.HeroStats;
 
 public abstract class Skill {
-    private String name;
+    private final String name;
     private int currLevel;
     private static final int maxLevel = 10;
     private final int upgradeCost;
