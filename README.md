@@ -1,4 +1,4 @@
-# LPOO_34 - Terrarius
+# LPOO_34 - com.lpoo.terrarius
 
 ## Description
 An open-world adventure game where our hero must defeat enemies to unlock new areas and unlock new more powerful tools.

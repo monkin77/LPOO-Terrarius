@@ -29,9 +29,9 @@ test {
 
 pitest {
     junit5PluginVersion = '0.12'
-    targetClasses = ['Terrarius.*']
+    targetClasses = ['com.lpoo.terrarius.*']
 }
 
 application {
-    mainClass.set("Terrarius.Terrarius")
+    mainClass.set("com.lpoo.terrarius.Terrarius")
 }

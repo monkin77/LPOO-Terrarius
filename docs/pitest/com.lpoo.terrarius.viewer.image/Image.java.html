@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>Image.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package com.lpoo.terrarius.viewer.image;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.lpoo.terrarius.gui.GUI;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.lpoo.terrarius.model.game.Position;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.lpoo.terrarius.model.game.elements.Element;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.io.File;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.io.FileNotFoundException;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.net.URISyntaxException;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.net.URL;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Scanner;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>public abstract class Image{</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public abstract void load(String string) throws FileNotFoundException, URISyntaxException;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public abstract void draw(Position position, Element.Orientation orientation, GUI gui);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected Scanner getScannerFromFile(String fname) throws FileNotFoundException, URISyntaxException {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        URL resource = getClass().getClassLoader().getResource(fname);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        File imageFile = new File(resource.toURI());</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_20'/>
+20
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_20'>1</a>
+<span>
+1. getScannerFromFile : replaced return value with null for com/lpoo/terrarius/viewer/image/Image::getScannerFromFile &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return new Scanner(imageFile);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7f47a7e8_20'>20</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7f47a7e8_20'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getScannerFromFile<br/><b>Killed by : </b>com.lpoo.terrarius.states.ItemShopStateTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.states.ItemShopStateTest]/[method:itemShopSpecifiers()]</span></span> replaced return value with null for com/lpoo/terrarius/viewer/image/Image::getScannerFromFile &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>BOOLEAN_FALSE_RETURN</li>
+<li class='mutator'>BOOLEAN_TRUE_RETURN</li>
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+<li class='mutator'>EMPTY_RETURN_VALUES</li>
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+<li class='mutator'>MATH_MUTATOR</li>
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+<li class='mutator'>NULL_RETURN_VALUES</li>
+<li class='mutator'>PRIMITIVE_RETURN_VALS_MUTATOR</li>
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>com.lpoo.terrarius.viewer.game.ItemViewerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.game.ItemViewerTest]/[method:drawIcon()] (4 ms)</li><li>com.lpoo.terrarius.viewer.itemShop.ItemShopViewerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.itemShop.ItemShopViewerTest]/[method:draw()] (35 ms)</li><li>com.lpoo.terrarius.viewer.game.ToolbarViewerTest.[engine:jqwik]/[class:com.lpoo.terrarius.viewer.game.ToolbarViewerTest]/[property:calculateIconPosition(java.lang.Integer)] (14 ms)</li><li>com.lpoo.terrarius.viewer.game.EnemyViewerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.game.EnemyViewerTest]/[method:update()] (4 ms)</li><li>com.lpoo.terrarius.viewer.game.ArenaViewerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.game.ArenaViewerTest]/[method:drawBackground()] (12 ms)</li><li>com.lpoo.terrarius.viewer.game.BlockViewerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.game.BlockViewerTest]/[method:draw()] (4 ms)</li><li>com.lpoo.terrarius.viewer.game.ItemViewerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.game.ItemViewerTest]/[method:drawLeftOrientation()] (4 ms)</li><li>com.lpoo.terrarius.states.SkillTreeStateTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.states.SkillTreeStateTest]/[method:skillTreeSpecifiers()] (4 ms)</li><li>com.lpoo.terrarius.viewer.game.BlockViewerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.game.BlockViewerTest]/[method:createImage()] (3 ms)</li><li>com.lpoo.terrarius.viewer.skillTree.SkillTreeViewerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.skillTree.SkillTreeViewerTest]/[method:drawSkillLabels()] (6 ms)</li><li>com.lpoo.terrarius.viewer.game.EnemyViewerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.game.EnemyViewerTest]/[method:drawNewEnemy()] (6 ms)</li><li>com.lpoo.terrarius.viewer.image.ColoredImageTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.image.ColoredImageTest]/[method:draw()] (4 ms)</li><li>com.lpoo.terrarius.states.ItemShopStateTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.states.ItemShopStateTest]/[method:itemShopSpecifiers()] (3 ms)</li><li>com.lpoo.terrarius.viewer.game.ArenaViewerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.game.ArenaViewerTest]/[method:update()] (5 ms)</li><li>com.lpoo.terrarius.viewer.game.ArenaViewerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.game.ArenaViewerTest]/[method:drawEnemies()] (5 ms)</li><li>com.lpoo.terrarius.viewer.game.HeroViewerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.game.HeroViewerTest]/[method:draw()] (3 ms)</li><li>com.lpoo.terrarius.viewer.skillTree.SkillTreeViewerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.skillTree.SkillTreeViewerTest]/[method:shouldUpdate()] (11 ms)</li><li>com.lpoo.terrarius.viewer.game.ItemViewerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.game.ItemViewerTest]/[method:drawRightOrientation()] (4 ms)</li><li>com.lpoo.terrarius.viewer.game.ArenaViewerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.game.ArenaViewerTest]/[method:draw()] (7 ms)</li><li>com.lpoo.terrarius.states.GameStateTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.states.GameStateTest]/[method:arenaSpecifiers()] (4 ms)</li><li>com.lpoo.terrarius.viewer.game.ArenaViewerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.game.ArenaViewerTest]/[method:drawToolBar()] (6 ms)</li><li>com.lpoo.terrarius.viewer.game.EnemyViewerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.game.EnemyViewerTest]/[method:drawExistingEnemy()] (3 ms)</li><li>com.lpoo.terrarius.controller.KeyboardHandlerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.controller.KeyboardHandlerTest]/[method:beforePressing()] (8 ms)</li><li>com.lpoo.terrarius.viewer.skillTree.SkillTreeViewerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.skillTree.SkillTreeViewerTest]/[method:draw()] (12 ms)</li><li>com.lpoo.terrarius.viewer.image.StillImageTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.image.StillImageTest]/[method:draw()] (3 ms)</li><li>com.lpoo.terrarius.viewer.game.ToolbarViewerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.game.ToolbarViewerTest]/[method:draw()] (3 ms)</li><li>com.lpoo.terrarius.viewer.game.ArenaViewerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.game.ArenaViewerTest]/[method:drawToolbarItems()] (7 ms)</li><li>com.lpoo.terrarius.viewer.game.HeroViewerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.game.HeroViewerTest]/[method:update()] (3 ms)</li><li>com.lpoo.terrarius.viewer.game.ArenaViewerTest.[engine:junit-jupiter]/[class:com.lpoo.terrarius.viewer.game.ArenaViewerTest]/[method:drawBlocks()] (6 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.6.3
+
+</body>
+</html>

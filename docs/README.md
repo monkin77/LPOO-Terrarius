@@ -1,4 +1,4 @@
-# LPOO_34 - Terrarius
+# LPOO_34 - com.lpoo.terrarius
 
 An open-world adventure game where our hero must defeat enemies to unlock new areas and unlock new more powerful tools.
 In this pseudo-random infinitely generated world our hero will have to deal with different enemies by either slaying them or
@@ -103,7 +103,7 @@ continuously. Additionally, we sometimes needed to come back to a previous state
 For this, we used the **State Pattern**, which suggests the creation of new classes for
 every possible state of the game, and extract all specific behaviours into those classes.
 
-This way, the original object (in this case, an instantiation of the 'Terrarius' class)
+This way, the original object (in this case, an instantiation of the 'com.lpoo.terrarius' class)
 just needs to keep a reference to its current state. The states' classes will also take care
 of the transitions into other states.
 
@@ -118,7 +118,7 @@ Our idea of implementation follows the given diagram:
 The code related to the pattern can be found in the following URLs:
 
 - [State Package](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java/Terrarius/States)
-- [Terrarius Class](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius/Terrarius.java)
+- [com.lpoo.terrarius Class](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius/Terrarius.java)
 
 
 #### Consequences
@@ -141,7 +141,7 @@ as his computer allows him
 The pattern (and further explanation) used can be found in the following website,
 in the *Play Catch up* section:
 
-https://gameprogrammingpatterns.com/terrarius-loop.html
+https://gameprogrammingpatterns.com/com.lpoo.terrarius-loop.html
 
 With this strategy, we have a *lag* variable counting the time passing in
 each iteration and, if that variable is greater than the amount of time defined
@@ -277,10 +277,10 @@ to create.
 
 These classes can be found in the following files: 
 
-* [MapBuilder](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/terrarius/model/game/arena/MapBuilder.java)
-* [LoaderMapBuilder](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/terrarius/model/game/arena/LoaderMapBuilder.java).
-* [Arena](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/terrarius/model/game/arena/Arena.java)
-* [MapZone](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/terrarius/model/game/arena/MapZone.java)
+* [MapBuilder](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com.lpoo.terrarius/model/game/arena/MapBuilder.java)
+* [LoaderMapBuilder](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com.lpoo.terrarius/model/game/arena/LoaderMapBuilder.java).
+* [Arena](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com.lpoo.terrarius/model/game/arena/Arena.java)
+* [MapZone](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com.lpoo.terrarius/model/game/arena/MapZone.java)
 
 #### Consequences
 
@@ -456,6 +456,8 @@ could start overloading the Arena class, falling into the **Large Class** smell.
 ![Test Coverage](img/test.png)
 
 ![Pitest Results](img/pitest.png)
+
+The pitest results can be found [here]()
 
 As we can see, we have a solid line coverage in the project,
 but some tests would still benefit by being strengthened.
