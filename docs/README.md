@@ -84,7 +84,7 @@ The way they interact can be analyzed in the following diagram:
 
 ![MVCUML](img/mvc.png)
 
-The respective packages can be found [here](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java/Terrarius)
+The respective packages can be found [here](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java/com/lpoo/terrarius)
 
 #### Consequences
 Using this pattern, we can separate the logic behind the input, processing and
@@ -117,8 +117,8 @@ Our idea of implementation follows the given diagram:
 
 The code related to the pattern can be found in the following URLs:
 
-- [State Package](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java/Terrarius/States)
-- [com.lpoo.terrarius Class](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius/Terrarius.java)
+- [States Package](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/src/main/java/com/lpoo/terrarius/states)
+- [Terrarius Class](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/Terrarius.java)
 
 
 #### Consequences
@@ -160,7 +160,7 @@ Below, we can find a flowchart which can help visualize this:
 The pattern was implemented like above and can be found
 in the following method:
 
-- [Game Loop](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/17fe811ea55e6838458958bc75029312a007dd57/src/main/java/Terrarius/Terrarius.java#L55)
+- [Game Loop](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/74abf0e061f93e05fba145387780eacb6e99a0b7/src/main/java/com/lpoo/terrarius/Terrarius.java#L33)
 
 #### Consequences
 The use of this pattern has a lot of advantages, like:
@@ -216,21 +216,21 @@ Below, there's a diagram showing how this was done in the Enemy class
 
 The relevant classes for this pattern can be found in the following files:
 
-- [Enemy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius/Model/Game/elements/enemies/Enemy.java)
+- [Enemy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/model/game/elements/enemies/Enemy.java)
 
-- [EnemyStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius/Model/Game/elements/enemies/EnemyStats.java)
+- [EnemyStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/model/game/elements/enemies/EnemyStats.java)
 
-- [Tool](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/items/tools/Tool.java)
+- [Tool](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/model/game/items/tools/Tool.java)
 
-- [ToolStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/items/tools/ToolStats.java)
+- [ToolStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/model/game/items/tools/ToolStats.java)
 
-- [Buff](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/items/buff/Food.java)
+- [Buff](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/model/game/items/buffs/Buff.java)
 
-- [BuffStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Model/items/buff/FoodStats.java)
+- [BuffStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/model/game/items/buffs/BuffStats.java)
 
-- [Hero](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius/Model/Game/elements/hero/Hero.java)
+- [Hero](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/model/game/elements/hero/Hero.java)
 
-- [HeroStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius/Model/Game/elements/hero/HeroStats.java)
+- [HeroStats](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/model/game/elements/hero/HeroStats.java)
 
 #### Consequences
 The use of this pattern allows for:
@@ -277,10 +277,10 @@ to create.
 
 These classes can be found in the following files: 
 
-* [MapBuilder](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com.lpoo.terrarius/model/game/arena/MapBuilder.java)
-* [LoaderMapBuilder](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com.lpoo.terrarius/model/game/arena/LoaderMapBuilder.java).
-* [Arena](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com.lpoo.terrarius/model/game/arena/Arena.java)
-* [MapZone](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com.lpoo.terrarius/model/game/arena/MapZone.java)
+* [MapBuilder](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/model/game/arena/MapBuilder.java)
+* [LoaderMapBuilder](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/model/game/arena/LoaderMapBuilder.java).
+* [Arena](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/model/game/arena/Arena.java)
+* [MapZone](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/model/game/arena/apZone.java)
 
 #### Consequences
 
@@ -313,13 +313,13 @@ Diagram showing how the implementation of the factory method for ElementViewer w
 
 The classes mentioned in the UML can be found in the following links:
 
-* [Image](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/Image/Image.java)
-* [ColoredImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/Image/ColoredImage.java)
-* [AnimatedImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/Image/AnimatedImage.java)
-* [ElementViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/ElementViewer.java)
-* [BlockViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/BlockViewer.java)
-* [EnemyViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/EnemyViewer.java)
-* [HeroViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius.Viewer/HeroViewer.java)
+* [Image](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/viewer/image/Image.java)
+* [ColoredImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/viewer/image/ColoredImage.java)
+* [AnimatedImage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/viewer/image/AnimatedImage.java)
+* [ElementViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/viewer/game/ElementViewer.java)
+* [BlockViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/viewer/game/BlockViewer.java)
+* [EnemyViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/viewer/game/EnemyViewer.java)
+* [HeroViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/viewer/game/HeroViewer.java)
 
 #### Consequences
 
@@ -361,10 +361,10 @@ Since this pattern is used throughout the whole project, we'll give an example i
 
 Relevant classes:
 
-- [NamedComponent](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius/Model/Game/NamedComponent.java)
-- [Element](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius/Model/Game/elements/Element.java)
-. [Enemy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius/Model/Game/elements/enemies/Enemy.java)
-- [EnemyViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius/Viewer/Game/EnemyViewer.java)
+- [NamedComponent](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/model/game/NamedComponent.java)
+- [Element](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/model/game/elements/Element.java)
+. [Enemy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/model/game/elements/Enemy.java)
+- [EnemyViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/viewer/game/EnemyViewer.java)
 
 #### Consequences
 
@@ -410,9 +410,9 @@ it is a regular item. So, in the end, this smell felt like a low cost against a 
 
 ### Primitive Obsession
 
-There are currently 3 classes ([Tool](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius/Model/Game/items/tools/Tool.java), 
-[Enemy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius/Model/Game/elements/enemies/Enemy.java) 
-and [Buff](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/Terrarius/Model/Game/items/buffs/Buff.java))
+There are currently 3 classes ([Tool](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/model/game/items/tools/Tool.java), 
+[Enemy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/model/game/elements/enemies/Enemy.java) 
+and [Buff](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/master/src/main/java/com/lpoo/terrarius/model/game/items/buffs/Buff.java))
 which need to load a few values from the resources, which are all primitives (around 5) being stored in the
 classes themselves. Below, we present possible solutions for this smell and a justification
 of why they weren't implemented:
@@ -430,10 +430,10 @@ or creating code, therefore it is an impracticable solution.
 ### Switch Statements
 
 Since the game involves reading many keys and converting them into actions, there are switch statements
-which grew fairly big, link in this GUI's [method](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/fb979303e5ae9a055003ca9b86e4b36a71d55071/src/main/java/Terrarius/GUI/LanternaGui.java#L197)
+which grew fairly big, link in this GUI's [method](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/74abf0e061f93e05fba145387780eacb6e99a0b7/src/main/java/com/lpoo/terrarius/gui/LanternaGui.java#L187)
 Also, since the actions represent different operations in different states, there's a need to compare them,
 resulting in big switch statements in states that use many of them. For example, this HeroController's
-[method](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/fb979303e5ae9a055003ca9b86e4b36a71d55071/src/main/java/Terrarius/Controller/Game/HeroController.java#L148).
+[method](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/74abf0e061f93e05fba145387780eacb6e99a0b7/src/main/java/com/lpoo/terrarius/controller/game/HeroController.java#L152).
 
 This is a smell that is very hard (or even impossible in the first case) to eliminate because we always need a place
 to have a conversion table between keys and actions. If not done with a switch statement, it'd need to be done
@@ -444,7 +444,7 @@ own method or even class.
 
 ### Long Method
 
-This Arena's [method](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/8aee477a922e9e8b823b8874a79aaee2f6844ce7/src/main/java/Terrarius/Model/Game/arena/Arena.java#L97)
+This Arena's [method](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/blob/74abf0e061f93e05fba145387780eacb6e99a0b7/src/main/java/com/lpoo/terrarius/model/game/arena/Arena.java#L97)
 is fairly long (around 20 lines of code), which already raises questions as to whether it should stay this way.
 
 An easy way to fix this smell would be to split the method into smaller parts and **extract methods** from those parts.
@@ -457,7 +457,7 @@ could start overloading the Arena class, falling into the **Large Class** smell.
 
 ![Pitest Results](img/pitest.png)
 
-The pitest results can be found [here]()
+The pitest results can be found [here](https://github.com/FEUP-LPOO-2021/lpoo-2021-g34/tree/master/docs/pitest)
 
 As we can see, we have a solid line coverage in the project,
 but some tests would still benefit by being strengthened.
