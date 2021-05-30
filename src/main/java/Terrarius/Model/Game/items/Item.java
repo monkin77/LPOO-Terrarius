@@ -33,9 +33,6 @@ public abstract class Item implements NamedComponent {
         this.dimensions = dimensions;
     }
 
-    /**
-     * Calculate item position relative to a certain position
-     */
     public Position getPosition(Position possiblePosition) {
         Position itemPos = new Position(possiblePosition);
 

@@ -67,11 +67,6 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
         gui.refresh();
     }
 
-    /**
-     * This function checks if the viewer should update
-     * @param model
-     * @return true if it needs to update. False otherwise.
-     */
     public boolean needsUpdate(SkillTree model) {
         return ( previousSelected != model.getSelectedIndex() || previousUsedPoints != model.getUsedPoints() );
     }

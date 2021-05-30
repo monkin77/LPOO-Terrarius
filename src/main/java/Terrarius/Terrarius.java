@@ -30,10 +30,6 @@ public class Terrarius {
         this.state = this.createMenuState();
     }
 
-    /*
-    Check this pattern at:
-    https://gameprogrammingpatterns.com/game-loop.html
-     */
     protected void start() throws IOException, URISyntaxException {
         long previous = System.currentTimeMillis();
         long lag = 0;

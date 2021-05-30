@@ -34,10 +34,6 @@ public class ItemViewer {
         this.image = image;
     }
 
-    public void setIcon(Image icon) {
-        this.icon = icon;
-    }
-
     public void draw(Item item, GUI gui){
         if (image == null) return;
         Position itemPos = item.getPosition(item.getHero().getPosition());

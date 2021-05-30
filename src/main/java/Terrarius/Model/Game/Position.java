@@ -66,14 +66,6 @@ public class Position {
         return x == position.x && y == position.y;
     }
 
-    /**
-     * Checks if Element1 collides with Element2
-     * @param p1 Element1 Position
-     * @param d1 Element1 Dimensions
-     * @param p2 Element2 Position
-     * @param d2 Element2 Dimensions
-     * @return true if they collide, false otherwise
-     */
     public static boolean checkElementsCollision(Position p1, Dimensions d1, Position p2, Dimensions d2) {
         boolean leftSideElementCollides = p1.getX() >= p2.getX() &&
                 p1.getX() <= p2.getX() + d2.getWidth() - 1;

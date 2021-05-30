@@ -55,10 +55,6 @@ public class Toolbar {
         this.activeItemIdx = activeItemIdx;
     }
 
-    /**
-     *
-     * @return Active item. If there is no item attached to that slot, returns null
-     */
     public Item getActiveItem() {
         Item item = this.toolBar.get(activeItemIdx);
         if (item == null) return hand;
@@ -78,10 +74,6 @@ public class Toolbar {
         this.toolBar.remove(index);
     }
 
-    /**
-     * Finds the first free slot on the toolbar
-     * @return key of the first free slot. If there is no free slot, returns -1
-     */
     public Integer findFreeSlot() {
         for(Integer i = 1; i <= maxSlots; i++) {
             if(!this.toolBar.containsKey(i))

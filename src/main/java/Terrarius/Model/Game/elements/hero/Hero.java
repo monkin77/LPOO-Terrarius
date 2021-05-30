@@ -26,17 +26,11 @@ public class Hero extends Element {
         this.activeBuffs = new ArrayList<>();
     }
 
-    /**
-     * Adds an item to the first free slot. If full, the item is not added
-     */
     public void addItemFreeSlot(Item item) {
         Integer key = this.toolBar.findFreeSlot();
         if (key != -1) this.toolBar.setItem(key, item);
     }
 
-    /**
-     * Adds an item to a specific toolbar slot. If there is already an item on that position, replace it.
-     */
     public void addItem(Integer toolBarPosition, Item item) {
         this.toolBar.setItem(toolBarPosition, item);
     }

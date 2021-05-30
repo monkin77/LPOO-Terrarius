@@ -105,25 +105,4 @@ public class ArenaViewer extends Viewer<Arena> {
     protected void drawStatusBar(GUI gui, Arena arena) {
         statusBarViewer.draw(arena.getHero(), arena.getDimensions(), gui);
     }
-
-
-    protected void setEnemyCache(Map<String, EnemyViewer> enemyCache) {
-        this.enemyCache = enemyCache;
-    }
-
-    protected void setBlockCache(Map<String, BlockViewer> blockCache) {
-        this.blockCache = blockCache;
-    }
-
-    protected void setItemCache(Map<String, ItemViewer> itemCache) {
-        this.itemCache = itemCache;
-    }
-
-    protected void setToolbarViewer(ToolbarViewer toolbarViewer) {
-        this.toolbarViewer = toolbarViewer;
-    }
-
-    protected void setHeroViewer(HeroViewer heroViewer) {
-        this.heroViewer = heroViewer;
-    }
 }
