@@ -13,7 +13,7 @@ public class ItemShopViewer extends Viewer<ItemShop> {
     public void draw(GUI gui, ItemShop model) throws IOException {
         gui.clear();
 
-        String availablePoints = "Available points: " + model.getCurrentPoints();
+        String availablePoints = "Available points: " + model.getHero().getStats().getCurrentPoints();
         String selectedItem = "Selected item: " + model.getItemName(model.getSelectedIndex()) + " Price: " + model.getItemPrice(model.getSelectedIndex());
         Item activeItem = model.getHero().getToolBar().getItem(model.getSelectedSlot());
         String selectedSlot = "Selected slot: " + model.getSelectedSlot() + " Current Item: " + (activeItem == null ? "Empty" : activeItem.getComponentName());

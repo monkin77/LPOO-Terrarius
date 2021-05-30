@@ -49,11 +49,11 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
         this.drawSkillsLabels(treePos, gui, model);
 
         int yOffset = 5;
-        String availablePointsString = "Available Points: " + model.getAvailablePoints();
+        String availablePointsString = "Available Points: " + model.getHeroStats().getCurrentPoints();
         gui.drawString(10, 20, availablePointsString, "#FFFFFF", "#000000");
 
-        for(int i = 0; i < model.getOptions().size(); i++) {
-            Skill skill = model.getOptions().get(i);
+        for(int i = 0; i < model.getHeroStats().getSkills().size(); i++) {
+            Skill skill = model.getHeroStats().getSkills().get(i);
             String skillInfoPrefix = skill.getName() + ": ";
             String skillInfoHighlighted = Integer.toString(skill.getCurrLevel() );
             String skillInfoSuffix = " / " + Skill.getMaxLevel();
@@ -82,8 +82,8 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
         int textYPos = startingPos.getY() + SkillTreeViewerConstants.CENTER_CONTAINER_Y - 1;
         gui.drawString(textXPos, textYPos, skillLabel, "#FFFFFF", "#000000");
 
-        for(int i = 0; i < model.getOptions().size(); i++) {
-            Skill currSkill = model.getOptions().get(i);
+        for(int i = 0; i < model.getHeroStats().getSkills().size(); i++) {
+            Skill currSkill = model.getHeroStats().getSkills().get(i);
             skillLabel = currSkill.getName();
 
             switch (i) {
@@ -115,7 +115,7 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
             if(i == 0 || i == 1) costPosY = textYPos - (SkillTreeViewerConstants.SKILL_CONTAINER_HEIGHT/2 + 3);
             else costPosY = textYPos + (SkillTreeViewerConstants.SKILL_CONTAINER_HEIGHT/2 + 3);
 
-            String highlightColor = model.getAvailablePoints() - currSkill.getUpgradeCost() >= 0 ? "#00FF00" : "#FF0000";
+            String highlightColor = model.getHeroStats().getCurrentPoints() - currSkill.getUpgradeCost() >= 0 ? "#00FF00" : "#FF0000";
 
             String costInfo = "Cost: ";
             gui.drawString(textXPos, costPosY, costInfo, "#FFFFFF", "#000000");

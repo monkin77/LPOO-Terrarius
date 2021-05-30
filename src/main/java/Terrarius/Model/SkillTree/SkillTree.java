@@ -4,36 +4,32 @@ import Terrarius.Model.Game.elements.hero.HeroStats;
 import Terrarius.Model.MenuTemplate;
 import Terrarius.Model.SkillTree.Skills.*;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SkillTree extends MenuTemplate<Skill> {
-    private int usedPoints = 0;
-    private final HeroStats heroStats;
+    private HeroStats heroStats;
 
     public SkillTree(HeroStats heroStats) {
         super();
         this.heroStats = heroStats;
+        this.getOptions().addAll(this.heroStats.getSkills());
     }
 
     public int getUsedPoints() {
-        return usedPoints;
+        return this.heroStats.getUsedPoints();
     }
 
     public void setUsedPoints(int usedPoints) {
-        this.usedPoints = usedPoints;
+        this.heroStats.setUsedPoints(usedPoints);
     }
 
-    public int getHeroLevel() {
-        return this.heroStats.getCurrentLevel();
-    }
-
-    public int getAvailablePoints() {
-        return this.getHeroLevel() - this.usedPoints;
+    public HeroStats getHeroStats() {
+        return heroStats;
     }
 
     public void upgradeSkill(Skill selSkill) {
-        if( this.getAvailablePoints() >= selSkill.getUpgradeCost()) {
+        if( this.heroStats.getCurrentPoints() >= selSkill.getUpgradeCost()) {
             if (selSkill.upgrade()) {
                 this.setUsedPoints(this.getUsedPoints() + selSkill.getUpgradeCost());
                 selSkill.applyEffect(this.heroStats);
@@ -43,6 +39,6 @@ public class SkillTree extends MenuTemplate<Skill> {
 
     @Override
     protected List<Skill> initOptions() {
-        return Arrays.asList(new AttackSkill(), new HealthSkill(), new RangeSkill(), new SpeedSkill());
+        return new ArrayList<>();
     }
 }
