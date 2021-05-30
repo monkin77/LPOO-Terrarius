@@ -53,7 +53,7 @@ public class ItemShopViewer extends Viewer<ItemShop> {
 
         for (ItemListing itemListing : model.getOptions()){
 
-            if(i > MAX_LISTINGS_PER_PAGE) break; //Shop can't have more than 20 items, we could have added pages
+            if(i > MAX_LISTINGS_PER_PAGE) break;
 
             Position position = new Position( (i % MAX_LISTINGS_PER_LINE) + 1, (i / MAX_LISTINGS_PER_LINE)+1);
 
