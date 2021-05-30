@@ -106,7 +106,7 @@ public class HeroController {
 
     private void useBlockPlacer(){
         if (this.arena.getHero().targetWithinRange())
-            arena.placeBlock((this.arena.getHero().getTargetPosition()));
+            arena.placeBlock(this.arena.getHero().getTargetPosition());
     }
 
     private void useTool(Tool tool) {
