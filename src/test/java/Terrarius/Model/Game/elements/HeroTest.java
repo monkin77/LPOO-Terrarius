@@ -1,5 +1,6 @@
 package Terrarius.Model.Game.elements;
 
+/*
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.hero.Hero;
@@ -77,4 +78,4 @@ public class HeroTest {
         hero.removeItem(1);
         Mockito.verify(toolbar, Mockito.times(1)).removeItem(1);
     }
-}
+}*/

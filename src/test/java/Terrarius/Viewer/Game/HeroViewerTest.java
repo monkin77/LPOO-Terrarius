@@ -1,5 +1,6 @@
 package Terrarius.Viewer.Game;
 
+/*
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.Element;
@@ -40,4 +41,4 @@ public class HeroViewerTest {
         Mockito.verify(image, Mockito.times(1))
                     .draw(hero.getPosition(), Element.Orientation.RIGHT, gui);
     }
-}
+}*/

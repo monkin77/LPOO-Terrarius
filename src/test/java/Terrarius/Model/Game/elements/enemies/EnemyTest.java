@@ -1,5 +1,6 @@
 package Terrarius.Model.Game.elements.enemies;
 
+/*
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.Position;
 import org.junit.jupiter.api.Assertions;
@@ -25,4 +26,4 @@ public class EnemyTest {
         Assertions.assertEquals(16, enemy.getStats().getPower());
         Assertions.assertEquals(6, enemy.getStats().getLevel().getNumLevel());
     }
-}
+}*/

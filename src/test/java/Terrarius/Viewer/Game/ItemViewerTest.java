@@ -1,4 +1,5 @@
 package Terrarius.Viewer.Game;
+
 /*
 import Terrarius.GUI.GUI;
 import Terrarius.Utils.Dimensions;
@@ -66,6 +67,6 @@ public class ItemViewerTest {
         itemViewer.drawIcon(pos, gui);
         Mockito.verify(icon, Mockito.times(1)).draw(pos, Element.Orientation.RIGHT, gui);
     }
-}
+<<<<<<< HEAD
+}*/
 
- */

@@ -1,5 +1,6 @@
 package Terrarius.Model.Game.items.tools;
 
+/*
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.elements.hero.HeroStats;
@@ -49,4 +50,4 @@ public class ToolTest {
         Assertions.assertEquals(0, tool.getStats().getMiningPower());
         Assertions.assertEquals(0, tool.getStats().getMiningHardness());
     }
-}
+}*/
