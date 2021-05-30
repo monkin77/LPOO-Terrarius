@@ -71,6 +71,19 @@ public class LanternaGuiTest {
     }
 
     @Test
+    public void drawString() {
+        gui.drawString(10, 10, "Grande Restivo", "red", "red");
+
+        Mockito.verify(textGraphics, Mockito.times(1)).
+                setForegroundColor(TextColor.Factory.fromString("red"));
+
+        Mockito.verify(textGraphics, Mockito.times(1)).
+                setBackgroundColor(TextColor.Factory.fromString("red"));
+
+        Mockito.verify(textGraphics, Mockito.times(1)).putString(10, 10, "Grande Restivo");
+    }
+
+    @Test
     public void clear() {
         gui.clear();
         Mockito.verify(screen, Mockito.times(1)).clear();

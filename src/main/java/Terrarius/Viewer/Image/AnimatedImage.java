@@ -49,10 +49,14 @@ public class AnimatedImage extends Image {
         this.frameHandler = frameHandler;
     }
 
+    public void addImage(ColoredImage image) {
+        this.images.add(image);
+    }
+
     protected void addNextImage(Scanner imageScanner) throws FileNotFoundException, URISyntaxException {
         ColoredImage image = new ColoredImage();
         String nFname = imageScanner.nextLine();
         image.load(nFname);
-        images.add(image);
+        addImage(image);
     }
 }

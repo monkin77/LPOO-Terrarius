@@ -71,20 +71,23 @@ public class HeroController {
     }
 
     public void moveHeroLeft() {
-        Element.Orientation old_orientation = arena.getHero().getOrientation();
-        for (int i = 0; i < arena.getHero().getStats().getSpeed(); ++i)
+        Element.Orientation old_orientation;
+        for (int i = 0; i < arena.getHero().getStats().getSpeed(); ++i){
+            old_orientation = arena.getHero().getOrientation();
             arena.getHero().setOrientation(Element.Orientation.LEFT);
             if(!moveHero(arena.getHero().getPosition().getLeft()))
                 arena.getHero().setOrientation(old_orientation);
-
+        }
     }
 
     public void moveHeroRight() {
-        Element.Orientation old_orientation = arena.getHero().getOrientation();
-        for (int i = 0; i < arena.getHero().getStats().getSpeed(); ++i)
+        Element.Orientation old_orientation;
+        for (int i = 0; i < arena.getHero().getStats().getSpeed(); ++i) {
+            old_orientation = arena.getHero().getOrientation();
             arena.getHero().setOrientation(Element.Orientation.RIGHT);
-            if(!moveHero(arena.getHero().getPosition().getRight()))
+            if (!moveHero(arena.getHero().getPosition().getRight()))
                 arena.getHero().setOrientation(old_orientation);
+        }
     }
 
     public void moveHeroUp() {
@@ -106,7 +109,7 @@ public class HeroController {
 
     private void useBlockPlacer(){
         if (this.arena.getHero().targetWithinRange())
-            arena.placeBlock((this.arena.getHero().getTargetPosition()));
+            arena.placeBlock(this.arena.getHero().getTargetPosition());
     }
 
     private void useTool(Tool tool) {

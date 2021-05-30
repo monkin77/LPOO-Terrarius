@@ -79,7 +79,7 @@ public class ArenaViewer extends Viewer<Arena> {
     protected void drawToolbar(GUI gui, Arena arena) {
         Toolbar toolbar = arena.getHero().getToolBar();
         Dimensions tbvDimensions = new Dimensions(arena.getDimensions().getHeight() + 3,
-                arena.getDimensions().getWidth()); // TODO make this not hardcoded
+                arena.getDimensions().getWidth());
         toolbarViewer.draw(toolbar, tbvDimensions, gui);
         drawToolbarItems(gui, toolbar, arena);
     }
