@@ -9,7 +9,7 @@ import Terrarius.Model.Game.BlockPouch;
 import java.util.HashMap;
 import java.util.Map;
 
-import static Terrarius.Viewer.Game.GameViewerConstants.*;
+import static Terrarius.Utils.GameConstants.*;
 
 public class Toolbar {
     private final Map<Integer, Item> toolBar;

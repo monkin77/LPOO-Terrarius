@@ -31,7 +31,7 @@ public class MapBuilder {
     private final int subLevel;
     private final Dimensions dimensions;
 
-    MapBuilder(int level, int subLevel){ //TODO maybe not hero just the level
+    MapBuilder(int level, int subLevel){
         this.level = level;
         this.subLevel = subLevel;
         this.dimensions = this.createDimensions();

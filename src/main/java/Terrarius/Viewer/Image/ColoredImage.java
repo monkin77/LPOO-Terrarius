@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import static Terrarius.Viewer.Game.GameViewerConstants.DEFAULT_BACKGROUND_COLOR;
-import static Terrarius.Viewer.Game.GameViewerConstants.DEFAULT_FOREGROUND_COLOR;
+import static Terrarius.Utils.GameConstants.DEFAULT_BACKGROUND_COLOR;
+import static Terrarius.Utils.GameConstants.DEFAULT_FOREGROUND_COLOR;
 
 public class ColoredImage extends StillImage{
 

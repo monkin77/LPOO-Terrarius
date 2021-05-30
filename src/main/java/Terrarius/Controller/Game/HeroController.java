@@ -13,6 +13,8 @@ import Terrarius.Utils.Dimensions;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Terrarius.Utils.GameConstants.FRAMES_PER_APPLY_GRAVITY;
+
 public class HeroController {
     private final Arena arena;
     private final List<BuffController> buffList;
@@ -63,7 +65,7 @@ public class HeroController {
             }
 
             gravityFrameCounter++;
-            if (gravityFrameCounter % 10 == 0)
+            if (gravityFrameCounter % FRAMES_PER_APPLY_GRAVITY == 0)
                 fallingVelocity++;
         }
     }
@@ -107,7 +109,7 @@ public class HeroController {
             arena.placeBlock((this.arena.getHero().getTargetPosition()));
     }
 
-    private void useTool(Tool tool) { //TODO incomplete
+    private void useTool(Tool tool) {
         if (this.arena.getHero().targetWithinRange())
             arena.breakBlock(this.arena.getHero().getTargetPosition(), (Tool) arena.getHero().getToolBar().getActiveItem());
     }
