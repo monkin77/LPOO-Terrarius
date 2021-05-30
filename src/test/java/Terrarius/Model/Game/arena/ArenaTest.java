@@ -1,5 +1,7 @@
 package Terrarius.Model.Game.arena;
 
+import Terrarius.Model.Game.Level;
+import Terrarius.Model.Game.elements.enemies.Enemy;
 import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.items.tools.Tool;
 import Terrarius.Utils.Dimensions;
@@ -226,6 +228,31 @@ public class ArenaTest {
         arena.placeBlock(new Position(50, 23));
 
         Assertions.assertEquals(2, blocks.size());
+    }
+
+    @Test
+    public void attack() throws FileNotFoundException, URISyntaxException {
+        List<Enemy> enemies = arena.getEnemies();
+
+        enemies.clear();
+
+        enemies.add(0, new Enemy(new Position(32, 32), new Level(10, 1), "Zombie"));
+
+        int original_hp = enemies.get(0).getStats().getHp();
+
+        Tool sword =  new Tool(hero, "Sword");
+
+        this.arena.heroAttack(new Position(31, 32), sword);
+
+        Assertions.assertEquals(original_hp, enemies.get(0).getStats().getHp());
+
+        this.arena.heroAttack(new Position(32 + enemies.get(0).getDimensions().getWidth(), 32), sword);
+
+        Assertions.assertEquals(original_hp, enemies.get(0).getStats().getHp());
+
+        this.arena.heroAttack(new Position(32, 32), sword);
+
+        Assertions.assertNotEquals(original_hp, enemies.get(0).getStats().getHp());
 
     }
 }
