@@ -457,8 +457,8 @@ could start overloading the Arena class, falling into the **Large Class** smell.
 
 ![Pitest Results](img/pitest.png)
 
-As we can see, we already have a solid line coverage in the project
-but some tests still need to be strengthened.
+As we can see, we have a solid line coverage in the project,
+but some tests would still benefit by being strengthened.
 
 ## Feature demonstrations
 
