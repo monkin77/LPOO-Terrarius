@@ -1,6 +1,7 @@
 package Terrarius.Model.Game.arena;
 
 import Terrarius.Model.Game.elements.hero.Hero;
+import Terrarius.Model.Game.items.tools.Tool;
 import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.Block;
@@ -22,11 +23,13 @@ import static Terrarius.Utils.GameConstants.SCREEN_WIDTH;
 
 public class ArenaTest {
     Arena arena;
+    Hero hero;
 
     @BeforeEach
     public void setUp() throws FileNotFoundException, URISyntaxException {
 
         arena = new Arena();
+        hero = new Hero(new Position(0, 0));
 
     }
 
@@ -99,7 +102,7 @@ public class ArenaTest {
     public void blockCollision() throws FileNotFoundException, URISyntaxException {
         List<Block> blocks = arena.getBlocks();
 
-        while(!blocks.isEmpty()) blocks.remove(0);
+        blocks.clear();
 
         Block block = new Block(new Position(32, 32), "DirtBlock");
 
@@ -163,4 +166,66 @@ public class ArenaTest {
 
     }
 
+    @Test
+    public void blockBreaking() throws FileNotFoundException, URISyntaxException {
+        List<Block> blocks = arena.getBlocks();
+
+        blocks.clear();
+
+        Block block = new Block(new Position(32, 32), "StoneBlock");
+
+        int original_hp = block.getHP();
+
+        blocks.add(0, block);
+
+        arena.breakBlock(new Position(32, 32), new Tool(hero, "Shovel"));
+
+        Assertions.assertEquals(original_hp, blocks.get(0).getHP());
+
+        arena.breakBlock(new Position(32, 32), new Tool(hero, "Axe"));
+
+        Assertions.assertEquals(original_hp, blocks.get(0).getHP());
+
+        arena.breakBlock(new Position(32, 32), new Tool(hero, "Sword"));
+
+        Assertions.assertEquals(original_hp, blocks.get(0).getHP());
+
+        arena.breakBlock(new Position(32, 32), new Tool(hero, "Pickaxe"));
+
+        Assertions.assertNotEquals(original_hp, blocks.get(0).getHP());
+
+        original_hp = blocks.get(0).getHP();
+
+        arena.breakBlock(new Position(31, 32), new Tool(hero, "Pickaxe"));
+
+        Assertions.assertEquals(original_hp, blocks.get(0).getHP());
+
+    }
+
+    @Test
+    public void blockPlacing() throws FileNotFoundException, URISyntaxException {
+        List<Block> blocks = arena.getBlocks();
+
+        this.arena.getHero().getToolBar().getBlockPouch().incrementBlock(
+                new Block(new Position(0, 0), "DirtBlock"));
+
+        blocks.clear();
+
+        Block block = new Block(new Position(32, 32), "StoneBlock");
+
+        blocks.add(0, block);
+
+        arena.placeBlock(arena.getEnemies().get(0).getPosition());
+        arena.placeBlock(arena.getHero().getPosition());
+        arena.placeBlock(new Position(32, 32));
+
+        Assertions.assertEquals(1, blocks.size());
+
+        this.arena.getEnemies().clear();
+
+        arena.placeBlock(new Position(50, 23));
+
+        Assertions.assertEquals(2, blocks.size());
+
+    }
 }
