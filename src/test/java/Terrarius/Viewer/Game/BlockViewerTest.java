@@ -1,5 +1,6 @@
 package Terrarius.Viewer.Game;
 
+/*
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.Element;
@@ -41,4 +42,4 @@ public class BlockViewerTest {
         Mockito.verify(image, Mockito.times(1))
                 .draw(block.getPosition(), block.getOrientation(), gui);
     }
-}
+}*/
