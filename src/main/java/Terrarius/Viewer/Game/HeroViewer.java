@@ -7,28 +7,24 @@ import Terrarius.Viewer.Image.AnimatedImage;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 
-public class HeroViewer implements ElementViewer<Hero> {
-    AnimatedImage image;
-
-    public HeroViewer(){
-        image = new AnimatedImage();
-        try {
-            getImage().load("Images/Hero/Hero.txt");
-        } catch (FileNotFoundException | URISyntaxException | NullPointerException e) {
-            e.printStackTrace();
-        }
-    }
-
+public class HeroViewer extends ElementViewer<Hero, AnimatedImage> {
     public void update() {
         image.update();
     }
 
-    public AnimatedImage getImage() {
-        return image;
+    @Override
+    public void draw(Hero hero, GUI gui){
+        image.draw(hero.getPosition(), hero.getOrientation(), gui);
     }
 
     @Override
-    public void draw(Hero hero, GUI gui){
-        getImage().draw(hero.getPosition(), hero.getOrientation(), gui);
+    public AnimatedImage createImage() {
+        AnimatedImage image = new AnimatedImage();
+        try {
+            image.load("Images/Hero/Hero.txt");
+        } catch (FileNotFoundException | URISyntaxException | NullPointerException e) {
+            e.printStackTrace();
+        }
+        return image;
     }
 }
