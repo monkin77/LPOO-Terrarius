@@ -156,7 +156,7 @@ public class ItemShopViewer extends Viewer<ItemShop> {
             if(iconImage == null) continue;
 
             Position position = new Position(
-                    SIDEBAR_X + 5,
+                    SIDEBAR_X + (SIDEBAR_WIDTH)/2,
                     SIDEBAR_Y + SIDEBAR_OFFSET + 3 + (SIDEBAR_HEIGHT - SIDEBAR_OFFSET - 3)/(10) * i - iconImage.getDimension().getHeight()/2
             );
 
