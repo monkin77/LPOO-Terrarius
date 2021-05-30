@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static Terrarius.Viewer.Game.GameViewerConstants.SKY_COLOR;
+import static Terrarius.Utils.GameConstants.SKY_COLOR;
 
 public class ArenaViewerTest {
     private ArenaViewer arenaViewer;

@@ -5,7 +5,7 @@ import Terrarius.Model.Game.elements.Element;
 import Terrarius.Model.Game.elements.enemies.Enemy;
 import Terrarius.Viewer.FrameHandler;
 import Terrarius.Viewer.Image.AnimatedImage;
-import static Terrarius.Viewer.Game.GameViewerConstants.*;
+import static Terrarius.Utils.GameConstants.*;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;

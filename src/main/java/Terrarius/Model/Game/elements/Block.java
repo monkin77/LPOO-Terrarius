@@ -10,6 +10,8 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Scanner;
 
+import static Terrarius.Utils.GameConstants.DEFAULT_BLOCK_DIMENSIONS;
+
 public class Block extends Element {
     private int hp;
     private int hardness;
@@ -41,6 +43,6 @@ public class Block extends Element {
 
     @Override
     protected void loadElement() {
-        this.setDimensions(new Dimensions(4, 4));
+        this.setDimensions(new Dimensions(DEFAULT_BLOCK_DIMENSIONS));
     }
 }

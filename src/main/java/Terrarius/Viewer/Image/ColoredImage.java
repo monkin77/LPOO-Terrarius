@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class ColoredImage extends StillImage {
-
     private final Map<Character, String> charColorMap;
     private char[][] charColors;
     private final Map<Character, String> bgColorMap;

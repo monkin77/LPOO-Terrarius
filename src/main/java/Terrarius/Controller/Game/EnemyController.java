@@ -1,6 +1,6 @@
 package Terrarius.Controller.Game;
 
-import static Terrarius.Viewer.Game.GameViewerConstants.*;
+import static Terrarius.Utils.GameConstants.*;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Game.elements.Element;
@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class EnemyController {
+
     private final Arena arena;
     private Map<Enemy, Integer> fallingVelocities;
     private Map<Enemy, Integer> gravityFrameCounters;
@@ -51,10 +52,9 @@ public class EnemyController {
                 continue;
             }
 
-            // TODO PUT GRAVITY IN GAME CONSTANTS ASWELL
             gravityFrameCounters.replace(enemy, gravityFrameCounters.get(enemy) + 1);
-            if (gravityFrameCounters.get(enemy) % 10 == 0)
-                fallingVelocities.replace(enemy, fallingVelocities.get(enemy) + 1);
+            if (gravityFrameCounters.get(enemy) % FRAMES_PER_APPLY_GRAVITY == 0)
+                fallingVelocities.replace(enemy, fallingVelocities.get(enemy) + GRAVITY);
         }
     }
 
@@ -63,7 +63,7 @@ public class EnemyController {
                 || position.getX() + enemy.getDimensions().getWidth() >= SCREEN_WIDTH
                 || position.getY() < 0
                 || position.getY() + enemy.getDimensions().getHeight() > SCREEN_HEIGHT - TOOLBAR_HEIGHT - 3)
-            return; // TODO Refactor so we have constants somewhere common
+            return;
 
         if ( (!arena.collidesWithBlocks(position, enemy.getDimensions())) && (!hasEnemy(enemy, position)) ) {
             enemy.setPosition(position);

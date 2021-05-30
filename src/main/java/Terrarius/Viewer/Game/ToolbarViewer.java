@@ -12,8 +12,8 @@ import Terrarius.Viewer.Image.ColoredImage;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 
-import static Terrarius.Viewer.Game.GameViewerConstants.STATUS_BAR_BACKGROUND_COLOR;
-import static Terrarius.Viewer.Game.GameViewerConstants.STATUS_BAR_FOREGROUND_COLOR;
+import static Terrarius.Utils.GameConstants.STATUS_BAR_BACKGROUND_COLOR;
+import static Terrarius.Utils.GameConstants.STATUS_BAR_FOREGROUND_COLOR;
 
 public class ToolbarViewer {
     private Image image;

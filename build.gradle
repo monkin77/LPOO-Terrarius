@@ -29,5 +29,5 @@ pitest {
 }
 
 application {
-    mainClass.set("Terrarius.Game")
+    mainClass.set("Terrarius.Terrarius")
 }

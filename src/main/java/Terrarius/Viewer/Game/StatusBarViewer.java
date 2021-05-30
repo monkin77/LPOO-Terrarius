@@ -9,7 +9,7 @@ import Terrarius.Utils.Dimensions;
 
 import java.util.List;
 
-import static Terrarius.Viewer.Game.GameViewerConstants.*;
+import static Terrarius.Utils.GameConstants.*;
 
 public class StatusBarViewer {
 
