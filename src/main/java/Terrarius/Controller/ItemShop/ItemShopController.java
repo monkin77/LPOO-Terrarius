@@ -4,6 +4,7 @@ import Terrarius.Controller.Controller;
 import Terrarius.GUI.GUI;
 import Terrarius.Model.ItemShop.ItemShop;
 import Terrarius.States.ItemShopState;
+import Terrarius.States.SkillTreeState;
 import Terrarius.Terrarius;
 
 import java.io.FileNotFoundException;
@@ -31,7 +32,7 @@ public class ItemShopController extends Controller<ItemShop> {
         for(GUI.ACTION action : this.actions) {
             switch (action) {
                 case ITEM_SHOP:
-                    terrarius.setState(terrarius.getGameState());
+                    terrarius.setState( ( (ItemShopState) terrarius.getState() ).getSavedState() );
                     return;
                 case LEFT_MENU:
                     getModel().previousOption();

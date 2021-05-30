@@ -7,8 +7,11 @@ import Terrarius.Viewer.ItemShop.ItemShopViewer;
 import Terrarius.Viewer.Viewer;
 
 public class ItemShopState extends State<ItemShop> {
-    public ItemShopState(ItemShop itemShop) {
+    private final State savedState;
+
+    public ItemShopState(ItemShop itemShop, State savedState) {
         super(itemShop);
+        this.savedState = savedState;
     }
 
     @Override
@@ -23,5 +26,9 @@ public class ItemShopState extends State<ItemShop> {
 
     public void resetItemShopViewer(){
         this.setViewer(createViewer());
+    }
+
+    public State getSavedState() {
+        return savedState;
     }
 }

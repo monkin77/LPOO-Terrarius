@@ -31,7 +31,7 @@ public class SkillTreeController extends Controller<SkillTree> {
         for(GUI.ACTION action : this.actions) {
             switch (action) {
                 case SKILL_TREE:
-                    terrarius.setState(terrarius.getGameState());
+                    terrarius.setState( ( (SkillTreeState) terrarius.getState() ).getSavedState() );
                     return;
                 case LEFT_MENU:
                     getModel().previousOption();

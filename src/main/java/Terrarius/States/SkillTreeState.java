@@ -7,8 +7,11 @@ import Terrarius.Viewer.SkillTree.SkillTreeViewer;
 import Terrarius.Viewer.Viewer;
 
 public class SkillTreeState extends State<SkillTree> {
-    public SkillTreeState(SkillTree skillTree) {
+    private final State savedState;
+
+    public SkillTreeState(SkillTree skillTree, State savedState) {
         super(skillTree);
+        this.savedState = savedState;
     }
 
     @Override
@@ -23,5 +26,9 @@ public class SkillTreeState extends State<SkillTree> {
 
     public void resetSkillTreeViewer() {
         this.setViewer(createViewer());
+    }
+
+    public State getSavedState() {
+        return savedState;
     }
 }

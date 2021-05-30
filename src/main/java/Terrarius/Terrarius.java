@@ -22,9 +22,7 @@ public class Terrarius {
 
     private final GUI gui;
 
-    // Possibly save the states inside another class ?
     private State state;
-    private State gameState;
 
     public static void main(String[] args) throws FontFormatException, IOException, URISyntaxException {
         new Terrarius(128, 74).start();
@@ -68,29 +66,25 @@ public class Terrarius {
         return MS_PER_UPDATE;
     }
 
-    public void setState(State state) {
-        this.state = state;
+    public State getState() {
+        return state;
     }
 
-    public State getGameState() {
-        return gameState;
+    public void setState(State state) {
+        this.state = state;
     }
 
     public GUI getGui() {
         return gui;
     }
 
-    public void setGameState(State gameState) {
-        this.gameState = gameState;
-    }
-
     public State createSkillTreeState() {
-        HeroStats heroStats = ((Arena) gameState.getModel()).getHero().getStats();
-        return new SkillTreeState(new SkillTree(heroStats));
+        HeroStats heroStats = ((Arena) this.state.getModel()).getHero().getStats();
+        return new SkillTreeState(new SkillTree(heroStats), this.state);
     }
 
     public State createItemShopState() {
-        return new ItemShopState(new ItemShop(((Arena) gameState.getModel()).getHero()));
+        return new ItemShopState(new ItemShop(((Arena) this.state.getModel()).getHero()), this.state);
     }
 
     public State createMenuState() {

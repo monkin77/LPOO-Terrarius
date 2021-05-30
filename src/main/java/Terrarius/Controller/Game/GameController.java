@@ -50,19 +50,6 @@ public class GameController extends Controller<Arena> {
     public void update(Terrarius terrarius) {
         arenaController.update();
         if (arenaController.checkEnd())
-            this.exitCurrentGame(terrarius);
-    }
-
-    public void resetGameState(Terrarius terrarius) throws FileNotFoundException, URISyntaxException {
-        terrarius.setGameState(new GameState(new Arena()));
-    }
-
-    public void exitCurrentGame(Terrarius terrarius) {
-        terrarius.setState(new MenuState(new Menu()));
-        try {
-            this.resetGameState(terrarius);
-        } catch (FileNotFoundException | URISyntaxException e) {
-            e.printStackTrace();
-        }
+            terrarius.setState(new MenuState(new Menu()));
     }
 }
