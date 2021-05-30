@@ -6,12 +6,9 @@ import Terrarius.Model.ItemShop.ItemShop;
 import Terrarius.Viewer.ItemShop.ItemShopViewer;
 import Terrarius.Viewer.Viewer;
 
-public class ItemShopState extends State<ItemShop> {
-    private final State savedState;
-
+public class ItemShopState extends TransitionState<ItemShop> {
     public ItemShopState(ItemShop itemShop, State savedState) {
-        super(itemShop);
-        this.savedState = savedState;
+        super(itemShop, savedState);
     }
 
     @Override
@@ -22,13 +19,5 @@ public class ItemShopState extends State<ItemShop> {
     @Override
     protected Controller<ItemShop> createController() {
         return new ItemShopController(getModel());
-    }
-
-    public void resetItemShopViewer(){
-        this.setViewer(createViewer());
-    }
-
-    public State getSavedState() {
-        return savedState;
     }
 }

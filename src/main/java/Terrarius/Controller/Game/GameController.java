@@ -3,20 +3,12 @@ package Terrarius.Controller.Game;
 import Terrarius.Controller.Controller;
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Game.Position;
-import Terrarius.Model.Game.elements.hero.HeroStats;
-import Terrarius.Model.SkillTree.SkillTree;
-import Terrarius.States.GameState;
-import Terrarius.States.SkillTreeState;
-import Terrarius.Model.ItemShop.ItemShop;
-import Terrarius.States.ItemShopState;
 import Terrarius.Terrarius;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Menu.Menu;
 import Terrarius.States.MenuState;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 
 public class GameController extends Controller<Arena> {

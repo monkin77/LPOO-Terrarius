@@ -4,7 +4,6 @@ import Terrarius.Controller.Controller;
 import Terrarius.GUI.GUI;
 import Terrarius.Model.ItemShop.ItemShop;
 import Terrarius.States.ItemShopState;
-import Terrarius.States.SkillTreeState;
 import Terrarius.Terrarius;
 
 import java.io.FileNotFoundException;
