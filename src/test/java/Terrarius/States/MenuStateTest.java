@@ -1,7 +1,6 @@
 package Terrarius.States;
 
 import Terrarius.Controller.Menu.MenuController;
-import Terrarius.GUI.GUI;
 import Terrarius.Model.Menu.Menu;
 import Terrarius.Viewer.Menu.MenuViewer;
 import org.junit.jupiter.api.Assertions;
@@ -11,7 +10,6 @@ import org.mockito.Mockito;
 
 class MenuStateTest {
     private State state;
-    private GUI gui;
     private Menu menu;
 
     @BeforeEach
