@@ -24,9 +24,9 @@ public class ItemShopViewerConstants {
     public static int LISTINGS_HEIGHT = SCREEN_HEIGHT - TITLE_HEIGHT;
     public static int LISTINGS_WIDTH = SCREEN_WIDTH - SIDEBAR_WIDTH - 1;
 
-    public static int MAX_LISTINGS_PER_LINE = 4;
+    public static int MAX_LISTINGS_PER_LINE = 5;
     public static int MAX_LISTINGS_PER_ROW = 4;
-    public static int MAX_LISTINGS_PER_PAGE = MAX_LISTINGS_PER_LINE * MAX_LISTINGS_PER_ROW; //16
+    public static int MAX_LISTINGS_PER_PAGE = MAX_LISTINGS_PER_LINE * MAX_LISTINGS_PER_ROW; //20
 
 
 

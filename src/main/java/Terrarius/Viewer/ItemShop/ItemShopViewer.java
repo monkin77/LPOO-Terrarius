@@ -53,9 +53,11 @@ public class ItemShopViewer extends Viewer<ItemShop> {
 
         for (ItemListing itemListing : model.getOptions()){
 
-            if(i > MAX_LISTINGS_PER_PAGE) break; //Shop can't have more than 16 items, we could have added pages
+            if(i > MAX_LISTINGS_PER_PAGE) break; //Shop can't have more than 20 items, we could have added pages
 
-            Position position = new Position( (i % MAX_LISTINGS_PER_LINE) + 1, (i / MAX_LISTINGS_PER_ROW)+1);
+            Position position = new Position( (i % MAX_LISTINGS_PER_LINE) + 1, (i / MAX_LISTINGS_PER_LINE)+1);
+
+            System.out.println("i: "  + i + " x: " + position.getX() + " y: " + position.getY());
 
             itemListingPositionMap.put(itemListing, position);
 
