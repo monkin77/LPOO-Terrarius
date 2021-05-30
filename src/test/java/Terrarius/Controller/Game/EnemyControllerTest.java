@@ -9,7 +9,6 @@ import Terrarius.Model.Game.elements.enemies.Enemy;
 import Terrarius.Model.Game.elements.enemies.EnemyStats;
 import Terrarius.Model.Game.elements.hero.HeroStats;
 import Terrarius.Utils.Dimensions;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
