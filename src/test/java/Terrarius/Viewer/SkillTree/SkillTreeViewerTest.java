@@ -1,11 +1,10 @@
-package Terrarius.Viewer.SkillTreeViewer;
+package Terrarius.Viewer.SkillTree;
 
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.hero.HeroStats;
 import Terrarius.Model.SkillTree.SkillTree;
-import Terrarius.Viewer.SkillTree.SkillTreeViewer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
