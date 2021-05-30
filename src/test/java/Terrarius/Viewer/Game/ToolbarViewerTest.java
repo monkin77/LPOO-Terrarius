@@ -23,7 +23,7 @@ public class ToolbarViewerTest {
         Mockito.when(toolbar.getDimensions()).thenReturn(new Dimensions(10, 10));
 
         toolbarViewer = new ToolbarViewer();
-        toolbarViewer.setImage(image);
+        //toolbarViewer.setImage(image);
     }
 
     @Test

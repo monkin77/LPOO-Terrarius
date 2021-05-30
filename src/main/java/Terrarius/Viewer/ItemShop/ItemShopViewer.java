@@ -126,7 +126,7 @@ public class ItemShopViewer extends Viewer<ItemShop> {
         gui.drawString(
                 SIDEBAR_X + 1,
                 SIDEBAR_Y + SIDEBAR_OFFSET + 3,
-                model.getCurrentPoints() + "p",
+                model.getHero().getStats().getCurrentPoints() + "p",
                 "#FFFFFF",
                 "#000000"
         );

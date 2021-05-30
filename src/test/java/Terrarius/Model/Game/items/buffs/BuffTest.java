@@ -1,5 +1,6 @@
 package Terrarius.Model.Game.items.buffs;
 
+/*
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.elements.hero.HeroStats;
@@ -31,4 +32,4 @@ public class BuffTest {
         Assertions.assertEquals(6, buff.getStats().getAmountHP());
         Assertions.assertEquals(3, buff.getStats().getDuration());
     }
-}
+}*/

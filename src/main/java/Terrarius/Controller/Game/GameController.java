@@ -3,20 +3,12 @@ package Terrarius.Controller.Game;
 import Terrarius.Controller.Controller;
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Game.Position;
-import Terrarius.Model.Game.elements.hero.HeroStats;
-import Terrarius.Model.SkillTree.SkillTree;
-import Terrarius.States.GameState;
-import Terrarius.States.SkillTreeState;
-import Terrarius.Model.ItemShop.ItemShop;
-import Terrarius.States.ItemShopState;
 import Terrarius.Terrarius;
 import Terrarius.Model.Game.arena.Arena;
 import Terrarius.Model.Menu.Menu;
 import Terrarius.States.MenuState;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 
 public class GameController extends Controller<Arena> {
@@ -36,11 +28,11 @@ public class GameController extends Controller<Arena> {
     public void giveActions(Terrarius terrarius, GUI gui) throws IOException {
         List<GUI.ACTION> actions = gui.getNextActions();
         if (actions.contains(GUI.ACTION.QUIT))
-            this.exitCurrentGame(terrarius);
+            terrarius.setState(terrarius.createMenuState());
         else if (actions.contains(GUI.ACTION.SKILL_TREE))
-            terrarius.setState(terrarius.getSkillTreeState());
+            terrarius.setState(terrarius.createSkillTreeState());
         else if (actions.contains(GUI.ACTION.ITEM_SHOP))
-            terrarius.setState(terrarius.getItemShopState());
+            terrarius.setState(terrarius.createItemShopState());
         else
             arenaController.addActions(actions);
         arenaController.setHeroTargetPosition(new Position(gui.getMouseX() / gui.getFontSize(), gui.getMouseY()/ gui.getFontSize()));
@@ -50,23 +42,6 @@ public class GameController extends Controller<Arena> {
     public void update(Terrarius terrarius) {
         arenaController.update();
         if (arenaController.checkEnd())
-            this.exitCurrentGame(terrarius);
-    }
-
-    public void resetGameState(Terrarius terrarius) throws FileNotFoundException, URISyntaxException {
-        terrarius.setGameState(new GameState(new Arena()));
-
-        HeroStats heroStats = ((Arena) terrarius.getGameState().getModel()).getHero().getStats();
-        terrarius.setSkillTreeState( new SkillTreeState(new SkillTree(heroStats)) );
-        terrarius.setItemShopState( new ItemShopState(new ItemShop(((Arena) terrarius.getGameState().getModel()).getHero())));
-    }
-
-    public void exitCurrentGame(Terrarius terrarius) {
-        terrarius.setState(new MenuState(new Menu()));
-        try {
-            this.resetGameState(terrarius);
-        } catch (FileNotFoundException | URISyntaxException e) {
-            e.printStackTrace();
-        }
+            terrarius.setState(new MenuState(new Menu()));
     }
 }

@@ -1,5 +1,7 @@
 package Terrarius.Viewer.Game;
 
+
+/*
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.elements.hero.HeroStats;
@@ -192,4 +194,4 @@ public class ArenaViewerTest {
 
         Mockito.verify(viewer, Mockito.times(1)).draw(zombie, gui);
     }
-}
+}*/

@@ -1,5 +1,6 @@
 package Terrarius.Viewer.Game;
 
+/*
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.Position;
@@ -86,4 +87,4 @@ public class EnemyViewerTest {
         Mockito.verify(image, Mockito.times(1))
                 .draw(enemy2.getPosition(), enemy2.getOrientation(), gui);
     }
-}
+}*/

@@ -69,5 +69,5 @@ public class ArenaTest {
         Assertions.assertFalse(this.arena.hasAdjacentBlock(new Position(8, 6), new Dimensions(1, 1)));
     }
 
- */
-}
+
+}*/
