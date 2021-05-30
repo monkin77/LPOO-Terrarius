@@ -46,6 +46,6 @@ public class MapChooser {
         int subLevel = 1 + new Random().nextInt(levelMap.get(level));
 
         MapBuilder mapBuilder = new LoaderMapBuilder(level, subLevel);
-        return  mapBuilder.createMap();
+        return mapBuilder.createMap();
     }
 }

@@ -22,12 +22,7 @@ public class Terrarius {
 
     private final GUI gui;
 
-    // Possibly save the states inside another class ?
     private State state;
-
-    private State gameState;
-    private State skillTreeState;
-    private State itemShopState;
 
     public static void main(String[] args) throws FontFormatException, IOException, URISyntaxException {
         new Terrarius(128, 74).start();
@@ -35,12 +30,7 @@ public class Terrarius {
 
     public Terrarius(int width, int height) throws FontFormatException, IOException, URISyntaxException {
         this.gui = new LanternaGui(width, height);
-        this.state = new MenuState(new Menu());
-        this.gameState = new GameState(new Arena());
-
-        HeroStats heroStats = ((Arena) gameState.getModel()).getHero().getStats();
-        this.skillTreeState = new SkillTreeState(new SkillTree(heroStats));
-        this.itemShopState = new ItemShopState(new ItemShop(((Arena) gameState.getModel()).getHero()));
+        this.state = this.createMenuState();
     }
 
     /*
@@ -76,36 +66,33 @@ public class Terrarius {
         return MS_PER_UPDATE;
     }
 
+    public State getState() {
+        return state;
+    }
+
     public void setState(State state) {
         this.state = state;
-    }
-
-    public State getGameState() {
-        return gameState;
-    }
-
-    public State getSkillTreeState() {
-        return skillTreeState;
-    }
-
-    public State getItemShopState() {
-        return itemShopState;
     }
 
     public GUI getGui() {
         return gui;
     }
 
-    public void setGameState(State gameState) {
-        this.gameState = gameState;
+    public State createSkillTreeState() {
+        HeroStats heroStats = ((Arena) this.state.getModel()).getHero().getStats();
+        return new SkillTreeState(new SkillTree(heroStats), this.state);
     }
 
-    public void setSkillTreeState(State skillTreeState) {
-        this.skillTreeState = skillTreeState;
+    public State createItemShopState() {
+        return new ItemShopState(new ItemShop(((Arena) this.state.getModel()).getHero()), this.state);
     }
 
-    public void setItemShopState(State itemShopState) {
-        this.itemShopState = itemShopState;
+    public State createMenuState() {
+        return new MenuState(new Menu());
+    }
+
+    public State createGameState() {
+        return new GameState(new Arena());
     }
 }
 
