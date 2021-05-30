@@ -5,6 +5,7 @@ import Terrarius.GUI.GUI;
 import Terrarius.Model.SkillTree.SkillTree;
 import Terrarius.Model.SkillTree.Skills.Skill;
 import Terrarius.States.SkillTreeState;
+import Terrarius.States.TransitionState;
 import Terrarius.Terrarius;
 
 import java.io.FileNotFoundException;
@@ -31,7 +32,7 @@ public class SkillTreeController extends Controller<SkillTree> {
         for(GUI.ACTION action : this.actions) {
             switch (action) {
                 case SKILL_TREE:
-                    terrarius.setState( ( (SkillTreeState) terrarius.getState() ).getSavedState() );
+                    terrarius.setState( ( (TransitionState) terrarius.getState() ).getSavedState() );
                     return;
                 case LEFT_MENU:
                     getModel().previousOption();
