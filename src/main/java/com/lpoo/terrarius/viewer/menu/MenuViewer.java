@@ -24,7 +24,7 @@ public class MenuViewer extends Viewer<Menu> {
             for (int y = 0; y < gui.getHeight(); ++y)
                 gui.drawCharacter(x, y, ' ', "#0000FF", "#0a489c");
 
-        gui.drawString(xPos, yStart, "com/lpoo/terrarius", "#00ff00", "#0a489c");
+        gui.drawString(xPos, yStart, "Terrarius", "#00ff00", "#0a489c");
 
         for (int i = 0; i < menu.getNumOptions(); ++i)
             gui.drawString(xPos, yStart + (i + 1) * yDist,
