@@ -1,4 +1,4 @@
-/*
+
 package Terrarius.Controller.Game;
 
 import Terrarius.GUI.GUI;
@@ -11,6 +11,7 @@ import org.mockito.Mockito;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class GameControllerTest {
@@ -36,20 +37,42 @@ public class GameControllerTest {
     @Test
     public void giveActions() throws IOException {
 
-        List<GUI.ACTION> actions= Arrays.asList(GUI.ACTION.RIGHT, GUI.ACTION.UP);
+        List<GUI.ACTION> actions= Arrays.asList(GUI.ACTION.RIGHT, GUI.ACTION.UP, GUI.ACTION.LEFT);
         Mockito.when(gui.getNextActions()).thenReturn(actions);
 
         gameController.giveActions(terrarius, gui);
         Mockito.verify(arenaController, Mockito.times(1)).addActions(actions);
         Mockito.verify(arenaController, Mockito.times(1)).setHeroTargetPosition(Mockito.any());
+    }
 
-        actions = Arrays.asList(GUI.ACTION.QUIT);
+    @Test
+    public void quitAction() throws IOException {
+        List<GUI.ACTION> actions = Collections.singletonList(GUI.ACTION.QUIT);
         Mockito.when(gui.getNextActions()).thenReturn(actions);
 
         gameController.giveActions(terrarius, gui);
         Mockito.verify(arenaController, Mockito.never()).addActions(actions);
-        Mockito.verify(terrarius, Mockito.times(1)).
-                setState(Mockito.argThat(state -> state instanceof MenuState));
+        Mockito.verify(terrarius, Mockito.times(1)).createMenuState();
+    }
+
+    @Test
+    public void skillTreeAction() throws IOException {
+        List<GUI.ACTION> actions = Collections.singletonList(GUI.ACTION.SKILL_TREE);
+        Mockito.when(gui.getNextActions()).thenReturn(actions);
+
+        gameController.giveActions(terrarius, gui);
+        Mockito.verify(arenaController, Mockito.never()).addActions(actions);
+        Mockito.verify(terrarius, Mockito.times(1)).createSkillTreeState();
+    }
+
+    @Test
+    public void itemShopAction() throws IOException {
+        List<GUI.ACTION> actions = Collections.singletonList(GUI.ACTION.ITEM_SHOP);
+        Mockito.when(gui.getNextActions()).thenReturn(actions);
+
+        gameController.giveActions(terrarius, gui);
+        Mockito.verify(arenaController, Mockito.never()).addActions(actions);
+        Mockito.verify(terrarius, Mockito.times(1)).createItemShopState();
     }
 
     @Test
@@ -67,4 +90,3 @@ public class GameControllerTest {
         Mockito.verify(terrarius, Mockito.times(1)).setState(Mockito.any());
     }
 }
-*/
