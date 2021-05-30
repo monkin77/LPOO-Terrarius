@@ -38,7 +38,7 @@ public class Terrarius {
     Check this pattern at:
     https://gameprogrammingpatterns.com/game-loop.html
      */
-    protected void start() throws IOException {
+    protected void start() throws IOException, URISyntaxException {
         long previous = System.currentTimeMillis();
         long lag = 0;
 
