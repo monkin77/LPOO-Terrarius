@@ -32,7 +32,7 @@ public class SkillTreeTest {
 
         Skill skill = Mockito.mock(Skill.class);
 
-        Mockito.when(skill.getUpgradeCost()).thenReturn(1);
+        Mockito.when(skill.getUpgradeCost()).thenReturn(10);
         Mockito.when(skill.upgrade()).thenReturn(true);
         Mockito.when(skill.getCurrLevel()).thenReturn(1);
 

@@ -1,10 +1,11 @@
 package Terrarius.Viewer.SkillTree;
 
 import Terrarius.GUI.GUI;
-import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.hero.HeroStats;
 import Terrarius.Model.SkillTree.SkillTree;
+import org.junit.jupiter.api.Assertions;
+import Terrarius.Model.Game.Level;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -50,5 +51,15 @@ public class SkillTreeViewerTest {
 
         Mockito.verify(gui, Mockito.times(152)).drawCharacter(Mockito.anyInt(), Mockito.anyInt(),
                 Mockito.anyChar(), Mockito.anyString(), Mockito.anyString());
+    }
+
+    @Test
+    public void shouldUpdate() throws IOException {
+        Assertions.assertTrue(viewer.needsUpdate(skillTree));
+
+        viewer.draw(gui, skillTree);
+
+        Assertions.assertFalse(viewer.needsUpdate(skillTree));
+
     }
 }
