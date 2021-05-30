@@ -1,6 +1,7 @@
 package Terrarius.Model.Game.items;
 
 import Terrarius.Model.Game.elements.hero.Hero;
+import Terrarius.Model.Game.items.tools.Tool;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,7 @@ public class ToolbarTest {
         hero = Mockito.mock(Hero.class);
         toolbar = new Toolbar(hero);
         item = Mockito.mock(Item.class);
+        Mockito.when(item.getComponentName()).thenReturn("Item");
     }
 
     @Test
@@ -51,5 +53,11 @@ public class ToolbarTest {
             toolbar.setItem(i, item);
 
         Assertions.assertEquals(-1, toolbar.findFreeSlot());
+    }
+
+    @Test
+    public void handOnEmptySlot() {
+        Item item = toolbar.getActiveItem();
+        Assertions.assertEquals("Hand", item.getComponentName());
     }
 }
