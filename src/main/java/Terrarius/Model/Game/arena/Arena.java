@@ -153,7 +153,7 @@ public class Arena {
     public void placeBlock(Position position){
         Position gridPosition = new Position(position.getX()/4*4, position.getY()/4*4);
 
-        if (this.collidesWithBlocks(gridPosition, new Dimensions(DEFAULT_BLOCK_DIMENSIONS)) //TODO make a constant for the default block dimensions
+        if (this.collidesWithBlocks(gridPosition, new Dimensions(DEFAULT_BLOCK_DIMENSIONS))
                 || hero.getToolBar().getBlockPouch().getCurrentBlockQuantity() <= 0)
             return;
 
