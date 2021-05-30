@@ -40,4 +40,29 @@ public class LevelTest {
 
         Assertions.assertFalse(level.equals(newLevel));
     }
+
+    @Test
+    public void XPDrop() {
+        Assertions.assertEquals(6000, level.calcXpDrop());
+
+        level = new Level(0, 3);
+        Assertions.assertEquals(3, level.calcXpDrop());
+
+        level = new Level(1, 50);
+        Assertions.assertEquals(1050, level.calcXpDrop());
+
+        level = new Level(0, 0);
+        Assertions.assertEquals(0, level.calcXpDrop());
+    }
+
+    @Test
+    public void levelUp() {
+        level.increaseXP(3000);
+        Assertions.assertEquals(4, level.getNumLevel());
+        Assertions.assertEquals(0, level.getCurrentXP());
+
+        level.increaseXP(4050);
+        Assertions.assertEquals(5, level.getNumLevel());
+        Assertions.assertEquals(50, level.getCurrentXP());
+    }
 }
