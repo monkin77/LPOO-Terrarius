@@ -57,8 +57,6 @@ public class ItemShopViewer extends Viewer<ItemShop> {
 
             Position position = new Position( (i % MAX_LISTINGS_PER_LINE) + 1, (i / MAX_LISTINGS_PER_LINE)+1);
 
-            System.out.println("i: "  + i + " x: " + position.getX() + " y: " + position.getY());
-
             itemListingPositionMap.put(itemListing, position);
 
             ColoredImage iconImage = new ColoredImage();
@@ -198,10 +196,5 @@ public class ItemShopViewer extends Viewer<ItemShop> {
 
         gui.refresh();
 
-        try {
-            Thread.sleep(10);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }
