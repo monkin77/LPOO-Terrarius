@@ -27,4 +27,8 @@ public abstract class ElementViewer<T extends Element, U extends Image> {
     public void setImage(U image) {
         this.image = image;
     }
+
+    public U getImage() {
+        return image;
+    }
 }
