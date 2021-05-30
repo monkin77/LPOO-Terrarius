@@ -95,4 +95,72 @@ public class ArenaTest {
         Assertions.assertFalse(arena.hasAdjacentBlock(position6, dimensions6));
     }
 
+    @Test
+    public void blockCollision() throws FileNotFoundException, URISyntaxException {
+        List<Block> blocks = arena.getBlocks();
+
+        while(!blocks.isEmpty()) blocks.remove(0);
+
+        Block block = new Block(new Position(32, 32), "DirtBlock");
+
+        blocks.add(0, block);
+
+        Position position1 = new Position(
+                block.getPosition().getX() + block.getDimensions().getWidth(),
+                block.getPosition().getY());
+        Dimensions dimensions1 = new Dimensions(4, 4);
+
+        Assertions.assertFalse(arena.collidesWithBlocks(position1, dimensions1));
+
+        Position position2 = new Position(
+                block.getPosition().getX() + block.getDimensions().getWidth() - 1,
+                block.getPosition().getY());
+        Dimensions dimensions2 = new Dimensions(4, 4);
+
+        Assertions.assertTrue(arena.collidesWithBlocks(position2, dimensions2));
+
+        Position position3 = new Position(
+                block.getPosition().getX() + block.getDimensions().getWidth() + 1,
+                block.getPosition().getY());
+        Dimensions dimensions3 = new Dimensions(4, 4);
+
+        Assertions.assertFalse(arena.collidesWithBlocks(position3, dimensions3));
+
+        Position position4 = new Position(
+                block.getPosition().getX() - 4,
+                block.getPosition().getY());
+        Dimensions dimensions4 = new Dimensions(4, 4);
+
+        Assertions.assertFalse(arena.collidesWithBlocks(position4, dimensions4));
+
+        Position position5 = new Position(
+                block.getPosition().getX() - 4 - 1,
+                block.getPosition().getY());
+        Dimensions dimensions5 = new Dimensions(4, 4);
+
+        Assertions.assertFalse(arena.collidesWithBlocks(position5, dimensions5));
+
+        Position position6 = new Position(
+                block.getPosition().getX() - 4 + 1,
+                block.getPosition().getY());
+        Dimensions dimensions6 = new Dimensions(4, 4);
+
+        Assertions.assertTrue(arena.collidesWithBlocks(position6, dimensions6));
+
+        Position position7 = new Position(
+                block.getPosition().getX() - 1,
+                block.getPosition().getY() - 2);
+        Dimensions dimensions7 = new Dimensions(8, 4);
+
+        Assertions.assertTrue(arena.collidesWithBlocks(position7, dimensions7));
+
+        Position position8 = new Position(
+                block.getPosition().getX() - 1,
+                block.getPosition().getY() + 1);
+        Dimensions dimensions8 = new Dimensions(2, 4);
+
+        Assertions.assertTrue(arena.collidesWithBlocks(position8, dimensions8));
+
+    }
+
 }
