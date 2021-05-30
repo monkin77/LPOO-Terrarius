@@ -58,7 +58,6 @@ Some features that would have been good to implement but weren't for time reason
 
 - **Losing and pause screens**
 - **Attack animations**
-- **Improvements to ItemShop viewer**
 - **More maps, items and enemies**
 
 ## Design
