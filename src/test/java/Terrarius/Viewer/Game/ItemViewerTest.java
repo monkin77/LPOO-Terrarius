@@ -1,13 +1,11 @@
 package Terrarius.Viewer.Game;
 
-/*
 import Terrarius.GUI.GUI;
 import Terrarius.Utils.Dimensions;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.Element;
 import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.items.Item;
-import Terrarius.Model.Game.items.tools.Axe;
 import Terrarius.Viewer.Image.Image;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,7 +28,8 @@ public class ItemViewerTest {
         Mockito.when(hero.getPosition()).thenReturn(new Position(10, 10));
         Mockito.when(hero.getDimensions()).thenReturn(new Dimensions(5, 5));
 
-        item = Mockito.mock(Axe.class);
+        item = Mockito.mock(Item.class);
+        Mockito.when(item.getComponentName()).thenReturn("Axe");
         Mockito.when(item.getHero()).thenReturn(hero);
         Mockito.when(item.getDimensions()).thenReturn(new Dimensions(2, 2));
 
@@ -67,6 +66,5 @@ public class ItemViewerTest {
         itemViewer.drawIcon(pos, gui);
         Mockito.verify(icon, Mockito.times(1)).draw(pos, Element.Orientation.RIGHT, gui);
     }
-<<<<<<< HEAD
-}*/
+}
 

@@ -32,7 +32,7 @@ public class HeroViewerTest {
     @Test
     public void update() {
         heroViewer.update();
-        Mockito.verify(image, Mockito.times(1)).update();
+        Mockito.verify(heroViewer.image, Mockito.times(1)).update();
     }
 
     @Test
