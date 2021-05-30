@@ -40,7 +40,7 @@ public class ItemShopTest {
         itemShop.buyItem();
         Assertions.assertEquals("Sword",
                 hero.getToolBar().getItem(itemShop.getSelectedSlot()).getComponentName());
-        Assertions.assertEquals(itemShop.getCurrentPoints(), 10*10-itemShop.getItemPrice(itemShop.getSelectedIndex()));
+        Assertions.assertEquals(itemShop.getHero().getStats().getCurrentPoints(), 10*10-itemShop.getItemPrice(itemShop.getSelectedIndex()));
     }
 
     @Test
@@ -53,7 +53,7 @@ public class ItemShopTest {
         itemShop.nextOption();
         itemShop.buyItem();
         Assertions.assertNull(hero.getToolBar().getItem(itemShop.getSelectedSlot()));
-        Assertions.assertEquals(itemShop.getCurrentPoints(), 10);
+        Assertions.assertEquals(itemShop.getHero().getStats().getCurrentPoints(), 10);
 
     }
 
