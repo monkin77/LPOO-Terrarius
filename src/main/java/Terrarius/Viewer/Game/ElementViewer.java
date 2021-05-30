@@ -23,4 +23,12 @@ public abstract class ElementViewer<T extends Element, U extends Image> {
 
     protected abstract U createImage();
     public abstract void draw(T component, GUI gui);
+
+    public void setImage(U image) {
+        this.image = image;
+    }
+
+    public U getImage() {
+        return image;
+    }
 }

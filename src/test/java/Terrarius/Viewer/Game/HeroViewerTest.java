@@ -1,10 +1,10 @@
 package Terrarius.Viewer.Game;
 
-/*
 import Terrarius.GUI.GUI;
 import Terrarius.Model.Game.Position;
 import Terrarius.Model.Game.elements.Element;
 import Terrarius.Model.Game.elements.hero.Hero;
+import Terrarius.Viewer.Image.AnimatedImage;
 import Terrarius.Viewer.Image.Image;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,12 +13,12 @@ import org.mockito.Mockito;
 public class HeroViewerTest {
     private HeroViewer heroViewer;
     private Hero hero;
-    private Image image;
+    private AnimatedImage image;
     private GUI gui;
 
     @BeforeEach
     public void setup() {
-        image = Mockito.mock(Image.class);
+        image = Mockito.mock(AnimatedImage.class);
         gui = Mockito.mock(GUI.class);
 
         hero = Mockito.mock(Hero.class);
@@ -32,7 +32,7 @@ public class HeroViewerTest {
     @Test
     public void update() {
         heroViewer.update();
-        Mockito.verify(image, Mockito.times(1)).update();
+        Mockito.verify(heroViewer.image, Mockito.times(1)).update();
     }
 
     @Test
@@ -41,4 +41,4 @@ public class HeroViewerTest {
         Mockito.verify(image, Mockito.times(1))
                     .draw(hero.getPosition(), Element.Orientation.RIGHT, gui);
     }
-}*/
+}

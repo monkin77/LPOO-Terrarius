@@ -77,4 +77,8 @@ public class EnemyViewer extends ElementViewer<Enemy, AnimatedImage> {
     protected void setElementFrameSpeedMap(Map<Element, FrameHandler> elementFrameSpeedMap) {
         this.elementFrameSpeedMap = elementFrameSpeedMap;
     }
+
+    public Map<Element, FrameHandler> getElementFrameSpeedMap() {
+        return elementFrameSpeedMap;
+    }
 }
