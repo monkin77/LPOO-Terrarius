@@ -15,32 +15,84 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+
+import static Terrarius.Utils.GameConstants.SCREEN_WIDTH;
 
 
 public class ArenaTest {
     Arena arena;
-    Hero hero;
 
     @BeforeEach
     public void setUp() throws FileNotFoundException, URISyntaxException {
 
-        arena = Mockito.mock(Arena.class);
-
-        hero = Mockito.mock(Hero.class);
-        Mockito.when(hero.getDimensions()).thenReturn(new Dimensions(8, 4));
-
-        Mockito.when(arena.getHero()).thenReturn(hero);
-        //Mockito.when(arena)
+        arena = new Arena();
 
     }
 
     @Test
     public void boundaries(){
 
+        this.arena.getHero().setPosition(new Position(-1, 10));
+        Assertions.assertEquals(Arena.BOUNDARY.MAP_LEFT,arena.checkMapZoneAndUpdate());
 
+        this.arena.getHero().setPosition(new Position(128, 10));
+        Assertions.assertEquals(Arena.BOUNDARY.MAP_RIGHT,arena.checkMapZoneAndUpdate());
 
-        Mockito.when(hero.getPosition()).thenReturn(new Position(-1, 1));
+        this.arena.getHero().setPosition(new Position(0, 10));
+        Assertions.assertEquals(Arena.BOUNDARY.MAP_SAME,arena.checkMapZoneAndUpdate());
 
+        this.arena.getHero().setPosition(new Position(SCREEN_WIDTH - arena.getHero().getDimensions().getWidth()-1, 10));
+        Assertions.assertEquals(Arena.BOUNDARY.MAP_SAME,arena.checkMapZoneAndUpdate());
+
+    }
+
+    @Test
+    public void adjacent(){
+
+        Block block = arena.getBlocks().get(new Random().nextInt(arena.getBlocks().size()));
+
+        Position position1 = new Position(
+                block.getPosition().getX() + block.getDimensions().getWidth(),
+                block.getPosition().getY());
+        Dimensions dimensions1 = new Dimensions(4, 4);
+
+        Assertions.assertTrue(arena.hasAdjacentBlock(position1, dimensions1));
+
+        Position position2 = new Position(
+                block.getPosition().getX() + block.getDimensions().getWidth() - 1,
+                block.getPosition().getY());
+        Dimensions dimensions2 = new Dimensions(4, 4);
+
+        Assertions.assertFalse(arena.hasAdjacentBlock(position2, dimensions2));
+
+        Position position3 = new Position(
+                block.getPosition().getX() + block.getDimensions().getWidth() + 1,
+                block.getPosition().getY());
+        Dimensions dimensions3 = new Dimensions(4, 4);
+
+        Assertions.assertFalse(arena.hasAdjacentBlock(position3, dimensions3));
+
+        Position position4 = new Position(
+                block.getPosition().getX() - 4,
+                block.getPosition().getY());
+        Dimensions dimensions4 = new Dimensions(4, 4);
+
+        Assertions.assertTrue(arena.hasAdjacentBlock(position4, dimensions4));
+
+        Position position5 = new Position(
+                block.getPosition().getX() - 4 - 1,
+                block.getPosition().getY());
+        Dimensions dimensions5 = new Dimensions(4, 4);
+
+        Assertions.assertFalse(arena.hasAdjacentBlock(position5, dimensions5));
+
+        Position position6 = new Position(
+                block.getPosition().getX() - 4 + 1,
+                block.getPosition().getY());
+        Dimensions dimensions6 = new Dimensions(4, 4);
+
+        Assertions.assertFalse(arena.hasAdjacentBlock(position6, dimensions6));
     }
 
 }
