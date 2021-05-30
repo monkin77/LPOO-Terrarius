@@ -1,6 +1,5 @@
 package Terrarius.Model.Game.items.buffs;
 
-/*
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.elements.hero.HeroStats;
@@ -8,6 +7,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 
 public class BuffTest {
     Buff buff;
@@ -20,16 +22,17 @@ public class BuffTest {
     }
 
     @Test
-    public void apple() {
-        buff = new Apple(hero);
+    public void apple() throws FileNotFoundException, URISyntaxException {
+        buff = new Buff(hero, "Apple");
         Assertions.assertEquals(10, buff.getStats().getAmountHP());
         Assertions.assertEquals(5, buff.getStats().getDuration());
     }
 
     @Test
-    public void banana() {
-        buff = new Banana(hero);
-        Assertions.assertEquals(6, buff.getStats().getAmountHP());
-        Assertions.assertEquals(3, buff.getStats().getDuration());
+    public void elasticPotion() throws FileNotFoundException, URISyntaxException {
+        buff = new Buff(hero, "ElasticPotion");
+        Assertions.assertEquals(2 + 6/10, buff.getStats().getExtraRange());
+        Assertions.assertEquals(10 + 6/3, buff.getStats().getDuration());
     }
-}*/
+
+}
