@@ -424,7 +424,7 @@ of **lazy classes** and tree **Data classes**.
 - **Replace it with Subclasses**: Instead of reading the values of each type from files, we could create
 subclasses for all of them. This was what we tried initially but we ended up with a high density of classes,
 which an **Object-Orientation Abuser** and prevented us from creating new types of objects without changing
-or creating code.
+or creating code, therefore it is an impracticable solution.
   
 ### Switch Statements
 
