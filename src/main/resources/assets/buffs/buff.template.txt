@@ -1,0 +1,2 @@
+<height> <width>
+<baseDuration> <dividerDuration> <baseHP> <dividerHP> <basePower> <dividerPower> <baseSpeed> <dividerSpeed> <baseRange> <dividerRange>
