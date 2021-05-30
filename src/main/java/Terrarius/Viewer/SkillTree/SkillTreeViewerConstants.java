@@ -14,4 +14,7 @@ public final class SkillTreeViewerConstants {
 
     public static final int START_POS_X = 50;
     public static final int START_POS_Y = 10;
+
+    public static final int AVAILABLE_POINTS_X = 10;
+    public static final int AVAILABLE_POINTS_Y = 20;
 }

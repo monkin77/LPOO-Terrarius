@@ -50,7 +50,10 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
 
         int yOffset = 5;
         String availablePointsString = "Available Points: " + model.getHeroStats().getCurrentPoints();
-        gui.drawString(10, 20, availablePointsString, "#FFFFFF", "#000000");
+        int availablePointsX = SkillTreeViewerConstants.AVAILABLE_POINTS_X;
+        int availablePointsY = SkillTreeViewerConstants.AVAILABLE_POINTS_Y;
+
+        gui.drawString(availablePointsX, availablePointsY, availablePointsString, "#FFFFFF", "#000000");
 
         for(int i = 0; i < model.getHeroStats().getSkills().size(); i++) {
             Skill skill = model.getHeroStats().getSkills().get(i);
@@ -59,9 +62,9 @@ public class SkillTreeViewer extends Viewer<SkillTree> {
             String skillInfoSuffix = " / " + Skill.getMaxLevel();
             String highlightColor = skill.getCurrLevel() > 0 ? "#00FF00" : "#FFFFFF";
 
-            gui.drawString(10, 20 + (i + 1) * yOffset, skillInfoPrefix, "#FFFFFF", "#000000");
-            gui.drawString(10 + skillInfoPrefix.length(), 20 + (i + 1) * yOffset, skillInfoHighlighted, highlightColor, "#000000");
-            gui.drawString(10 + skillInfoPrefix.length() + skillInfoHighlighted.length(), 20 + (i + 1) * yOffset, skillInfoSuffix, "#FFFFFF", "#000000");
+            gui.drawString(availablePointsX, availablePointsY + (i + 1) * yOffset, skillInfoPrefix, "#FFFFFF", "#000000");
+            gui.drawString(availablePointsX + skillInfoPrefix.length(), availablePointsY + (i + 1) * yOffset, skillInfoHighlighted, highlightColor, "#000000");
+            gui.drawString(availablePointsX + skillInfoPrefix.length() + skillInfoHighlighted.length(), availablePointsY + (i + 1) * yOffset, skillInfoSuffix, "#FFFFFF", "#000000");
         }
 
         gui.refresh();
