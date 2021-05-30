@@ -31,6 +31,8 @@ class SkillTreeViewerTest {
         this.skillTreeViewer.setImage(this.image);
 
         Mockito.when(skillTree.getHeroStats()).thenReturn(new HeroStats());
+        Mockito.when(skillTree.getSelectedIndex()).thenReturn(1);
+        Mockito.when(skillTree.getUsedPoints()).thenReturn(5);
     }
 
     @Test
@@ -44,5 +46,15 @@ class SkillTreeViewerTest {
 
         Position treePos = new Position(SkillTreeViewerConstants.START_POS_X, SkillTreeViewerConstants.START_POS_Y);
         Mockito.verify(this.image, Mockito.times(1)).draw(treePos, Element.Orientation.RIGHT, gui);
+    }
+
+    @Test
+    public void shouldUpdate() throws IOException {
+        Assertions.assertTrue(skillTreeViewer.needsUpdate(skillTree));
+
+        skillTreeViewer.draw(gui, skillTree);
+
+        Assertions.assertFalse(skillTreeViewer.needsUpdate(skillTree));
+
     }
 }
