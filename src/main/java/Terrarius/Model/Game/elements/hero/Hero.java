@@ -103,7 +103,7 @@ public class Hero extends Element {
     public void addBuff(Buff buff) {
         int i = 0;
         for (; i < activeBuffs.size(); i++){
-            if (activeBuffs.get(i).getStats().getDuration() >= buff.getStats().getDuration()) break;
+            if (buff.getStats().getDuration() < activeBuffs.get(i).getStats().getDuration()) break;
         }
         this.activeBuffs.add(i, buff);
     }

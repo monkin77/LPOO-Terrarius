@@ -1,6 +1,5 @@
 package Terrarius.Model.Game.items.tools;
 
-/*
 import Terrarius.Model.Game.Level;
 import Terrarius.Model.Game.elements.hero.Hero;
 import Terrarius.Model.Game.elements.hero.HeroStats;
@@ -8,6 +7,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 
 public class ToolTest {
     Tool tool;
@@ -20,34 +22,18 @@ public class ToolTest {
     }
 
     @Test
-    public void axe() {
-        tool = new Axe(hero);
-        Assertions.assertEquals(4, tool.getStats().getFightingPower());
-        Assertions.assertEquals(13, tool.getStats().getMiningPower());
-        Assertions.assertEquals(2, tool.getStats().getMiningHardness());
-    }
-
-    @Test
-    public void pickaxe() {
-        tool = new Pickaxe(hero);
+    public void pickaxe() throws FileNotFoundException, URISyntaxException {
+        tool = new Tool(hero, "Pickaxe");
         Assertions.assertEquals(2, tool.getStats().getFightingPower());
         Assertions.assertEquals(11, tool.getStats().getMiningPower());
         Assertions.assertEquals(3, tool.getStats().getMiningHardness());
     }
 
     @Test
-    public void shovel() {
-        tool = new Shovel(hero);
-        Assertions.assertEquals(1, tool.getStats().getFightingPower());
-        Assertions.assertEquals(10, tool.getStats().getMiningPower());
-        Assertions.assertEquals(1, tool.getStats().getMiningHardness());
-    }
-
-    @Test
-    public void sword() {
-        tool = new Sword(hero);
+    public void sword() throws FileNotFoundException, URISyntaxException {
+        tool = new Tool(hero, "Sword");
         Assertions.assertEquals(9, tool.getStats().getFightingPower());
         Assertions.assertEquals(0, tool.getStats().getMiningPower());
         Assertions.assertEquals(0, tool.getStats().getMiningHardness());
     }
-}*/
+}
